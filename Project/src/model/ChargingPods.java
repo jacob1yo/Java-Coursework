@@ -1,6 +1,6 @@
 package model;
 
-public class ChargingPods {
+public class ChargingPods implements Entity {
 	
 	private int chargeRate;
 	
