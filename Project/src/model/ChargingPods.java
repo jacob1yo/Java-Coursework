@@ -1,6 +1,6 @@
 package model;
 
-public class ChargingPods {
+public class ChargingPods implements Entity {
 	
 	private int chargeRate;
 	
@@ -12,6 +12,24 @@ public class ChargingPods {
 		}
 		
 		
+	}
+
+	@Override
+	public void generateID() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Robot compare(Robot r) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
