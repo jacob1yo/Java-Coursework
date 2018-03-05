@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * 
+ * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, Vivek Bhukhan, Christos Dolopikos 
+ *
+ */
+
 public class Robot implements Entity {
 	private int safetyMargin, batteryLevel;
 	private boolean orderStatus;

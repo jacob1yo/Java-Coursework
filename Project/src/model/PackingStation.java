@@ -1,7 +1,7 @@
 package model;
 /**
  * 
- * @author Christos Dolopikos 
+ * @author @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, Vivek Bhukhan, Christos Dolopikos 
  *
  */
 
