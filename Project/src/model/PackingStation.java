@@ -1,9 +1,5 @@
 package model;
-/**
- * 
- * @author Christos Dolopikos 
- *
- */
+
 
 public class PackingStation {
 	//Declare fields
