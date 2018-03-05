@@ -1,6 +1,6 @@
 package model;
 
-public class Robot {
+public class Robot implements Entity {
 	private int safetyMargin, batteryLevel;
 	private boolean orderStatus;
 	
@@ -36,5 +36,23 @@ public class Robot {
 	
 	public void dropOrder() {
 		
+	}
+
+	@Override
+	public void generateID() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Robot compare(Robot r) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
