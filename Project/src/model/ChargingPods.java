@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * 
+ * @author @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, Vivek Bhukhan, Christos Dolopikos 
+ *
+ */
+
 public class ChargingPods implements Entity {
 	
 	private int chargeRate;
@@ -7,9 +13,9 @@ public class ChargingPods implements Entity {
 	public ChargingPods() {		
 		chargeRate = 5;
 		
-		private int charge() {
+	private int charge() {
 			
-		}
+	}
 		
 		
 	}

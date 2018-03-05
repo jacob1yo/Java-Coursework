@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * 
+ * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, Vivek Bhukhan, Christos Dolopikos 
+ *
+ */
+
 public class StorageShelf implements Entity{
 
 	@Override
