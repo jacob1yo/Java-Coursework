@@ -2,7 +2,7 @@ package model;
 
 /**
  * 
- * @author Miraj Shah, Devin Shingadia, 
+ * @author Miraj Shah, Devin Shingadia, Jacob Williams, 
  *
  */
 
