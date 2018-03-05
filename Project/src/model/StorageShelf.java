@@ -1,6 +1,6 @@
 package model;
 
-public class StorageShef implements Entity{
+public class StorageShelf implements Entity{
 
 	@Override
 	public void generateID() {
