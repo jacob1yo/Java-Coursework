@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * 
+ * @author Miraj Shah, 
+ *
+ */
+
 public interface Entity {
 
 	public abstract void generateID();
