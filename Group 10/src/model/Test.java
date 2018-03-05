@@ -19,5 +19,12 @@ public class Test {
 	public void helloWord() {
 		System.out.print("Hello WOrld");
 	}
+	
+	public String hisNameIsJacob()
+	{
+		return "Alex";
+	}
+	}
+	
 
 }
