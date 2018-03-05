@@ -18,5 +18,8 @@ public class Test {
 	public String mirajsTestMethod() {
 		return "Lets hope this works";
 	}
+	
+	
+	// HAMZA IS A CUNT
 }
 >>>>>>> 9ddc0794e1e36e4236d4254fc5fcf473014ac6dd
