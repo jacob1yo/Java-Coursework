@@ -22,11 +22,17 @@ public class ChargingPod implements Entity {
 	 * Stores the last number used for the ID
 	 */
 	private int lastNum;
+	
+	/**
+	 * Used to check if robots unique charging pod is occupied
+	 */
+	private boolean occupied;
 
 	public ChargingPod() {
 		chargeRate = 5;
 		lastNum = 0;
 		generateID();
+		occupied = false;
 	}
 
 	/**
@@ -34,14 +40,18 @@ public class ChargingPod implements Entity {
 	 */
 	private int charge() {
 		// think about int or void?
-		return 0;
+		
+		if (occupied == true) {
+			// charge rate of 5 is added to robots battery level
+		}
+		return 0; // returns the charge level
 
 	}
 
 	@Override
 	public void generateID() {
 		int num = lastNum++;
-		uid = "c + num";
+		uid = "c" + num;
 
 	}
 

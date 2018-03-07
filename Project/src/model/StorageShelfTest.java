@@ -13,10 +13,6 @@ class StorageShelfTest {
 		s1 = new StorageShelf();
 	}
 
-	@Test
-	void testGenerateID() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testGetID() {

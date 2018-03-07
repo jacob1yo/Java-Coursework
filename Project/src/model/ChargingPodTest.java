@@ -7,23 +7,18 @@ import org.junit.jupiter.api.Test;
 
 class ChargingPodTest {
 
+	private ChargingPod c1;
+	
 	@BeforeEach
 	void setUp() throws Exception {
+		c1 = new ChargingPod();
 	}
 
-	@Test
-	void testChargingPods() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGenerateID() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	void testGetID() {
-		fail("Not yet implemented");
+		c1.generateID();
+		assertEquals("c1", c1.getID());
 	}
 
 	@Test

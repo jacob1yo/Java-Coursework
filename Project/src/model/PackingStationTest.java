@@ -7,13 +7,17 @@ import org.junit.jupiter.api.Test;
 
 class PackingStationTest {
 
+	private PackingStation p1;
+	
 	@BeforeEach
 	void setUp() throws Exception {
+		p1 = new PackingStation();
 	}
 
 	@Test
-	void testPackingStation() {
-		fail("Not yet implemented");
+	void testGetID() {
+		p1.generateID();
+		assertEquals("p1", p1.getID());
 	}
 
 }
