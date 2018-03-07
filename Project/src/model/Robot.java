@@ -101,7 +101,7 @@ public class Robot implements Entity {
 	@Override
 	public void generateID() {
 		int num = lastNum++;
-		uid = "r + num";
+		uid = "r" + num;
 	}
 
 	@Override
