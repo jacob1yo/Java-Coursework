@@ -66,7 +66,7 @@ public class PackingStation implements Entity{
 
 	
 	/**
-	 * This method requests another order once {@link #completed} is completed.
+	 * This method requests another order once current order is completed.
 	 * @return
 	 */
 	private Order nextOrder() {
