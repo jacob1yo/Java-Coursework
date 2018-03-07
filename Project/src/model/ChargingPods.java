@@ -26,6 +26,7 @@ public class ChargingPods implements Entity {
 	public ChargingPods() {
 		chargeRate = 5;
 		lastNum = 0;
+		generateID();
 	}
 
 	/**

@@ -19,6 +19,7 @@ public class StorageShelf implements Entity{
 	
 	public StorageShelf() {
 		lastNum = 0;
+		generateID();
 	}
 
 	@Override

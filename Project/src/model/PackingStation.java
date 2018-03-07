@@ -27,6 +27,7 @@ public class PackingStation implements Entity{
 	public PackingStation() {
 		completed = false;
 		lastNum = 0;
+		generateID();
 	}
 
 	/**
