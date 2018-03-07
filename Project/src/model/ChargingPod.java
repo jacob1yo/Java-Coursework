@@ -7,7 +7,7 @@ package model;
  *
  */
 
-public class ChargingPods implements Entity {
+public class ChargingPod implements Entity {
 
 	/**
 	 * Determines the speed at which the battery of a robot is charged.
@@ -23,7 +23,7 @@ public class ChargingPods implements Entity {
 	 */
 	private int lastNum;
 
-	public ChargingPods() {
+	public ChargingPod() {
 		chargeRate = 5;
 		lastNum = 0;
 		generateID();
