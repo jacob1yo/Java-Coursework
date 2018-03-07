@@ -6,9 +6,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class StorageShelfTest {
-
+	private StorageShelf s1;
+		
 	@BeforeEach
 	void setUp() throws Exception {
+		s1 = new StorageShelf();
 	}
 
 	@Test
@@ -18,7 +20,8 @@ class StorageShelfTest {
 
 	@Test
 	void testGetID() {
-		fail("Not yet implemented");
+		s1.generateID();
+		assertEquals("s1", s1.getID());
 	}
 
 	@Test

@@ -25,7 +25,7 @@ public class StorageShelf implements Entity{
 	@Override
 	public void generateID() {
 		int num = lastNum++;
-		uid = "s + num";
+		uid = "s" + num;
 		
 	}
 

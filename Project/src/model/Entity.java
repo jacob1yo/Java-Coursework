@@ -7,8 +7,14 @@ package model;
  */
 
 public interface Entity {
-	
+	/**
+	 * generates each entities unique ID
+	 */
 	public abstract void generateID();
+	/**
+	 * get the unique id of each entity
+	 * @return uid
+	 */
 	public abstract String getID();
 	public abstract Robot compare(Robot r);
 	//public abstract Location getLocation();	//do we need a location class?
