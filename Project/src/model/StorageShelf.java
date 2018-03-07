@@ -7,17 +7,30 @@ package model;
  */
 
 public class StorageShelf implements Entity{
+	/**
+	 * The unique identifier of each charging pod
+	 * @see #getID, #generateID
+	 */
+	private String uid;
+	/**
+	 * Stores the last number used for the ID
+	 */
+	private int lastNum;
+	
+	public StorageShelf() {
+		lastNum = 0;
+	}
 
 	@Override
 	public void generateID() {
-		// TODO Auto-generated method stub
+		int num = lastNum++;
+		uid = "s + num";
 		
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return uid;
 	}
 
 	@Override

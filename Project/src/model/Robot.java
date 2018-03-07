@@ -52,7 +52,9 @@ public class Robot implements Entity {
 	 * Decreases the battery of a robot after every tick depending on if it's carrying an order or not.
 	 */
 	public void decreaseBatteryLevel() {
-		
+		//if statement needed
+		batteryLevel = batteryLevel - 2; // for carrying
+		batteryLevel--; //for not carrying
 	}
 	
 	/**
@@ -97,7 +99,6 @@ public class Robot implements Entity {
 	public void generateID() {
 		int num = lastNum++;
 		uid = "r + num";
-		
 	}
 
 	@Override

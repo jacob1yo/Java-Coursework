@@ -13,9 +13,19 @@ public class ChargingPods implements Entity {
 	 * Determines the speed at which the battery of a robot is charged.
 	 */
 	private int chargeRate;
+	/**
+	 * The unique identifier of each charging pod
+	 * @see #getID, #generateID
+	 */
+	private String uid;
+	/**
+	 * Stores the last number used for the ID
+	 */
+	private int lastNum;
 
 	public ChargingPods() {
 		chargeRate = 5;
+		lastNum = 0;
 	}
 
 	/**
@@ -29,14 +39,14 @@ public class ChargingPods implements Entity {
 
 	@Override
 	public void generateID() {
-		// TODO Auto-generated method stub
+		int num = lastNum++;
+		uid = "c + num";
 
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return uid;
 	}
 
 	@Override

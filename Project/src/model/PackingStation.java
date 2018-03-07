@@ -5,7 +5,7 @@ package model;
  *         Vivek Bhukhan, Christos Dolopikos
  */
 
-public class PackingStation {
+public class PackingStation implements Entity{
 	// Declare fields
 	/**
 	 * If packing has been completed by robot
@@ -14,9 +14,19 @@ public class PackingStation {
 	 * @see #resetCompleted
 	 */
 	private boolean completed;
-
+	/**
+	 * The unique identifier of each charging pod
+	 * @see #getID, #generateID
+	 */
+	private String uid;
+	/**
+	 * Stores the last number used for the ID
+	 */
+	private int lastNum;
+	
 	public PackingStation() {
 		completed = false;
+		lastNum = 0;
 	}
 
 	/**
@@ -51,5 +61,23 @@ public class PackingStation {
 	 */
 	private void dispatch() {
 		completed = true;
+	}
+
+	@Override
+	public void generateID() {
+		int num = lastNum++;
+		uid = "p + num";
+		
+	}
+
+	@Override
+	public String getID() {
+		return uid;
+	}
+
+	@Override
+	public Robot compare(Robot r) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
