@@ -63,7 +63,7 @@ public class PackingStation implements Entity{
 	private void dispatch() {
 		completed = true;
 	}
-<<<<<<< HEAD
+
 	
 	/**
 	 * This method requests another order once {@link #completed} is completed.
@@ -71,7 +71,7 @@ public class PackingStation implements Entity{
 	 */
 	private Order nextOrder() {
 		return 0; //this needs changing for correct implementation
-=======
+
 
 	@Override
 	public void generateID() {
@@ -89,6 +89,6 @@ public class PackingStation implements Entity{
 	public Robot compare(Robot r) {
 		// TODO Auto-generated method stub
 		return null;
->>>>>>> 6c6911ad0db2843341b49956ec73b442412a7fcd
+
 	}
 }
