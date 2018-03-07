@@ -6,24 +6,24 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class RobotTest {
+	private Robot r1;
+	private Robot r2;
 
 	@BeforeEach
 	void setUp() throws Exception {
-	}
-
-	@Test
-	void testRobot() {
-		fail("Not yet implemented");
+		r1 = new Robot();
+		r2 = new Robot();
 	}
 
 	@Test
 	void testGetBatteryLevel() {
-		fail("Not yet implemented");
+		assertEquals(100,r1.getBatteryLevel());
 	}
 
 	@Test
 	void testDecreaseBatteryLevel() {
-		fail("Not yet implemented");
+		r2.decreaseBatteryLevel();
+		assertEquals(99,r2.getBatteryLevel());
 	}
 
 	@Test
@@ -33,7 +33,7 @@ class RobotTest {
 
 	@Test
 	void testNeedsCharging() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
@@ -52,13 +52,10 @@ class RobotTest {
 	}
 
 	@Test
-	void testGenerateID() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	void testGetID() {
-		fail("Not yet implemented");
+		r1.generateID();
+		assertEquals("r1",r1.getID());
+		
 	}
 
 	@Test
