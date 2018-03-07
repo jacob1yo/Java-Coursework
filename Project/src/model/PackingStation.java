@@ -72,7 +72,7 @@ public class PackingStation implements Entity{
 	private Order nextOrder() {
 		return 0; //this needs changing for correct implementation
 
-
+	}
 	@Override
 	public void generateID() {
 		int num = lastNum++;
