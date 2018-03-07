@@ -14,8 +14,6 @@ public class Robot implements Entity {
 	 * 
 	 * The battery level of the robot
 	 * @see #getBatteryLevel, #decreaseBatteryLevel
-	 * 
-	 * 
 	 */
 	private int safetyMargin, batteryLevel;
 	
@@ -24,11 +22,22 @@ public class Robot implements Entity {
 	 * @see #processOrder
 	 */
 	private boolean orderStatus;
+	/**
+	 * The unique identifier of each robot
+	 * @see #getID, #generateID
+	 */
+	private String uid;
+	/**
+	 * Stores the last number used for the ID
+	 */
+	private int lastNum;
 	
 	public Robot() {
 		safetyMargin = 20;
 		batteryLevel = 100;
 		orderStatus = false;
+		lastNum = 0;
+		generateID();
 	}
 	
 	/**
@@ -60,6 +69,8 @@ public class Robot implements Entity {
 	 * {@link #batteryLevel}
 	 */
 	public boolean needsCharging() {
+		
+		
 		return false; // if statement needed
 	}
 	/**
@@ -84,14 +95,14 @@ public class Robot implements Entity {
 
 	@Override
 	public void generateID() {
-		// TODO Auto-generated method stub
+		int num = lastNum++;
+		uid = "r + num";
 		
 	}
 
 	@Override
 	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+		return uid;
 	}
 
 	@Override
