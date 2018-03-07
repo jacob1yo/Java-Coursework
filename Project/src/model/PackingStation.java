@@ -76,7 +76,7 @@ public class PackingStation implements Entity{
 	@Override
 	public void generateID() {
 		int num = lastNum++;
-		uid = "p + num";
+		uid = "p" + num;
 		
 	}
 
