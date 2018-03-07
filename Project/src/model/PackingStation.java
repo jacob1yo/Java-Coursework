@@ -36,7 +36,7 @@ public class PackingStation implements Entity{
 	 * @return <code>boolean</code> true if completed otherwise false.
 	 *         {@link #completed}
 	 */
-	private boolean isCompleted() {
+	public boolean isCompleted() {
 		return completed;
 	}
 
@@ -44,7 +44,7 @@ public class PackingStation implements Entity{
 	 * This method resets the value of {@link #completed} back to false when an
 	 * order is finished.
 	 */
-	private void resetCompleted() {
+	public void resetCompleted() {
 		completed = false;
 
 	}
@@ -53,14 +53,14 @@ public class PackingStation implements Entity{
 	 * This method keeps track of how long the robot packs for according to the
 	 * number of ticks in the simulation
 	 */
-	private void packing() {
+	public void packing() {
 		
 	}
 
 	/**
 	 * This method dispatches item for delivery, completing the order.
 	 */
-	private void dispatch() {
+	public void dispatch(//Order class maybe?) {
 		completed = true;
 	}
 
@@ -69,7 +69,7 @@ public class PackingStation implements Entity{
 	 * This method requests another order once current order is completed.
 	 * @return
 	 */
-	private Order nextOrder() {
+	public Order nextOrder(//Order class?) {
 		return 0; //this needs changing for correct implementation
 
 	}

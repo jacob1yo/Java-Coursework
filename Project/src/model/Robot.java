@@ -2,28 +2,32 @@ package model;
 
 /**
  * 
- * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, Vivek Bhukhan, Christos Dolopikos 
+ * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
+ *         Vivek Bhukhan, Christos Dolopikos
  *
  */
 
 public class Robot implements Entity {
 	/**
-	 * When calculating the distance, there is a twenty percent safety margin of battery power
+	 * When calculating the distance, there is a twenty percent safety margin of
+	 * battery power
 	 * 
 	 * @see #
 	 * 
-	 * The battery level of the robot
+	 *      The battery level of the robot
 	 * @see #getBatteryLevel, #decreaseBatteryLevel
 	 */
 	private int safetyMargin, batteryLevel;
-	
+
 	/**
 	 * Whether the robot is currently processing an order or not
+	 * 
 	 * @see #processOrder
 	 */
 	private boolean orderStatus;
 	/**
 	 * The unique identifier of each robot
+	 * 
 	 * @see #getID, #generateID
 	 */
 	private String uid;
@@ -31,7 +35,7 @@ public class Robot implements Entity {
 	 * Stores the last number used for the ID
 	 */
 	private int lastNum;
-	
+
 	public Robot() {
 		safetyMargin = 20;
 		batteryLevel = 100;
@@ -39,63 +43,88 @@ public class Robot implements Entity {
 		lastNum = 0;
 		generateID();
 	}
-	
+
 	/**
 	 * The current battery level of the robot.
-	 * @return <code>int</code> how much battery life of a robot is left. {@link #batteryLevel}
+	 * 
+	 * @return <code>int</code> how much battery life of a robot is left.
+	 *         {@link #batteryLevel}
 	 */
 	public int getBatteryLevel() {
 		return batteryLevel;
 	}
-	
+
 	/**
-	 * Decreases the battery of a robot after every tick depending on if it's carrying an order or not.
+	 * Decreases the battery of a robot after every tick depending on if it's
+	 * carrying an order or not.
 	 */
 	public void decreaseBatteryLevel() {
-		if(orderStatus == true) {
+		if (orderStatus == true) {
 			batteryLevel = batteryLevel - 2;
-		}
-		else {
-		batteryLevel--; 
+		} else {
+			batteryLevel--;
 		}
 	}
-	
+
 	/**
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> true if an order is accepted, otherwise false.
 	 */
-	public boolean processOrder() {
-		
+	public boolean orderDecision() {
+		if (orderStatus == false) { //meaning a robot is free
+			// sub-class method (Cost est strategy and Path finding strategy for batt level requirement)
+			if (//subclass){
+					/* if it returns true
+					 * carry out the distance stuff
+					 * invoke move method
+					 * return true
+			
+			return false
+					 */
+		}
 	}
-	
+
 	/**
 	 * If a robot needs charging.
-	 * @return <code>boolean</code> true if needs charging, otherwise false. 
-	 * {@link #batteryLevel}
+	 * 
+	 * @return <code>boolean</code> true if needs charging, otherwise false.
+	 *         {@link #batteryLevel}
 	 */
 	public boolean needsCharging() {
-		
-		
+
 		return false; // if statement needed
 	}
+
 	/**
-	 *Implements the movement of a robot 
+	 * Implements the movement of a robot
 	 */
 	public void move() {
-		
+		/**
+		 * A* Determines it's movement, left, right etc etc Movement would be in it's
+		 * own class
+		 */
+
 	}
+
 	/**
 	 * Robots takes the items from the storage shelf.
 	 */
-	public void pickUpOrder() {
-		
+	public void pickUpItems(Robot r, StorageShelf ss) {
+
+		if (orderDecision()) {
+			orderStatus = true;
+		} else
+			orderStatus = false;
+		// to be continued
+
 	}
-	
+
 	/**
-	 * When a robot drops off items at a packing station and waits until it's packed.
+	 * When a robot drops off items at a packing station and waits until it's
+	 * packed.
 	 */
-	public void dropOrder() {
-		
+	public void dropOrder(Robot r, PackingStation ps) {
+
 	}
 
 	@Override

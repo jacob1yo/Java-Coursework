@@ -14,7 +14,6 @@ class RobotTest {
 		r1 = new Robot();
 		r2 = new Robot();
 	}
-
 	@Test
 	void testGetBatteryLevel() {
 		assertEquals(100,r1.getBatteryLevel());
@@ -27,8 +26,10 @@ class RobotTest {
 	}
 
 	@Test
-	void testProcessOrder() {
-		fail("Not yet implemented");
+	void getFreeRobot() {
+		r1.pickUpOrder();
+		assertNotNull(r2,r2.getID());
+		
 	}
 
 	@Test
