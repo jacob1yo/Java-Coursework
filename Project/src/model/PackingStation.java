@@ -52,4 +52,12 @@ public class PackingStation {
 	private void dispatch() {
 		completed = true;
 	}
+	
+	/**
+	 * This method requests another order once {@link #completed} is completed.
+	 * @return
+	 */
+	private Order nextOrder() {
+		return 0; //this needs changing for correct implementation
+	}
 }
