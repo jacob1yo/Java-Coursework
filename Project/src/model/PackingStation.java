@@ -5,7 +5,7 @@ package model;
  *         Vivek Bhukhan, Christos Dolopikos
  */
 
-public class PackingStation {
+public class PackingStation implements Entity{
 	// Declare fields
 	/**
 	 * If packing has been completed by robot
@@ -14,9 +14,20 @@ public class PackingStation {
 	 * @see #resetCompleted
 	 */
 	private boolean completed;
-
+	/**
+	 * The unique identifier of each charging pod
+	 * @see #getID, #generateID
+	 */
+	private String uid;
+	/**
+	 * Stores the last number used for the ID
+	 */
+	private int lastNum;
+	
 	public PackingStation() {
 		completed = false;
+		lastNum = 0;
+		generateID();
 	}
 
 	/**
@@ -52,6 +63,7 @@ public class PackingStation {
 	private void dispatch() {
 		completed = true;
 	}
+<<<<<<< HEAD
 	
 	/**
 	 * This method requests another order once {@link #completed} is completed.
@@ -59,5 +71,24 @@ public class PackingStation {
 	 */
 	private Order nextOrder() {
 		return 0; //this needs changing for correct implementation
+=======
+
+	@Override
+	public void generateID() {
+		int num = lastNum++;
+		uid = "p + num";
+		
+	}
+
+	@Override
+	public String getID() {
+		return uid;
+	}
+
+	@Override
+	public Robot compare(Robot r) {
+		// TODO Auto-generated method stub
+		return null;
+>>>>>>> 6c6911ad0db2843341b49956ec73b442412a7fcd
 	}
 }
