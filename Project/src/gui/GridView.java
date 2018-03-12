@@ -1,12 +1,8 @@
 package gui;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.*;
 import javafx.scene.*;
-import javafx.scene.control.Cell;
-import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
@@ -21,7 +17,7 @@ public class GridView extends Application{
 	private GridPane grid = new GridPane();
 	
 	/**
-	 * Creates a Rectangle object.
+	 * Creates a Rectangle object called "Rect".
 	 * @see #putSquaresOnGrid
 	 */
 	Rectangle rect;
