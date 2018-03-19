@@ -12,7 +12,7 @@ public class MainController {
 	@FXML private GridPane grid;
 
 	@FXML public void initialize() {
-		height.valueProperty().addListener(new ChangeListener<>() {
+		height.valueProperty().addListener(new ChangeListener<Number>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {

@@ -126,6 +126,20 @@ public class Robot implements Entity {
 	public void dropOrder(Robot r, PackingStation ps) {
 
 	}
+	
+	/**
+	 * Gets the X co-ordinate of the robot.
+	 * @return <code>int</code> The co-ordinate value.
+	 */
+	public int getRobotX() {
+	}
+	
+	/**
+	 * Gets the Y co-ordinate of the robot.
+	 * @return <code>int</code> The co-ordinate value.
+	 */
+	public int getRobotY() {
+	}
 
 	@Override
 	public void generateID() {
