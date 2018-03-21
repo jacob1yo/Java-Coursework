@@ -10,6 +10,8 @@ import javafx.scene.layout.Pane;
 public class MainController {
 	@FXML private Slider height, width;
 	@FXML private GridPane grid;
+	
+	public MainController() {}
 
 	@FXML public void initialize() {
 		height.valueProperty().addListener(new ChangeListener<Number>() {
@@ -18,25 +20,23 @@ public class MainController {
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				final int newValue = arg2.intValue();
 				grid.getChildren().clear();
-				grid.add(new Pane(), 0, newValue);
-				// TODO Auto-generated method stub
-				
+				grid.add(new Pane(), 0, newValue);				
 			}
-			
 		});
 	}
 	
-	public MainController() {
-		
-		
-		
-	}
 	// changing the rows and columns of the grid
 	@FXML public void alterRow() {}
 	@FXML public void alterColumn() {}
-	
 	@FXML public void alterHeight() {}
-
+	
+	//Methods to implement the buttons to add / remove entities
+	@FXML public void robotPressed() {
+		
+	}
+	
+	@FXML public void storagePressed() {}
+	@FXML public void packingPressed() {}
+	@FXML public void deletePressed() {}
+	
 }
-
-

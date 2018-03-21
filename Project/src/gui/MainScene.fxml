@@ -104,14 +104,14 @@
    <top>
       <HBox alignment="CENTER" prefHeight="50.0" spacing="10.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Robot" HBox.hgrow="ALWAYS">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#robotPressed" text="Robot" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Storage" />
-            <Button alignment="CENTER" mnemonicParsing="false" text="Packing" />
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="Delete">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#storagePressed" text="Storage" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#packingPressed" text="Packing" />
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#deletePressed" text="Delete">
                <HBox.margin>
                   <Insets right="800.0" />
                </HBox.margin>
