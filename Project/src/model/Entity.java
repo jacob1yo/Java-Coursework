@@ -17,5 +17,5 @@ public interface Entity {
 	 */
 	public abstract String getID();
 	public abstract Robot compare(Robot r);
-	//public abstract Location getLocation();	//do we need a location class?
+	
 }
