@@ -141,6 +141,30 @@ public class Robot implements Entity {
 	public int getRobotY() {
 	}
 
+	/**
+	 * Gets X co-ordinate of a shelf.
+	 * @return <code>int</code> The X co-ordinate.
+	 */
+	public int getShelfX() {}
+	
+	/**
+	 * Gets Y co-ordinate of a shelf.
+	 * @return <code>int</code> The Y co-ordinate.
+	 */
+	public int getShelfY() {}
+	
+	/**
+	 * Gets X co-ordinate of a packing station.
+	 * @return <code>int</code> The X co-ordinate.
+	 */
+	public int getPackingX() {}
+	
+	/**
+	 * Gets X co-ordinate of a packing station.
+	 * @return <code>int</code> The Y co-ordinate.
+	 */
+	public int getPackingX() {}
+	
 	@Override
 	public void generateID() {
 		int num = lastNum++;

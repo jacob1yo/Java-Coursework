@@ -24,29 +24,6 @@ public class CostEstimationStrategy extends Robot {
 	 */
 	public double distanceCalculator() {}
 	
-	/**
-	 * Gets X co-ordinate of a shelf.
-	 * @return <code>int</code> The X co-ordinate.
-	 */
-	public int getShelfX() {}
-	
-	/**
-	 * Gets Y co-ordinate of a shelf.
-	 * @return <code>int</code> The Y co-ordinate.
-	 */
-	public int getShelfY() {}
-	
-	/**
-	 * Gets X co-ordinate of a packing station.
-	 * @return <code>int</code> The X co-ordinate.
-	 */
-	public int getPackingX() {}
-	
-	/**
-	 * Gets X co-ordinate of a packing station.
-	 * @return <code>int</code> The Y co-ordinate.
-	 */
-	public int getPackingX() {}
 	
 	/**
 	 * Loop that adds up every distance that it has calculated
