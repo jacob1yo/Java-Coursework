@@ -16,6 +16,12 @@ public interface Entity {
 	 * @return uid
 	 */
 	public abstract String getID();
-	public abstract Robot compare(Robot r);
+	
+	/**
+	 * Compares if the robot is in the same position as another entity.
+	 * @param r a Robot object
+	 * @return <code>boolean</code> true if there is an entity in the same location or false otherwise.
+	 */
+	public abstract boolean compare(Robot r);
 	
 }

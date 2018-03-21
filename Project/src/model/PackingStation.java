@@ -19,10 +19,13 @@ public class PackingStation implements Entity{
 	 * @see #getID, #generateID
 	 */
 	private String uid;
+	
 	/**
 	 * Stores the last number used for the ID
 	 */
 	private int lastNum;
+
+	
 	
 	public PackingStation() {
 		completed = false;
@@ -60,7 +63,7 @@ public class PackingStation implements Entity{
 	/**
 	 * This method dispatches item for delivery, completing the order.
 	 */
-	public void dispatch(//Order class maybe?) {
+	public void dispatch() {
 		completed = true;
 	}
 
@@ -69,7 +72,7 @@ public class PackingStation implements Entity{
 	 * This method requests another order once current order is completed.
 	 * @return
 	 */
-	public Order nextOrder(//Order class?) {
+	public Order nextOrder() {
 		return 0; //this needs changing for correct implementation
 
 	}
@@ -86,7 +89,7 @@ public class PackingStation implements Entity{
 	}
 
 	@Override
-	public Robot compare(Robot r) {
+	public boolean compare(Robot r) {
 		// TODO Auto-generated method stub
 		return null;
 

@@ -61,7 +61,7 @@ public class ChargingPod implements Entity {
 	}
 
 	@Override
-	public Robot compare(Robot r) {
+	public boolean compare(Robot r) {
 		// TODO Auto-generated method stub
 		return null;
 	}

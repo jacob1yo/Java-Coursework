@@ -12,7 +12,7 @@ public class Robot implements Entity {
 	 * When calculating the distance, there is a twenty percent safety margin of
 	 * battery power
 	 * 
-	 * @see #
+	 * @see #orderDecision
 	 * 
 	 *      The battery level of the robot
 	 * @see #getBatteryLevel, #decreaseBatteryLevel
@@ -177,8 +177,8 @@ public class Robot implements Entity {
 	}
 
 	@Override
-	public Robot compare(Robot r) {
+	public boolean compare(Robot r) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 }

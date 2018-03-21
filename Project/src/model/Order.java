@@ -1,4 +1,10 @@
 package model;
+/**
+ * 
+ * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, Vivek Bhukhan, Christos Dolopikos 
+ *
+ */
+
 
 import java.io.File;
 import java.util.List;
@@ -13,7 +19,7 @@ public class Order {
 	private List<String> assignedOrders, unassignedOrders, completedOrders;
 	
 	/**
-	 * Reads the orders from the files.
+	 * Reads the orders from a file.
 	 */
 	private Scanner scanner;
 	

@@ -12,6 +12,7 @@ public class StorageShelf implements Entity{
 	 * @see #getID, #generateID
 	 */
 	private String uid;
+	
 	/**
 	 * Stores the last number used for the ID
 	 */
@@ -35,7 +36,7 @@ public class StorageShelf implements Entity{
 	}
 
 	@Override
-	public Robot compare(Robot r) {
+	public boolean compare(Robot r) {
 		// TODO Auto-generated method stub
 		return null;
 	}
