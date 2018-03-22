@@ -35,6 +35,8 @@ public class Robot implements Entity {
 	 * Stores the last number used for the ID
 	 */
 	private int lastNum;
+	
+	//add fields, explain how this might change
 
 	public Robot() {
 		safetyMargin = 20;
