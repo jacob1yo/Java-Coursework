@@ -7,6 +7,7 @@ package model;
 
 public class PackingStation implements Entity{
 	// Declare fields
+	
 	/**
 	 * If packing has been completed by robot
 	 * 

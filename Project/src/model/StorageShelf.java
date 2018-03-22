@@ -7,6 +7,7 @@ package model;
  */
 
 public class StorageShelf implements Entity{
+	
 	/**
 	 * The unique identifier of each charging pod
 	 * @see #getID, #generateID
