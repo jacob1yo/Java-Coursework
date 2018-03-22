@@ -8,7 +8,7 @@ package model;
  */
 
 public class ChargingPod implements Entity {
-
+	
 	/**
 	 * Determines the speed at which the battery of a robot is charged.
 	 */
