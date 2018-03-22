@@ -34,7 +34,7 @@ public class Order {
 	
 	/**
 	 * Checks if an order has been completed, and moves it to
-	 * "completedOrders" if it is.
+	 * "completedOrders" if it is completed.
 	 */
 	public void isCompleted() {}
 	
