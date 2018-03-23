@@ -20,14 +20,27 @@ public class MainController {
 	public MainController() {}
 
 	@FXML public void initialize() {
+		//System.out.println(height.getValue());
 		height.valueProperty().addListener(new ChangeListener<Number>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				final int newValue = arg2.intValue();
 				grid.getChildren().clear();
-				grid.add(new Pane(), 0, newValue);				
+				grid.add(new Pane(), 0, newValue);
+				//grid.addRow(newValue, new Pane());
 			}
+		});
+		
+		width.valueProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+				final int newValue = arg2.intValue();
+				grid.getChildren().clear();
+				grid.add(new Pane(), newValue, 0);
+			}
+			
 		});
 	}
 	
