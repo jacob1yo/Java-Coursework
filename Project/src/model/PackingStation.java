@@ -7,6 +7,15 @@ package model;
 
 public class PackingStation implements Entity{
 	// Declare fields
+	/**
+	 * The x coordinate of a packing station on the grid
+	 */
+	private int packingX;
+	
+	/**
+	 * The y coordinate of a packing station on the grid
+	 */
+	private int packingY;
 	
 	/**
 	 * If packing has been completed by robot
@@ -28,12 +37,29 @@ public class PackingStation implements Entity{
 
 	
 	
-	public PackingStation() {
+	public PackingStation(int packingX, int packingY) {
 		completed = false;
 		lastNum = 0;
 		generateID();
+		this.packingX = packingX;
+		this.packingY = packingY;
 	}
 
+	/**
+	 * Accesses the X-coordinate of the Packing Station
+	 */
+	public int getPackingX() {
+		return packingX;
+	}
+	
+	/**
+	 * Acceses the Y-coordinate of the Packing Station
+	 */
+	public int getPackingY() {
+		return packingY;
+	}
+	
+	
 	/**
 	 * This method signals if the packing station has completed its order packing.
 	 * 
