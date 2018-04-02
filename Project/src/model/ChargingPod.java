@@ -8,6 +8,15 @@ package model;
  */
 
 public class ChargingPod implements Entity {
+	/**
+	 * The x coordinate of a charging pod on the grid
+	 */
+	private int chargingX;
+	
+	/**
+	 * The y coordinate of a robot on the grid
+	 */
+	private int chargingY;
 	
 	/**
 	 * Determines the speed at which the battery of a robot is charged.
@@ -28,13 +37,29 @@ public class ChargingPod implements Entity {
 	 */
 	private boolean occupied;
 
-	public ChargingPod() {
+	public ChargingPod(int chargingX, int chargingY) {
 		chargeRate = 5;
 		lastNum = 0;
 		generateID();
 		occupied = false;
+		this.chargingX = chargingX;
+		this.chargingY = chargingY;
 	}
 
+	/**
+	 * Acceses the X-coordinate of the charging Pod
+	 */
+	public int getChargingX(){
+		return chargingX;
+	}
+	
+	/**
+	 * Acceses the Y-coordinate of the charging Pod
+	 */
+	public int getChargingY(){
+		return chargingY;
+	}
+	
 	/**
 	 * Charges the battery of a robot depending on charge rate.
 	 */

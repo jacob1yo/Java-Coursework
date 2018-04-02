@@ -20,36 +20,6 @@ public class Robot implements Entity {
 	private int robotY;
 	
 	/**
-	 * The x coordinate of a charging pod on the grid
-	 */
-	private int chargingX;
-	
-	/**
-	 * The y coordinate of a robot on the grid
-	 */
-	private int chargingY;
-	
-	/**
-	 * The x coordinate of a packing station on the grid
-	 */
-	private int packingX;
-	
-	/**
-	 * The y coordinate of a packing station on the grid
-	 */
-	private int packingY;
-	
-	/**
-	 * The x coordinate of a storage shelf on the grid
-	 */
-	private int storageX;
-	
-	/**
-	 * The y coordinate of a storage shelf on the grid
-	 */
-	private int storageY;
-	
-	/**
 	 * When calculating the distance, there is a twenty percent safety margin of
 	 * battery power
 	 * 

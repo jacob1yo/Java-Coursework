@@ -7,7 +7,15 @@ package model;
  */
 
 public class StorageShelf implements Entity{
+	/**
+	 * The x coordinate of a storage shelf on the grid
+	 */
+	private int storageX;
 	
+	/**
+	 * The y coordinate of a storage shelf on the grid
+	 */
+	private int storageY;
 	/**
 	 * The unique identifier of each charging pod
 	 * @see #getID, #generateID
@@ -19,11 +27,27 @@ public class StorageShelf implements Entity{
 	 */
 	private int lastNum;
 	
-	public StorageShelf() {
+	public StorageShelf(int storageY, int storageX) {
 		lastNum = 0;
 		generateID();
+		this.storageX =storageX;
+		this.storageY = storageY;
+	}
+	
+	/**
+	 * Accesses the X-coordinate of the Storage
+	 */
+	public int getStorageX() {
+		return storageX;
 	}
 
+	/**
+	 * Accesses the X-coordinate of the Storage
+	 */
+	public int getStorageY() {
+		return storageY;
+	}
+	
 	@Override
 	public void generateID() {
 		int num = lastNum++;
