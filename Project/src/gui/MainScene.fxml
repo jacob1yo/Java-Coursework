@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainController">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <right>
       <VBox style="-fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
@@ -122,22 +122,6 @@
    <top>
       <HBox alignment="CENTER" spacing="10.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
-<<<<<<< HEAD
-            <Button fx:id="robotButton" alignment="CENTER" mnemonicParsing="false" onAction="#robotPressed" text="Robot" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets left="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#storagePressed" text="Storage" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#packingPressed" text="Packing" />
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#deletePressed" text="Delete">
-               <HBox.margin>
-                  <Insets right="800.0" />
-               </HBox.margin>
-            </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" text="Clear " />
-            <Button alignment="CENTER" mnemonicParsing="false" text="Save">
-=======
             <HBox>
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
@@ -163,7 +147,6 @@
                      </HBox.margin>
                   </HBox>
                </children>
->>>>>>> 85e1527d2323d36c31622948980e229255a4f0ef
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -244,7 +227,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane fx:id="tZero" prefHeight="150.0" prefWidth="200.0" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" />
@@ -284,6 +267,17 @@
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="4" />
+            <Circle fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
+            <Polygon fill="#ff1f1f" scaleX="0.5" scaleY="0.5" stroke="BLACK" strokeType="INSIDE" translateX="-10.0" translateY="-5.0">
+              <points>
+                <Double fx:value="-50.0" />
+                <Double fx:value="40.0" />
+                <Double fx:value="50.0" />
+                <Double fx:value="40.0" />
+                <Double fx:value="0.0" />
+                <Double fx:value="-60.0" />
+              </points>
+            </Polygon>
          </children>
          <padding>
             <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
