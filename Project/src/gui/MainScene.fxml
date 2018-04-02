@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainController">
    <right>
       <VBox prefHeight="600.0" prefWidth="250.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
@@ -104,7 +104,7 @@
    <top>
       <HBox alignment="CENTER" prefHeight="50.0" spacing="10.0" style="-fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#robotPressed" text="Robot" HBox.hgrow="ALWAYS">
+            <Button fx:id="robotButton" alignment="CENTER" mnemonicParsing="false" onAction="#robotPressed" text="Robot" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
@@ -159,7 +159,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0" />
+            <StackPane fx:id="tZero" prefHeight="150.0" prefWidth="200.0" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3" />
@@ -199,17 +199,6 @@
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="4" />
-            <Circle fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" />
-            <Polygon fill="#ff1f1f" scaleX="0.5" scaleY="0.5" stroke="BLACK" strokeType="INSIDE" translateX="-10.0" translateY="-5.0">
-              <points>
-                <Double fx:value="-50.0" />
-                <Double fx:value="40.0" />
-                <Double fx:value="50.0" />
-                <Double fx:value="40.0" />
-                <Double fx:value="0.0" />
-                <Double fx:value="-60.0" />
-              </points>
-            </Polygon>
          </children>
       </GridPane>
    </center>

@@ -3,16 +3,19 @@ package gui;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class MainController {
 	@FXML private Slider height, width;
 	@FXML private GridPane grid;
+	@FXML private StackPane tZero;
 	
 	private int row;
 	private int column;
@@ -60,7 +63,8 @@ public class MainController {
 		System.out.println("CLICKED");
 	}
 	
-	@FXML public void robotPressed(MouseEvent e) {		
+	@FXML public void robotPressed(ActionEvent e) {		
+		
 	}
 	
 	@FXML public void storagePressed() {}
