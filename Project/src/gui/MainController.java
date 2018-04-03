@@ -14,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import model.Robot;
 import javafx.scene.layout.ColumnConstraints;
@@ -86,6 +87,20 @@ public class MainController {
 
 	@FXML
 	public void robotPressed(MouseEvent e) {
+		addRobot.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent arg0) {
+				grid.getChildren().add(new Circle(23));
+				
+			}
+		});
+		
+		
+	/*	Miraj's attempt
+		addRobot.setOnAction(event -> {
+			grid.getChildren().add(new Polygon(10));
+	});
+	/*	
 	/*	Button robot = new Button();
 		robot.setOnAction(new EventHandler<MouseEvent>() {
 
