@@ -24,7 +24,7 @@ public class Main extends Application {
 			loader.setLocation(getClass().getResource("MainScene.fxml"));
 			loader.setController(new MainController());
 			final Parent root = loader.load();
-			final Scene scene = new Scene(root, 1500, 600);
+			final Scene scene = new Scene(root, 1500, 900);
 			primaryStage.setTitle("Warehouse simulator");
 			primaryStage.setScene(scene);
 			primaryStage.show();

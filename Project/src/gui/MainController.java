@@ -11,56 +11,83 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.RowConstraints;
 
 public class MainController {
-	@FXML private Slider height, width;
-	@FXML private GridPane grid;
-	@FXML private StackPane tZero;
-	
-	
-	public MainController() {}
+	@FXML
+	private Slider height, width;
+	@FXML
+	private GridPane grid;
+	@FXML
+	private StackPane tZero;
 
-	@FXML public void initialize() {
-		
+	public MainController() {
+	}
+
+	@FXML
+	public void initialize() {
+
 		height.valueProperty().addListener(new ChangeListener<Number>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				final int numRows = arg2.intValue();
-				grid.getChildren().clear();
-				grid.add(new Pane(), 0, numRows);
-				System.out.println(numRows);
+				// grid.getChildren().clear();
+				// grid.add(new Pane(), 0, numRows);
+
+				grid.getRowConstraints().clear();
+
+				for (int i = 0; i < numRows; i++) {
+					RowConstraints rowConst = new RowConstraints();
+					rowConst.setPercentHeight(100.0 / numRows);
+					grid.getRowConstraints().add(rowConst);
+					System.out.println(numRows);
+				}
 			}
 		});
-		
+
 		width.valueProperty().addListener(new ChangeListener<Number>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				final int numCols = arg2.intValue();
-				grid.getChildren().clear();
-				grid.add(new Pane(), numCols, 0);
-				System.out.println(numCols);
-				
+				grid.getColumnConstraints().clear();
+
+				for (int i = 0; i < numCols; i++) {
+					ColumnConstraints colConst = new ColumnConstraints();
+					colConst.setPercentWidth(100.0 / numCols);
+					grid.getColumnConstraints().add(colConst);
+					System.out.println(numCols);
+
+				}
 			}
-			
+
 		});
 	}
-	
-	
-	
-	//Methods to implement the buttons to add / remove entities
-	//@FXML public void boxPressed() {}
-	@FXML public void gridPressed(MouseEvent e) {
-		
+
+	// Methods to implement the buttons to add / remove entities
+	// @FXML public void boxPressed() {}
+	@FXML
+	public void gridPressed(MouseEvent e) {
+
 	}
-	
-	@FXML public void robotPressed(ActionEvent e) {		
-		
+
+	@FXML
+	public void robotPressed(ActionEvent e) {
+
 	}
-	
-	@FXML public void storagePressed() {}
-	@FXML public void packingPressed() {}
-	@FXML public void deletePressed() {}
-	
+
+	@FXML
+	public void storagePressed() {
+	}
+
+	@FXML
+	public void packingPressed() {
+	}
+
+	@FXML
+	public void deletePressed() {
+	}
+
 }
