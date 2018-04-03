@@ -17,21 +17,19 @@ public class MainController {
 	@FXML private GridPane grid;
 	@FXML private StackPane tZero;
 	
-	private int row;
-	private int column;
 	
 	public MainController() {}
 
 	@FXML public void initialize() {
-		//System.out.println(height.getValue());
+		
 		height.valueProperty().addListener(new ChangeListener<Number>() {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-				final int newValue = arg2.intValue();
+				final int numRows = arg2.intValue();
 				grid.getChildren().clear();
-				grid.add(new Pane(), 0, newValue);
-				//grid.addRow(newValue, new Pane());
+				grid.add(new Pane(), 0, numRows);
+				System.out.println(numRows);
 			}
 		});
 		
@@ -39,28 +37,22 @@ public class MainController {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-				final int newValue = arg2.intValue();
+				final int numCols = arg2.intValue();
 				grid.getChildren().clear();
-				grid.add(new Pane(), newValue, 0);
+				grid.add(new Pane(), numCols, 0);
+				System.out.println(numCols);
+				
 			}
 			
 		});
 	}
 	
-	// changing the rows and columns of the grid
-	@FXML public void alterRow() {}
-	@FXML public void alterColumn() {}
-	@FXML public void alterHeight() {}
+	
 	
 	//Methods to implement the buttons to add / remove entities
 	//@FXML public void boxPressed() {}
 	@FXML public void gridPressed(MouseEvent e) {
-		Node node = (Node)e.getSource();
-		column = GridPane.getColumnIndex(node);
-		row = GridPane.getRowIndex(node);
-		System.out.println(row);
-		System.out.println(column);
-		System.out.println("CLICKED");
+		
 	}
 	
 	@FXML public void robotPressed(ActionEvent e) {		
