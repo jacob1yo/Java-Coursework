@@ -4,13 +4,18 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Polygon;
+import model.Robot;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
 
@@ -20,7 +25,7 @@ public class MainController {
 	@FXML
 	private GridPane grid;
 	@FXML
-	private StackPane tZero;
+	private Button addRobot;
 
 	public MainController() {
 	}
@@ -42,7 +47,10 @@ public class MainController {
 					RowConstraints rowConst = new RowConstraints();
 					rowConst.setPercentHeight(100.0 / numRows);
 					grid.getRowConstraints().add(rowConst);
-					System.out.println(numRows);
+
+					StackPane stack = new StackPane();
+					grid.getChildren().add(stack); // NOT verified same for method below ..............................................
+
 				}
 			}
 		});
@@ -58,12 +66,15 @@ public class MainController {
 					ColumnConstraints colConst = new ColumnConstraints();
 					colConst.setPercentWidth(100.0 / numCols);
 					grid.getColumnConstraints().add(colConst);
-					System.out.println(numCols);
+
+					StackPane stack = new StackPane();
+					grid.getChildren().add(stack);
 
 				}
 			}
 
 		});
+
 	}
 
 	// Methods to implement the buttons to add / remove entities
@@ -74,8 +85,18 @@ public class MainController {
 	}
 
 	@FXML
-	public void robotPressed(ActionEvent e) {
+	public void robotPressed(MouseEvent e) {
+	/*	Button robot = new Button();
+		robot.setOnAction(new EventHandler<MouseEvent>() {
 
+			@Override
+			public void handle(MouseEvent e) {
+				grid.getChildren().add(new Polygon(10));
+			}
+
+		});
+		
+	*/
 	}
 
 	@FXML
