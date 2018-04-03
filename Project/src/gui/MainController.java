@@ -47,10 +47,6 @@ public class MainController {
 		});
 	}
 	
-	// changing the rows and columns of the grid
-	@FXML public void alterRow() {}
-	@FXML public void alterColumn() {}
-	@FXML public void alterHeight() {}
 	
 	//Methods to implement the buttons to add / remove entities
 	//@FXML public void boxPressed() {}
