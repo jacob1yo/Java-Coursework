@@ -86,7 +86,10 @@ public class MainController {
 	}
 
 	@FXML
-	public void initalize() {
+	public void initalize(MouseEvent e) {
+		Node src = (Node) e.getSource();
+		Integer colIndex = grid.getColumnIndex(src);
+		Integer rowIndex = grid.getRowIndex(src);
 		addRobot.setOnAction((event) -> { 
 			grid.add(new Circle(20), colIndex, rowIndex);
 		});
