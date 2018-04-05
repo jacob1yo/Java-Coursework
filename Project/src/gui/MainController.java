@@ -91,13 +91,16 @@ public class MainController {
 		Integer colIndex = grid.getColumnIndex(src);
 		Integer rowIndex = grid.getRowIndex(src);
 		addRobot.setOnAction((event) -> { 
-			grid.add(new Circle(20), colIndex, rowIndex);
+			//grid.add(new Circle(20), colIndex.intValue(), rowIndex.intValue());
+			System.out.println(colIndex.intValue());
+			System.out.println(rowIndex.intValue());
 		});
 	}
 	
 	@FXML
 	public void robotPressed(MouseEvent e) {
 		//grid.add(new Circle(20), columnIndex, rowIndex);
+		
 	}
 
 	@FXML
