@@ -5,8 +5,8 @@ package model;
  *
  */
 
-
-import javafx.geometry.Point2D;
+import java.awt.Point;
+//import javafx.geometry.Point2D;
 
 public class CostEstimationStrategy extends Robot {
 	
@@ -14,27 +14,40 @@ public class CostEstimationStrategy extends Robot {
 	 * Start location for the algorithm.
 	 * @see #distanceCalculator
 	 */
-	private Point2D startPoint;
+	//private Point startPosition; // x and y of the start position
 	
 	/**
 	 * End location for the algorithm.
 	 * @see #distanceCalculator
 	 */
-	private Point2D endPoint;
+	//private Point endPosition;//x and y of the end position
 
-	public CostEstimationStrategy() {}
+	public CostEstimationStrategy() {
+		startPosition = new Point();
+		endPosition = new Point();
+	}
 
 	/**
 	 * Calculates the distance from one point to another.
 	 * @return <code>double</code> Distance between locations
 	 */
-	public double distanceCalculator() {}
+	public double distanceCalculator(Point to, Point from) {
+		return Math.sqrt((Math.pow(from.getX()-to.getX(),2))+(Math.pow(from.getY()-to.getY(),2)));
+		
+		
+	}
 	
-	
+
+
 	/**
 	 * Loop that adds up every distance that it has calculated
 	 * @return <code>double</code> Final/total distance
 	 */
-	public double totalDistanceEstimator() {}
+	public Point totalDistanceEstimator() {
+		return robotY;
+		return robotCoordinates;
+		
+	}
+	
 	
 }

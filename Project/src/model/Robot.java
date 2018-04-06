@@ -7,7 +7,7 @@ package model;
  *
  */
 
-public class Robot implements Entity {
+public class Robot extends Warehouse implements Entity  {
 	
 	/**
 	 * The x coordinate of a robot on the grid
@@ -17,7 +17,7 @@ public class Robot implements Entity {
 	/**
 	 * The y coordinate of a robot on the grid
 	 */
-	private int robotY;
+	protected int robotY;
 	
 	/**
 	 * When calculating the distance, there is a twenty percent safety margin of
@@ -145,6 +145,7 @@ public class Robot implements Entity {
 	 * @return <code>int</code> The co-ordinate value.
 	 */
 	public int getRobotX() {
+		return robotX;
 	}
 	
 	/**
@@ -152,6 +153,7 @@ public class Robot implements Entity {
 	 * @return <code>int</code> The co-ordinate value.
 	 */
 	public int getRobotY() {
+	return robotY;
 	}
 
 	/**

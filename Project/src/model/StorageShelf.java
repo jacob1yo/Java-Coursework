@@ -10,7 +10,7 @@ public class StorageShelf implements Entity{
 	/**
 	 * The x coordinate of a storage shelf on the grid
 	 */
-	private int storageX;
+	public int storageX;
 	
 	/**
 	 * The y coordinate of a storage shelf on the grid
