@@ -28,6 +28,10 @@ public class MainController {
 	@FXML
 	private Button addRobot;
 
+	private int numRows;
+	private int numCols;
+	private Boolean pressed;
+	
 	public MainController() {
 	}
 
@@ -38,7 +42,7 @@ public class MainController {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-				final int numRows = arg2.intValue();
+				numRows = arg2.intValue();
 				// grid.getChildren().clear();
 				// grid.add(new Pane(), 0, numRows);
 
@@ -49,9 +53,6 @@ public class MainController {
 					rowConst.setPercentHeight(100.0 / numRows);
 					grid.getRowConstraints().add(rowConst);
 
-					StackPane stack = new StackPane();
-					grid.getChildren().add(stack); // NOT verified same for method below ..............................................
-
 				}
 			}
 		});
@@ -60,7 +61,7 @@ public class MainController {
 
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-				final int numCols = arg2.intValue();
+				numCols = arg2.intValue();
 				grid.getColumnConstraints().clear();
 
 				for (int i = 0; i < numCols; i++) {
@@ -68,38 +69,53 @@ public class MainController {
 					colConst.setPercentWidth(100.0 / numCols);
 					grid.getColumnConstraints().add(colConst);
 
-					StackPane stack = new StackPane();
-					grid.getChildren().add(stack);
-
 				}
 			}
 
 		});
+		
+		for(int i = 0; i < numCols; i++) {
+			for(int j = 0; j < numRows; j++) {
+				addPane(i,j);
+			}
+		}
 
+	}
+	
+	private void addPane(int colIndex, int rowIndex) {
+		StackPane pane = new StackPane();
+		grid.add(pane, colIndex, rowIndex);
 	}
 
 	// Methods to implement the buttons to add / remove entities
 	// @FXML public void boxPressed() {}
 	@FXML
 	public void gridPressed(MouseEvent e) {
-
+		if(pressed = true) {
+			Node src = (Node) e.getSource();
+			Integer colIndex = GridPane.getColumnIndex(src);
+			Integer rowIndex = GridPane.getRowIndex(src);
+			addRobot.setOnAction((event) -> { 
+				grid.add(new Circle(20), colIndex.intValue(), rowIndex.intValue());
+			});
+		}
 	}
 
 	@FXML
 	public void initalize(MouseEvent e) {
-		Node src = (Node) e.getSource();
-		Integer colIndex = grid.getColumnIndex(src);
-		Integer rowIndex = grid.getRowIndex(src);
+		/*Node src = (Node) e.getSource();
+		Integer colIndex = GridPane.getColumnIndex(src);
+		Integer rowIndex = GridPane.getRowIndex(src);
 		addRobot.setOnAction((event) -> { 
-			//grid.add(new Circle(20), colIndex.intValue(), rowIndex.intValue());
-			System.out.println(colIndex.intValue());
-			System.out.println(rowIndex.intValue());
-		});
+			grid.add(new Circle(20), colIndex.intValue(), rowIndex.intValue());
+			//System.out.println(colIndex.intValue());
+			//System.out.println(rowIndex.intValue());
+		});*/
 	}
 	
 	@FXML
-	public void robotPressed(MouseEvent e) {
-		//grid.add(new Circle(20), columnIndex, rowIndex);
+	public void robotPressed() {
+		pressed = true;
 		
 	}
 
