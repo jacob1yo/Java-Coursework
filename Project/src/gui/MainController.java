@@ -153,7 +153,14 @@ public class MainController {
 
 	@FXML
 	public void deletePressed() {
-		pressed = "delete";
+		pressed = "delete"; //Might have to put all implementations in the respective methods
+	}
+	
+	@FXML
+	public void clearPressed() {
+		grid.getChildren().clear();
+		initialize();
+		
 	}
 
 }
