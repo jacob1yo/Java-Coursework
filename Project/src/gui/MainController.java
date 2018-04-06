@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,8 +15,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import model.Robot;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
@@ -30,8 +33,8 @@ public class MainController {
 
 	private int numRows;
 	private int numCols;
-	private Boolean pressed;
-	
+	private String pressed;
+
 	public MainController() {
 	}
 
@@ -43,9 +46,7 @@ public class MainController {
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				numRows = arg2.intValue();
-				// grid.getChildren().clear();
-				// grid.add(new Pane(), 0, numRows);
-
+				//grid.getChildren().clear();
 				grid.getRowConstraints().clear();
 
 				for (int i = 0; i < numRows; i++) {
@@ -54,6 +55,7 @@ public class MainController {
 					grid.getRowConstraints().add(rowConst);
 
 				}
+				addPane();
 			}
 		});
 
@@ -70,65 +72,88 @@ public class MainController {
 					grid.getColumnConstraints().add(colConst);
 
 				}
+				addPane();
 			}
 
 		});
-		
+	}
+
+	public void addPane() {
 		for(int i = 0; i < numCols; i++) {
 			for(int j = 0; j < numRows; j++) {
-				addPane(i,j);
+				StackPane pane = new StackPane();
+				//pane.setAlignment(Pos.CENTER);
+				grid.add(pane, i, j);
 			}
 		}
-
-	}
-	
-	private void addPane(int colIndex, int rowIndex) {
-		StackPane pane = new StackPane();
-		grid.add(pane, colIndex, rowIndex);
 	}
 
 	// Methods to implement the buttons to add / remove entities
 	// @FXML public void boxPressed() {}
 	@FXML
 	public void gridPressed(MouseEvent e) {
-		if(pressed = true) {
-			Node src = (Node) e.getSource();
-			Integer colIndex = GridPane.getColumnIndex(src);
-			Integer rowIndex = GridPane.getRowIndex(src);
-			addRobot.setOnAction((event) -> { 
-				grid.add(new Circle(20), colIndex.intValue(), rowIndex.intValue());
-			});
+		System.out.println(pressed);
+		Node src = (Node) e.getTarget();
+		Integer colIndex = GridPane.getColumnIndex(src);
+		Integer rowIndex = GridPane.getRowIndex(src);
+		if(colIndex == null) {
+			colIndex = 0;
 		}
+		if(rowIndex == null) {
+			rowIndex = 0;
+		}
+		int col = colIndex;
+		int row = rowIndex;
+		System.out.println("Col: " + col + " Row: " + row);
+		if(pressed.equals("robot")) {
+			Circle circle = new Circle(20);
+			circle.setFill(Color.GREEN);
+			Rectangle rect = new Rectangle(50,50);
+			rect.setFill(Color.BLUE);
+			grid.add(rect, col, row);
+			grid.add(circle, col, row);
+			//Create new robot entity in warehouse class
+		}
+		else if(pressed.equals("storage")) {
+			Polygon triangle = new Polygon();
+			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
+			triangle.setFill(Color.RED);
+			grid.add(triangle, col, row);
+			//Create new storage shelf entity in warehouse class
+		}
+		else if(pressed.equals("packing")) {
+			Polygon triangle = new Polygon();
+			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
+			triangle.setFill(Color.YELLOW);
+			grid.add(triangle, col, row);
+			//Create new packing station entity in warehouse class
+		}
+		else if(pressed.equals("delete")) {
+			grid.getChildren().remove(src);
+			//Remove entity from warehouse class
+		}
+		else {}
 	}
 
 	@FXML
-	public void initalize(MouseEvent e) {
-		/*Node src = (Node) e.getSource();
-		Integer colIndex = GridPane.getColumnIndex(src);
-		Integer rowIndex = GridPane.getRowIndex(src);
-		addRobot.setOnAction((event) -> { 
-			grid.add(new Circle(20), colIndex.intValue(), rowIndex.intValue());
-			//System.out.println(colIndex.intValue());
-			//System.out.println(rowIndex.intValue());
-		});*/
-	}
-	
-	@FXML
 	public void robotPressed() {
-		pressed = true;
-		
+		pressed = "robot";
+
 	}
 
 	@FXML
 	public void storagePressed() {
+		pressed = "storage";
 	}
 
 	@FXML
 	public void packingPressed() {
+		pressed = "packing";
 	}
 
 	@FXML
 	public void deletePressed() {
+		pressed = "delete";
 	}
 
 }
