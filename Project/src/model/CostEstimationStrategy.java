@@ -14,17 +14,18 @@ public class CostEstimationStrategy extends Robot {
 	 * Start location for the algorithm.
 	 * @see #distanceCalculator
 	 */
-	//private Point startPosition; // x and y of the start position
+	private Point startPosition; // x and y of the start position
 	
 	/**
 	 * End location for the algorithm.
 	 * @see #distanceCalculator
 	 */
-	//private Point endPosition;//x and y of the end position
+	private Point endPosition;//x and y of the end position
 
 	public CostEstimationStrategy() {
-		startPosition = new Point();
-		endPosition = new Point();
+		startPosition = robotCoordinates;
+		endPosition = packingCoordinates;
+		
 	}
 
 	/**
@@ -44,7 +45,6 @@ public class CostEstimationStrategy extends Robot {
 	 * @return <code>double</code> Final/total distance
 	 */
 	public Point totalDistanceEstimator() {
-		return robotY;
 		return robotCoordinates;
 		
 	}
