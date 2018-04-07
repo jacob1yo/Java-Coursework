@@ -7,8 +7,12 @@ public Point storageCoordinates;
 public Point chargingCoordintates;
 public Point packingCoordinates;
 
-public Warehouse(Point robotxy){
+public Warehouse(){
 	
-	robotCoordinates=robotxy;
+	this.chargingCoordintates=chargingCoordintates;
+	this.robotCoordinates=robotCoordinates;
+	this.storageCoordinates=storageCoordinates;
+	this.packingCoordinates=packingCoordinates;
 }
+
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Point;
+
 /**
  * 
  * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
@@ -12,12 +14,13 @@ public class Robot extends Warehouse implements Entity  {
 	/**
 	 * The x coordinate of a robot on the grid
 	 */
-	private int robotX;
-	
 	/**
 	 * The y coordinate of a robot on the grid
 	 */
-	protected int robotY;
+	/*private int robotX;
+	
+	
+	protected int robotY;*/
 	
 	/**
 	 * When calculating the distance, there is a twenty percent safety margin of
@@ -141,45 +144,30 @@ public class Robot extends Warehouse implements Entity  {
 	}
 	
 	/**
-	 * Gets the X co-ordinate of the robot.
-	 * @return <code>int</code> The co-ordinate value.
+	 * Gets the X n' Y co-ordinates of the robot.
+	 * @return <code>Point</code> The co-ordinate value.
 	 */
-	public int getRobotX() {
-		return robotX;
+	public Point getRobotCoordinates() {
+		return robotCoordinates;
 	}
 	
 	/**
 	 * Gets the Y co-ordinate of the robot.
 	 * @return <code>int</code> The co-ordinate value.
 	 */
-	public int getRobotY() {
-	return robotY;
+	public double getRobotY() {
+	return robotCoordinates.getY();
 	}
 
 	/**
-	 * Gets X co-ordinate of a shelf.
-	 * @return <code>int</code> The X co-ordinate.
+	 * Gets the x co-ordinate of the robot.
+	 * @return <code>int</code> The co-ordinate value.
 	 */
-	public int getShelfX() {}
+	public double getRobotX() {
+	return robotCoordinates.getX();
+	}
 	
-	/**
-	 * Gets Y co-ordinate of a shelf.
-	 * @return <code>int</code> The Y co-ordinate.
-	 */
-	public int getShelfY() {}
-	
-	/**
-	 * Gets X co-ordinate of a packing station.
-	 * @return <code>int</code> The X co-ordinate.
-	 */
-	public int getPackingX() {}
-	
-	/**
-	 * Gets X co-ordinate of a packing station.
-	 * @return <code>int</code> The Y co-ordinate.
-	 */
-	public int getPackingX() {}
-	
+
 	@Override
 	public void generateID() {
 		int num = lastNum++;

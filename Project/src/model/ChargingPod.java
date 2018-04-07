@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Point;
+
 /**
  * 
  * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
@@ -7,16 +9,16 @@ package model;
  *
  */
 
-public class ChargingPod implements Entity {
+public class ChargingPod extends Warehouse implements Entity {
 	/**
 	 * The x coordinate of a charging pod on the grid
 	 */
-	private int chargingX;
+	//private int chargingX;
 	
 	/**
 	 * The y coordinate of a robot on the grid
 	 */
-	private int chargingY;
+//	private int chargingY;
 	
 	/**
 	 * Determines the speed at which the battery of a robot is charged.
@@ -42,22 +44,30 @@ public class ChargingPod implements Entity {
 		lastNum = 0;
 		generateID();
 		occupied = false;
-		this.chargingX = chargingX;
-		this.chargingY = chargingY;
+	//	this.chargingX = chargingX;
+	//	this.chargingY = chargingY;
 	}
-
+	
+	/**
+	 * Gets the X n' Y co-ordinates of the chargin.
+	 * @return <code>Point</code> The co-ordinate value.
+	 */
+	public Point getChargingCoordintatess() {
+		return chargingCoordintates;
+	}
+	
 	/**
 	 * Acceses the X-coordinate of the charging Pod
 	 */
-	public int getChargingX(){
-		return chargingX;
+	public double getChargingX(){
+		return chargingCoordintates.getX();
 	}
 	
 	/**
 	 * Acceses the Y-coordinate of the charging Pod
 	 */
-	public int getChargingY(){
-		return chargingY;
+	public double getChargingY(){
+		return chargingCoordintates.getY();
 	}
 	
 	/**

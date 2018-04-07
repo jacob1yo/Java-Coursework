@@ -5,17 +5,19 @@ package model;
  * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, Vivek Bhukhan, Christos Dolopikos 
  *
  */
+import java.awt.Point;
 
-public class StorageShelf implements Entity{
+public class StorageShelf extends Warehouse implements Entity{
 	/**
 	 * The x coordinate of a storage shelf on the grid
 	 */
-	public int storageX;
-	
 	/**
 	 * The y coordinate of a storage shelf on the grid
 	 */
-	private int storageY;
+	/*public int storageX;
+	
+
+	private int storageY;*/
 	/**
 	 * The unique identifier of each charging pod
 	 * @see #getID, #generateID
@@ -27,25 +29,33 @@ public class StorageShelf implements Entity{
 	 */
 	private int lastNum;
 	
-	public StorageShelf(int storageY, int storageX) {
+	public StorageShelf() {
 		lastNum = 0;
 		generateID();
-		this.storageX =storageX;
-		this.storageY = storageY;
+	//	this.storageX =storageX;
+		//this.storageY = storageY;
+	}
+	
+	/**
+	 * Gets the X n' Y co-ordinates of the Storage.
+	 * @return <code>Point</code> The co-ordinate value.
+	 */
+	public Point getStorageCoordinates() {
+		return storageCoordinates;
 	}
 	
 	/**
 	 * Accesses the X-coordinate of the Storage
 	 */
-	public int getStorageX() {
-		return storageX;
+	public double getStorageX() {
+		return storageCoordinates.getX();
 	}
 
 	/**
-	 * Accesses the X-coordinate of the Storage
+	 * Accesses the Y-coordinate of the Storage
 	 */
-	public int getStorageY() {
-		return storageY;
+	public double getStorageY() {
+		return storageCoordinates.getY();
 	}
 	
 	@Override
