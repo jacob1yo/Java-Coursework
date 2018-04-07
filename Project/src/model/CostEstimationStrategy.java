@@ -6,6 +6,7 @@ package model;
  */
 
 import java.awt.Point;
+import java.util.ArrayList;
 //import javafx.geometry.Point2D;
 
 public class CostEstimationStrategy extends Robot {
@@ -22,20 +23,32 @@ public class CostEstimationStrategy extends Robot {
 	 */
 	private Point endPosition;//x and y of the end position
 
+	private Point byPosition;//x and y of the end position
+	
+	private double distanceEstimate;
+
+//	private Point[] route;
+	
 	public CostEstimationStrategy() {
 		startPosition = robotCoordinates;
 		endPosition = packingCoordinates;
-		
+		byPosition=storageCoordinates;
+		//route = new Point[2];
 	}
 
 	/**
 	 * Calculates the distance from one point to another.
+	 * @param firstStop 
+	 * @param secondStop 
+	 * @param returnStop 
 	 * @return <code>double</code> Distance between locations
 	 */
-	public double distanceCalculator(Point to, Point from) {
-		return Math.sqrt((Math.pow(from.getX()-to.getX(),2))+(Math.pow(from.getY()-to.getY(),2)));
-		
-		
+	public double distanceCalculator(double firstStop, double secondStop, double returnStop) {
+		firstStop=Math.sqrt((Math.pow(startPosition.getX()-byPosition.getX(),2))+(Math.pow(startPosition.getY()-byPosition.getY(),2)));
+		secondStop=Math.sqrt((Math.pow(byPosition.getX()-endPosition.getX(),2))+(Math.pow(byPosition.getY()-endPosition.getY(),2)));
+		returnStop=Math.sqrt((Math.pow(endPosition.getX()-startPosition.getX(),2))+(Math.pow(endPosition.getY()-startPosition.getY(),2)));
+		distanceEstimate=firstStop+secondStop+returnStop;
+		return distanceEstimate;
 	}
 	
 
@@ -44,10 +57,16 @@ public class CostEstimationStrategy extends Robot {
 	 * Loop that adds up every distance that it has calculated
 	 * @return <code>double</code> Final/total distance
 	 */
-	public Point totalDistanceEstimator() {
-		return robotCoordinates;
-		
-	}
+	/*public Point totalDistanceEstimator() {
+		route[0]= startPosition;
+		route[1]= byPosition;
+		route[2]= endPosition;
+		for (int i = 0; i<2; i++) {
+			route[i];
+		}
+		return byPosition;
+
+	}*/
 	
 	
 }
