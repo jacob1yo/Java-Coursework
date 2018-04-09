@@ -46,7 +46,6 @@ public class MainController {
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				numRows = arg2.intValue();
-				//grid.getChildren().clear();
 				grid.getRowConstraints().clear();
 
 				for (int i = 0; i < numRows; i++) {
@@ -132,6 +131,10 @@ public class MainController {
 			grid.getChildren().remove(src);
 			//Remove entity from warehouse class
 		}
+		/*
+		else if(pressed.equals("clear")) {
+			grid.getChildren().removeAll();
+		}*/
 		else {}
 	}
 
@@ -158,8 +161,10 @@ public class MainController {
 	
 	@FXML
 	public void clearPressed() {
-		grid.getChildren().clear();
-		initialize();
+		//pressed = "clear";
+		grid.getChildren().removeAll(); //needs fixing
+		grid.getRowConstraints().clear();
+		grid.getColumnConstraints().clear();
 		
 	}
 
