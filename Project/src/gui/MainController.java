@@ -20,6 +20,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import model.Robot;
+import model.Warehouse;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
 
@@ -34,12 +35,14 @@ public class MainController {
 	private int numRows;
 	private int numCols;
 	private String pressed;
+	private Warehouse warehouse;
 
 	public MainController() {
 	}
 
 	@FXML
 	public void initialize() {
+		warehouse = new Warehouse();
 		height.valueProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
@@ -105,6 +108,7 @@ public class MainController {
 		//System.out.println("Col: " + col + " Row: " + row);
 		if(pressed.equals("robot")) {
 			Circle circle = new Circle(20);
+			//warehouse.addRobot();
 			circle.setFill(Color.GREEN);
 			Rectangle rect = new Rectangle(50,50);
 			rect.setFill(Color.BLUE);
