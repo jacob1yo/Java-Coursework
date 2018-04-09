@@ -40,26 +40,27 @@ public class MainController {
 
 	@FXML
 	public void initialize() {
-
 		height.valueProperty().addListener(new ChangeListener<Number>() {
-
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				numRows = arg2.intValue();
 				grid.getRowConstraints().clear();
-
+			
+				int tempHeight = numRows;
+				System.out.println(tempHeight);
+			//if(tempHeight < numRows) {
+				
+			//}
 				for (int i = 0; i < numRows; i++) {
 					RowConstraints rowConst = new RowConstraints();
 					rowConst.setPercentHeight(100.0 / numRows);
 					grid.getRowConstraints().add(rowConst);
-
 				}
 				addPane();
 			}
 		});
 
 		width.valueProperty().addListener(new ChangeListener<Number>() {
-
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				numCols = arg2.intValue();
@@ -69,11 +70,9 @@ public class MainController {
 					ColumnConstraints colConst = new ColumnConstraints();
 					colConst.setPercentWidth(100.0 / numCols);
 					grid.getColumnConstraints().add(colConst);
-
 				}
 				addPane();
 			}
-
 		});
 	}
 
@@ -91,7 +90,7 @@ public class MainController {
 	// @FXML public void boxPressed() {}
 	@FXML
 	public void gridPressed(MouseEvent e) {
-		System.out.println(pressed);
+		//System.out.println(pressed);
 		Node src = (Node) e.getTarget();
 		Integer colIndex = GridPane.getColumnIndex(src);
 		Integer rowIndex = GridPane.getRowIndex(src);
@@ -103,7 +102,7 @@ public class MainController {
 		}
 		int col = colIndex;
 		int row = rowIndex;
-		System.out.println("Col: " + col + " Row: " + row);
+		//System.out.println("Col: " + col + " Row: " + row);
 		if(pressed.equals("robot")) {
 			Circle circle = new Circle(20);
 			circle.setFill(Color.GREEN);
@@ -131,10 +130,6 @@ public class MainController {
 			grid.getChildren().remove(src);
 			//Remove entity from warehouse class
 		}
-		/*
-		else if(pressed.equals("clear")) {
-			grid.getChildren().removeAll();
-		}*/
 		else {}
 	}
 
@@ -160,12 +155,9 @@ public class MainController {
 	}
 	
 	@FXML
-	public void clearPressed() {
-		//pressed = "clear";
-		grid.getChildren().removeAll(); //needs fixing
-		grid.getRowConstraints().clear();
-		grid.getColumnConstraints().clear();
+	public void clearPressed(MouseEvent e) {
 		
+	
 	}
 
 }
