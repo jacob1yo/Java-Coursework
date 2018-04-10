@@ -159,8 +159,8 @@ public class MainController {
 	}
 	
 	@FXML
-	public void clearPressed(MouseEvent e) {
-		
+	public void clearPressed() {
+		grid.getChildren().clear();
 	
 	}
 
