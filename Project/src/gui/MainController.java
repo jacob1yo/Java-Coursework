@@ -107,8 +107,8 @@ public class MainController {
 		int row = rowIndex;
 		//System.out.println("Col: " + col + " Row: " + row);
 		if(pressed.equals("robot")) {
-			Circle circle = new Circle(20);
 			//warehouse.addRobot();
+			Circle circle = new Circle(20);
 			circle.setFill(Color.GREEN);
 			Rectangle rect = new Rectangle(50,50);
 			rect.setFill(Color.BLUE);
@@ -117,6 +117,7 @@ public class MainController {
 			//Create new robot entity in warehouse class
 		}
 		else if(pressed.equals("storage")) {
+			//warehouse.addStorage();
 			Polygon triangle = new Polygon();
 			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 			triangle.setFill(Color.RED);
@@ -124,6 +125,7 @@ public class MainController {
 			//Create new storage shelf entity in warehouse class
 		}
 		else if(pressed.equals("packing")) {
+			//warehouse.addPacking();
 			Polygon triangle = new Polygon();
 			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 			triangle.setFill(Color.YELLOW);
