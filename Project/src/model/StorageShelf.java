@@ -27,10 +27,9 @@ public class StorageShelf extends Warehouse implements Entity{
 	/**
 	 * Stores the last number used for the ID
 	 */
-	private int lastNum;
+	private static int lastNum = 0;
 	
 	public StorageShelf() {
-		lastNum = 0;
 		generateID();
 	//	this.storageX =storageX;
 		//this.storageY = storageY;
