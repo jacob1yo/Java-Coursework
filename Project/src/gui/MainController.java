@@ -140,7 +140,7 @@ public class MainController {
 			//Create new robot entity in warehouse class
 		}
 		else if(pressed.equals("storage")) {
-			//warehouse.addStorage();
+			warehouse.addStorage(col, row);
 			Polygon triangle = new Polygon();
 			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 			triangle.setFill(Color.RED);
@@ -148,7 +148,7 @@ public class MainController {
 			//Create new storage shelf entity in warehouse class
 		}
 		else if(pressed.equals("packing")) {
-			//warehouse.addPacking();
+			warehouse.addPacking(col, row);
 			Polygon triangle = new Polygon();
 			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 			triangle.setFill(Color.YELLOW);

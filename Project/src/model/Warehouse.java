@@ -10,6 +10,8 @@ public class Warehouse {
 	
 	private ArrayList<Robot> robotList;
 	private ArrayList<ChargingPod> chargeList;
+	private ArrayList<StorageShelf> storageList;
+	private ArrayList<PackingStation> packingList;
 
 	public Warehouse(){
 		/*
@@ -20,6 +22,8 @@ public class Warehouse {
 		*/
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
+		storageList = new ArrayList<StorageShelf>();
+		packingList = new ArrayList<PackingStation>();
 	}
 	
 	public void addRobot(int x, int y, int batteryLevel, int chargeRate) {
@@ -35,7 +39,27 @@ public class Warehouse {
 			chargeList.get(i).updateChargeRate(chargeRate);
 		}
 	}	
-	//public void addStorage() {}
-	//public void addPacking() {}
+	
+	public void addStorage(int x, int y) {
+		StorageShelf storage = new StorageShelf();
+		storageList.add(storage);
+	}
+	
+	public void addPacking(int x, int y) {
+		PackingStation packing = new PackingStation();
+		packingList.add(packing);
+	}
+	
+	public void removeRobot(int i) {
+		robotList.remove(i);
+	}
+	
+	public void removeStorage() {
+		
+	}
+	
+	public void removePacking() {
+		
+	}
 
 }
