@@ -18,6 +18,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import model.Warehouse;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
@@ -190,8 +191,9 @@ public class MainController {
 	}
 	
 	@FXML
-	public void loadPressed(ActionEvent event) {
+	public void loadPressed() {
 		FileChooser filechooser = new FileChooser();
+		filechooser.getExtensionFilters().addAll(new ExtensionFilter(".SIM Files", "*.sim"));
 		File selectedFile = filechooser.showOpenDialog(null);
 		
 		System.out.println(selectedFile.getName());
