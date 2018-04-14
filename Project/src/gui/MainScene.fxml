@@ -58,7 +58,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </TextArea>
-                  <Button alignment="CENTER" mnemonicParsing="false" text="Load">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#loadPressed" text="Load">
                      <VBox.margin>
                         <Insets bottom="10.0" left="150.0" />
                      </VBox.margin>

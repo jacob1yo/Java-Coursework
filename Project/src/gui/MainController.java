@@ -1,5 +1,6 @@
 package gui;
 
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -16,9 +17,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import model.Warehouse;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
+
+import java.io.File;
+import java.nio.file.*;
 
 public class MainController {
 	@FXML
@@ -27,6 +32,8 @@ public class MainController {
 	private GridPane grid;
 	@FXML
 	private Button addRobot;
+	@FXML
+	private Button load;
 
 	private int numRows = 2;
 	private int numCols = 2;
@@ -180,5 +187,15 @@ public class MainController {
 	public void clearPressed() {
 		grid.getChildren().clear(); 
 		addPane();
+	}
+	
+	@FXML
+	public void loadPressed(ActionEvent event) {
+		FileChooser filechooser = new FileChooser();
+		File selectedFile = filechooser.showOpenDialog(null);
+		
+		System.out.println(selectedFile.getName());
+		
+		
 	}
 }
