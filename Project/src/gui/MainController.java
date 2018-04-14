@@ -16,7 +16,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import model.Robot;
 import model.Warehouse;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
@@ -29,8 +28,8 @@ public class MainController {
 	@FXML
 	private Button addRobot;
 
-	private int numRows;
-	private int numCols;
+	private int numRows = 2;
+	private int numCols = 2;
 	private String pressed;
 	private Warehouse warehouse;
 
@@ -44,6 +43,7 @@ public class MainController {
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				numRows = arg2.intValue();
+				clearPressed();
 				grid.getRowConstraints().clear();
 			
 				int tempHeight = numRows;
@@ -64,6 +64,7 @@ public class MainController {
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				numCols = arg2.intValue();
+				clearPressed();
 				grid.getColumnConstraints().clear();
 
 				for (int i = 0; i < numCols; i++) {
@@ -74,6 +75,7 @@ public class MainController {
 				addPane();
 			}
 		});
+		addPane();
 	}
 
 	public void addPane() {
@@ -82,6 +84,7 @@ public class MainController {
 				StackPane pane = new StackPane();
 				//pane.setAlignment(Pos.CENTER);
 				grid.add(pane, i, j);
+				pane.getStyleClass().add("grid");
 			}
 		}
 	}
@@ -90,7 +93,6 @@ public class MainController {
 	// @FXML public void boxPressed() {}
 	@FXML
 	public void gridPressed(MouseEvent e) {
-		//System.out.println(pressed);
 		Node src = (Node) e.getTarget();
 		Integer colIndex = GridPane.getColumnIndex(src);
 		Integer rowIndex = GridPane.getRowIndex(src);
@@ -102,7 +104,6 @@ public class MainController {
 		}
 		int col = colIndex;
 		int row = rowIndex;
-		//System.out.println("Col: " + col + " Row: " + row);
 		if(pressed.equals("robot")) {
 			//warehouse.addRobot();
 			Circle circle = new Circle(20);
@@ -165,6 +166,6 @@ public class MainController {
 				}
 		}*/
 		grid.getChildren().clear(); //possibly create a new grid after this?
-		
+		addPane();
 	}
 }

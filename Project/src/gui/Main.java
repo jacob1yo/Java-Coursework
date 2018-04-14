@@ -18,13 +18,13 @@ public class Main extends Application {
 	}
 	@Override
 	public void start(Stage primaryStage) {
-		// TODO Auto-generated method stub
 		try {
 			final FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(getClass().getResource("MainScene.fxml"));
 			loader.setController(new MainController());
 			final Parent root = loader.load();
 			final Scene scene = new Scene(root, 1500, 900);
+			scene.getStylesheets().add(getClass().getResource("grid-borders.css").toExternalForm());
 			primaryStage.setTitle("Warehouse simulator");
 			primaryStage.setScene(scene);
 			primaryStage.show();
