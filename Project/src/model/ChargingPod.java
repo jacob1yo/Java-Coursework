@@ -39,7 +39,7 @@ public class ChargingPod extends Warehouse implements Entity {
 	 */
 	private boolean occupied;
 
-	public ChargingPod(int chargingX, int chargingY) {
+	public ChargingPod(/*int chargingX, int chargingY*/) {
 		lastNum = 0;
 		generateID();
 		occupied = false;
@@ -81,7 +81,13 @@ public class ChargingPod extends Warehouse implements Entity {
 		return 0; // returns the charge level
 
 	}
-
+	
+	/**
+	 * 
+	 */
+	public void updateChargeRate(int chargeRate) {
+		this.chargeRate = chargeRate;
+	}
 	@Override
 	public void generateID() {
 		int num = lastNum++;

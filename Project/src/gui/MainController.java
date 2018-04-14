@@ -123,8 +123,7 @@ public class MainController {
 		int col = colIndex;
 		int row = rowIndex;
 		if(pressed.equals("robot")) {
-			warehouse.addRobot(col, row, batteryLevel);
-			warehouse.addCharge(chargeRate);
+			warehouse.addRobot(col, row, batteryLevel, chargeRate);
 			Circle circle = new Circle(20);
 			circle.setFill(Color.GREEN);
 			Rectangle rect = new Rectangle(50,50);

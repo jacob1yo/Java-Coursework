@@ -80,7 +80,14 @@ public class Robot extends Warehouse implements Entity  {
 			batteryLevel--;
 		}
 	}
-
+	
+	/**
+	 * 
+	 */
+	public void updateBattery(int batteryLevel) {
+		this.batteryLevel = batteryLevel;
+	}
+	
 	/**
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> true if an order is accepted, otherwise false.
