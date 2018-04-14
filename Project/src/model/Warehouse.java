@@ -57,11 +57,26 @@ public class Warehouse {
 	}
 	
 	public void removeStorage() {
-		
+	
 	}
 	
 	public void removePacking() {
 		
+	}
+	
+	public void removeAll() {
+		for(int i = 0; i < robotList.size(); i++) {
+			robotList.remove(i);
+		}
+		for(int i = 0; i < chargeList.size(); i++) {
+			chargeList.remove(i);
+		}
+		for(int i = 0; i < storageList.size(); i++) {
+			storageList.remove(i);
+		}
+		for(int i = 0; i < packingList.size(); i++) {
+			packingList.remove(i);
+		}
 	}
 
 }

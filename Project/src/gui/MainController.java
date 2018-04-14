@@ -188,6 +188,7 @@ public class MainController {
 	public void clearPressed() {
 		grid.getChildren().clear(); 
 		addPane();
+		warehouse.removeAll();
 	}
 	
 	@FXML
