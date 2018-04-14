@@ -49,5 +49,17 @@ public class Warehouse {
 		PackingStation packing = new PackingStation();
 		packingList.add(packing);
 	}
+	
+	public void removeRobot(int i) {
+		robotList.remove(i);
+	}
+	
+	public void removeStorage() {
+		
+	}
+	
+	public void removePacking() {
+		
+	}
 
 }
