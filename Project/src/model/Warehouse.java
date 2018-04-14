@@ -31,7 +31,9 @@ public class Warehouse {
 		robotList.add(robot);
 		for(int i = 0; i < robotList.size(); i++) {
 			robotList.get(i).updateBattery(batteryLevel);
+			System.out.println(robotList.get(i).getID());
 		}
+		
 		
 		ChargingPod chargePod = new ChargingPod();
 		chargeList.add(chargePod);
