@@ -32,7 +32,7 @@ public class Warehouse {
 		robotList.add(robot);
 		for(int i = 0; i < robotList.size(); i++) {
 			robotList.get(i).updateBattery(batteryLevel);
-			System.out.println(robotList.get(i).getID());
+			System.out.println(robotList.get(i).getID()); //delete this manual test after
 		}
 		
 		
@@ -46,6 +46,9 @@ public class Warehouse {
 	public void addStorage(int x, int y) {
 		StorageShelf storage = new StorageShelf();
 		storageList.add(storage);
+		for(int i = 0; i < storageList.size(); i++) {
+			System.out.println(storageList.get(i).getID()); //delete this manual test after
+		}
 	}
 	
 	public void addPacking(int x, int y) {
@@ -66,6 +69,10 @@ public class Warehouse {
 	}
 	
 	public void removeAll() {
+		robotList.get(0).resetID();
+		chargeList.get(0).resetID();
+		storageList.get(0).resetID();
+		packingList.get(0).resetID();
 		for(int i = 0; i < robotList.size(); i++) {
 			robotList.remove(i);
 		}

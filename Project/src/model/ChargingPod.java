@@ -82,6 +82,13 @@ public class ChargingPod extends Warehouse implements Entity {
 	}
 	
 	/**
+	 * Rests the lastNum field to 0.
+	 */
+	public void resetID() {
+		lastNum = 0;
+	}
+	
+	/**
 	 * 
 	 */
 	public void updateChargeRate(int chargeRate) {

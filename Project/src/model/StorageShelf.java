@@ -57,6 +57,13 @@ public class StorageShelf extends Warehouse implements Entity{
 		return storageCoordinates.getY();
 	}
 	
+	/**
+	 * Rests the lastNum field to 0.
+	 */
+	public void resetID() {
+		lastNum = 0;
+	}
+	
 	@Override
 	public void generateID() {
 		int num = lastNum++;
