@@ -53,7 +53,7 @@ public class MainController {
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				numRows = arg2.intValue();
-				clearPressed();
+				resetGrid();
 				grid.getRowConstraints().clear();
 			
 				int tempHeight = numRows;
@@ -74,7 +74,7 @@ public class MainController {
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				numCols = arg2.intValue();
-				clearPressed();
+				resetGrid();
 				grid.getColumnConstraints().clear();
 
 				for (int i = 0; i < numCols; i++) {
@@ -162,6 +162,11 @@ public class MainController {
 		}
 		else {}
 	}
+	
+	public void resetGrid() {
+		grid.getChildren().clear(); 
+		addPane();
+	}
 
 	@FXML
 	public void robotPressed() {
@@ -186,8 +191,7 @@ public class MainController {
 	
 	@FXML
 	public void clearPressed() {
-		grid.getChildren().clear(); 
-		addPane();
+		resetGrid();
 		warehouse.removeAll();
 	}
 	
