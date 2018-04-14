@@ -162,7 +162,7 @@ public class MainController {
 	public void clearPressed() {
 		/*for(Node node: grid.getChildren()) {
 				if(!grid.getChildren().isEmpty()) {
-					
+					jkl
 				}
 		}*/
 		grid.getChildren().clear(); //possibly create a new grid after this?
