@@ -197,7 +197,7 @@ public class MainController {
 		filechooser.getExtensionFilters().addAll(new ExtensionFilter(".SIM Files", "*.sim"));
 		File selectedFile = filechooser.showOpenDialog(null);
 		
-		System.out.println(selectedFile.getName());
+		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 		
 		
 	}
