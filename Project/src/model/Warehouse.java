@@ -13,6 +13,7 @@ public class Warehouse {
 	private ArrayList<StorageShelf> storageList;
 	private ArrayList<PackingStation> packingList;
 
+	
 	public Warehouse(){
 		/*
 		this.chargingCoordintates=chargingCoordintates;
@@ -76,6 +77,18 @@ public class Warehouse {
 		}
 		for(int i = 0; i < packingList.size(); i++) {
 			packingList.remove(i);
+		}
+		if(!robotList.isEmpty()) {
+		robotList.remove(0);
+		}
+		if(!chargeList.isEmpty()) {
+		chargeList.remove(0);
+		}
+		if(!storageList.isEmpty()) {
+		storageList.remove(0);
+		}
+		if(!packingList.isEmpty()) {
+		packingList.remove(0);
 		}
 	}
 

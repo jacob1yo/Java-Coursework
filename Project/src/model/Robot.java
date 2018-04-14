@@ -172,7 +172,13 @@ public class Robot extends Warehouse implements Entity  {
 	return robotCoordinates.getX();
 	}
 	
-
+	/**
+	 * Rests the lastNum field to 0.
+	 */
+	public void resetID() {
+		lastNum = 0;
+	}
+	
 	@Override
 	public void generateID() {
 		int num = lastNum++;
