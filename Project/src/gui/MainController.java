@@ -30,6 +30,8 @@ public class MainController {
 
 	private int numRows = 2;
 	private int numCols = 2;
+	private int batteryLevel = 20; 
+	private int chargeRate = 1;
 	private String pressed;
 	private Warehouse warehouse;
 
@@ -76,6 +78,22 @@ public class MainController {
 			}
 		});
 		addPane();
+		
+		battery.valueProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+				batteryLevel = arg2.intValue();
+			}
+		});
+		
+		charge.valueProperty().addListener(new ChangeListener<Number>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+				chargeRate = arg2.intValue();	
+			}
+		});
 	}
 
 	public void addPane() {
@@ -105,7 +123,8 @@ public class MainController {
 		int col = colIndex;
 		int row = rowIndex;
 		if(pressed.equals("robot")) {
-			//warehouse.addRobot();
+			warehouse.addRobot(col, row, batteryLevel);
+			warehouse.addCharge(chargeRate);
 			Circle circle = new Circle(20);
 			circle.setFill(Color.GREEN);
 			Rectangle rect = new Rectangle(50,50);
@@ -160,12 +179,7 @@ public class MainController {
 	
 	@FXML
 	public void clearPressed() {
-		/*for(Node node: grid.getChildren()) {
-				if(!grid.getChildren().isEmpty()) {
-					jkl
-				}
-		}*/
-		grid.getChildren().clear(); //possibly create a new grid after this?
+		grid.getChildren().clear(); 
 		addPane();
 	}
 }

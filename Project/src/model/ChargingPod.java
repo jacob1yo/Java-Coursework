@@ -40,7 +40,6 @@ public class ChargingPod extends Warehouse implements Entity {
 	private boolean occupied;
 
 	public ChargingPod(int chargingX, int chargingY) {
-		chargeRate = 5;
 		lastNum = 0;
 		generateID();
 		occupied = false;

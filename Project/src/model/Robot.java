@@ -54,7 +54,6 @@ public class Robot extends Warehouse implements Entity  {
 
 	public Robot() {
 		safetyMargin = 20;
-		batteryLevel = 100;
 		orderStatus = false;
 		lastNum = 0;
 		generateID();
