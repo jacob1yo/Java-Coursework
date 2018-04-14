@@ -32,7 +32,7 @@ public class ChargingPod extends Warehouse implements Entity {
 	/**
 	 * Stores the last number used for the ID
 	 */
-	private int lastNum;
+	private static int lastNum = 0;
 	
 	/**
 	 * Used to check if robots unique charging pod is occupied
@@ -40,7 +40,6 @@ public class ChargingPod extends Warehouse implements Entity {
 	private boolean occupied;
 
 	public ChargingPod(/*int chargingX, int chargingY*/) {
-		lastNum = 0;
 		generateID();
 		occupied = false;
 	//	this.chargingX = chargingX;

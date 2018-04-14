@@ -35,13 +35,12 @@ public class PackingStation extends Warehouse implements Entity{
 	/**
 	 * Stores the last number used for the ID
 	 */
-	private int lastNum;
+	private static int lastNum = 0;
 
 	
 	
 	public PackingStation() {
 		completed = false;
-		lastNum = 0;
 		generateID();
 	/*	this.packingX = packingX;
 		this.packingY = packingY;*/

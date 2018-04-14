@@ -48,14 +48,13 @@ public class Robot extends Warehouse implements Entity  {
 	/**
 	 * Stores the last number used for the ID
 	 */
-	private int lastNum;
+	private static int lastNum = 0;
 	
 	//add fields, explain how this might change
 
 	public Robot() {
 		safetyMargin = 20;
 		orderStatus = false;
-		lastNum = 0;
 		generateID();
 	}
 
