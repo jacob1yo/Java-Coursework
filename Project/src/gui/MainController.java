@@ -22,7 +22,7 @@ import javafx.scene.layout.RowConstraints;
 
 public class MainController {
 	@FXML
-	private Slider height, width;
+	private Slider height, width, battery, charge;
 	@FXML
 	private GridPane grid;
 	@FXML
