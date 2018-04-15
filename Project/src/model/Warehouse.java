@@ -68,11 +68,7 @@ public class Warehouse {
 		
 	}
 	
-	public void removeAll() {
-		robotList.get(0).resetID();
-		chargeList.get(0).resetID();
-		storageList.get(0).resetID();
-		packingList.get(0).resetID();
+	public void removeAll() {	
 		for(int i = 0; i < robotList.size(); i++) {
 			robotList.remove(i);
 		}
@@ -86,16 +82,20 @@ public class Warehouse {
 			packingList.remove(i);
 		}
 		if(!robotList.isEmpty()) {
-		robotList.remove(0);
+			robotList.get(0).resetID(); //may have to move up
+			robotList.remove(0);
 		}
 		if(!chargeList.isEmpty()) {
-		chargeList.remove(0);
+			chargeList.get(0).resetID();
+			chargeList.remove(0);
 		}
 		if(!storageList.isEmpty()) {
-		storageList.remove(0);
+			storageList.get(0).resetID();
+			storageList.remove(0);
 		}
 		if(!packingList.isEmpty()) {
-		packingList.remove(0);
+			packingList.get(0).resetID();
+			packingList.remove(0);
 		}
 	}
 
