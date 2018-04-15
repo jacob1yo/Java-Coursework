@@ -157,6 +157,16 @@ public class MainController {
 			//Create new packing station entity in warehouse class
 		}
 		else if(pressed.equals("delete")) {
+			if(src.toString().contains("Circle")) {
+				System.out.print("There is a circle");
+			}
+			else if(src.toString().contains("Rectangle")) {
+				System.out.println("There is a Rectangle");
+			}
+			else if(src.toString().contains("Polygon")) {
+				System.out.println("There is a Polygon");
+				//need to figure out how to differentiate between polgon's
+			}
 			grid.getChildren().remove(src);
 			//Remove entity from warehouse class
 		}
