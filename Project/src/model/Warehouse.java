@@ -56,16 +56,30 @@ public class Warehouse {
 		packingList.add(packing);
 	}
 	
-	public void removeRobot(int i) {
-		robotList.remove(i);
+	public void removeRobot() {
+		if((robotList.size()-1)>0) {
+			robotList.remove(robotList.size()-1);
+		}
+		else {
+			robotList.remove(robotList.get(0));
+		}
+	}
+	
+	public void removeCharge() {
+		if((chargeList.size()-1)>0) { 
+			chargeList.remove(chargeList.size()-1);
+		}
+		else {
+			chargeList.remove(chargeList.get(0));
+		}
 	}
 	
 	public void removeStorage() {
-	
+		storageList.remove(storageList.size()-1);
 	}
 	
 	public void removePacking() {
-		
+		packingList.remove(packingList.size()-1);
 	}
 	
 	public void removeAll() {	

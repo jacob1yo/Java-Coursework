@@ -56,11 +56,6 @@ public class MainController {
 				resetGrid();
 				grid.getRowConstraints().clear();
 			
-				int tempHeight = numRows;
-				System.out.println(tempHeight);
-			//if(tempHeight < numRows) {
-				
-			//}
 				for (int i = 0; i < numRows; i++) {
 					RowConstraints rowConst = new RowConstraints();
 					rowConst.setPercentHeight(100.0 / numRows);
@@ -158,14 +153,16 @@ public class MainController {
 		}
 		else if(pressed.equals("delete")) {
 			if(src.toString().contains("Circle")) {
-				System.out.print("There is a circle");
+				warehouse.removeRobot(); //need to figure out for 1 robot remaining
 			}
 			else if(src.toString().contains("Rectangle")) {
-				System.out.println("There is a Rectangle");
+				warehouse.removeCharge();
 			}
-			else if(src.toString().contains("Polygon")) {
-				System.out.println("There is a Polygon");
-				//need to figure out how to differentiate between polgon's
+			else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xff0000ff")) { //for storage 
+				warehouse.removeStorage();
+			}
+			else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xffff00ff")) { //for packing
+				warehouse.removePacking();
 			}
 			grid.getChildren().remove(src);
 			//Remove entity from warehouse class
