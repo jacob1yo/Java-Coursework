@@ -17,6 +17,9 @@ public class Warehouse {
 		packingList = new ArrayList<PackingStation>();
 	}
 	
+	/*
+	 * Creates a new robot and corresponding charging pod, and adds both to their own arraylist
+	 */
 	public void addRobot(int x, int y, int batteryLevel, int chargeRate) {
 		Robot robot = new Robot(x, y);
 		robotList.add(robot);
@@ -25,7 +28,6 @@ public class Warehouse {
 			System.out.println(robotList.get(i).getID()); //delete this manual test after
 		}
 		
-		
 		ChargingPod chargePod = new ChargingPod(x, y);
 		chargeList.add(chargePod);
 		for(int i = 0; i < chargeList.size(); i++) {
@@ -33,6 +35,9 @@ public class Warehouse {
 		}
 	}	
 	
+	/*
+	 * Creates a new storage shelf and adds it to an arraylist
+	 */
 	public void addStorage(int x, int y) {
 		StorageShelf storage = new StorageShelf(x, y);
 		storageList.add(storage);
@@ -41,69 +46,62 @@ public class Warehouse {
 		}
 	}
 	
+	/*
+	 * Creates a new packing station and adds it to an arraylist
+	 */
 	public void addPacking(int x, int y) {
 		PackingStation packing = new PackingStation(x, y);
 		packingList.add(packing);
 	}
 	
+	/*
+	 * Deletes an item from entity lists depending on the coordinates given
+	 */
 	public void delete(int x, int y) {
 		for(int i = 0; i < robotList.size(); i++) {
 			if(robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
-				robotList.get(i).decreaseUID();
+				robotList.get(i).resetID();
 				robotList.remove(i);
+				for(int n = 0; n < robotList.size(); n++) {
+					robotList.get(i).generateID();
+				}
 			}
 		}
 		
 		for(int i = 0; i < chargeList.size(); i++) {
 			if(chargeList.get(i).getChargingX() == (double) x && chargeList.get(i).getChargingY() == (double) y) {
-				chargeList.get(i).decreaseUID();
+				chargeList.get(i).resetID();
 				chargeList.remove(i);
+				for(int n = 0; n < chargeList.size(); n++) {
+					chargeList.get(i).generateID();
+				}
 			}
 		}
 		
 		for(int i = 0; i < storageList.size(); i++) {
 			if(storageList.get(i).getStorageX() == (double) x && storageList.get(i).getStorageY() == (double) y) {
-				storageList.get(i).decreaseUID();
+				storageList.get(i).resetID();
 				storageList.remove(i);
+				for(int n = 0; n < storageList.size(); n++) {
+					storageList.get(i).generateID();
+				}
 			}
 		}
 		
 		for(int i = 0; i < packingList.size(); i++) {
 			if(packingList.get(i).getPackingX() == (double) x && packingList.get(i).getPackingY() == (double) y) {
-				packingList.get(i).decreaseUID();
+				packingList.get(i).resetID();
 				packingList.remove(i);
+				for(int n = 0; n < packingList.size(); n++) {
+					packingList.get(i).generateID();
+				}
 			}
-		}
-		
-		
+		}		
 	}
 	
-	/*public void removeRobot() {
-		if((robotList.size()-1)>0) {
-			robotList.remove(robotList.size()-1);
-		}
-		else {
-			robotList.remove(robotList.get(0));
-		}
-	}
-	
-	public void removeCharge() {
-		if((chargeList.size()-1)>0) { 
-			chargeList.remove(chargeList.size()-1);
-		}
-		else {
-			chargeList.remove(chargeList.get(0));
-		}
-	}
-	
-	public void removeStorage() {
-		storageList.remove(storageList.size()-1);
-	}
-	
-	public void removePacking() {
-		packingList.remove(packingList.size()-1);
-	}*/
-	
+	/*
+	 * Clears all the lists of entities if they contain any items
+	 */
 	public void removeAll() {
 		if(!robotList.isEmpty()) {
 			robotList.get(0).resetID();
@@ -122,6 +120,7 @@ public class Warehouse {
 		storageList.clear();
 		packingList.clear();
 	}
+	
 	/*
 	 * Checks whether another entity is already in the position given
 	 *  
