@@ -49,24 +49,28 @@ public class Warehouse {
 	public void delete(int x, int y) {
 		for(int i = 0; i < robotList.size(); i++) {
 			if(robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
+				robotList.get(i).decreaseUID();
 				robotList.remove(i);
 			}
 		}
 		
 		for(int i = 0; i < chargeList.size(); i++) {
 			if(chargeList.get(i).getChargingX() == (double) x && chargeList.get(i).getChargingY() == (double) y) {
+				chargeList.get(i).decreaseUID();
 				chargeList.remove(i);
 			}
 		}
 		
 		for(int i = 0; i < storageList.size(); i++) {
 			if(storageList.get(i).getStorageX() == (double) x && storageList.get(i).getStorageY() == (double) y) {
+				storageList.get(i).decreaseUID();
 				storageList.remove(i);
 			}
 		}
 		
 		for(int i = 0; i < packingList.size(); i++) {
 			if(packingList.get(i).getPackingX() == (double) x && packingList.get(i).getPackingY() == (double) y) {
+				packingList.get(i).decreaseUID();
 				packingList.remove(i);
 			}
 		}
