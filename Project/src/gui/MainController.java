@@ -6,8 +6,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
@@ -19,11 +22,13 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 import model.Warehouse;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.RowConstraints;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.*;
 
 public class MainController {
@@ -214,7 +219,23 @@ public class MainController {
 		File selectedFile = filechooser.showOpenDialog(null);
 
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
-
-
+	}
+	
+	@FXML
+	public void startPressed() {
+		final FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("Simulator.FXML"));
+		//need to add a controller here
+		try {
+			final Parent parent = (Parent) loader.load();
+			final Stage stage = new Stage();
+			stage.setScene(new Scene(parent, 1000, 900));
+			stage.setTitle("Warehouse Simulator");
+			grid.getScene().getWindow().hide();
+			stage.showAndWait();
+			
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
 }

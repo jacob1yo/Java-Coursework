@@ -193,7 +193,7 @@
             </HBox>
             <HBox>
                <children>
-                  <Button alignment="CENTER" mnemonicParsing="false" scaleShape="false" text="Start">
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#startPressed" scaleShape="false" text="Start">
                      <HBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </HBox.margin>
