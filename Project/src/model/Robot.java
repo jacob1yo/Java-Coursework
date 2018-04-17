@@ -50,9 +50,12 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	private static int lastNum = 0;
 	
+	private Point robotCoordinates;
+	
 	//add fields, explain how this might change
 
-	public Robot() {
+	public Robot(int x, int y) {
+		robotCoordinates = new Point(x, y);
 		safetyMargin = 20;
 		orderStatus = false;
 		generateID();

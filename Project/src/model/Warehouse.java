@@ -2,11 +2,6 @@ package model;
 import java.awt.Point;
 import java.util.ArrayList;
 public class Warehouse {
-
-	public Point robotCoordinates;
-	public Point storageCoordinates;
-	public Point chargingCoordintates;
-	public Point packingCoordinates;
 	
 	private ArrayList<Robot> robotList;
 	private ArrayList<ChargingPod> chargeList;
@@ -28,7 +23,7 @@ public class Warehouse {
 	}
 	
 	public void addRobot(int x, int y, int batteryLevel, int chargeRate) {
-		Robot robot = new Robot();
+		Robot robot = new Robot(x, y);
 		robotList.add(robot);
 		for(int i = 0; i < robotList.size(); i++) {
 			robotList.get(i).updateBattery(batteryLevel);
@@ -36,7 +31,7 @@ public class Warehouse {
 		}
 		
 		
-		ChargingPod chargePod = new ChargingPod();
+		ChargingPod chargePod = new ChargingPod(x, y);
 		chargeList.add(chargePod);
 		for(int i = 0; i < chargeList.size(); i++) {
 			chargeList.get(i).updateChargeRate(chargeRate);
@@ -44,7 +39,7 @@ public class Warehouse {
 	}	
 	
 	public void addStorage(int x, int y) {
-		StorageShelf storage = new StorageShelf();
+		StorageShelf storage = new StorageShelf(x, y);
 		storageList.add(storage);
 		for(int i = 0; i < storageList.size(); i++) {
 			System.out.println(storageList.get(i).getID()); //delete this manual test after
@@ -52,11 +47,39 @@ public class Warehouse {
 	}
 	
 	public void addPacking(int x, int y) {
-		PackingStation packing = new PackingStation();
+		PackingStation packing = new PackingStation(x, y);
 		packingList.add(packing);
 	}
 	
-	public void removeRobot() {
+	public void delete(int x, int y) {
+		for(int i = 0; i < robotList.size(); i++) {
+			if(robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
+				robotList.remove(i);
+			}
+		}
+		
+		for(int i = 0; i < chargeList.size(); i++) {
+			if(chargeList.get(i).getChargingX() == (double) x && chargeList.get(i).getChargingY() == (double) y) {
+				chargeList.remove(i);
+			}
+		}
+		
+		for(int i = 0; i < storageList.size(); i++) {
+			if(storageList.get(i).getStorageX() == (double) x && storageList.get(i).getStorageY() == (double) y) {
+				storageList.remove(i);
+			}
+		}
+		
+		for(int i = 0; i < packingList.size(); i++) {
+			if(packingList.get(i).getPackingX() == (double) x && packingList.get(i).getPackingY() == (double) y) {
+				packingList.remove(i);
+			}
+		}
+		
+		
+	}
+	
+	/*public void removeRobot() {
 		if((robotList.size()-1)>0) {
 			robotList.remove(robotList.size()-1);
 		}
@@ -80,37 +103,45 @@ public class Warehouse {
 	
 	public void removePacking() {
 		packingList.remove(packingList.size()-1);
-	}
+	}*/
 	
 	public void removeAll() {	
+		robotList.clear();
+		chargeList.clear();
+		storageList.clear();
+		packingList.clear();
+	}
+	/*
+	 * Checks whether another entity is already in the position given
+	 *  
+	 *  @return <code>boolean</code> True if there is no entity in the given position, false otherwise
+	 */
+	public boolean check(int x, int y) {
 		for(int i = 0; i < robotList.size(); i++) {
-			robotList.remove(i);
+			if(robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
+				return false;
+			}
 		}
+		
 		for(int i = 0; i < chargeList.size(); i++) {
-			chargeList.remove(i);
+			if(chargeList.get(i).getChargingX() == (double) x && chargeList.get(i).getChargingY() == (double) y) {
+				return false;
+			}
 		}
+		
 		for(int i = 0; i < storageList.size(); i++) {
-			storageList.remove(i);
+			if(storageList.get(i).getStorageX() == (double) x && storageList.get(i).getStorageY() == (double) y) {
+				return false;
+			}
 		}
+		
 		for(int i = 0; i < packingList.size(); i++) {
-			packingList.remove(i);
+			if(packingList.get(i).getPackingX() == (double) x && packingList.get(i).getPackingY() == (double) y) {
+				return false;
+			}
 		}
-		if(!robotList.isEmpty()) {
-			robotList.get(0).resetID(); //may have to move up
-			robotList.remove(0);
-		}
-		if(!chargeList.isEmpty()) {
-			chargeList.get(0).resetID();
-			chargeList.remove(0);
-		}
-		if(!storageList.isEmpty()) {
-			storageList.get(0).resetID();
-			storageList.remove(0);
-		}
-		if(!packingList.isEmpty()) {
-			packingList.get(0).resetID();
-			packingList.remove(0);
-		}
+		
+		return true;
 	}
 
 }

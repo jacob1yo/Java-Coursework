@@ -38,8 +38,11 @@ public class ChargingPod extends Warehouse implements Entity {
 	 * Used to check if robots unique charging pod is occupied
 	 */
 	private boolean occupied;
+	
+	private Point chargingCoordinates;
 
-	public ChargingPod(/*int chargingX, int chargingY*/) {
+	public ChargingPod(int x, int y) {
+		chargingCoordinates = new Point(x, y);
 		generateID();
 		occupied = false;
 	//	this.chargingX = chargingX;
@@ -51,21 +54,21 @@ public class ChargingPod extends Warehouse implements Entity {
 	 * @return <code>Point</code> The co-ordinate value.
 	 */
 	public Point getChargingCoordintatess() {
-		return chargingCoordintates;
+		return chargingCoordinates;
 	}
 	
 	/**
 	 * Acceses the X-coordinate of the charging Pod
 	 */
 	public double getChargingX(){
-		return chargingCoordintates.getX();
+		return chargingCoordinates.getX();
 	}
 	
 	/**
 	 * Acceses the Y-coordinate of the charging Pod
 	 */
 	public double getChargingY(){
-		return chargingCoordintates.getY();
+		return chargingCoordinates.getY();
 	}
 	
 	/**

@@ -55,7 +55,7 @@ public class MainController {
 				numRows = arg2.intValue();
 				resetGrid();
 				grid.getRowConstraints().clear();
-			
+
 				for (int i = 0; i < numRows; i++) {
 					RowConstraints rowConst = new RowConstraints();
 					rowConst.setPercentHeight(100.0 / numRows);
@@ -81,7 +81,7 @@ public class MainController {
 			}
 		});
 		addPane();
-		
+
 		battery.valueProperty().addListener(new ChangeListener<Number>() {
 
 			@Override
@@ -89,7 +89,7 @@ public class MainController {
 				batteryLevel = arg2.intValue();
 			}
 		});
-		
+
 		charge.valueProperty().addListener(new ChangeListener<Number>() {
 
 			@Override
@@ -125,51 +125,55 @@ public class MainController {
 		}
 		int col = colIndex;
 		int row = rowIndex;
-		if(pressed.equals("robot")) {
-			warehouse.addRobot(col, row, batteryLevel, chargeRate);
-			Circle circle = new Circle(20);
-			circle.setFill(Color.GREEN);
-			Rectangle rect = new Rectangle(50,50);
-			rect.setFill(Color.BLUE);
-			grid.add(rect, col, row);
-			grid.add(circle, col, row);
-			//Create new robot entity in warehouse class
-		}
-		else if(pressed.equals("storage")) {
-			warehouse.addStorage(col, row);
-			Polygon triangle = new Polygon();
-			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
-			triangle.setFill(Color.RED);
-			grid.add(triangle, col, row);
-			//Create new storage shelf entity in warehouse class
-		}
-		else if(pressed.equals("packing")) {
-			warehouse.addPacking(col, row);
-			Polygon triangle = new Polygon();
-			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
-			triangle.setFill(Color.YELLOW);
-			grid.add(triangle, col, row);
-			//Create new packing station entity in warehouse class
-		}
-		else if(pressed.equals("delete")) {
-			if(src.toString().contains("Circle")) {
-				warehouse.removeRobot(); //need to figure out for 1 robot remaining
+		if(warehouse.check(col, row)) {
+			if(pressed.equals("robot")) {
+				warehouse.addRobot(col, row, batteryLevel, chargeRate);
+				Circle circle = new Circle(20);
+				circle.setFill(Color.GREEN);
+				Rectangle rect = new Rectangle(50,50);
+				rect.setFill(Color.BLUE);
+				grid.add(rect, col, row);
+				grid.add(circle, col, row);
+				//Create new robot entity in warehouse class
 			}
-			else if(src.toString().contains("Rectangle")) {
-				warehouse.removeCharge();
+			else if(pressed.equals("storage")) {
+				warehouse.addStorage(col, row);
+				Polygon triangle = new Polygon();
+				triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
+				triangle.setFill(Color.RED);
+				grid.add(triangle, col, row);
+				//Create new storage shelf entity in warehouse class
 			}
-			else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xff0000ff")) { //for storage 
-				warehouse.removeStorage();
+			else if(pressed.equals("packing")) {
+				warehouse.addPacking(col, row);
+				Polygon triangle = new Polygon();
+				triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
+				triangle.setFill(Color.YELLOW);
+				grid.add(triangle, col, row);
+				//Create new packing station entity in warehouse class
 			}
-			else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xffff00ff")) { //for packing
-				warehouse.removePacking();
+			else if(pressed.equals("delete")) {
+				warehouse.delete(col, row);
+				grid.getChildren().remove(src);
+				/*if(src.toString().contains("Circle")) {
+					warehouse.removeRobot(); //need to figure out for 1 robot remaining
+				}
+				else if(src.toString().contains("Rectangle")) {
+					warehouse.removeCharge();
+				}
+				else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xff0000ff")) { //for storage 
+					warehouse.removeStorage();
+				}
+				else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xffff00ff")) { //for packing
+					warehouse.removePacking();
+				}
+				grid.getChildren().remove(src);
+				//Remove entity from warehouse class*/
 			}
-			grid.getChildren().remove(src);
-			//Remove entity from warehouse class
+			else {}
 		}
-		else {}
 	}
-	
+
 	public void resetGrid() {
 		grid.getChildren().clear(); 
 		addPane();
@@ -195,21 +199,21 @@ public class MainController {
 	public void deletePressed() {
 		pressed = "delete"; //Might have to put all implementations in the respective methods
 	}
-	
+
 	@FXML
 	public void clearPressed() {
 		resetGrid();
 		warehouse.removeAll();
 	}
-	
+
 	@FXML
 	public void loadPressed() {
 		FileChooser filechooser = new FileChooser();
 		filechooser.getExtensionFilters().addAll(new ExtensionFilter(".SIM Files", "*.sim"));
 		File selectedFile = filechooser.showOpenDialog(null);
-		
+
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
-		
-		
+
+
 	}
 }
