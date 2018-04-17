@@ -100,7 +100,11 @@ public class Warehouse {
 		packingList.remove(packingList.size()-1);
 	}*/
 	
-	public void removeAll() {	
+	public void removeAll() {
+		robotList.get(0).resetID();
+		chargeList.get(0).resetID();
+		storageList.get(0).resetID();
+		packingList.get(0).resetID();
 		robotList.clear();
 		chargeList.clear();
 		storageList.clear();
