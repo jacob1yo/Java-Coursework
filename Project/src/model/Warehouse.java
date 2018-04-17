@@ -101,10 +101,18 @@ public class Warehouse {
 	}*/
 	
 	public void removeAll() {
-		robotList.get(0).resetID();
-		chargeList.get(0).resetID();
-		storageList.get(0).resetID();
-		packingList.get(0).resetID();
+		if(!robotList.isEmpty()) {
+			robotList.get(0).resetID();
+		}
+		if(!chargeList.isEmpty()) {
+			chargeList.get(0).resetID();
+		}
+		if(!storageList.isEmpty()) {
+			storageList.get(0).resetID();
+		}
+		if(!packingList.isEmpty()) {
+			packingList.get(0).resetID();
+		}
 		robotList.clear();
 		chargeList.clear();
 		storageList.clear();
