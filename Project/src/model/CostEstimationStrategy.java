@@ -42,6 +42,7 @@ public class CostEstimationStrategy extends Robot {
 	 * @param secondStop 
 	 * @param returnStop 
 	 * @return <code>double</code> Distance between locations
+	 * this is repeated code, so we will write down the maths into a single function and call the function in every time with parameters
 	 */
 	public double distanceCalculator(double firstStop, double secondStop, double returnStop) {
 		firstStop=Math.sqrt((Math.pow(startPosition.getX()-byPosition.getX(),2))+(Math.pow(startPosition.getY()-byPosition.getY(),2)));
