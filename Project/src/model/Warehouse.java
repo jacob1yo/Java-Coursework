@@ -1,6 +1,7 @@
 package model;
-import java.awt.Point;
+
 import java.util.ArrayList;
+
 public class Warehouse {
 	
 	private ArrayList<Robot> robotList;
@@ -10,12 +11,6 @@ public class Warehouse {
 
 	
 	public Warehouse(){
-		/*
-		this.chargingCoordintates=chargingCoordintates;
-		this.robotCoordinates=robotCoordinates;
-		this.storageCoordinates=storageCoordinates;
-		this.packingCoordinates=packingCoordinates;
-		*/
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
 		storageList = new ArrayList<StorageShelf>();

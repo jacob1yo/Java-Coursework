@@ -22,6 +22,6 @@ public interface Entity {
 	 * @param r a Robot object
 	 * @return <code>boolean</code> true if there is an entity in the same location or false otherwise.
 	 */
-	public abstract boolean compare(Robot r);
+	public abstract boolean compare(Entity r);
 	
 }

@@ -152,25 +152,26 @@ public class MainController {
 				grid.add(triangle, col, row);
 				//Create new packing station entity in warehouse class
 			}
-			else if(pressed.equals("delete")) {
-				warehouse.delete(col, row);
-				grid.getChildren().remove(src);
-				/*if(src.toString().contains("Circle")) {
-					warehouse.removeRobot(); //need to figure out for 1 robot remaining
-				}
-				else if(src.toString().contains("Rectangle")) {
-					warehouse.removeCharge();
-				}
-				else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xff0000ff")) { //for storage 
-					warehouse.removeStorage();
-				}
-				else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xffff00ff")) { //for packing
-					warehouse.removePacking();
-				}
-				grid.getChildren().remove(src);
-				//Remove entity from warehouse class*/
-			}
+			
 			else {}
+		}
+		if(pressed.equals("delete")) {
+			warehouse.delete(col, row);
+			grid.getChildren().remove(src);
+			/*if(src.toString().contains("Circle")) {
+				warehouse.removeRobot(); //need to figure out for 1 robot remaining
+			}
+			else if(src.toString().contains("Rectangle")) {
+				warehouse.removeCharge();
+			}
+			else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xff0000ff")) { //for storage 
+				warehouse.removeStorage();
+			}
+			else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xffff00ff")) { //for packing
+				warehouse.removePacking();
+			}
+			grid.getChildren().remove(src);
+			//Remove entity from warehouse class*/
 		}
 	}
 

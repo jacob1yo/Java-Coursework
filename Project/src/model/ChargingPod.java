@@ -110,9 +110,9 @@ public class ChargingPod extends Warehouse implements Entity {
 	}
 
 	@Override
-	public boolean compare(Robot r) {
+	public boolean compare(Entity r) {
 		// TODO Auto-generated method stub
-		return null;
+		return true;
 	}
 
 }
