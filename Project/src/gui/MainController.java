@@ -232,7 +232,7 @@ public class MainController {
 			stage.setScene(new Scene(parent, 1000, 900));
 			stage.setTitle("Warehouse Simulator");
 			grid.getScene().getWindow().hide();
-			stage.showAndWait();
+			stage.show();
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();
