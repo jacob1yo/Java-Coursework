@@ -5,6 +5,10 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 import model.Warehouse;
 
 
@@ -53,6 +57,10 @@ public class SimulatorController {
 		}
 		
 		addPane();
+		addRobots();
+		addStorage();
+		addPackage();			
+
 	}
 	
 	public void addColumns() {
@@ -73,6 +81,44 @@ public class SimulatorController {
 	}
 	
 	public void addRobots() {
+		for(int i = 0; i < warehouse.robots().size(); i++) {
+			Circle circle = new Circle(20);
+			circle.setFill(Color.GREEN);
+			Rectangle rect = new Rectangle(50,50);
+			rect.setFill(Color.BLUE);
+			
+			Double x = warehouse.robots().get(i).getX();
+			Double y = warehouse.robots().get(i).getY();
+			
+			grid.add(rect, x.intValue(), y.intValue());
+			grid.add(circle, x.intValue(), y.intValue());
+		}
+	}
+	
+	public void addStorage() {
+		for(int i = 0; i < warehouse.storageShelfs().size(); i++) {
+			Polygon triangle = new Polygon();
+			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
+			triangle.setFill(Color.RED);
+			
+			Double x = warehouse.storageShelfs().get(i).getX();
+			Double y = warehouse.storageShelfs().get(i).getY();
+			
+			grid.add(triangle, x.intValue(), y.intValue());
+		}
+	}
+	
+	public void addPackage() {
+		for(int i = 0; i < warehouse.packingStations().size(); i++) {
+			Polygon triangle = new Polygon();
+			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
+			triangle.setFill(Color.YELLOW);
+			
+			Double x = warehouse.packingStations().get(i).getX();
+			Double y = warehouse.packingStations().get(i).getY();
+			
+			grid.add(triangle, x.intValue(), y.intValue());
+		}
 		
 	}
 
