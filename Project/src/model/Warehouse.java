@@ -162,26 +162,18 @@ public class Warehouse {
 		return robots;
 	}
 	
-	public ArrayList<Point> chargingPods() {
-		ArrayList<Point> chargingPods = new ArrayList<Point>();
-		for(int i = 0; i < robotList.size(); i++) {
-			chargingPods.add(robotList.get(i).getRobotCoordinates());
-		}
-		return chargingPods;
-	}
-	
 	public ArrayList<Point> packingStations() {
 		ArrayList<Point> packingStations = new ArrayList<Point>();
-		for(int i = 0; i < robotList.size(); i++) {
-			packingStations.add(robotList.get(i).getRobotCoordinates());
+		for(int i = 0; i < packingList.size(); i++) {
+			packingStations.add(packingList.get(i).getPackingCoordinates());
 		}
 		return packingStations;
 	}
 	
 	public ArrayList<Point> storageShelfs() {
 		ArrayList<Point> storageShelfs = new ArrayList<Point>();
-		for(int i = 0; i < robotList.size(); i++) {
-			storageShelfs.add(robotList.get(i).getRobotCoordinates());
+		for(int i = 0; i < storageList.size(); i++) {
+			storageShelfs.add(storageList.get(i).getStorageCoordinates());
 		}
 		return storageShelfs;
 	}

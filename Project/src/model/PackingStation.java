@@ -37,7 +37,7 @@ public class PackingStation extends Warehouse implements Entity{
 	 */
 	private static int lastNum = 0;
 
-	protected static Point packingCoordinates;
+	private Point packingCoordinates;
 	
 	public PackingStation(int x, int y) {
 		packingCoordinates = new Point(x, y);
@@ -51,7 +51,7 @@ public class PackingStation extends Warehouse implements Entity{
 	 * Gets the X n' Y co-ordinates of the Packing.
 	 * @return <code>Point</code> The co-ordinate value.
 	 */
-	public static Point getPackingCoordinates() {
+	public Point getPackingCoordinates() {
 		return packingCoordinates;
 	}
 	
