@@ -225,7 +225,8 @@ public class MainController {
 	public void startPressed() {
 		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Simulator.FXML"));
-		//need to add a controller here
+		final SimulatorController simulatorController = new SimulatorController();
+		loader.setController(simulatorController);
 		try {
 			final Parent parent = (Parent) loader.load();
 			final Stage stage = new Stage();
