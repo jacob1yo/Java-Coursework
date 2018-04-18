@@ -279,7 +279,7 @@ public class MainController {
 		try {
 			final Parent parent = (Parent) loader.load();
 			final Stage stage = new Stage();
-			final Scene scene = new Scene(parent, 1000, 600);
+			final Scene scene = new Scene(parent, 1500, 900);
 			scene.getStylesheets().add(getClass().getResource("grid-borders.css").toExternalForm());
 			stage.setScene(scene);
 			stage.setTitle("Warehouse Simulator");

@@ -31,6 +31,8 @@ public class SimulatorController {
 
 	@FXML
 	public void initialize() {
+		grid.getChildren().clear();
+		
 		grid.getRowConstraints().clear();
 		for (int i = 0; i < finalGridWidth; i++) {
 			RowConstraints rowConst = new RowConstraints();
@@ -46,6 +48,10 @@ public class SimulatorController {
 		}
 		
 		addPane();
+	}
+	
+	public void addColumns() {
+		
 	}
 
 	/**
