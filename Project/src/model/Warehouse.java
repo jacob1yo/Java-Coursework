@@ -17,9 +17,13 @@ public class Warehouse {
 		storageList = new ArrayList<StorageShelf>();
 		packingList = new ArrayList<PackingStation>();
 	}
-
-	/*
+	
+	/**
 	 * Creates a new robot and corresponding charging pod, and adds both to their own arraylist
+	 * @param x
+	 * @param y
+	 * @param batteryLevel
+	 * @param chargeRate
 	 */
 	public void addRobot(int x, int y, int batteryLevel, int chargeRate) {
 		Robot robot = new Robot();
@@ -35,10 +39,12 @@ public class Warehouse {
 		for(int i = 0; i < chargeList.size(); i++) {
 			chargeList.get(i).updateChargeRate(chargeRate);
 		}
-	}	
-
-	/*
+	}
+	
+	/**
 	 * Creates a new storage shelf and adds it to an arraylist
+	 * @param x
+	 * @param y
 	 */
 	public void addStorage(int x, int y) {
 		StorageShelf storage = new StorageShelf(x, y);
@@ -48,16 +54,20 @@ public class Warehouse {
 		}
 	}
 
-	/*
+	/**
 	 * Creates a new packing station and adds it to an arraylist
+	 * @param x
+	 * @param y
 	 */
 	public void addPacking(int x, int y) {
 		PackingStation packing = new PackingStation(x, y);
 		packingList.add(packing);
 	}
-
-	/*
+	
+	/**
 	 * Deletes an item from entity lists depending on the coordinates given
+	 * @param x
+	 * @param y
 	 */
 	public void delete(int x, int y) {
 			for(int i = 0; i < robotList.size(); i++) {
@@ -99,7 +109,7 @@ public class Warehouse {
 			}
 	}
 
-	/*
+	/**
 	 * Clears all the lists of entities if they contain any items
 	 */
 	public void removeAll() {
@@ -120,11 +130,12 @@ public class Warehouse {
 			packingList.clear();
 		}
 	}
-
-	/*
+	
+	/**
 	 * Checks whether another entity is already in the position given
-	 *  
-	 *  @return <code>boolean</code> True if there is no entity in the given position, false otherwise
+	 * @param x
+	 * @param y
+	 * @return <code>boolean</code> True if there is no entity in the given position, false otherwise
 	 */
 	public boolean check(int x, int y) {
 		for(int i = 0; i < robotList.size(); i++) {
@@ -154,7 +165,11 @@ public class Warehouse {
 		return true;
 	}
 	
-	public ArrayList<Point> robots() {
+	/**
+	 * Get the an arraylist of coordinates of every robot
+	 * @return <code>ArrayList<Point></code>
+	 */
+	public ArrayList<Point> robotPoints() {
 		ArrayList<Point> robots = new ArrayList<Point>();
 		for(int i = 0; i < robotList.size(); i++) {
 			robots.add(robotList.get(i).getRobotCoordinates());
@@ -162,7 +177,23 @@ public class Warehouse {
 		return robots;
 	}
 	
-	public ArrayList<Point> packingStations() {
+	/**
+	 * Get the an arraylist of coordinates of every chargingpod
+	 * @return <code>ArrayList<Point></code>
+	 */
+	public ArrayList<Point> chargingPodPoints(){
+		ArrayList<Point> chargingPods = new ArrayList<Point>();
+		for(int i = 0; i < chargeList.size(); i++) {
+			chargingPods.add(chargeList.get(i).getChargingCoordinates());
+		}
+		return chargingPods;
+	}
+	
+	/**
+	 * Get the an arraylist of coordinates of every packing station
+	 * @return <code>ArrayList<Point></code>
+	 */
+	public ArrayList<Point> packingStationPoints() {
 		ArrayList<Point> packingStations = new ArrayList<Point>();
 		for(int i = 0; i < packingList.size(); i++) {
 			packingStations.add(packingList.get(i).getPackingCoordinates());
@@ -170,12 +201,32 @@ public class Warehouse {
 		return packingStations;
 	}
 	
-	public ArrayList<Point> storageShelfs() {
+	/**
+	 * Get the an arraylist of coordinates of every storage shelf
+	 * @return <code>ArrayList<Point></code>
+	 */
+	public ArrayList<Point> storageShelfPoints() {
 		ArrayList<Point> storageShelfs = new ArrayList<Point>();
 		for(int i = 0; i < storageList.size(); i++) {
 			storageShelfs.add(storageList.get(i).getStorageCoordinates());
 		}
 		return storageShelfs;
+	}
+	
+	/**
+	 * Get the an arraylist of coordinates of every space that is available
+	 * @return <code>ArrayList<Point></code>
+	 */
+	public void freeSpacePoints(int x, int y) {
+		ArrayList<Point> spaces = new ArrayList<Point>();
+		for(int i = 0; i < x; i++) {
+			for(int j = 0; j < y; j++) {
+				if(check(x, y)) {
+					Point point = new Point(x, y);
+					spaces.add(point);
+				}
+			}
+		}
 	}
 
 }

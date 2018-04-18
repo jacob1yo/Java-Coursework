@@ -53,7 +53,7 @@ public class ChargingPod extends Warehouse implements Entity {
 	 * Gets the X n' Y co-ordinates of the chargin.
 	 * @return <code>Point</code> The co-ordinate value.
 	 */
-	public Point getChargingCoordintatess() {
+	public Point getChargingCoordinates() {
 		return chargingCoordinates;
 	}
 	
