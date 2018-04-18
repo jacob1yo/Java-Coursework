@@ -3,11 +3,8 @@ package gui;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -41,8 +38,8 @@ public class MainController {
 	@FXML
 	private Button load;
 
-	static int numRows = 2;
-    static int numCols = 2;
+	private static int numRows = 2;
+    private static int numCols = 2;
 	private int batteryLevel = 20; 
 	private int chargeRate = 1;
 	private String pressed;
@@ -109,7 +106,6 @@ public class MainController {
 		for(int i = 0; i < numCols; i++) {
 			for(int j = 0; j < numRows; j++) {
 				StackPane pane = new StackPane();
-				//pane.setAlignment(Pos.CENTER);
 				grid.add(pane, i, j);
 				pane.getStyleClass().add("grid");
 			}
@@ -183,6 +179,14 @@ public class MainController {
 		grid.getChildren().clear(); 
 		addPane();
 	}
+	
+	public static int getNumCols() {
+		return numCols;
+	}
+	
+	public static int getNumRows() {
+		return numRows;
+	}
 
 	@FXML
 	public void robotPressed() {
@@ -229,7 +233,9 @@ public class MainController {
 		try {
 			final Parent parent = (Parent) loader.load();
 			final Stage stage = new Stage();
-			stage.setScene(new Scene(parent, 500, 300));
+			final Scene scene = new Scene(parent, 500, 300);
+			scene.getStylesheets().add(getClass().getResource("grid-borders.css").toExternalForm());
+			stage.setScene(scene);
 			stage.setTitle("Warehouse Simulator");
 			grid.getScene().getWindow().hide();
 			stage.show();

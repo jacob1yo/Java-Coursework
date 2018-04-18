@@ -7,24 +7,6 @@
 <?import javafx.scene.layout.BorderPane?>
 
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <left>
-      <GridPane fx:id="grid" style="-fx-border-color: #000000;" BorderPane.alignment="CENTER">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: #000000;" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: #000000;" GridPane.columnIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: #000000;" GridPane.rowIndex="1" />
-            <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-color: #000000;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-         </children>
-      </GridPane>
-   </left>
    <bottom>
       <HBox spacing="5.0" BorderPane.alignment="CENTER">
          <children>
@@ -123,4 +105,22 @@
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
+   <center>
+      <GridPane fx:id="grid" BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="200.0" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </center>
 </BorderPane>
