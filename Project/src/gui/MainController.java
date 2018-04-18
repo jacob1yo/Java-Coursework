@@ -256,7 +256,11 @@ public class MainController {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Loads instructions from a .SIM file
+=======
+	 * Loads instructions from a sim file
+>>>>>>> 474f903b9b2c2380bfca866b6ab7cc8b1c51ff9c
 	 */
 	@FXML
 	public void loadPressed() {
@@ -279,7 +283,7 @@ public class MainController {
 		try {
 			final Parent parent = (Parent) loader.load();
 			final Stage stage = new Stage();
-			final Scene scene = new Scene(parent, 500, 300);
+			final Scene scene = new Scene(parent, 1000, 600);
 			scene.getStylesheets().add(getClass().getResource("grid-borders.css").toExternalForm());
 			stage.setScene(scene);
 			stage.setTitle("Warehouse Simulator");
