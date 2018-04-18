@@ -2,3 +2,8 @@
 cock/klnjcldc.txt
 /bin/
 Project/src/gui/MainController.java
+JavaStarExample/src/A_StarAlgorithm.class
+JavaStarExample/src/A_StarAlgorithm.ctxt
+*.class
+*.ctxt
+*.bluej
