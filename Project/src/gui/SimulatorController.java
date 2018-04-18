@@ -8,14 +8,25 @@ import javafx.scene.layout.StackPane;
 
 public class SimulatorController {
 
+	/**
+	 * Value of the previously set height of the grid
+	 */
 	private int finalGridHeight;
+	
+	/**
+	 * Value of the previously set width of the grid
+	 */
 	private int finalGridWidth;
+	
+	/**
+	 * The grid from Simulator.fxml
+	 */
 	@FXML private GridPane grid;
 
 	public SimulatorController() {
 		finalGridHeight = MainController.getNumRows();
 		finalGridWidth = MainController.getNumCols();
-		System.out.println("Row: " + finalGridHeight + " Col: " + finalGridWidth);
+		System.out.println("Height: " + finalGridHeight + " Width: " + finalGridWidth);
 	}
 
 	@FXML
@@ -26,7 +37,6 @@ public class SimulatorController {
 			rowConst.setPercentHeight(100.0 / finalGridWidth);
 			grid.getRowConstraints().add(rowConst);
 		}
-		addPane();
 		
 		grid.getColumnConstraints().clear();
 		for (int i = 0; i < finalGridHeight; i++) {
@@ -38,6 +48,9 @@ public class SimulatorController {
 		addPane();
 	}
 
+	/**
+	 * Adds a stack pane to every node in the grid
+	 */
 	public void addPane() {
 		for(int i = 0; i < finalGridWidth; i++) {
 			for(int j = 0; j < finalGridHeight; j++) {

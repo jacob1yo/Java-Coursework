@@ -29,20 +29,50 @@ import java.io.IOException;
 import java.nio.file.*;
 
 public class MainController {
-	@FXML
-	private Slider height, width, battery, charge;
-	@FXML
-	private GridPane grid;
-	@FXML
-	private Button addRobot;
-	@FXML
-	private Button load;
+	/**
+	 * The value that the slider is set to
+	 */
+	@FXML private Slider height, width, battery, charge;
+	
+	/**
+	 * The grid from MainScene.fxml
+	 */
+	@FXML private GridPane grid;
+	
+	/**
+	 * When pressed loads a file from which instructions are read
+	 */
+	@FXML private Button load;
 
+	/**
+	 * The number of rows in the grid
+	 */
 	private static int numRows = 2;
+	
+	/**
+	 * The number of columns in the grid
+	 */
     private static int numCols = 2;
-	private int batteryLevel = 20; 
+    
+    /**
+     * Battery life of the robot
+     */
+	private int batteryLevel = 20;
+	
+	/**
+	 * Charge rate of the charging pod
+	 */
 	private int chargeRate = 1;
+	
+	/**
+	 * Stores a string that is compared to various words 
+	 * to determine if the user has pressed a specific button
+	 */
 	private String pressed;
+	
+	/**
+	 * Contains all the entities that are on the grid and does all the computation
+	 */
 	private Warehouse warehouse;
 
 	
@@ -101,7 +131,10 @@ public class MainController {
 			}
 		});
 	}
-
+	
+	/**
+	 * Adds a stack pane to every node in the grid
+	 */
 	public void addPane() {
 		for(int i = 0; i < numCols; i++) {
 			for(int j = 0; j < numRows; j++) {
@@ -111,7 +144,12 @@ public class MainController {
 			}
 		}
 	}
-
+	
+	/**
+	 * Inputs entities into the grid depending on what the user has chosen, 
+	 * when clicking on a node in the grid
+	 * @param e
+	 */
 	@FXML
 	public void gridPressed(MouseEvent e) {
 		Node src = (Node) e.getTarget();
@@ -158,35 +196,58 @@ public class MainController {
 		}
 	}
 	
+	/**
+	 * Gets the number of columns set for the grid
+	 * @return <code>int</code> Number of columns
+	 */
 	public static int getNumCols() {
 		return numCols;
 	}
 	
+	/**
+	 * Gets the number of rows set for the grid
+	 * @return <code>int</code> Number of rows
+	 */
 	public static int getNumRows() {
 		return numRows;
 	}
 
+	/**
+	 * Changes value of "pressed" to "robot"
+	 */
 	@FXML
 	public void robotPressed() {
 		pressed = "robot";
 
 	}
 
+	/**
+	 * Changes value of "pressed" to "storage"
+	 */
 	@FXML
 	public void storagePressed() {
 		pressed = "storage";
 	}
 
+	/**
+	 * Changes value of "pressed" to "packing"
+	 */
 	@FXML
 	public void packingPressed() {
 		pressed = "packing";
 	}
 
+	/**
+	 * Changes value of "pressed" to "delete"
+	 */
 	@FXML
 	public void deletePressed() {
 		pressed = "delete"; //Might have to put all implementations in the respective methods
 	}
 
+	/**
+	 * Clears the grid and all the entities within it
+	 */
 	@FXML
 	public void clearPressed() {
 		grid.getChildren().clear(); 
@@ -194,6 +255,9 @@ public class MainController {
 		warehouse.removeAll();
 	}
 
+	/**
+	 * Loads instrcutions from a sim file
+	 */
 	@FXML
 	public void loadPressed() {
 		FileChooser filechooser = new FileChooser();
@@ -203,6 +267,9 @@ public class MainController {
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 	}
 	
+	/**
+	 * Opens a new window where the simulation can be run through
+	 */
 	@FXML
 	public void startPressed() {
 		final FXMLLoader loader = new FXMLLoader();

@@ -126,7 +126,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="10.0">
                      <children>
-                        <Button fx:id="addRobot" mnemonicParsing="false" onAction="#robotPressed" text="Robot" HBox.hgrow="ALWAYS">
+                        <Button mnemonicParsing="false" onAction="#robotPressed" text="Robot" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
