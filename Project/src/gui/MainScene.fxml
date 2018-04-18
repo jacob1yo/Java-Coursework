@@ -154,11 +154,6 @@
             <HBox alignment="CENTER_RIGHT" spacing="10.0">
                <children>
                   <Button alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#clearPressed" text="Clear " />
-                  <Button alignment="CENTER_RIGHT" mnemonicParsing="false" text="Save">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Button>
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
