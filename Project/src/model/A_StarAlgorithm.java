@@ -1,3 +1,4 @@
+package model;
 
     /**************************************************
     Copyright (C) 2014  Raptis Dimos <raptis.dimos@yahoo.gr>

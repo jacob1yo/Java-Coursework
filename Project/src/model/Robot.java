@@ -54,14 +54,13 @@ public class Robot extends Warehouse implements Entity  {
 	
 	//add fields, explain how this might change
 
-	public Robot(int x, int y) {
-		robotCoordinates = new Point(x, y);
+	public Robot() {
+		//robotCoordinates = new Point(x, y);
 		safetyMargin = 20;
 		orderStatus = false;
 		generateID();
 	}
-
-	/**
+/*
 	 * The current battery level of the robot.
 	 * 
 	 * @return <code>int</code> how much battery life of a robot is left.
@@ -97,7 +96,7 @@ public class Robot extends Warehouse implements Entity  {
 	public boolean orderDecision() {
 		if (orderStatus == false) { //meaning a robot is free
 			// sub-class method (Cost est strategy and Path finding strategy for batt level requirement)
-			if (//subclass){
+		//	if (//subclass){
 					/* if it returns true
 					 * carry out the distance stuff
 					 * invoke move method
@@ -105,6 +104,7 @@ public class Robot extends Warehouse implements Entity  {
 			
 			return false
 					 */
+		
 		}
 	}
 
