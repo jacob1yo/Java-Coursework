@@ -19,7 +19,7 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Creates a new robot and corresponding charging pod, and adds both to their own arraylist
+	 * Creates a new robot and corresponding charging pod, and adds both to their own ArrayList
 	 * @param x
 	 * @param y
 	 * @param batteryLevel
@@ -42,7 +42,7 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Creates a new storage shelf and adds it to an arraylist
+	 * Creates a new storage shelf and adds it to an ArrayList
 	 * @param x
 	 * @param y
 	 */
@@ -55,7 +55,7 @@ public class Warehouse {
 	}
 
 	/**
-	 * Creates a new packing station and adds it to an arraylist
+	 * Creates a new packing station and adds it to an ArrayList
 	 * @param x
 	 * @param y
 	 */
@@ -166,7 +166,7 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Get the an arraylist of coordinates of every robot
+	 * Get the an ArrayList of coordinates of every robot
 	 * @return <code>ArrayList<Point></code>
 	 */
 	public ArrayList<Point> robotPoints() {
@@ -178,7 +178,7 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Get the an arraylist of coordinates of every chargingpod
+	 * Get the an ArrayList of coordinates of every charging pod
 	 * @return <code>ArrayList<Point></code>
 	 */
 	public ArrayList<Point> chargingPodPoints(){
@@ -190,7 +190,7 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Get the an arraylist of coordinates of every packing station
+	 * Get the an ArrayList of coordinates of every packing station
 	 * @return <code>ArrayList<Point></code>
 	 */
 	public ArrayList<Point> packingStationPoints() {
@@ -202,7 +202,7 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Get the an arraylist of coordinates of every storage shelf
+	 * Get the an ArrayList of coordinates of every storage shelf
 	 * @return <code>ArrayList<Point></code>
 	 */
 	public ArrayList<Point> storageShelfPoints() {
@@ -214,19 +214,20 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Get the an arraylist of coordinates of every space that is available
+	 * Get the an ArrayList of coordinates of every space that is available
 	 * @return <code>ArrayList<Point></code>
 	 */
-	public void freeSpacePoints(int x, int y) {
+	public ArrayList<Point> freeSpacePoints(int numRows, int numCols) {
 		ArrayList<Point> spaces = new ArrayList<Point>();
-		for(int i = 0; i < x; i++) {
-			for(int j = 0; j < y; j++) {
-				if(check(x, y)) {
-					Point point = new Point(x, y);
+		for(int i = 0; i < numRows; i++) {
+			for(int j = 0; j < numCols; j++) {
+				if(check(i, j)) {
+					Point point = new Point(i, j);
 					spaces.add(point);
 				}
 			}
 		}
+		return spaces;
 	}
 
 }
