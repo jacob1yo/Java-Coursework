@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 public class Warehouse {
@@ -151,6 +152,38 @@ public class Warehouse {
 		}
 
 		return true;
+	}
+	
+	public ArrayList<Point> robots() {
+		ArrayList<Point> robots = new ArrayList<Point>();
+		for(int i = 0; i < robotList.size(); i++) {
+			robots.add(robotList.get(i).getRobotCoordinates());
+		}
+		return robots;
+	}
+	
+	public ArrayList<Point> chargingPods() {
+		ArrayList<Point> chargingPods = new ArrayList<Point>();
+		for(int i = 0; i < robotList.size(); i++) {
+			chargingPods.add(robotList.get(i).getRobotCoordinates());
+		}
+		return chargingPods;
+	}
+	
+	public ArrayList<Point> packingStations() {
+		ArrayList<Point> packingStations = new ArrayList<Point>();
+		for(int i = 0; i < robotList.size(); i++) {
+			packingStations.add(robotList.get(i).getRobotCoordinates());
+		}
+		return packingStations;
+	}
+	
+	public ArrayList<Point> storageShelfs() {
+		ArrayList<Point> storageShelfs = new ArrayList<Point>();
+		for(int i = 0; i < robotList.size(); i++) {
+			storageShelfs.add(robotList.get(i).getRobotCoordinates());
+		}
+		return storageShelfs;
 	}
 
 }
