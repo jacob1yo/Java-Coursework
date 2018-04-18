@@ -256,7 +256,7 @@ public class MainController {
 	}
 
 	/**
-	 * Loads instrcutions from a sim file
+	 * Loads instructions from a .SIM file
 	 */
 	@FXML
 	public void loadPressed() {
