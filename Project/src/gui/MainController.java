@@ -41,13 +41,14 @@ public class MainController {
 	@FXML
 	private Button load;
 
-	private int numRows = 2;
-	private int numCols = 2;
+	static int numRows = 2;
+    static int numCols = 2;
 	private int batteryLevel = 20; 
 	private int chargeRate = 1;
 	private String pressed;
 	private Warehouse warehouse;
 
+	
 	public MainController() {
 	}
 
@@ -115,8 +116,6 @@ public class MainController {
 		}
 	}
 
-	// Methods to implement the buttons to add / remove entities
-	// @FXML public void boxPressed() {}
 	@FXML
 	public void gridPressed(MouseEvent e) {
 		Node src = (Node) e.getTarget();
@@ -230,7 +229,7 @@ public class MainController {
 		try {
 			final Parent parent = (Parent) loader.load();
 			final Stage stage = new Stage();
-			stage.setScene(new Scene(parent, 1000, 900));
+			stage.setScene(new Scene(parent, 500, 300));
 			stage.setTitle("Warehouse Simulator");
 			grid.getScene().getWindow().hide();
 			stage.show();
