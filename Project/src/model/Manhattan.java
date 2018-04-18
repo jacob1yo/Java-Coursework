@@ -38,8 +38,8 @@ public class Manhattan extends Robot implements Entity {
 	 * @param destination
 	 */
 	public void manhattanCalc (Point destination) {
-		for(int i = 0; i < robotLocations.size(); i++) {
-			for(int j = 0; j < freeSpaces.size(); j++) {
+		for(int i = 0; i < robotLocations.size(); i++) {	//Iterates through each coordinate of each robot created
+			for(int j = 0; j < freeSpaces.size(); j++) {	//Iterates through every node that is free
 				double x = robotLocations.get(i).getX();
 				double y = robotLocations.get(i).getY();
 				double freeX = freeSpaces.get(j).getX();
@@ -48,9 +48,9 @@ public class Manhattan extends Robot implements Entity {
 				Point node = new Point();
 				if(freeX == x - 1 && freeY == y) {
 					//(x - 1, y) is available
-					double result = pythagoras(freeSpaces.get(j), destination);
-					if(result < compare) {
-						node = freeSpaces.get(j);
+					double result = pythagoras(freeSpaces.get(j), destination);		//Gets the result of pythagoras between possible next node and destination
+					if(result < compare) {			//If the result of pythagoras is less than the smallest result of pythagoras so far
+						node = freeSpaces.get(j);	//node becomes this specific adjacent node, currently making it the next node to be travelled
 					}
 				}
 				if(freeX == x && freeY == y - 1) {
@@ -74,7 +74,7 @@ public class Manhattan extends Robot implements Entity {
 						node = freeSpaces.get(j);
 					}
 				}
-				availableSpace(robotLocations.get(i), node);
+				availableSpace(robotLocations.get(i), node);		//Puts the locations in a HashMap so that the warehouse/GUI knows which robot to move where
 			}
 		}
 	}
