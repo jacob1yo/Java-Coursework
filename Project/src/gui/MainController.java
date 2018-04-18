@@ -56,7 +56,7 @@ public class MainController {
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				numRows = arg2.intValue();
-				resetGrid();
+				clearPressed();
 				grid.getRowConstraints().clear();
 
 				for (int i = 0; i < numRows; i++) {
@@ -72,7 +72,7 @@ public class MainController {
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
 				numCols = arg2.intValue();
-				resetGrid();
+				clearPressed();
 				grid.getColumnConstraints().clear();
 
 				for (int i = 0; i < numCols; i++) {
@@ -134,7 +134,6 @@ public class MainController {
 				rect.setFill(Color.BLUE);
 				grid.add(rect, col, row);
 				grid.add(circle, col, row);
-				//Create new robot entity in warehouse class
 			}
 			else if(pressed.equals("storage")) {
 				warehouse.addStorage(col, row);
@@ -142,7 +141,6 @@ public class MainController {
 				triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 				triangle.setFill(Color.RED);
 				grid.add(triangle, col, row);
-				//Create new storage shelf entity in warehouse class
 			}
 			else if(pressed.equals("packing")) {
 				warehouse.addPacking(col, row);
@@ -150,7 +148,6 @@ public class MainController {
 				triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 				triangle.setFill(Color.YELLOW);
 				grid.add(triangle, col, row);
-				//Create new packing station entity in warehouse class
 			}
 			
 			else {}
@@ -158,26 +155,7 @@ public class MainController {
 		if(pressed.equals("delete")) {
 			warehouse.delete(col, row);
 			grid.getChildren().remove(src);
-			/*if(src.toString().contains("Circle")) {
-				warehouse.removeRobot(); //need to figure out for 1 robot remaining
-			}
-			else if(src.toString().contains("Rectangle")) {
-				warehouse.removeCharge();
-			}
-			else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xff0000ff")) { //for storage 
-				warehouse.removeStorage();
-			}
-			else if(src.toString().contains("Polygon") && src.toString().contains("fill=0xffff00ff")) { //for packing
-				warehouse.removePacking();
-			}
-			grid.getChildren().remove(src);
-			//Remove entity from warehouse class*/
 		}
-	}
-
-	public void resetGrid() {
-		grid.getChildren().clear(); 
-		addPane();
 	}
 	
 	public static int getNumCols() {
@@ -211,7 +189,8 @@ public class MainController {
 
 	@FXML
 	public void clearPressed() {
-		resetGrid();
+		grid.getChildren().clear(); 
+		addPane();
 		warehouse.removeAll();
 	}
 

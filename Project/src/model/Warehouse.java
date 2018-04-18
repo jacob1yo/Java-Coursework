@@ -21,7 +21,8 @@ public class Warehouse {
 	 * Creates a new robot and corresponding charging pod, and adds both to their own arraylist
 	 */
 	public void addRobot(int x, int y, int batteryLevel, int chargeRate) {
-		Robot robot = new Robot(x, y);
+		Robot robot = new Robot();
+		robot.setCoordinates(x, y);
 		robotList.add(robot);
 		for(int i = 0; i < robotList.size(); i++) {
 			robotList.get(i).updateBattery(batteryLevel);
@@ -103,20 +104,20 @@ public class Warehouse {
 	public void removeAll() {
 		if(!robotList.isEmpty()) {
 			robotList.get(0).resetID();
+			robotList.clear();
 		}
 		if(!chargeList.isEmpty()) {
 			chargeList.get(0).resetID();
+			chargeList.clear();
 		}
 		if(!storageList.isEmpty()) {
 			storageList.get(0).resetID();
+			storageList.clear();
 		}
 		if(!packingList.isEmpty()) {
 			packingList.get(0).resetID();
+			packingList.clear();
 		}
-		robotList.clear();
-		chargeList.clear();
-		storageList.clear();
-		packingList.clear();
 	}
 
 	/*

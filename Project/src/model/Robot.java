@@ -55,7 +55,6 @@ public class Robot extends Warehouse implements Entity  {
 	//add fields, explain how this might change
 
 	public Robot() {
-		//robotCoordinates = new Point(x, y);
 		safetyMargin = 20;
 		orderStatus = false;
 		generateID();
@@ -149,6 +148,10 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public void dropOrder(Robot r, PackingStation ps) {
 
+	}
+	
+	public void setCoordinates(int x, int y) {
+		robotCoordinates = new Point(x, y);
 	}
 	
 	/**
