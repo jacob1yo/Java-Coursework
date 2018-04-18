@@ -87,14 +87,14 @@ public class SimulatorController {
 	}
 	
 	public void addRobots() {
-		for(int i = 0; i < warehouse.robots().size(); i++) {
+		for(int i = 0; i < warehouse.robotPoints().size(); i++) {
 			Circle circle = new Circle(20);
 			circle.setFill(Color.GREEN);
 			Rectangle rect = new Rectangle(50,50);
 			rect.setFill(Color.BLUE);
 			
-			Double x = warehouse.robots().get(i).getX();
-			Double y = warehouse.robots().get(i).getY();
+			Double x = warehouse.robotPoints().get(i).getX();
+			Double y = warehouse.robotPoints().get(i).getY();
 			
 			grid.add(rect, x.intValue(), y.intValue());
 			grid.add(circle, x.intValue(), y.intValue());
@@ -102,26 +102,26 @@ public class SimulatorController {
 	}
 	
 	public void addStorage() {
-		for(int i = 0; i < warehouse.storageShelfs().size(); i++) {
+		for(int i = 0; i < warehouse.storageShelfPoints().size(); i++) {
 			Polygon triangle = new Polygon();
 			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 			triangle.setFill(Color.RED);
 			
-			Double x = warehouse.storageShelfs().get(i).getX();
-			Double y = warehouse.storageShelfs().get(i).getY();
+			Double x = warehouse.storageShelfPoints().get(i).getX();
+			Double y = warehouse.storageShelfPoints().get(i).getY();
 			
 			grid.add(triangle, x.intValue(), y.intValue());
 		}
 	}
 	
 	public void addPackage() {
-		for(int i = 0; i < warehouse.packingStations().size(); i++) {
+		for(int i = 0; i < warehouse.packingStationPoints().size(); i++) {
 			Polygon triangle = new Polygon();
 			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 			triangle.setFill(Color.YELLOW);
 			
-			Double x = warehouse.packingStations().get(i).getX();
-			Double y = warehouse.packingStations().get(i).getY();
+			Double x = warehouse.packingStationPoints().get(i).getX();
+			Double y = warehouse.packingStationPoints().get(i).getY();
 			
 			grid.add(triangle, x.intValue(), y.intValue());
 		}
