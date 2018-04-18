@@ -272,6 +272,7 @@ public class MainController {
 	 */
 	@FXML
 	public void startPressed() {
+		warehouse.freeSpaces(numCols, numRows);
 		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Simulator.FXML"));
 		final SimulatorController simulatorController = new SimulatorController();
