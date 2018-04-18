@@ -7,31 +7,28 @@ import gui.MainController;
 
 import java.awt.Point;
 
-
 /**
  * Write a description of class Manhattan here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
+ *         Vivek Bhukhan, Christos Dolopikos
+ * 
  */
 public class Manhattan extends Robot implements Entity {
-	// instance variables - replace the example below with your own
-	private ArrayList <Point> freeSpaces;
+	private ArrayList<Point> freeSpaces;
 	private ArrayList<Point> robotLocations;
 	private HashMap<Point, Point> hashMap;
 
-	private double robotY= getRobotY();
-	private double robotX= getRobotX();
-	private double storageY = super.getStorageY();
-	private double storageX = getStorageX();
-	private double packingY = getPackingY();
-	private double packingX = getPackingX();
+	/*
+	 * private double storageY = super.getStorageY(); private double storageX =
+	 * getStorageX(); private double packingY = getPackingY(); private double
+	 * packingX = getPackingX();
+	 */
 
 	/**
 	 * Constructor for objects of class Manhattan
 	 */
-	public Manhattan()
-	{
+	public Manhattan() {
 		ArrayList<Point> freeSpaces = freeSpacePoints(MainController.getNumRows(), MainController.getNumCols());
 		ArrayList<Point> robotLocations = super.robotPoints();
 	}
@@ -81,7 +78,7 @@ public class Manhattan extends Robot implements Entity {
 			}
 		}
 	}
-
+	
 	/**
 	 * Returns the result of Pythagoras's theorem between node and destination
 	 * @param node Point coordinate of where the robot currently is
