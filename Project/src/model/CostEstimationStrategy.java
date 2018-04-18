@@ -32,7 +32,7 @@ public class CostEstimationStrategy extends Robot {
 	public CostEstimationStrategy() {
 		startPosition = robotCoordinates;
 		endPosition = PackingStation.getPackingCoordinates();
-		byPosition=storageCoordinates;
+		byPosition=StorageShelf.getStorageCoordinates();
 		//route = new Point[2];
 	}
 

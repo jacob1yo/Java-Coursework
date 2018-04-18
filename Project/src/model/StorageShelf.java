@@ -29,7 +29,7 @@ public class StorageShelf extends Warehouse implements Entity{
 	 */
 	private static int lastNum = 0;
 	
-	protected Point storageCoordinates;
+	protected static Point storageCoordinates;
 	
 	public StorageShelf(int x, int y) {
 		storageCoordinates = new Point(x, y);
@@ -42,7 +42,7 @@ public class StorageShelf extends Warehouse implements Entity{
 	 * Gets the X n' Y co-ordinates of the Storage.
 	 * @return <code>Point</code> The co-ordinate value.
 	 */
-	public Point getStorageCoordinates() {
+	public static Point getStorageCoordinates() {
 		return storageCoordinates;
 	}
 	
