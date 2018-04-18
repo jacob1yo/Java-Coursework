@@ -73,7 +73,7 @@ public class MainController {
 	/**
 	 * Contains all the entities that are on the grid and does all the computation
 	 */
-	private Warehouse warehouse;
+	static Warehouse warehouse;
 
 	
 	public MainController() {

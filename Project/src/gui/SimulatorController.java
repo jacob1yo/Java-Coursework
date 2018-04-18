@@ -5,6 +5,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import model.Warehouse;
+
 
 public class SimulatorController {
 
@@ -18,6 +20,8 @@ public class SimulatorController {
 	 */
 	private int finalGridWidth;
 	
+	private Warehouse warehouse;
+	
 	/**
 	 * The grid from Simulator.fxml
 	 */
@@ -26,6 +30,7 @@ public class SimulatorController {
 	public SimulatorController() {
 		finalGridHeight = MainController.getNumRows();
 		finalGridWidth = MainController.getNumCols();
+		warehouse = MainController.warehouse;
 		System.out.println("Height: " + finalGridHeight + " Width: " + finalGridWidth);
 	}
 
@@ -36,14 +41,14 @@ public class SimulatorController {
 		grid.getRowConstraints().clear();
 		for (int i = 0; i < finalGridWidth; i++) {
 			RowConstraints rowConst = new RowConstraints();
-			rowConst.setPercentHeight(100.0 / finalGridWidth);
+			rowConst.setPercentHeight(100.0 / finalGridWidth); //fix
 			grid.getRowConstraints().add(rowConst);
 		}
 		
 		grid.getColumnConstraints().clear();
 		for (int i = 0; i < finalGridHeight; i++) {
 			ColumnConstraints colConst = new ColumnConstraints();
-			colConst.setPercentWidth(100.0 / finalGridHeight);
+			colConst.setPercentWidth(100.0 / finalGridHeight); //fix
 			grid.getColumnConstraints().add(colConst);
 		}
 		
@@ -65,6 +70,10 @@ public class SimulatorController {
 				pane.getStyleClass().add("grid");
 			}
 		}
+	}
+	
+	public void addRobots() {
+		
 	}
 
 }
