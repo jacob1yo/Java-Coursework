@@ -13,7 +13,7 @@
             <Button mnemonicParsing="false" text="1 tick" />
             <Button mnemonicParsing="false" text="10 ticks" />
             <Button mnemonicParsing="false" text="End" />
-            <Button mnemonicParsing="false" text="Return" />
+            <Button mnemonicParsing="false" onAction="#returnPressed" text="Return" />
          </children>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

@@ -1,6 +1,11 @@
 package gui;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -9,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Stage;
 import model.Warehouse;
 
 
@@ -120,6 +126,26 @@ public class SimulatorController {
 			grid.add(triangle, x.intValue(), y.intValue());
 		}
 		
+	}
+	
+	@FXML
+	public void returnPressed() {
+		final FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("MainScene.fxml"));
+		final MainController mainController = new MainController();
+		loader.setController(mainController);
+		try {
+			final Parent parent = (Parent) loader.load();
+			final Stage stage = new Stage();
+			final Scene scene = new Scene(parent, 1500, 900);
+			scene.getStylesheets().add(getClass().getResource("grid-borders.css").toExternalForm());
+			stage.setScene(scene);
+			stage.setTitle("Warehouse Simulator");
+			grid.getScene().getWindow().hide();
+			stage.show();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 }
