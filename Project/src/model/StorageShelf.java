@@ -49,9 +49,9 @@ public class StorageShelf extends Warehouse implements Entity{
 	/**
 	 * Accesses the X-coordinate of the Storage
 	 */
-	public double getStorageX() {
+	/*public double getStorageX() {
 		return storageCoordinates.getX();
-	}
+	}*/
 
 	/**
 	 * Accesses the Y-coordinate of the Storage
