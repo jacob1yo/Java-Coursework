@@ -28,7 +28,7 @@ public class Order {
 	/**
 	 * Reads the orders from a file.
 	 */
-	private Scanner scanner;
+
 		
 	public Order() {
 	}
