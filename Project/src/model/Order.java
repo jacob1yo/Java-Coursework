@@ -18,13 +18,14 @@ public class Order {
 	 * Contains the orders
 	 * @see #show, #isCompleted, #addtoUnassigned, #addToAssigned, #removeFromUnassigned, #removeFromAssigned
 	 */
-	private static List<String> assignedOrders, unassignedOrders, completedOrders;
-	private static ArrayList<String> commands = new ArrayList<String>(); // stores an order into an ArrayList
+	private static ArrayList<String> commands = new ArrayList<String>(); // reads a full sim file
+	private static ArrayList<String> orders = new ArrayList<String>(); 
 	private static ArrayList<Integer> configuration = new ArrayList<Integer>();
 	private static ArrayList<String> podRob = new ArrayList<String>();
 	private static ArrayList<String> shelves = new ArrayList<String>();
 	private static ArrayList<String> stations = new ArrayList<String>();
 	private static File file;
+	
 	/**
 	 * Reads the orders from a file.
 	 */
@@ -102,6 +103,7 @@ public class Order {
 				if(line.contains("podRobot")) {
 					podRob.add(line);
 				}
+				scanner.close();
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -118,6 +120,7 @@ public class Order {
 					shelves.add(line);
 				}
 			}
+			scanner.close();
 		}catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -133,6 +136,7 @@ public class Order {
 					stations.add(line);
 				}
 			}
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -145,13 +149,17 @@ public class Order {
 			while(scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				if(line.contains("order")) {
-					commands.add(line);		//does not work properly i think
+					orders.add(line);		//does not work properly i think
 				}
 			}
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println(commands.size()); //delete manual test after; need to clear list after
+		for (int i = 0; i < orders.size(); i++) {
+			System.out.println(orders.get(i).toString() + "\n");
+		}
+		//System.out.println(orders.size()); //delete manual test after; need to clear list after
 	}
 	
 	public void clearLists() { //needs to be implemented
@@ -159,6 +167,7 @@ public class Order {
 		shelves.clear();
 		stations.clear();
 		commands.clear();
+		orders.clear();
 	}
 	
 	public static void setFile(File f) {
