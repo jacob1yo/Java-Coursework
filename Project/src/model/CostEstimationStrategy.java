@@ -61,7 +61,7 @@ public class CostEstimationStrategy extends Robot {
 		s2p=Math.sqrt((Math.pow(storageShelfPoints().get(i).getX()-packingStationPoints().get(i).getX(),2))+(Math.pow(storageShelfPoints().get(i).getY()-packingStationPoints().get(i).getY(), 2)));
 		p2c=Math.sqrt((Math.pow(packingStationPoints().get(i).getX()-chargingPodPoints().get(i).getX(),2))+(Math.pow(packingStationPoints().get(i).getY()-chargingPodPoints().get(i).getY(), 2)));
 		distanceEstimate = r2s+s2p+p2c;
-		distanceEstimate = r2s;
+	
 		return distanceEstimate;
 	
 	}
