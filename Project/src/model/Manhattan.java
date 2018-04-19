@@ -18,7 +18,7 @@ public class Manhattan extends Robot implements Entity {
 	private HashMap<Point, Point> hashMap;
 
 	public Manhattan() {
-		HashMap<Point, Point> hashmap = new HashMap<Point, Point>();
+		hashMap = new HashMap<Point, Point>();
 	}
 
 	/**
@@ -72,7 +72,7 @@ public class Manhattan extends Robot implements Entity {
 	public void manhattanCalc(Point destination) {
 		ArrayList<Point> freeSpaces = freeSpacePoints(MainController.getNumRows(), MainController.getNumCols());
 		ArrayList<Point> robotLocations = super.robotPoints();
-
+		
 		for(int i = 0; i < robotLocations.size(); i++) {
 			Double x = robotLocations.get(i).getX();
 			Double y = robotLocations.get(i).getY();
@@ -110,7 +110,7 @@ public class Manhattan extends Robot implements Entity {
 					node = down;
 					compare = result;
 				}
-				availableSpace(robotLocations.get(i), node);
+				hashMap.put(robotLocations.get(i), node);
 			}
 		}
 	}
@@ -128,15 +128,6 @@ public class Manhattan extends Robot implements Entity {
 		double Y = destination.getY();
 
 		return Math.sqrt((X - x)*(X - x) + (Y - y)*(Y - y));	
-	}
-
-	/**
-	 * Puts the currentNode into a HashMap as the key, and the newNode as the value
-	 * @param currentNode Point coordinate of where a robot currently is
-	 * @param newNode Point position of the best adjacent node, where the robot should move next
-	 */
-	public void availableSpace(Point currentNode, Point newNode) {
-		hashMap.put(currentNode, newNode);
 	}
 
 	/**
