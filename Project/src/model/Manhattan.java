@@ -15,29 +15,17 @@ import java.awt.Point;
  * 
  */
 public class Manhattan extends Robot implements Entity {
-	private ArrayList<Point> freeSpaces;
-	private ArrayList<Point> robotLocations;
 	private HashMap<Point, Point> hashMap;
 
-	/*
-	 * private double storageY = super.getStorageY(); private double storageX =
-	 * getStorageX(); private double packingY = getPackingY(); private double
-	 * packingX = getPackingX();
-	 */
-
-	/**
-	 * Constructor for objects of class Manhattan
-	 */
-	public Manhattan() {
-		ArrayList<Point> freeSpaces = freeSpacePoints(MainController.getNumRows(), MainController.getNumCols());
-		ArrayList<Point> robotLocations = super.robotPoints();
-	}
+	public Manhattan() {}
 
 	/**
 	 * Finds all possible available adjacent nodes and from them, finds the best one to choose
 	 * @param destination
 	 */
 	public void manhattanCalc (Point destination) {
+		ArrayList<Point> freeSpaces = freeSpacePoints(MainController.getNumRows(), MainController.getNumCols());
+		ArrayList<Point> robotLocations = super.robotPoints();
 		for(int i = 0; i < robotLocations.size(); i++) {	//Iterates through each coordinate of each robot created
 			for(int j = 0; j < freeSpaces.size(); j++) {	//Iterates through every node that is free
 				double x = robotLocations.get(i).getX();
