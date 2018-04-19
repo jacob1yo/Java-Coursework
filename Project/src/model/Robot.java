@@ -128,8 +128,7 @@ public class Robot extends Warehouse implements Entity  {
 		 * A* Determines it's movement, left, right etc etc Movement would be in it's
 		 * own class
 		 */
-		Manhattan.this.getNewNodes();
-		//return manhattan.getNewNodes();
+		return Manhattan.getNewNodes();
 	}
 
 	/**

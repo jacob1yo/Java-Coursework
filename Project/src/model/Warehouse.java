@@ -18,7 +18,7 @@ public class Warehouse {
 		storageList = new ArrayList<StorageShelf>();
 		packingList = new ArrayList<PackingStation>();
 	}
-	
+
 	/**
 	 * Creates a new robot and corresponding charging pod, and adds both to their own ArrayList
 	 * @param x
@@ -41,7 +41,7 @@ public class Warehouse {
 			chargeList.get(i).updateChargeRate(chargeRate);
 		}
 	}
-	
+
 	/**
 	 * Creates a new storage shelf and adds it to an ArrayList
 	 * @param x
@@ -64,50 +64,50 @@ public class Warehouse {
 		PackingStation packing = new PackingStation(x, y);
 		packingList.add(packing);
 	}
-	
+
 	/**
 	 * Deletes an item from entity lists depending on the coordinates given
 	 * @param x
 	 * @param y
 	 */
 	public void delete(int x, int y) {
-			for(int i = 0; i < robotList.size(); i++) {
-				if(robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
-					robotList.get(i).resetID();
-					robotList.remove(i);
-					for(int n = 0; n < robotList.size(); n++) {
-						robotList.get(n).generateID();
-					}
-				}
-		}
-			for(int i = 0; i < chargeList.size(); i++) {
-				if(chargeList.get(i).getChargingX() == (double) x && chargeList.get(i).getChargingY() == (double) y) {
-					chargeList.get(i).resetID();
-					chargeList.remove(i);
-					for(int n = 0; n < chargeList.size(); n++) {
-						chargeList.get(n).generateID();
-					}
-				}
-		}
-			for(int i = 0; i < storageList.size(); i++) {
-				if(storageList.get(i).getStorageX() == (double) x && storageList.get(i).getStorageY() == (double) y) {
-					storageList.get(i).resetID();
-					storageList.remove(i);
-					for(int n = 0; n < storageList.size(); n++) {
-						storageList.get(n).generateID();
-					}
-				}
-		}
-
-			for(int i = 0; i < packingList.size(); i++) {
-				if(packingList.get(i).getPackingX() == (double) x && packingList.get(i).getPackingY() == (double) y) {
-					packingList.get(i).resetID();
-					packingList.remove(i);
-					for(int n = 0; n < packingList.size(); n++) {
-						packingList.get(n).generateID();
-					}
+		for(int i = 0; i < robotList.size(); i++) {
+			if(robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
+				robotList.get(i).resetID();
+				robotList.remove(i);
+				for(int n = 0; n < robotList.size(); n++) {
+					robotList.get(n).generateID();
 				}
 			}
+		}
+		for(int i = 0; i < chargeList.size(); i++) {
+			if(chargeList.get(i).getChargingX() == (double) x && chargeList.get(i).getChargingY() == (double) y) {
+				chargeList.get(i).resetID();
+				chargeList.remove(i);
+				for(int n = 0; n < chargeList.size(); n++) {
+					chargeList.get(n).generateID();
+				}
+			}
+		}
+		for(int i = 0; i < storageList.size(); i++) {
+			if(storageList.get(i).getStorageX() == (double) x && storageList.get(i).getStorageY() == (double) y) {
+				storageList.get(i).resetID();
+				storageList.remove(i);
+				for(int n = 0; n < storageList.size(); n++) {
+					storageList.get(n).generateID();
+				}
+			}
+		}
+
+		for(int i = 0; i < packingList.size(); i++) {
+			if(packingList.get(i).getPackingX() == (double) x && packingList.get(i).getPackingY() == (double) y) {
+				packingList.get(i).resetID();
+				packingList.remove(i);
+				for(int n = 0; n < packingList.size(); n++) {
+					packingList.get(n).generateID();
+				}
+			}
+		}
 	}
 
 	/**
@@ -131,7 +131,7 @@ public class Warehouse {
 			packingList.clear();
 		}
 	}
-	
+
 	/**
 	 * Checks whether another entity is already in the position given
 	 * @param x
@@ -165,7 +165,7 @@ public class Warehouse {
 
 		return true;
 	}
-	
+
 	/**
 	 * Get the an ArrayList of coordinates of every robot
 	 * @return <code>ArrayList<Point></code>
@@ -177,7 +177,7 @@ public class Warehouse {
 		}
 		return robots;
 	}
-	
+
 	/**
 	 * Get the an ArrayList of coordinates of every charging pod
 	 * @return <code>ArrayList<Point></code>
@@ -189,7 +189,7 @@ public class Warehouse {
 		}
 		return chargingPods;
 	}
-	
+
 	/**
 	 * Get the an ArrayList of coordinates of every packing station
 	 * @return <code>ArrayList<Point></code>
@@ -201,7 +201,7 @@ public class Warehouse {
 		}
 		return packingStations;
 	}
-	
+
 	/**
 	 * Get the an ArrayList of coordinates of every storage shelf
 	 * @return <code>ArrayList<Point></code>
@@ -213,7 +213,7 @@ public class Warehouse {
 		}
 		return storageShelfs;
 	}
-	
+
 	/**
 	 * Get the an ArrayList of coordinates of every space that is available
 	 * @return <code>ArrayList<Point></code>
@@ -230,11 +230,22 @@ public class Warehouse {
 		}
 		return spaces;
 	}
-	
+
 	public HashMap<Point, Point> move(){
+		HashMap<Point, Point> hashmap = null;
 		if(!robotList.isEmpty()) {
-			return robotList.get(0).move();
+			hashmap = robotList.get(0).move();
+			ArrayList<Point> robots = robotPoints();
+			for(int i = 0; i < robotList.size(); i++) {
+				Point coordinates = robots.get(i);
+				Point next = hashmap.get(coordinates);
+				Double x = next.getX();
+				Double y = next.getY();
+				robotList.get(i).setCoordinates(x.intValue(), y.intValue());
+			}
+			return hashmap;
 		}
+		return hashmap;
 	}
-	
+
 }
