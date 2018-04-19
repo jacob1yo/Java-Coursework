@@ -32,10 +32,9 @@ public class Order {
 
 	private static File file;
 	
-	private static ArrayList<String> commands;
+	private static ArrayList<String> commands = new ArrayList<String>();
 	
 	public Order() {
-		commands = new ArrayList<String>();
 	}
 	
 	/*public static void processData() {
@@ -74,19 +73,22 @@ public class Order {
 		}
 	}
 */
-	public static void printCommands(){
+	public static ArrayList<String> printCommands(){
 		try{
 			Scanner scanner = new Scanner(file);
 			while(scanner.hasNextLine()) {
 				String line = scanner.nextLine();
-				commands.add(line);
+				commands.add(line);	
 			}
+			
 			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		return commands;
 	}
 	
+	/*
 	public static String getCommands(){
 		String line = "";
 		for(int i=0; i < commands.size(); i++ ) {
@@ -94,6 +96,7 @@ public class Order {
 		}
 		return line;
 	}
+	*/
 	
 	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen

@@ -287,9 +287,9 @@ public class MainController {
 		Order.setFile(selectedFile);
 		//Order.processData();
 		Order.printCommands();
-		String line = Order.getCommands();
+		//String line = Order.getCommands();
 		//orderArea.setText(line);
-		System.out.println(line);
+		System.out.println(Order.printCommands());
 		/*
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Are you sure, you want to load this file?");
