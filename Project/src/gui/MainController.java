@@ -287,9 +287,9 @@ public class MainController {
 		Order.setFile(selectedFile);
 		//Order.processData();
 		Order.printCommands();
-		//String line = Order.getCommands();
+		String line = Order.getCommands();
 		//orderArea.setText(line);
-		System.out.println(Order.printCommands());
+		System.out.println(line);
 		/*
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Are you sure, you want to load this file?");
@@ -300,6 +300,8 @@ public class MainController {
 		*/
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 	}
+	
+
 	
 	/**
 	 * Opens a new window where the simulation can be run through

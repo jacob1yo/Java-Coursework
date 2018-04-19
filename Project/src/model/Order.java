@@ -88,15 +88,15 @@ public class Order {
 		return commands;
 	}
 	
-	/*
+	
 	public static String getCommands(){
 		String line = "";
 		for(int i=0; i < commands.size(); i++ ) {
-			line = commands.get(i) + "\n";
+			line += commands.get(i) + "\n";
 		}
 		return line;
 	}
-	*/
+	
 	
 	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen
