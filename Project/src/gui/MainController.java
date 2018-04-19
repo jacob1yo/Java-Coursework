@@ -273,9 +273,9 @@ public class MainController {
 		FileChooser filechooser = new FileChooser();
 		filechooser.getExtensionFilters().addAll(new ExtensionFilter(".SIM Files", "*.sim"));
 		File selectedFile = filechooser.showOpenDialog(null);
-<<<<<<< HEAD
+ 
 		warehouse.setFile(selectedFile);
-=======
+
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Are you sure, you want to load this file?");
@@ -283,8 +283,7 @@ public class MainController {
 		if(alert.showAndWait().get() == ButtonType.OK) {
 			startPressed();
 		}
-		
->>>>>>> 287672ea4667a24b2ef09cb842c4be675bb88c8a
+
 
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 	}
