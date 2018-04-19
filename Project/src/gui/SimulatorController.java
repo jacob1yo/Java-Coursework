@@ -172,15 +172,15 @@ public class SimulatorController {
 	
 	public void moveRobot(int i,Point current, Point next) {
 		//Removes the current circle representing the robot from the grid
-		Circle delCirc = circleList.get(i);
-		grid.getChildren().remove(delCirc);
-		circleList.remove(i);
+		Circle delCirc = circleList.get(i);	//may need to remove if this doesn't work
+		grid.getChildren().remove(delCirc);	//may need to remove if this doesn't work
+		circleList.remove(i);				//may need to remove if this doesn't work
 		//Adds circle/robot to the next location
 		Circle circle = new Circle(20);
 		circle.setFill(Color.GREEN);
 		Double x = next.getX();
 		Double y = next.getY();
-		circleList.add(i, circle);
+		circleList.add(i, circle); //may need to remove if this doesn't work
 		grid.add(circle, x.intValue(), y.intValue());
 	}
 
