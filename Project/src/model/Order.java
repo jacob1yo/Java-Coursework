@@ -154,6 +154,13 @@ public class Order {
 		System.out.println(commands.size()); //delete manual test after; need to clear list after
 	}
 	
+	public void clearLists() { //needs to be implemented
+		podRob.clear();
+		shelves.clear();
+		stations.clear();
+		commands.clear();
+	}
+	
 	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen
 		file = f;
