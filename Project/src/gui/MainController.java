@@ -273,7 +273,7 @@ public class MainController {
 		File selectedFile = filechooser.showOpenDialog(null);
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Are You Sure?");
+		alert.setTitle("Are you sure, you want to load this file?");
 		alert.setContentText("By clicking ok, your simulation will start");
 		if(alert.showAndWait().get() == ButtonType.OK) {
 			startPressed();
