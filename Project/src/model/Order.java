@@ -94,6 +94,65 @@ public class Order {
 		return line;
 	}
 	
+	public void fillPodRobList() {
+		try {
+			Scanner scanner = new Scanner(file);
+			while(scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if(line.contains("podRobot")) {
+					podRob.add(line);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.println(podRob.size()); //delete manual test after; need to clear list after
+	}
+	
+	public void fillShelvesList() {
+		try {
+			Scanner scanner = new Scanner(file);
+			while(scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if(line.contains("shelf")){
+					shelves.add(line);
+				}
+			}
+		}catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.println(shelves.size()); //delete manual test after; need to clear list after
+	}
+	
+	public void fillStationsList() {
+		try {
+			Scanner scanner = new Scanner(file);
+			while(scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if(line.contains("station")) {
+					stations.add(line);
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.println(stations.size()); //delete manual test after; need to clear list after
+	}
+	
+	public static void fillOrdersList() {
+		try {
+			Scanner scanner = new Scanner(file);
+			while(scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if(line.contains("order")) {
+					commands.add(line);		//does not work properly i think
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		System.out.println(commands.size()); //delete manual test after; need to clear list after
+	}
 	
 	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen
