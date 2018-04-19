@@ -18,7 +18,12 @@ public class Order {
 	 * @see #show, #isCompleted, #addtoUnassigned, #addToAssigned, #removeFromUnassigned, #removeFromAssigned
 	 */
 	private List<String> assignedOrders, unassignedOrders, completedOrders;
-	
+	private static String[] data; // reads the whole order
+	private static String[] podRob; // arrays for entities one podrob, shelf and station
+	private static String[] shelves;
+	private static String[] stations;
+	private static String[] orders; // holds orders
+	private static String[] setUp; // format width, height, capacity charge speed sets up the grid dimensions
 	/**
 	 * Reads the orders from a file.
 	 */
@@ -36,19 +41,34 @@ public class Order {
 		try {
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
-				String[] data = scanner.nextLine().split(" ");				
+				if (scanner.equals("podRob")) {
+					podRob = scanner.nextLine().split(" ");
+				}
+				data = scanner.nextLine().split(" ");						
 				for (int i = 0; i < data.length; i++) {
 					System.out.println(data[i].toString());
 				}
 				
+				for (int i = 0; i < podRob.length; i++) {
+					System.out.println(podRob.length);
+				}
+				
 			}
+			scanner.close();
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	}
+	}
+	
+	/*
+	public static ArrayList<Point> getCoordinates() {
+		String[] coordinates = processData();
+		for (int i = 0; i < coordinates.length; i+=4) {
+			for (int j = 0; j < coordinates.length; j+)
+			
 		}
 	}
-
+*/
 	
 	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen

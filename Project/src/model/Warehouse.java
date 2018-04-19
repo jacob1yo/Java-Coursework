@@ -1,11 +1,9 @@
 package model;
 
 import java.awt.Point;
-import java.io.File;
-import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class Warehouse {
 
@@ -13,7 +11,6 @@ public class Warehouse {
 	private ArrayList<ChargingPod> chargeList;
 	private ArrayList<StorageShelf> storageList;
 	private ArrayList<PackingStation> packingList;
-	private File file;
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
@@ -263,5 +260,4 @@ public class Warehouse {
 		return hashmap;
 	}
 
-	
 }
