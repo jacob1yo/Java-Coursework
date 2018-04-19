@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -49,7 +50,12 @@ public class MainController {
 	 * When pressed loads a file from which instructions are read
 	 */
 	@FXML private Button load;
-
+	
+	/**
+	 * 
+	 */
+	@FXML private TextArea orderArea;
+	
 	/**
 	 * The number of rows in the grid
 	 */
@@ -280,17 +286,17 @@ public class MainController {
 
 		Order.setFile(selectedFile);
 		Order.processData();
-
 		
+		//String line = Order.getCommands();
+		orderArea.setText("line");
+		/*
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Are you sure, you want to load this file?");
 		alert.setContentText("By clicking ok, your simulation will start");
 		if(alert.showAndWait().get() == ButtonType.OK) {
 			startPressed();
 		}
-		
-
-
+		*/
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 	}
 	

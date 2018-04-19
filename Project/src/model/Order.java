@@ -8,6 +8,7 @@ package model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -31,13 +32,17 @@ public class Order {
 
 	private static File file;
 	
+	private static ArrayList<String> commands;
+	
 	public Order() {
+		commands = new ArrayList<String>();
 	}
 	
 	public static void processData() {
 		//int width = fileWidth;
 		//int height = fileHeight;
 		// this.coordinates = coordinates;
+		/*
 		try {
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
@@ -58,7 +63,7 @@ public class Order {
 			
 		} catch (FileNotFoundException e) {
 	}
-	}
+	}*/
 	
 	/*
 	public static ArrayList<Point> getCoordinates() {
@@ -69,6 +74,25 @@ public class Order {
 		}
 	}
 */
+	public void printCommands(){
+		try{
+			Scanner scanner = new Scanner(file);
+			while(scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				commands.add(line);
+			}
+			scanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static String getCommands(){
+		for(int i=0; i < commands.size(); i++ ) {
+			return commands.get(i);
+		}
+		return "";
+	}
 	
 	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen
