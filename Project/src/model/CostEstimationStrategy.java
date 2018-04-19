@@ -53,11 +53,9 @@ public class CostEstimationStrategy extends Robot {
 		distanceEstimate=firstStop+secondStop+returnStop;
 		return distanceEstimate;
 	}*/
-<<<<<<< HEAD
-	public double calcEngine (double r2s, double s2p, double p2c) {
-=======
+
+
 	public double distanceCalculator (double r2s, double s2p, double p2c) {
->>>>>>> 7bc93131bcd18a7c916a664ceb87ef88cc16c527
 		robotPoints().get(1).getX();
 		int i =0;
 		
