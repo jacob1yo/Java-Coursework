@@ -15,15 +15,17 @@ import java.awt.Point;
  * 
  */
 public class Manhattan extends Robot implements Entity {
-	private static HashMap<Point, Point> hashMap;
+	private HashMap<Point, Point> hashMap;
 
-	public Manhattan() {}
+	public Manhattan() {
+		hashMap = new HashMap<Point, Point>();
+	}
 
 	/**
 	 * Finds all possible available adjacent nodes and from them, finds the best one to choose
 	 * @param destination
 	 */
-	public void manhattanCalc (Point destination) {
+	/*public void manhattanCalc (Point destination) {
 		ArrayList<Point> freeSpaces = freeSpacePoints(MainController.getNumRows(), MainController.getNumCols());
 		ArrayList<Point> robotLocations = super.robotPoints();
 		for(int i = 0; i < robotLocations.size(); i++) {	//Iterates through each coordinate of each robot created
@@ -65,8 +67,54 @@ public class Manhattan extends Robot implements Entity {
 				availableSpace(robotLocations.get(i), node);		//Puts the locations in a HashMap so that the warehouse/GUI knows which robot to move where
 			}
 		}
+	}*/
+
+	public void manhattanCalc(Point destination) {
+		ArrayList<Point> freeSpaces = freeSpacePoints(MainController.getNumRows(), MainController.getNumCols());
+		ArrayList<Point> robotLocations = super.robotPoints();
+		
+		for(int i = 0; i < robotLocations.size(); i++) {
+			Double x = robotLocations.get(i).getX();
+			Double y = robotLocations.get(i).getY();
+			Point left = new Point(x.intValue() - 1, y.intValue());
+			Point right = new Point(x.intValue() + 1, y.intValue());
+			Point up = new Point(x.intValue(), y.intValue() - 1);
+			Point down = new Point(x.intValue(), y.intValue() + 1);
+			double compare = 100;
+			Point node = new Point();
+
+			if(freeSpaces.contains(left)) {
+				double result = pythagoras(left, destination);
+				if(result < compare) {
+					node = left;
+					compare = result;
+				}
+			}
+			if(freeSpaces.contains(right)) {
+				double result = pythagoras(right, destination);
+				if(result < compare) {
+					node = right;
+					compare = result;
+				}
+			}
+			if(freeSpaces.contains(up)) {
+				double result = pythagoras(up, destination);
+				if(result < compare) {
+					node = up;
+					compare = result;
+				}
+			}
+			if(freeSpaces.contains(down)) {
+				double result = pythagoras(down, destination);
+				if(result < compare) {
+					node = down;
+					compare = result;
+				}
+				hashMap.put(robotLocations.get(i), node);
+			}
+		}
 	}
-	
+
 	/**
 	 * Returns the result of Pythagoras's theorem between node and destination
 	 * @param node Point coordinate of where the robot currently is
@@ -83,19 +131,12 @@ public class Manhattan extends Robot implements Entity {
 	}
 
 	/**
-	 * Puts the currentNode into a HashMap as the key, and the newNode as the value
-	 * @param currentNode Point coordinate of where a robot currently is
-	 * @param newNode Point position of the best adjacent node, where the robot should move next
-	 */
-	public void availableSpace(Point currentNode, Point newNode) {
-		hashMap.put(currentNode, newNode);
-	}
-
-	/**
 	 * Returns the HashMap created in availableSpace
 	 * @return <code>HashMap<Point, Point></code>
 	 */
-	public static HashMap<Point, Point> getNewNodes() {
+	public HashMap<Point, Point> getNewNodes() {
 		return hashMap;
 	}
+	
+	// add all the path into an Arraylist and sum the all the indexes (indexes=steps=ticks), in order to compare them to the estimated + mos
 }

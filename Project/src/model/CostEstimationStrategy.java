@@ -53,11 +53,9 @@ public class CostEstimationStrategy extends Robot {
 		distanceEstimate=firstStop+secondStop+returnStop;
 		return distanceEstimate;
 	}*/
-<<<<<<< HEAD
-	public double calcEngine (double r2s, double s2p, double p2c) {
-=======
+
+
 	public double distanceCalculator (double r2s, double s2p, double p2c) {
->>>>>>> 7bc93131bcd18a7c916a664ceb87ef88cc16c527
 		robotPoints().get(1).getX();
 		int i =0;
 		
@@ -70,7 +68,9 @@ public class CostEstimationStrategy extends Robot {
 	
 	}
 	
-	public double distanceToTicks() {
+	public static double distanceToTicks() {
+		double ticks = (1.415*distanceEstimate)-0.2762;
+		return ticks;
 		/*
 		 * a method to create a corelation and convert distances to ticks in order to estimate wheter or not could accept the order.
 		 */

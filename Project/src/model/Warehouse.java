@@ -244,9 +244,13 @@ public class Warehouse {
 	}
 
 	public HashMap<Point, Point> move() {
-		HashMap<Point, Point> hashmap = null;
+		Manhattan manhattan = new Manhattan();
+		Point destination = new Point(5, 5);
+		manhattan.manhattanCalc(destination);
 		if (!robotList.isEmpty()) {
-			hashmap = robotList.get(0).move();
+			//hashmap = robotList.get(0).move();
+			HashMap<Point, Point> hashmap = manhattan.getNewNodes();
+			System.out.println("hashmap size: " + hashmap.size());
 			ArrayList<Point> robots = robotPoints();
 			for (int i = 0; i < robotList.size(); i++) {
 				Point coordinates = robots.get(i);
@@ -257,7 +261,7 @@ public class Warehouse {
 			}
 			return hashmap;
 		}
-		return hashmap;
+		return null;
 	}
 
 }
