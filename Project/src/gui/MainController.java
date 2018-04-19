@@ -288,7 +288,7 @@ public class MainController {
 		//Order.processData();
 		Order.printCommands();
 		String line = Order.getCommands();
-		//orderArea.setText(line);
+		orderArea.setText(line);
 		System.out.println(line);
 		/*
 		Alert alert = new Alert(AlertType.CONFIRMATION);
