@@ -149,7 +149,7 @@ public class Order {
 			while(scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				if(line.contains("order")) {
-					orders.add(line);		//does not work properly i think
+					orders.add(line);		
 				}
 			}
 			scanner.close();
@@ -157,9 +157,9 @@ public class Order {
 			e.printStackTrace();
 		}
 		for (int i = 0; i < orders.size(); i++) {
-			System.out.println(orders.get(i).toString() + "\n");
+			System.out.println(orders.get(i).toString() + "\n"); // test
 		}
-		//System.out.println(orders.size()); //delete manual test after; need to clear list after
+		
 	}
 	
 	public void clearLists() { //needs to be implemented
