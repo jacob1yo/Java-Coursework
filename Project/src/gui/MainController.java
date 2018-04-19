@@ -9,8 +9,11 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -268,6 +271,14 @@ public class MainController {
 		FileChooser filechooser = new FileChooser();
 		filechooser.getExtensionFilters().addAll(new ExtensionFilter(".SIM Files", "*.sim"));
 		File selectedFile = filechooser.showOpenDialog(null);
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Are You Sure?");
+		alert.setContentText("By clicking ok, your simulation will start");
+		if(alert.showAndWait().get() == ButtonType.OK) {
+			startPressed();
+		}
+		
 
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 	}
