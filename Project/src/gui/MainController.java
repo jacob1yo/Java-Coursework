@@ -80,11 +80,9 @@ public class MainController {
 	 */
 	static Warehouse warehouse;
 
-	
-	static ArrayList<Circle> circleList;
+
 	
 	public MainController() {
-		circleList = new ArrayList<Circle>();
 	}
 
 	@FXML
@@ -176,7 +174,6 @@ public class MainController {
 				warehouse.addRobot(col, row, batteryLevel, chargeRate);
 				Circle circle = new Circle(20);
 				circle.setFill(Color.GREEN);
-				circleList.add(circle);
 				Rectangle rect = new Rectangle(50,50);
 				rect.setFill(Color.BLUE);
 				grid.add(rect, col, row);
