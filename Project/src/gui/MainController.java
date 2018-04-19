@@ -4,6 +4,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -171,6 +173,8 @@ public class MainController {
 				rect.setFill(Color.BLUE);
 				grid.add(rect, col, row);
 				grid.add(circle, col, row);
+				GridPane.setHalignment((Node) circle, HPos.CENTER);
+				GridPane.setHalignment((Node) rect, HPos.CENTER);
 			}
 			else if(pressed.equals("storage")) {
 				warehouse.addStorage(col, row);
@@ -178,6 +182,7 @@ public class MainController {
 				triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 				triangle.setFill(Color.RED);
 				grid.add(triangle, col, row);
+				GridPane.setHalignment((Node) triangle, HPos.CENTER);
 			}
 			else if(pressed.equals("packing")) {
 				warehouse.addPacking(col, row);
@@ -185,6 +190,7 @@ public class MainController {
 				triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 				triangle.setFill(Color.YELLOW);
 				grid.add(triangle, col, row);
+				GridPane.setHalignment((Node) triangle, HPos.CENTER);
 			}
 			
 			else {}

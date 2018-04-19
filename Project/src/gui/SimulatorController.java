@@ -7,6 +7,8 @@ import java.util.HashMap;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.ColumnConstraints;
@@ -101,6 +103,8 @@ public class SimulatorController {
 			
 			grid.add(rect, x.intValue(), y.intValue());
 			grid.add(circle, x.intValue(), y.intValue());
+			GridPane.setHalignment((Node) circle, HPos.CENTER);
+			GridPane.setHalignment((Node) rect, HPos.CENTER);
 		}
 	}
 	
@@ -114,6 +118,7 @@ public class SimulatorController {
 			Double y = warehouse.storageShelfPoints().get(i).getY();
 			
 			grid.add(triangle, x.intValue(), y.intValue());
+			GridPane.setHalignment((Node) triangle, HPos.CENTER);
 		}
 	}
 	
@@ -127,6 +132,7 @@ public class SimulatorController {
 			Double y = warehouse.packingStationPoints().get(i).getY();
 			
 			grid.add(triangle, x.intValue(), y.intValue());
+			GridPane.setHalignment((Node) triangle, HPos.CENTER);
 		}
 		
 	}
