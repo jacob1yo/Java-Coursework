@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Warehouse {
 
@@ -229,7 +230,11 @@ public class Warehouse {
 		}
 		return spaces;
 	}
-
-
+	
+	public HashMap<Point, Point> move(){
+		if(!robotList.isEmpty()) {
+			return robotList.get(0).move();
+		}
+	}
 	
 }

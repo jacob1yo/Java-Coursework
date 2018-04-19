@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.util.HashMap;
 
 /**
  * 
@@ -120,13 +121,15 @@ public class Robot extends Warehouse implements Entity  {
 
 	/**
 	 * Implements the movement of a robot
+	 * @return 
 	 */
-	public void move() {
+	public HashMap<Point, Point> move() {
 		/**
 		 * A* Determines it's movement, left, right etc etc Movement would be in it's
 		 * own class
 		 */
-
+		Manhattan.this.getNewNodes();
+		//return manhattan.getNewNodes();
 	}
 
 	/**

@@ -1,6 +1,9 @@
 package gui;
 
+import java.awt.Point;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -146,6 +149,27 @@ public class SimulatorController {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	public void move() {
+		HashMap<Point, Point> hashmap = warehouse.move();
+		ArrayList<Point> robots = warehouse.robotPoints();
+		for(int i = 0; i < hashmap.size(); i++) {
+			Point current = robots.get(i);
+			Point next = hashmap.get(current);
+			moveRobot(current, next);
+		}
+	}
+	
+	public void moveRobot(Point current, Point next) {
+		//Removes the current circle representing the robot from the grid
+		
+		//Adds circle/robot to the next location
+		Circle circle = new Circle(20);
+		circle.setFill(Color.GREEN);
+		Double x = next.getX();
+		Double y = next.getY();
+		grid.add(circle, x.intValue(), y.intValue());
 	}
 
 }
