@@ -50,7 +50,7 @@ public class SimulatorController {
 		warehouse = MainController.warehouse;
 		System.out.println("Height: " + finalGridHeight + " Width: " + finalGridWidth);
 		circleList = new ArrayList<Circle>();
-		move();
+		//move();
 	}
 
 	@FXML

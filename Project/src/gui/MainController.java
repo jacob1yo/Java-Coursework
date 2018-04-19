@@ -289,15 +289,11 @@ public class MainController {
 		Order.printCommands();
 		String line = Order.getCommands();
 		orderArea.setText(line);
-		System.out.println(line);
-		/*
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Are you sure, you want to load this file?");
-		alert.setContentText("By clicking ok, your simulation will start");
-		if(alert.showAndWait().get() == ButtonType.OK) {
-			startPressed();
-		}
-		*/
+		
+		height.setDisable(true);
+		width.setDisable(true);
+		battery.setDisable(true);
+		charge.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 	}
 	
