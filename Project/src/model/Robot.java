@@ -101,8 +101,8 @@ public class Robot extends Warehouse implements Entity  {
 					 * carry out the distance stuff
 					 * invoke move method
 					 * return true
-			
-			return false
+					 * else
+					 *return false
 					 */
 		
 		}
