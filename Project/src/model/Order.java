@@ -35,7 +35,6 @@ public class Order {
 		// this.coordinates = coordinates;
 		try {
 			Scanner scanner = new Scanner(file);
-			File file = new File(scanner.nextLine());
 			while (scanner.hasNextLine()) {
 				String[] data = scanner.nextLine().split(" ");
 				String line = scanner.nextLine();				

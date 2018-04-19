@@ -263,29 +263,5 @@ public class Warehouse {
 		return hashmap;
 	}
 
-	public void processData(int fileWidth, int fileHeight) {
-		int width = fileWidth;
-		int height = fileHeight;
-		// this.coordinates = coordinates;
-		try {
-			Scanner scanner = new Scanner(file);
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
-	public File getFile() {
-		// returns a SIM file
-		
-
-		return file;
-
-	}
-
-	public void setFile(File f) {
-		file = f;
-	}
-
+	
 }
