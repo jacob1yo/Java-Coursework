@@ -24,21 +24,23 @@ public class Order {
 	 */
 	private Scanner scanner;
 
-	private File file;
+	private static File file;
 	
 	public Order() {
 	}
 	
-	public void processData() {
+	public static void processData() {
 		//int width = fileWidth;
 		//int height = fileHeight;
 		// this.coordinates = coordinates;
 		try {
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
-				String[] data = scanner.nextLine().split(" ");
-				String line = scanner.nextLine();				
-				System.out.println(line);
+				String[] data = scanner.nextLine().split(" ");				
+				for (int i = 0; i < data.length; i++) {
+					System.out.println(data[i].toString());
+				}
+				
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -48,7 +50,7 @@ public class Order {
 	}
 
 	
-	public void setFile(File f) {
+	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen
 		file = f;
 	}
