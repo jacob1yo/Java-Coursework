@@ -137,4 +137,6 @@ public class Manhattan extends Robot implements Entity {
 	public HashMap<Point, Point> getNewNodes() {
 		return hashMap;
 	}
+	
+	// add all the path into an Arraylist and sum the all the indexes (indexes=steps=ticks), in order to compare them to the estimated + mos
 }

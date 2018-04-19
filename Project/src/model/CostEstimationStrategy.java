@@ -68,7 +68,7 @@ public class CostEstimationStrategy extends Robot {
 	
 	}
 	
-	public double distanceToTicks() {
+	public static double distanceToTicks() {
 		double ticks = (1.415*distanceEstimate)-0.2762;
 		return ticks;
 		/*

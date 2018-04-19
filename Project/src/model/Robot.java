@@ -93,8 +93,17 @@ public class Robot extends Warehouse implements Entity  {
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> true if an order is accepted, otherwise false.
 	 */
-	public boolean orderDecision() {
-		if (orderStatus == false) { //meaning a robot is free
+	public boolean  orderDecision() {
+		if (orderStatus == false) {
+			if(actualdistance <CostEstimationStrategy.distanceToTicks() + safetyMargin) {
+				move();
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+			//meaning a robot is free
 			// sub-class method (Cost est strategy and Path finding strategy for batt level requirement)
 		//	if (//subclass){
 					/* if it returns true
