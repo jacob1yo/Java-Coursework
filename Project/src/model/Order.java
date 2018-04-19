@@ -38,11 +38,11 @@ public class Order {
 		commands = new ArrayList<String>();
 	}
 	
-	public static void processData() {
+	/*public static void processData() {
 		//int width = fileWidth;
 		//int height = fileHeight;
 		// this.coordinates = coordinates;
-		/*
+		
 		try {
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
@@ -74,7 +74,7 @@ public class Order {
 		}
 	}
 */
-	public void printCommands(){
+	public static void printCommands(){
 		try{
 			Scanner scanner = new Scanner(file);
 			while(scanner.hasNextLine()) {
@@ -88,10 +88,11 @@ public class Order {
 	}
 	
 	public static String getCommands(){
+		String line = "";
 		for(int i=0; i < commands.size(); i++ ) {
-			return commands.get(i);
+			line = commands.get(i) + "\n";
 		}
-		return "";
+		return line;
 	}
 	
 	public static void setFile(File f) {

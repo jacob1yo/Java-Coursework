@@ -285,10 +285,11 @@ public class MainController {
 		File selectedFile = filechooser.showOpenDialog(null);
 
 		Order.setFile(selectedFile);
-		Order.processData();
-		
-		//String line = Order.getCommands();
-		orderArea.setText("line");
+		//Order.processData();
+		Order.printCommands();
+		String line = Order.getCommands();
+		//orderArea.setText(line);
+		System.out.println(line);
 		/*
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Are you sure, you want to load this file?");
