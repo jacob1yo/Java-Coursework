@@ -28,7 +28,7 @@ public class CostEstimationStrategy extends Robot {
 	
 	private double distanceEstimate;
 
-//	private Point[] route;
+
 	
 	public CostEstimationStrategy() {
 		super();
@@ -46,13 +46,13 @@ public class CostEstimationStrategy extends Robot {
 	 * @return <code>double</code> Distance between locations
 	 * this is repeated code, so we will write down the maths into a single function and call the function in every time with parameters
 	 */
-	public double distanceCalculator(double firstStop, double secondStop, double returnStop) {
+	/*public double distanceCalculator(double firstStop, double secondStop, double returnStop) {
 		firstStop=Math.sqrt((Math.pow(startPosition.getX()-byPosition.getX(),2))+(Math.pow(startPosition.getY()-byPosition.getY(),2)));
 		secondStop=Math.sqrt((Math.pow(byPosition.getX()-endPosition.getX(),2))+(Math.pow(byPosition.getY()-endPosition.getY(),2)));
 		returnStop=Math.sqrt((Math.pow(endPosition.getX()-startPosition.getX(),2))+(Math.pow(endPosition.getY()-startPosition.getY(),2)));
 		distanceEstimate=firstStop+secondStop+returnStop;
 		return distanceEstimate;
-	}
+	}*/
 	public double calcengine (double r2s) {
 		robotPoints().get(1).getX();
 		int i =0;
