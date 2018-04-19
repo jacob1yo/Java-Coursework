@@ -41,12 +41,15 @@ public class SimulatorController {
 	 * The grid from Simulator.fxml
 	 */
 	@FXML private GridPane grid;
+	
+	private ArrayList<Circle> circleList;
 
 	public SimulatorController() {
 		finalGridHeight = MainController.getNumRows();
 		finalGridWidth = MainController.getNumCols();
 		warehouse = MainController.warehouse;
 		System.out.println("Height: " + finalGridHeight + " Width: " + finalGridWidth);
+		circleList = new ArrayList<Circle>();
 	}
 
 	@FXML
@@ -100,7 +103,7 @@ public class SimulatorController {
 			
 			Double x = warehouse.robotPoints().get(i).getX();
 			Double y = warehouse.robotPoints().get(i).getY();
-			
+			circleList.add(circle);
 			grid.add(rect, x.intValue(), y.intValue());
 			grid.add(circle, x.intValue(), y.intValue());
 			GridPane.setHalignment((Node) circle, HPos.CENTER);
@@ -169,14 +172,16 @@ public class SimulatorController {
 	
 	public void moveRobot(int i,Point current, Point next) {
 		//Removes the current circle representing the robot from the grid
-		
+		Circle delCirc = circleList.get(i);	//may need to remove if this doesn't work
+		grid.getChildren().remove(delCirc);	//may need to remove if this doesn't work
+		circleList.remove(i);				//may need to remove if this doesn't work
 		//Adds circle/robot to the next location
-		//Circle circle = new Circle(20);
-		//circle.setFill(Color.GREEN);
+		Circle circle = new Circle(20);
+		circle.setFill(Color.GREEN);
 		Double x = next.getX();
 		Double y = next.getY();
-		MainController.circleList.get(i).relocate(x, y); //need to figure out how to get the right index
-		//grid.add(circle, x.intValue(), y.intValue());
+		circleList.add(i, circle); //may need to remove if this doesn't work
+		grid.add(circle, x.intValue(), y.intValue());
 	}
 
 }
