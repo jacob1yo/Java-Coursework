@@ -53,29 +53,28 @@ public class CostEstimationStrategy extends Robot {
 		distanceEstimate=firstStop+secondStop+returnStop;
 		return distanceEstimate;
 	}*/
+<<<<<<< HEAD
 	public double calcEngine (double r2s, double s2p, double p2c) {
+=======
+	public double distanceCalculator (double r2s, double s2p, double p2c) {
+>>>>>>> 7bc93131bcd18a7c916a664ceb87ef88cc16c527
 		robotPoints().get(1).getX();
 		int i =0;
 		
 		r2s=Math.sqrt((Math.pow(robotPoints().get(i).getX()-storageShelfPoints().get(i).getX(),2))+(Math.pow(robotPoints().get(i).getY()-storageShelfPoints().get(i).getY(), 2)));
 		s2p=Math.sqrt((Math.pow(storageShelfPoints().get(i).getX()-packingStationPoints().get(i).getX(),2))+(Math.pow(storageShelfPoints().get(i).getY()-packingStationPoints().get(i).getY(), 2)));
-		p2c=s2p=Math.sqrt((Math.pow(packingStationPoints().get(i).getX()-chargingPodPoints().get(i).getX(),2))+(Math.pow(packingStationPoints().get(i).getY()-chargingPodPoints().get(i).getY(), 2)));
-		distanceEstimate = r2s;
+		p2c=Math.sqrt((Math.pow(packingStationPoints().get(i).getX()-chargingPodPoints().get(i).getX(),2))+(Math.pow(packingStationPoints().get(i).getY()-chargingPodPoints().get(i).getY(), 2)));
+		distanceEstimate = r2s+s2p+p2c;
+	
 		return distanceEstimate;
 	
-
 	}
 	
- // mporoume na paroume tis sintetagmenes apo to ta antistoixa ArrayList, px gia to packing station pou briskete. Kathe index antistoixei se ena uid.
-//	px. [0] kanei access ta coordinates tou robot 0, [1] kanei access ta coordintates tou robot 1 kok.
-//	Ara exoume 3-4 arraylist pou mporoume na kanoume access gia na paroume tis 4 diaforetikes sintetagmenes.
-// mono thema einai oti ama baloume koino i mporei h paragkeleia na mi simpititei me to sim file. me alla logia sinithws tha prepepe na nai robot 1 packing 1 alla mporei na tuxei robot 1 packing 3 ktl ktl
-// ara theloume ena scanner gia na pernoume ta indexes kathe fora gia tin paagkeleia.
-	
-	/*
-	 * Greek above
-	 */
-
+	public double distanceToTicks() {
+		/*
+		 * a method to create a corelation and convert distances to ticks in order to estimate wheter or not could accept the order.
+		 */
+	}
 	
 	
 }
