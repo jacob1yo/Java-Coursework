@@ -58,7 +58,10 @@ public class CostEstimationStrategy extends Robot {
 		int i =0;
 		
 		r2s=Math.sqrt((Math.pow(robotPoints().get(i).getX()-storageShelfPoints().get(i).getX(),2))+(Math.pow(robotPoints().get(i).getY()-storageShelfPoints().get(i).getY(), 2)));
-	return r2s;
+		distanceEstimate = r2s;
+		return distanceEstimate;
+	
+
 	}
 	
  // mporoume na paroume tis sintetagmenes apo to ta antistoixa ArrayList, px gia to packing station pou briskete. Kathe index antistoixei se ena uid.
