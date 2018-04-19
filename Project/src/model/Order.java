@@ -18,22 +18,18 @@ public class Order {
 	 * Contains the orders
 	 * @see #show, #isCompleted, #addtoUnassigned, #addToAssigned, #removeFromUnassigned, #removeFromAssigned
 	 */
-	private List<String> assignedOrders, unassignedOrders, completedOrders;
-	private static String[] data; // reads the whole order
-	private static String[] podRob; // arrays for entities one podrob, shelf and station
-	private static String[] shelves;
-	private static String[] stations;
-	private static String[] orders; // holds orders
-	private static String[] setUp; // format width, height, capacity charge speed sets up the grid dimensions
+	private static List<String> assignedOrders, unassignedOrders, completedOrders;
+	private static ArrayList<String> commands = new ArrayList<String>(); // stores an order into an ArrayList
+	private static ArrayList<Integer> configuration = new ArrayList<Integer>();
+	private static ArrayList<String> podRob = new ArrayList<String>();
+	private static ArrayList<String> shelves = new ArrayList<String>();
+	private static ArrayList<String> stations = new ArrayList<String>();
+	private static File file;
 	/**
 	 * Reads the orders from a file.
 	 */
 	private Scanner scanner;
-
-	private static File file;
-	
-	private static ArrayList<String> commands = new ArrayList<String>();
-	
+		
 	public Order() {
 	}
 	
@@ -73,6 +69,7 @@ public class Order {
 		}
 	}
 */
+	// This method will be used tomorrow to separate out the orders
 	public static ArrayList<String> printCommands(){
 		try{
 			Scanner scanner = new Scanner(file);
