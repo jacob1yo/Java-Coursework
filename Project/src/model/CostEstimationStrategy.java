@@ -69,6 +69,8 @@ public class CostEstimationStrategy extends Robot {
 	}
 	
 	public double distanceToTicks() {
+		double ticks = (1.415*distanceEstimate)-0.2762;
+		return ticks;
 		/*
 		 * a method to create a corelation and convert distances to ticks in order to estimate wheter or not could accept the order.
 		 */
