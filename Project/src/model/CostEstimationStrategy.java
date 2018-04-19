@@ -53,11 +53,13 @@ public class CostEstimationStrategy extends Robot {
 		distanceEstimate=firstStop+secondStop+returnStop;
 		return distanceEstimate;
 	}*/
-	public double calcengine (double r2s) {
+	public double calcengine (double r2s, double s2p, double p2c) {
 		robotPoints().get(1).getX();
 		int i =0;
 		
 		r2s=Math.sqrt((Math.pow(robotPoints().get(i).getX()-storageShelfPoints().get(i).getX(),2))+(Math.pow(robotPoints().get(i).getY()-storageShelfPoints().get(i).getY(), 2)));
+		s2p=Math.sqrt((Math.pow(storageShelfPoints().get(i).getX()-packingStationPoints().get(i).getX(),2))+(Math.pow(storageShelfPoints().get(i).getY()-packingStationPoints().get(i).getY(), 2)));
+		p2c=s2p=Math.sqrt((Math.pow(packingStationPoints().get(i).getX()-chargingPodPoints().get(i).getX(),2))+(Math.pow(packingStationPoints().get(i).getY()-chargingPodPoints().get(i).getY(), 2)));
 		distanceEstimate = r2s;
 		return distanceEstimate;
 	
