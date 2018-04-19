@@ -7,6 +7,7 @@ package model;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,10 +23,37 @@ public class Order {
 	 * Reads the orders from a file.
 	 */
 	private Scanner scanner;
+
+	private File file;
 	
 	public Order() {
-		Scanner scanner = new Scanner(new File("Filename"));
 	}
+	
+	public void processData() {
+		//int width = fileWidth;
+		//int height = fileHeight;
+		// this.coordinates = coordinates;
+		try {
+			Scanner scanner = new Scanner(file);
+			File file = new File(scanner.nextLine());
+			while (scanner.hasNextLine()) {
+				String[] data = scanner.nextLine().split(" ");
+				String line = scanner.nextLine();				
+				System.out.println(line);
+			}
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
+	public void setFile(File f) {
+		// happens in maincontroller just sets the file that's been chosen
+		file = f;
+	}
+
 	
 	/**
 	 * Shows the list of orders.
