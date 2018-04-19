@@ -268,6 +268,7 @@ public class MainController {
 		FileChooser filechooser = new FileChooser();
 		filechooser.getExtensionFilters().addAll(new ExtensionFilter(".SIM Files", "*.sim"));
 		File selectedFile = filechooser.showOpenDialog(null);
+		warehouse.setFile(selectedFile);
 
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 	}
