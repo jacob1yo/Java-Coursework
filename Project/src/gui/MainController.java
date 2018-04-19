@@ -80,11 +80,9 @@ public class MainController {
 	 */
 	static Warehouse warehouse;
 
-	
-	static ArrayList<Circle> circleList;
+
 	
 	public MainController() {
-		circleList = new ArrayList<Circle>();
 	}
 
 	@FXML
@@ -176,7 +174,6 @@ public class MainController {
 				warehouse.addRobot(col, row, batteryLevel, chargeRate);
 				Circle circle = new Circle(20);
 				circle.setFill(Color.GREEN);
-				circleList.add(circle);
 				Rectangle rect = new Rectangle(50,50);
 				rect.setFill(Color.BLUE);
 				grid.add(rect, col, row);
@@ -276,9 +273,9 @@ public class MainController {
 		FileChooser filechooser = new FileChooser();
 		filechooser.getExtensionFilters().addAll(new ExtensionFilter(".SIM Files", "*.sim"));
 		File selectedFile = filechooser.showOpenDialog(null);
-<<<<<<< HEAD
+ 
 		warehouse.setFile(selectedFile);
-=======
+
 		
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Are you sure, you want to load this file?");
@@ -286,8 +283,7 @@ public class MainController {
 		if(alert.showAndWait().get() == ButtonType.OK) {
 			startPressed();
 		}
-		
->>>>>>> 287672ea4667a24b2ef09cb842c4be675bb88c8a
+
 
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 	}

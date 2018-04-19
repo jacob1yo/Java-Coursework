@@ -28,7 +28,7 @@ public class CostEstimationStrategy extends Robot {
 	
 	private double distanceEstimate;
 
-//	private Point[] route;
+
 	
 	public CostEstimationStrategy() {
 		super();
@@ -46,18 +46,20 @@ public class CostEstimationStrategy extends Robot {
 	 * @return <code>double</code> Distance between locations
 	 * this is repeated code, so we will write down the maths into a single function and call the function in every time with parameters
 	 */
-	public double distanceCalculator(double firstStop, double secondStop, double returnStop) {
+	/*public double distanceCalculator(double firstStop, double secondStop, double returnStop) {
 		firstStop=Math.sqrt((Math.pow(startPosition.getX()-byPosition.getX(),2))+(Math.pow(startPosition.getY()-byPosition.getY(),2)));
 		secondStop=Math.sqrt((Math.pow(byPosition.getX()-endPosition.getX(),2))+(Math.pow(byPosition.getY()-endPosition.getY(),2)));
 		returnStop=Math.sqrt((Math.pow(endPosition.getX()-startPosition.getX(),2))+(Math.pow(endPosition.getY()-startPosition.getY(),2)));
 		distanceEstimate=firstStop+secondStop+returnStop;
 		return distanceEstimate;
-	}
-	public double calcengine (double r2s) {
+	}*/
+	public double calcengine (double r2s, double s2p, double p2c) {
 		robotPoints().get(1).getX();
 		int i =0;
 		
 		r2s=Math.sqrt((Math.pow(robotPoints().get(i).getX()-storageShelfPoints().get(i).getX(),2))+(Math.pow(robotPoints().get(i).getY()-storageShelfPoints().get(i).getY(), 2)));
+		s2p=Math.sqrt((Math.pow(storageShelfPoints().get(i).getX()-packingStationPoints().get(i).getX(),2))+(Math.pow(storageShelfPoints().get(i).getY()-packingStationPoints().get(i).getY(), 2)));
+		p2c=s2p=Math.sqrt((Math.pow(packingStationPoints().get(i).getX()-chargingPodPoints().get(i).getX(),2))+(Math.pow(packingStationPoints().get(i).getY()-chargingPodPoints().get(i).getY(), 2)));
 		distanceEstimate = r2s;
 		return distanceEstimate;
 	
