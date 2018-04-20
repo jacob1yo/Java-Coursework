@@ -266,6 +266,7 @@ public class Warehouse {
 		Point destination = new Point(4, 4);
 		manhattan.manhattanCalc(destination);
 		if (!robotList.isEmpty()) {
+			hashmap = manhattan.getNewNodes();
 			//hashmap = robotList.get(0).move();
 			hashmap = manhattan.getNewNodes();
 			System.out.println("hashmap size: " + hashmap.size());
