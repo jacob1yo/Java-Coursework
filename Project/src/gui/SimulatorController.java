@@ -83,7 +83,9 @@ public class SimulatorController {
 		addStorage();
 		addPackage();
 		
-		listRobots.getItems().addAll(warehouse.getRobotList());
+		for(int i = 0; i < warehouse.getRobotList().size(); i++) {
+			listRobots.getItems().addAll(warehouse.getRobotID(i));
+		}
 		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		
