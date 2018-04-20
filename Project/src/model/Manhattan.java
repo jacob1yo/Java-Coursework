@@ -8,7 +8,6 @@ import gui.MainController;
 import java.awt.Point;
 
 /**
- * Write a description of class Manhattan here.
  *
  * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
  *         Vivek Bhukhan, Christos Dolopikos

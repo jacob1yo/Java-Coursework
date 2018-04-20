@@ -266,6 +266,7 @@ public class Warehouse {
 		Point destination = new Point(4, 4);
 		manhattan.manhattanCalc(destination);
 		if (!robotList.isEmpty()) {
+			hashmap = manhattan.getNewNodes();
 			//hashmap = robotList.get(0).move();
 			hashmap = manhattan.getNewNodes();
 			System.out.println("hashmap size: " + hashmap.size());
@@ -283,6 +284,7 @@ public class Warehouse {
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
 	
+<<<<<<< HEAD
 	public String getRobotList() {
 		String temp = "";
 		for (Robot robot: robotList) {
@@ -292,5 +294,39 @@ public class Warehouse {
 			
 		
 	}
+=======
+	/**
+	 * Reads needed values from a SIM file
+	 */
+	public void readRobotData() {
+		for (int i = 0; i < Order.getPodRob().size(); i+=3) {
+			Integer x = Integer.valueOf(Order.getPodRob().get(i));
+			System.out.println(x);
+			for (int j = 0; j < Order.getPodRob().size(); j+=4) {
+				Integer y = Integer.valueOf(Order.getPodRob().get(j));
+				System.out.println(y);
+				addRobot(x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
+			}
+		}
+		
+	}
+	
+	/**
+	 * Reads battery level from a SIM file
+	 * @return
+	 */
+	public int readBatteryLevel() {
+		Integer capacity =  Integer.valueOf(Order.getConfiguration().get(7));
+		return capacity.intValue();
+	}
+	
+	/**
+	 * Reads charge rate from a SIM file
+	 */
+	public int readChargeRate() {
+		Integer chargeRate = Integer.valueOf(Order.getConfiguration().get(9));
+		return chargeRate.intValue();
+	}
+>>>>>>> 2de4ce845d5bdf1c6c3c292ac2b1f5a1ce6f86fa
 
 }
