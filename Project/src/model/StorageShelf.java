@@ -67,13 +67,6 @@ public class StorageShelf extends Warehouse implements Entity{
 		lastNum = 0;
 	}
 	
-	/**
-	 * Decrease lastNum field by 1.
-	 */
-	public void decreaseUID() {
-		lastNum--;
-	}
-	
 	@Override
 	public void generateID() {
 		int num = lastNum++;
@@ -90,6 +83,11 @@ public class StorageShelf extends Warehouse implements Entity{
 	public boolean compare(Entity r) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	
+	@Override
+	public void changeId(String newUid) {
+		uid = newUid;
 	}
 
 }
