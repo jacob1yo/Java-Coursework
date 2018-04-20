@@ -19,7 +19,7 @@ public class Order {
 	 *      #removeFromUnassigned, #removeFromAssigned
 	 */
 	private static ArrayList<String> commands = new ArrayList<String>(); // reads a full sim file
-	private static ArrayList<String[]> orders = new ArrayList<String[]>();
+	private static ArrayList<ArrayList<String>> orders = new ArrayList<ArrayList<String>>();
 	private static ArrayList<String> configuration = new ArrayList<String>();
 	private static ArrayList<String> podRob = new ArrayList<String>();
 	private static ArrayList<String> shelves = new ArrayList<String>();
@@ -80,7 +80,6 @@ public class Order {
 	 */
 	public static void fillLists() {
 		try {
-			ArrayList<String> sentences = new ArrayList<String>();
 			Scanner scanner = new Scanner(file);
 			clearLists();
 			while(scanner.hasNextLine()) {
@@ -107,11 +106,12 @@ public class Order {
 					}
 				}
 				else if(line.contains("order")){
-					sentences.add(line);
-					for(int i = 0; i < sentences.size(); i++) {
-						String[] word = sentences.get(i).split(" ");
-						orders.add(word);
+					String[] temp = line.split(" ");
+					ArrayList<String> sentence = new ArrayList<String>();
+					for(int i = 0; i < temp.length; i++) {
+						sentence.add(temp[i]);
 					}
+					orders.add(sentence);
 				}
 				else {
 					String[] temp = line.split(" ");
@@ -123,7 +123,7 @@ public class Order {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Array: " + orders.get(4).length);
+		System.out.println("Array: " + orders.get(4).size());
 	}
 
 	/**
