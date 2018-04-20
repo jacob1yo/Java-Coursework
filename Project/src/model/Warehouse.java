@@ -286,16 +286,24 @@ public class Warehouse {
 	
 
 	public String getRobotList() {
-	/*	String temp = "";
-		for (Robot robot: robotList) {
-			temp = robot.getID();
-			System.out.println(temp);
+		
+		String robotID = "";
+		
+		for (int i = 0; i < robotList.size(); i++) {
+			robotID += robotList.get(i).getID();
 		}
-			return temp;*/
-			
-		return "This is a test";
+		
+		/*
+			for (Robot robot: robotList) {
+				System.out.println("Another test: " + robot.getID());
+				robotID += robot.getID().toString();
+			}
+			*/
+			//System.out.println("Test: " + robotID);
+		return robotID;
+		
 	}
-
+		
 	/**
 	 * Reads needed values from a SIM file
 	 */
