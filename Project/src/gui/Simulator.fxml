@@ -35,7 +35,10 @@
                 </TitledPane>
                 <TitledPane animated="false" text="Packing Stations">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ListView fx:id="listPacking" prefHeight="200.0" prefWidth="200.0" />
+                           </children></AnchorPane>
                   </content>
                 </TitledPane>
                 <TitledPane animated="false" text="Unassigned Orders">

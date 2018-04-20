@@ -286,13 +286,22 @@ public class Warehouse {
 	}
 
 
-	public String getRobotList() {
+	public String getRobotID() {
 		String robotID = "";
 		for(int i = 0; i < robotList.size(); i++) {
-			robotID += robotList.get(i).getID() + ", ";
+			robotID += robotList.get(i).getID() + " \n";
 		}
 		return robotID;
 	}
+	
+	public String getPackingID() {
+		String packingID = ""; 
+		for (int i = 0; i < packingList.size(); i++) {
+			packingID += packingList.get(i).getID() + " \n";
+		}
+		return packingID;
+	}
+	
 
 	/**
 	 * Reads needed values from a SIM file

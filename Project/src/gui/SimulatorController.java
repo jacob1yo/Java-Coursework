@@ -50,6 +50,8 @@ public class SimulatorController {
 	
 	@FXML private ListView<String> listRobots;
 	
+	@FXML private ListView<String> listPacking;
+	
 	private ArrayList<Circle> circleList;
 
 	public SimulatorController() {
@@ -83,8 +85,11 @@ public class SimulatorController {
 		addStorage();
 		addPackage();
 		
-		listRobots.getItems().addAll(warehouse.getRobotList());
+		listRobots.getItems().addAll(warehouse.getRobotID());
 		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
+		listPacking.getItems().addAll(warehouse.getPackingID());
+		listPacking.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		
 	}
