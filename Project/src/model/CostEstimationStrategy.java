@@ -55,7 +55,7 @@ public class CostEstimationStrategy extends Robot {
 	}
 	
 	public static double distanceToSteps() {
-		 noSteps = (0.7062*distanceEstimate)+0.05221;
+		 noSteps = (1.422*distanceEstimate)-0.07577;
 		System.out.println(noSteps);
 		 return noSteps;
 	}
