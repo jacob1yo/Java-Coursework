@@ -283,25 +283,18 @@ public class Warehouse {
 		Double x = next.getX();
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
+<<<<<<< HEAD
 	}
+=======
+	}	
+>>>>>>> ade34a05e6cbb55e22a310e563ba7c7e2b39134c
 
 	public String getRobotList() {
-		
 		String robotID = "";
-		
-		for (int i = 0; i < robotList.size(); i++) {
-			robotID += robotList.get(i).getID();
+		for(int i = 0; i < robotList.size(); i++) {
+			robotID += robotList.get(i).getID() + ", ";
 		}
-		
-		/*
-			for (Robot robot: robotList) {
-				System.out.println("Another test: " + robot.getID());
-				robotID += robot.getID().toString();
-			}
-			*/
-			//System.out.println("Test: " + robotID);
 		return robotID;
-		
 	}
 
 	/**
@@ -343,8 +336,8 @@ public class Warehouse {
 	 */
 	public void showRobot() {
 		for (int i = 2; i < Order.getPodRob().size(); i += 5) { // If the uid doesn't correspond with the one stated in
-																// sim file, change uid so robot is placed in right
-																// position
+			// sim file, change uid so robot is placed in right
+			// position
 			Robot r = new Robot();
 			if (r.getID().contains(Order.getPodRob().get(i))) {
 				robotList.add(i, r);
@@ -366,13 +359,13 @@ public class Warehouse {
 
 		}
 	}
-	
+
 	public void showPackingStation() {
 		for (int i = 1; i < Order.getPackingStations().size(); i+=4) {
 			Integer x = Integer.valueOf(Order.getPackingStations().get(i + 1));
 			Integer y = Integer.valueOf(Order.getPodRob().get(i + 2));
 			PackingStation ps = new PackingStation(x.intValue(), y.intValue());
-			
+
 			if (ps.getID().contains(Order.getPackingStations().get(i))) {
 				packingList.add(i, ps);
 			} else {
@@ -380,5 +373,4 @@ public class Warehouse {
 			}
 		}
 	}
-
 }
