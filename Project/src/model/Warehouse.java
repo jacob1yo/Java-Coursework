@@ -348,7 +348,7 @@ public class Warehouse {
 				robotList.add(i, r);
 			} else {
 				r.changeId(Order.getPodRob().get(i));
-				robotList.add(i, r);
+				robotList.add(r);
 
 			}
 		}
@@ -361,7 +361,7 @@ public class Warehouse {
 				chargeList.add(j, cp);
 			} else {
 				cp.changeId(Order.getPodRob().get(j));
-				chargeList.add(j, cp);
+				chargeList.add(cp);
 			}	
 
 		}
@@ -378,7 +378,7 @@ public class Warehouse {
 				packingList.add(i, ps);
 			} else {
 				ps.changeId(Order.getPackingStations().get(i));
-				packingList.add(i, ps);
+				packingList.add(ps);
 			}
 		}
 	}
@@ -393,7 +393,7 @@ public class Warehouse {
 				storageList.add(i, ss);
 			} else {
 				ss.changeId(Order.getStorageShelves().get(i));
-				storageList.add(i, ss);
+				storageList.add(ss);
 			}
 		}
 	}
