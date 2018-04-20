@@ -365,7 +365,7 @@ public class Warehouse {
 		}
 	}
 
-	public void showPackingStation() {
+	public void showPackingStations() {
 		for (int i = 1; i < Order.getPackingStations().size(); i+=4) {
 			Integer x = Integer.valueOf(Order.getPackingStations().get(i + 1));
 			Integer y = Integer.valueOf(Order.getPodRob().get(i + 2));
@@ -375,6 +375,20 @@ public class Warehouse {
 				packingList.add(i, ps);
 			} else {
 				ps.changeId(Order.getPackingStations().get(i));
+			}
+		}
+	}
+	
+	public void showStorageShelves() {
+		for (int i  = 1; i < Order.getStorageShelves().size(); i+=4 ) {
+			Integer x = Integer.valueOf(Order.getStorageShelves().get(i + 1));
+			Integer y = Integer.valueOf(Order.getStorageShelves().get(i + 2));
+			StorageShelf ss = new StorageShelf(x.intValue(), y.intValue());
+			
+			if (ss.getID().contains(Order.getStorageShelves().get(i))) {
+				storageList.add(i, ss);
+			} else {
+				ss.changeId(Order.getStorageShelves().get(i));
 			}
 		}
 	}
