@@ -12,16 +12,6 @@ import java.util.HashMap;
 
 public class Robot extends Warehouse implements Entity  {
 	
-	/**
-	 * The x coordinate of a robot on the grid
-	 */
-	/**
-	 * The y coordinate of a robot on the grid
-	 */
-	/*private int robotX;
-	
-	
-	protected int robotY;*/
 	
 	/**
 	 * When calculating the distance, there is a twenty percent safety margin of
@@ -32,7 +22,8 @@ public class Robot extends Warehouse implements Entity  {
 	 *      The battery level of the robot
 	 * @see #getBatteryLevel, #decreaseBatteryLevel
 	 */
-	private int safetyMargin, batteryLevel;
+	private int batteryLevel;
+	private double safetyMargin;
 
 	/**
 	 * Whether the robot is currently processing an order or not
@@ -56,7 +47,7 @@ public class Robot extends Warehouse implements Entity  {
 	//add fields, explain how this might change
 
 	public Robot() {
-		safetyMargin = 20;
+		safetyMargin = 0.2;
 		orderStatus = false;
 		generateID();
 	}
@@ -95,7 +86,7 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public boolean  orderDecision() {
 		if (orderStatus == false) {
-			if(actualdistance <CostEstimationStrategy.distanceToTicks() + safetyMargin) {
+			if(CostEstimationStrategy.distanceToSteps() > safetyMargin*batteryLevel) {
 				move();
 				return true;
 			}
