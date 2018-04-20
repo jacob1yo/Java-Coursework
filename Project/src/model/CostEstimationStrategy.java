@@ -58,9 +58,6 @@ public class CostEstimationStrategy extends Robot {
 		 noSteps = (0.7062*distanceEstimate)+0.05221;
 		System.out.println(noSteps);
 		 return noSteps;
-		/*
-		 * a method to create a corelation and convert distances to ticks in order to estimate wheter or not could accept the order.
-		 */
 	}
 	
 	
