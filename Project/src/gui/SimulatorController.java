@@ -84,20 +84,12 @@ public class SimulatorController {
 		addRobots();
 		addStorage();
 		addPackage();
-		
 
 		listRobots.getItems().addAll(warehouse.getRobotID());
-
-		for(int i = 0; i < warehouse.getRobotList().size(); i++) {
-			listRobots.getItems().addAll(warehouse.getRobotID(i));
-		}
-
 		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		listPacking.getItems().addAll(warehouse.getPackingID());
 		listPacking.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		
-		
 	}
 	
 	public void addColumns() {
