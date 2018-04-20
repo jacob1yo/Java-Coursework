@@ -5,6 +5,7 @@ package model;
  *
  */
 
+import java.awt.Point;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -193,6 +194,25 @@ public class Order {
 	 * Removes an order from the "assigned" list.
 	 */
 	public void removeFromAssigned() {
+	}
+	
+	/**
+	 * Converts orders to an ArrayList of an ArrayList of storage shelf points
+	 */
+	public static void ordersToPoints() {
+		ArrayList<ArrayList<Point>> storagePoints = new ArrayList<ArrayList<Point>>();
+		ArrayList<Point> storages = new ArrayList<Point>();
+		for(int i = 0; i < orders.size(); i++) {
+			for(int j = 2; j < orders.get(i).size(); j++) {
+				ArrayList<StorageShelf> storageList = Warehouse.getStorageShelfs();
+				for(int n = 0; n < storageList.size(); n++) {
+					if(storageList.get(n).getID() == orders.get(i).get(j)) {
+						storages.add(storageList.get(n).getStorageCoordinates());
+					}
+				}
+			}
+			storagePoints.add(storages);
+		}
 	}
 
 }
