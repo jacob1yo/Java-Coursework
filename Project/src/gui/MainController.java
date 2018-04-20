@@ -296,6 +296,7 @@ public class MainController {
 		charge.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 		Order.fillLists();
+		warehouse.showRobot();
 	}
 	
 	public static ArrayList<Point> getFreeSpaces(int numCols, int numRows){
