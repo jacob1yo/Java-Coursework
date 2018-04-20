@@ -78,7 +78,7 @@ public class Order {
 	/**
 	 * Filters the results from the .sim file into their respective ArrayLists
 	 */
-	public static void fillLists() {
+	public void fillLists() {
 		try {
 			Scanner scanner = new Scanner(file);
 			clearLists();
@@ -117,19 +117,17 @@ public class Order {
 						configuration.add(temp[i]);
 				}
 			}
-			scanner.close();
-			}
+			} scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println(podRob.size());
-			
+	
 	}
 
 	/**
 	 * Clears all the ArrayLists
 	 */
-	public static void clearLists() {
+	public void clearLists() {
 		podRob.clear();
 		shelves.clear();
 		stations.clear();
