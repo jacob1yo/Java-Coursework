@@ -25,54 +25,10 @@ public class Manhattan extends Robot implements Entity {
 	 * Finds all possible available adjacent nodes and from them, finds the best one to choose
 	 * @param destination
 	 */
-	/*public void manhattanCalc (Point destination) {
-		ArrayList<Point> freeSpaces = freeSpacePoints(MainController.getNumRows(), MainController.getNumCols());
-		ArrayList<Point> robotLocations = super.robotPoints();
-		for(int i = 0; i < robotLocations.size(); i++) {	//Iterates through each coordinate of each robot created
-			for(int j = 0; j < freeSpaces.size(); j++) {	//Iterates through every node that is free
-				double x = robotLocations.get(i).getX();
-				double y = robotLocations.get(i).getY();
-				double freeX = freeSpaces.get(j).getX();
-				double freeY = freeSpaces.get(j).getY();
-				double compare = 100;
-				Point node = new Point();
-				if(freeX == x - 1 && freeY == y) {
-					//(x - 1, y) is available
-					double result = pythagoras(freeSpaces.get(j), destination);		//Gets the result of pythagoras between possible next node and destination
-					if(result < compare) {			//If the result of pythagoras is less than the smallest result of pythagoras so far
-						node = freeSpaces.get(j);	//node becomes this specific adjacent node, currently making it the next node to be travelled
-					}
-				}
-				if(freeX == x && freeY == y - 1) {
-					//(x, y - 1) is available
-					double result = pythagoras(freeSpaces.get(j), destination);
-					if(result < compare) {
-						node = freeSpaces.get(j);
-					}
-				}
-				if(freeX == x + 1 && freeY == y) {
-					//(x + 1, y) is available
-					double result = pythagoras(freeSpaces.get(j), destination);
-					if(result < compare) {
-						node = freeSpaces.get(j);
-					}
-				}
-				if(freeX == x && freeY == y + 1) {
-					//(x, y + 1) is available
-					double result = pythagoras(freeSpaces.get(j), destination);
-					if(result < compare) {
-						node = freeSpaces.get(j);
-					}
-				}
-				availableSpace(robotLocations.get(i), node);		//Puts the locations in a HashMap so that the warehouse/GUI knows which robot to move where
-			}
-		}
-	}*/
-
 	public void manhattanCalc(Point destination) {
-		ArrayList<Point> freeSpaces = freeSpacePoints(MainController.getNumRows(), MainController.getNumCols());
-		ArrayList<Point> robotLocations = super.robotPoints();
-		
+		ArrayList<Point> freeSpaces = super.getFreeSpacePoints(MainController.getNumCols(), MainController.getNumRows());
+		ArrayList<Point> robotLocations = super.getRobotSpaces();
+
 		for(int i = 0; i < robotLocations.size(); i++) {
 			Double x = robotLocations.get(i).getX();
 			Double y = robotLocations.get(i).getY();
@@ -110,8 +66,8 @@ public class Manhattan extends Robot implements Entity {
 					node = down;
 					compare = result;
 				}
-				hashMap.put(robotLocations.get(i), node);
 			}
+			hashMap.put(robotLocations.get(i), node);
 		}
 	}
 
@@ -131,12 +87,12 @@ public class Manhattan extends Robot implements Entity {
 	}
 
 	/**
-	 * Returns the HashMap created in availableSpace
+	 * Returns the HashMap created in manhattanCalc
 	 * @return <code>HashMap<Point, Point></code>
 	 */
 	public static HashMap<Point, Point> getNewNodes() {
 		return hashMap;
 	}
-	
+
 	// add all the path into an Arraylist and sum the all the indexes (indexes=steps=ticks), in order to compare them to the estimated + mos
 }
