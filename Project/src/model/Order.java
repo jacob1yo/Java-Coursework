@@ -20,7 +20,7 @@ public class Order {
 	 */
 	private static ArrayList<String> commands = new ArrayList<String>(); // reads a full sim file
 	private static ArrayList<String> orders = new ArrayList<String>(); 
-	private static ArrayList<Integer> configuration = new ArrayList<Integer>();
+	private static ArrayList<String> configuration = new ArrayList<String>();
 	private static ArrayList<String> podRob = new ArrayList<String>();
 	private static ArrayList<String> shelves = new ArrayList<String>();
 	private static ArrayList<String> stations = new ArrayList<String>();
@@ -113,6 +113,9 @@ public class Order {
 				else if(line.contains("order")){
 					orders.add(line);
 				}
+				else {
+					configuration.add(line);
+				}
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
@@ -127,6 +130,7 @@ public class Order {
 		stations.clear();
 		commands.clear();
 		orders.clear();
+		configuration.clear();
 	}
 	
 	public static void setFile(File f) {
