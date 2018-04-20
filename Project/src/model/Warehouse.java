@@ -309,16 +309,11 @@ public class Warehouse {
 	 * Reads needed values from a SIM file
 	 */
 	public void readRobotData() {
-		for (int i = 0; i < Order.getPodRob().size(); i += 3) {
-			Integer x = Integer.valueOf(Order.getPodRob().get(i));
-			System.out.println(x);
-			for (int j = 0; j < Order.getPodRob().size(); j += 4) {
-				Integer y = Integer.valueOf(Order.getPodRob().get(j));
-				System.out.println(y);
-				addRobot(x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
-			}
-		}
-
+		Integer x = Integer.valueOf(Order.getPodRob().get(3));
+		System.out.println(x);
+		Integer y = Integer.valueOf(Order.getPodRob().get(4));
+		System.out.println(y);
+		addRobot(x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
 	}
 
 	/**
@@ -368,7 +363,6 @@ public class Warehouse {
 			}	
 
 		}
-		System.out.print("List: " + robotList.size());
 	}
 
 	public void showPackingStations() {
@@ -385,13 +379,13 @@ public class Warehouse {
 			}
 		}
 	}
-	
+
 	public void showStorageShelves() {
 		for (int i  = 1; i < Order.getStorageShelves().size(); i+=4 ) {
 			Integer x = Integer.valueOf(Order.getStorageShelves().get(i + 1));
 			Integer y = Integer.valueOf(Order.getStorageShelves().get(i + 2));
 			StorageShelf ss = new StorageShelf(x.intValue(), y.intValue());
-			
+
 			if (ss.getID().contains(Order.getStorageShelves().get(i))) {
 				storageList.add(i, ss);
 			} else {
@@ -400,7 +394,7 @@ public class Warehouse {
 			}
 		}
 	}
-	
+
 	public static ArrayList<StorageShelf> getStorageShelfs(){
 		return storages;
 	}

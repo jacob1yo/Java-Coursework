@@ -296,8 +296,13 @@ public class MainController {
 		charge.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 		Order.fillLists();
+<<<<<<< HEAD
 		addRobots();
 		
+=======
+		warehouse.readRobotData();
+		addRobots();
+>>>>>>> e36cb1414eeb727c3015516cde03079989931c66
 	}
 	
 	public void addRobots() {
@@ -349,4 +354,5 @@ public class MainController {
 			ex.printStackTrace();
 		}
 	}
+	
 }
