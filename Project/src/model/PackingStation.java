@@ -121,13 +121,6 @@ public class PackingStation extends Warehouse implements Entity{
 		lastNum = 0;
 	}
 	
-	/**
-	 * Decrease lastNum field by 1.
-	 */
-	public void decreaseUID() {
-		lastNum--;
-	}
-	
 	@Override
 	public void generateID() {
 		int num = lastNum++;
@@ -138,6 +131,11 @@ public class PackingStation extends Warehouse implements Entity{
 	@Override
 	public String getID() {
 		return uid;
+	}
+	
+	@Override
+	public void changeId(String newUid) {
+		uid = newUid;
 	}
 
 	@Override

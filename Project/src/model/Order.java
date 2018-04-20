@@ -151,6 +151,10 @@ public class Order {
 		return configuration;
 	}
 	
+	static ArrayList<String> getPackingStations() {
+		return stations;
+	}
+	
 	/**
 	 * Checks if an order has been completed, and moves it to "completedOrders" if
 	 * it is completed.

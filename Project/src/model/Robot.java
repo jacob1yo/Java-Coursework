@@ -215,6 +215,12 @@ public class Robot extends Warehouse implements Entity  {
 		int num = lastNum++;
 		uid = "r" + num;
 	}
+	
+	public void changeId(String newUid) {
+		uid = newUid;
+		
+		
+	}
 
 	@Override
 	public String getID() {
