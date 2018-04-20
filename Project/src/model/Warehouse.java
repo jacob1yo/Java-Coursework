@@ -365,6 +365,7 @@ public class Warehouse {
 			}	
 
 		}
+		System.out.print("List: " + robotList.size());
 	}
 
 	public void showPackingStations() {
