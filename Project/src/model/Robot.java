@@ -99,7 +99,7 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public boolean  orderDecision() {
 		if (orderStatus == false) {
-			if(CostEstimationStrategy.distanceToSteps() < ((safetyMargin*batteryLevel)+batteryLevel)) {
+			if(CostEstimationStrategy.distanceToSteps() < (safetyMargin*batteryLevel)) {
 				move();
 				return true;
 			}

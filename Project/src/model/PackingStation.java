@@ -110,7 +110,7 @@ public class PackingStation extends Warehouse implements Entity{
 	 * @return
 	 */
 	public Order nextOrder() {
-		return; //this needs changing for correct implementation
+		return 0; //this needs changing for correct implementation
 
 	}
 	
@@ -121,10 +121,17 @@ public class PackingStation extends Warehouse implements Entity{
 		lastNum = 0;
 	}
 	
+	/**
+	 * Decrease lastNum field by 1.
+	 */
+	public void decreaseUID() {
+		lastNum--;
+	}
+	
 	@Override
 	public void generateID() {
 		int num = lastNum++;
-		uid = "ps" + num;
+		uid = "p" + num;
 		
 	}
 
