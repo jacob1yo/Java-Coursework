@@ -35,6 +35,8 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.ArrayList;
 
+import java.awt.Point;
+
 public class MainController {
 	/**
 	 * The value that the slider is set to
@@ -298,13 +300,21 @@ public class MainController {
 		
 	}
 	
+	public static ArrayList<Point> getFreeSpaces(int numCols, int numRows){
+		return warehouse.freeSpacePoints(numCols, numRows);
+	}
+	
+	public static ArrayList<Point> getRobotSpaces(){
+		return warehouse.robotPoints();
+	}
+	
 	/**
 	 * Opens a new window where the simulation can be run through
 	 */
 	@FXML
 	public void startPressed() {
 		warehouse.freeSpacePoints(numCols, numRows);
-		System.out.println(warehouse.freeSpacePoints(numCols, numRows).size());
+		System.out.println("Number of Freespaces: " + warehouse.freeSpacePoints(numCols, numRows).size());
 		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Simulator.FXML"));
 		final SimulatorController simulatorController = new SimulatorController();

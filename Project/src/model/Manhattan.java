@@ -70,9 +70,11 @@ public class Manhattan extends Robot implements Entity {
 	}*/
 
 	public void manhattanCalc(Point destination) {
-		ArrayList<Point> freeSpaces = freeSpacePoints(MainController.getNumRows(), MainController.getNumCols());
-		ArrayList<Point> robotLocations = super.robotPoints();
-		
+		ArrayList<Point> freeSpaces = super.getFreeSpacePoints(MainController.getNumCols(), MainController.getNumRows());
+		System.out.println("FreeSpaces: " + freeSpaces.size());
+		ArrayList<Point> robotLocations = super.getRobotSpaces();
+		System.out.println("Robot Locations: " + robotLocations.size());
+
 		for(int i = 0; i < robotLocations.size(); i++) {
 			Double x = robotLocations.get(i).getX();
 			Double y = robotLocations.get(i).getY();
@@ -91,10 +93,12 @@ public class Manhattan extends Robot implements Entity {
 				}
 			}
 			if(freeSpaces.contains(right)) {
+				System.out.println("Right seen");
 				double result = pythagoras(right, destination);
 				if(result < compare) {
 					node = right;
 					compare = result;
+					System.out.println("Right stored");
 				}
 			}
 			if(freeSpaces.contains(up)) {
@@ -110,8 +114,8 @@ public class Manhattan extends Robot implements Entity {
 					node = down;
 					compare = result;
 				}
-				hashMap.put(robotLocations.get(i), node);
 			}
+			hashMap.put(robotLocations.get(i), node);
 		}
 	}
 
@@ -131,12 +135,12 @@ public class Manhattan extends Robot implements Entity {
 	}
 
 	/**
-	 * Returns the HashMap created in availableSpace
+	 * Returns the HashMap created in manhattanCalc
 	 * @return <code>HashMap<Point, Point></code>
 	 */
 	public HashMap<Point, Point> getNewNodes() {
 		return hashMap;
 	}
-	
+
 	// add all the path into an Arraylist and sum the all the indexes (indexes=steps=ticks), in order to compare them to the estimated + mos
 }
