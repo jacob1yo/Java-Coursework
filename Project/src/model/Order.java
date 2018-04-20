@@ -112,10 +112,8 @@ public class Order {
 					}
 				}
 				else {
-					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length;i++) {
-						configuration.add(temp[i]);
-				}
+					configuration.add(line);
+				
 			}
 			} scanner.close();
 		} catch (FileNotFoundException e) {

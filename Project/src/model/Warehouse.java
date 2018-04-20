@@ -283,7 +283,7 @@ public class Warehouse {
 		Double x = next.getX();
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
-
+	}
 
 	public String getRobotList() {
 		String robotID = "";
