@@ -296,7 +296,14 @@ public class MainController {
 		charge.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 		Order.fillLists();
-		warehouse.showRobot();
+		
+	}
+	
+	public void addRobots() {
+		Circle circle = new Circle(20);
+		circle.setFill(Color.GREEN);
+		
+		System.out.println("Size: " + warehouse.robotPoints().size());
 	}
 	
 	public static ArrayList<Point> getFreeSpaces(int numCols, int numRows){
