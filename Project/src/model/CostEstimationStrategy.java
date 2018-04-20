@@ -63,10 +63,13 @@ public class CostEstimationStrategy extends Robot {
 	
 	//NEW implementation of cost estimation
 	
-	public void totalDistance() {
+	public void totalDistance(Point robotPoint, ArrayList<StorageShelf> ssPoints) {
 		int totalDistance = 0;
 		Point n = robotPoint;
-		for(int i = 0; i < ssPoints.size(); i++) {
+		
+		totalDistance = pointToPoint(n, ssPoints.get(0));
+		
+		for(int i = 1; i < ssPoints.size(); i++) {
 			totalDistance += pointToPoint(n, ssPoints.get(i).getCoordinates());
 		}
 	}

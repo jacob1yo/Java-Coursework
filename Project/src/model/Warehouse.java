@@ -13,6 +13,7 @@ public class Warehouse {
 	private ArrayList<PackingStation> packingList;
 	private static ArrayList<Point> robotPoints;
 	private HashMap<Point, Point> hashmap;
+	private static ArrayList<StorageShelf> storages;
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
@@ -21,6 +22,7 @@ public class Warehouse {
 		packingList = new ArrayList<PackingStation>();
 		robotPoints = new ArrayList<Point>();
 		hashmap = new HashMap<Point, Point>();
+		storages = new ArrayList<StorageShelf>();
 	}
 
 	/**
@@ -105,6 +107,7 @@ public class Warehouse {
 				for (int n = 0; n < storageList.size(); n++) {
 					storageList.get(n).generateID();
 				}
+				storages = storageList;
 			}
 		}
 
@@ -396,5 +399,9 @@ public class Warehouse {
 				storageList.add(i, ss);
 			}
 		}
+	}
+	
+	public static ArrayList<StorageShelf> getStorageShelfs(){
+		return storages;
 	}
 }
