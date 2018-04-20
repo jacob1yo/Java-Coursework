@@ -17,6 +17,8 @@ public interface Entity {
 	 */
 	public abstract String getID();
 	
+	public abstract void changeId(String newUid);
+	
 	/**
 	 * Compares if the robot is in the same position as another entity.
 	 * @param r a Robot object

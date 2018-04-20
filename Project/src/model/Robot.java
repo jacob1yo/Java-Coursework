@@ -99,7 +99,7 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public boolean  orderDecision() {
 		if (orderStatus == false) {
-			if(CostEstimationStrategy.distanceToSteps() < (safetyMargin*batteryLevel)) {
+			if(CostEstimationStrategy.distanceToSteps() < (safetyMargin*batteryLevel)+(batteryLevel)) {
 				move();
 				return true;
 			}
@@ -214,6 +214,12 @@ public class Robot extends Warehouse implements Entity  {
 	public void generateID() {
 		int num = lastNum++;
 		uid = "r" + num;
+	}
+	
+	public void changeId(String newUid) {
+		uid = newUid;
+		
+		
 	}
 
 	@Override

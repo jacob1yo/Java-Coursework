@@ -200,7 +200,7 @@ public class Warehouse {
 		return robots;
 	}
 
-	public static ArrayList<Point> getRobotPoints(){
+	public static ArrayList<Point> getRobotPoints() {
 		return robotPoints;
 	}
 
@@ -244,7 +244,8 @@ public class Warehouse {
 	}
 
 	/**
-	 * Get the an ArrayList of coordinates of every space that is available for a robot to move to
+	 * Get the an ArrayList of coordinates of every space that is available for a
+	 * robot to move to
 	 * 
 	 * @return <code>ArrayList<Point></code>
 	 */
@@ -267,7 +268,7 @@ public class Warehouse {
 		manhattan.manhattanCalc(destination);
 		if (!robotList.isEmpty()) {
 			hashmap = manhattan.getNewNodes();
-			//hashmap = robotList.get(0).move();
+			// hashmap = robotList.get(0).move();
 			hashmap = manhattan.getNewNodes();
 			System.out.println("hashmap size: " + hashmap.size());
 			return hashmap;
@@ -283,6 +284,8 @@ public class Warehouse {
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
+<<<<<<< HEAD
+=======
 	
 
 	public String getRobotList() {
@@ -303,38 +306,87 @@ public class Warehouse {
 		return robotID;
 		
 	}
+<<<<<<< HEAD
 		
+=======
+>>>>>>> f0840fe83f178b1a85c991c6f0051b8801f49e59
+
+>>>>>>> 411b2240994b5b116ff6cd5128bfd40034f67192
 	/**
 	 * Reads needed values from a SIM file
 	 */
 	public void readRobotData() {
-		for (int i = 0; i < Order.getPodRob().size(); i+=3) {
+		for (int i = 0; i < Order.getPodRob().size(); i += 3) {
 			Integer x = Integer.valueOf(Order.getPodRob().get(i));
 			System.out.println(x);
-			for (int j = 0; j < Order.getPodRob().size(); j+=4) {
+			for (int j = 0; j < Order.getPodRob().size(); j += 4) {
 				Integer y = Integer.valueOf(Order.getPodRob().get(j));
 				System.out.println(y);
 				addRobot(x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
 			}
 		}
-		
+
 	}
-	
+
 	/**
 	 * Reads battery level from a SIM file
+	 * 
 	 * @return
 	 */
 	public int readBatteryLevel() {
-		Integer capacity =  Integer.valueOf(Order.getConfiguration().get(7));
+		Integer capacity = Integer.valueOf(Order.getConfiguration().get(7));
 		return capacity.intValue();
 	}
-	
+
 	/**
 	 * Reads charge rate from a SIM file
 	 */
 	public int readChargeRate() {
 		Integer chargeRate = Integer.valueOf(Order.getConfiguration().get(9));
 		return chargeRate.intValue();
+	}
+
+	/**
+	 * Allows displaying of Robot on screen
+	 */
+	public void showRobot() {
+		for (int i = 2; i < Order.getPodRob().size(); i += 5) { // If the uid doesn't correspond with the one stated in
+																// sim file, change uid so robot is placed in right
+																// position
+			Robot r = new Robot();
+			if (r.getID().contains(Order.getPodRob().get(i))) {
+				robotList.add(i, r);
+			} else {
+				r.changeId(Order.getPodRob().get(i));
+
+			}
+		}
+		for (int j = 1; j < Order.getPodRob().size(); j += 5) {
+			Integer x = Integer.valueOf(Order.getPodRob().get(j + 2));
+			Integer y = Integer.valueOf(Order.getPodRob().get(j + 3));
+			ChargingPod cp = new ChargingPod(x.intValue(), y.intValue());
+
+			if (cp.getID().contains(Order.getPodRob().get(j))) {
+				chargeList.add(j, cp);
+			} else {
+				cp.changeId(Order.getPodRob().get(j));
+			}
+
+		}
+	}
+	
+	public void showPackingStation() {
+		for (int i = 1; i < Order.getPackingStations().size(); i+=4) {
+			Integer x = Integer.valueOf(Order.getPackingStations().get(i + 1));
+			Integer y = Integer.valueOf(Order.getPodRob().get(i + 2));
+			PackingStation ps = new PackingStation(x.intValue(), y.intValue());
+			
+			if (ps.getID().contains(Order.getPackingStations().get(i))) {
+				packingList.add(i, ps);
+			} else {
+				ps.changeId(Order.getPackingStations().get(i));
+			}
+		}
 	}
 
 }
