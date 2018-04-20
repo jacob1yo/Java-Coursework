@@ -85,13 +85,13 @@ public class SimulatorController {
 		addStorage();
 		addPackage();
 		
-<<<<<<< HEAD
+
 		listRobots.getItems().addAll(warehouse.getRobotID());
-=======
+
 		for(int i = 0; i < warehouse.getRobotList().size(); i++) {
 			listRobots.getItems().addAll(warehouse.getRobotID(i));
 		}
->>>>>>> 52f92d256f7a3f0fbe1493482935cc2e5261abac
+
 		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		listPacking.getItems().addAll(warehouse.getPackingID());
