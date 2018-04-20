@@ -157,6 +157,13 @@ public class Order {
 		return stations;
 	}
 	
+	static ArrayList<String> getStorageShelves() {
+		return shelves;
+	}
+	
+	static ArrayList<ArrayList<String>> getOrders() {
+		return orders;
+	}
 	/**
 	 * Checks if an order has been completed, and moves it to "completedOrders" if
 	 * it is completed.
