@@ -13,6 +13,7 @@ public class Warehouse {
 	private ArrayList<PackingStation> packingList;
 	private static ArrayList<Point> robotPoints;
 	private HashMap<Point, Point> hashmap;
+	private static ArrayList<StorageShelf> storages;
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
@@ -21,6 +22,7 @@ public class Warehouse {
 		packingList = new ArrayList<PackingStation>();
 		robotPoints = new ArrayList<Point>();
 		hashmap = new HashMap<Point, Point>();
+		storages = new ArrayList<StorageShelf>();
 	}
 
 	/**
@@ -105,6 +107,7 @@ public class Warehouse {
 				for (int n = 0; n < storageList.size(); n++) {
 					storageList.get(n).generateID();
 				}
+				storages = storageList;
 			}
 		}
 
@@ -348,6 +351,7 @@ public class Warehouse {
 				robotList.add(i, r);
 			} else {
 				r.changeId(Order.getPodRob().get(i));
+				robotList.add(r);
 
 			}
 		}
@@ -360,9 +364,11 @@ public class Warehouse {
 				chargeList.add(j, cp);
 			} else {
 				cp.changeId(Order.getPodRob().get(j));
-			}
+				chargeList.add(cp);
+			}	
 
 		}
+		
 	}
 
 	public void showPackingStations() {
@@ -375,6 +381,7 @@ public class Warehouse {
 				packingList.add(i, ps);
 			} else {
 				ps.changeId(Order.getPackingStations().get(i));
+				packingList.add(ps);
 			}
 		}
 	}
@@ -389,7 +396,12 @@ public class Warehouse {
 				storageList.add(i, ss);
 			} else {
 				ss.changeId(Order.getStorageShelves().get(i));
+				storageList.add(ss);
 			}
 		}
+	}
+	
+	public static ArrayList<StorageShelf> getStorageShelfs(){
+		return storages;
 	}
 }
