@@ -282,5 +282,15 @@ public class Warehouse {
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
+	
+	public String getRobotList() {
+		String temp = "";
+		for (Robot robot: robotList) {
+			temp = robot.getID();
+		}
+			return temp;
+			
+		
+	}
 
 }
