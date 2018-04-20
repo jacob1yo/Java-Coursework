@@ -297,7 +297,6 @@ public class MainController {
 		battery.setDisable(true);
 		charge.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
-		
 	
 	}
 	
@@ -314,6 +313,8 @@ public class MainController {
 	 */
 	@FXML
 	public void startPressed() {
+		warehouse.freeSpacePoints(numCols, numRows);
+		System.out.println("Number of Freespaces: " + warehouse.freeSpacePoints(numCols, numRows).size());
 		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Simulator.FXML"));
 		final SimulatorController simulatorController = new SimulatorController();

@@ -44,18 +44,15 @@ public class Order {
 	 * processData(); for (int i = 0; i < coordinates.length; i+=4) { for (int j =
 	 * 0; j < coordinates.length; j+)
 	 * 
-	 * } }
+	 * } 
+	 * }
 	 */
-<<<<<<< HEAD
 	
 	public static ListProperty<String> getRobots(){
 		//fillLists();
 		return robots;
 	}
 	
-=======
-
->>>>>>> 7a367abe3d34d0c3e1e32d2a3291e9c4b8bbd703
 	/**
 	 * Reads the .sim file and stores each line in an ArrayList
 	 * 
@@ -96,49 +93,47 @@ public class Order {
 		try {
 			Scanner scanner = new Scanner(file);
 			clearLists();
-			while (scanner.hasNextLine()) {
+			while(scanner.hasNextLine()) {
 				String line = scanner.nextLine();
-<<<<<<< HEAD
 			
 				if(line.contains("podRobot")) {
 					robots.add(line);
-=======
-
-				if (line.contains("podRobot")) {
->>>>>>> 7a367abe3d34d0c3e1e32d2a3291e9c4b8bbd703
 					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length; i++) {
+					for (int i = 0; i < temp.length;i++) {
 						podRob.add(temp[i]);
 					}
-
-				} else if (line.contains("shelf")) {
+				
+				}
+				else if(line.contains("shelf")) {
 					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length; i++) {
+					for (int i = 0; i < temp.length;i++) {
 						shelves.add(temp[i]);
-					}
-
-				} else if (line.contains("station")) {
+						}
+					
+				}
+				else if(line.contains("station")) {
 					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length; i++) {
-						stations.add(temp[i]);
-					}
-				} else if (line.contains("order")) {
-					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length; i++) {
-						orders.add(temp[i]);
-					}
-				} else {
-					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length; i++) {
-						configuration.add(temp[i]);
+					for (int i = 0; i < temp.length;i++) {
+					stations.add(temp[i]);
 					}
 				}
+				else if(line.contains("order")){
+					String[] temp = line.split(" ");
+					for (int i = 0; i < temp.length;i++) {
+						orders.add(temp[i]);
+					}
+				}
+				else {
+					String[] temp = line.split(" ");
+					for (int i = 0; i < temp.length;i++) {
+						configuration.add(temp[i]);
+				}
 			}
-			scanner.close();
+			} scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
+	
 	}
 
 	/**
@@ -152,20 +147,17 @@ public class Order {
 		orders.clear();
 		configuration.clear();
 	}
+	
 
 	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen
 		file = f;
 	}
 
-	static ArrayList<String> getPodRob() {
+	private ArrayList<String> getPodRob(){
 		return podRob;
 	}
 	
-	static ArrayList<String> getConfiguration() {
-		return configuration;
-	}
-
 	/**
 	 * Checks if an order has been completed, and moves it to "completedOrders" if
 	 * it is completed.
