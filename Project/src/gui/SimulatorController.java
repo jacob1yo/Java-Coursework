@@ -5,18 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import javax.swing.text.LabelView;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -26,7 +20,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import model.Order;
 import model.Warehouse;
 
 
@@ -48,7 +41,6 @@ public class SimulatorController {
 	 * The grid from Simulator.fxml
 	 */
 	@FXML private GridPane grid;
-	@FXML private ListView<String> robotArea;
 	
 	private ArrayList<Circle> circleList;
 
@@ -82,7 +74,6 @@ public class SimulatorController {
 		addRobots();
 		addStorage();
 		addPackage();
-		robotArea.setItems(Order.getRobots());
 	}
 	
 	public void addColumns() {
@@ -196,17 +187,6 @@ public class SimulatorController {
 		circleList.add(i, circle); //may need to remove if this doesn't work
 		grid.add(circle, x.intValue(), y.intValue());
 		GridPane.setHalignment((Node) circle, HPos.CENTER);
-	}
-	
-	@FXML
-	public void endPressed() {
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Exit");
-		alert.setContentText("Are you sure you want to exit the simulation?");
-		if(alert.showAndWait().get() == ButtonType.OK) {
-			grid.getScene().getWindow().hide();
-		}
-		
 	}
 	
 	@FXML

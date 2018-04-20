@@ -10,10 +10,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
-
 public class Order {
 
 	/**
@@ -29,14 +25,12 @@ public class Order {
 	private static ArrayList<String> shelves = new ArrayList<String>();
 	private static ArrayList<String> stations = new ArrayList<String>();
 	private static File file;
-	private static ListProperty<String> robots;
 
 	/**
 	 * Reads the orders from a file.
 	 */
 
 	public Order() {
-		robots = new SimpleListProperty<String>(FXCollections.observableArrayList());
 	}
 
 	/*
@@ -47,11 +41,6 @@ public class Order {
 	 * } 
 	 * }
 	 */
-	
-	public static ListProperty<String> getRobots(){
-		//fillLists();
-		return robots;
-	}
 	
 	/**
 	 * Reads the .sim file and stores each line in an ArrayList
@@ -89,7 +78,7 @@ public class Order {
 	/**
 	 * Filters the results from the .sim file into their respective ArrayLists
 	 */
-	public static void fillLists() {
+	public void fillLists() {
 		try {
 			Scanner scanner = new Scanner(file);
 			clearLists();
@@ -97,7 +86,6 @@ public class Order {
 				String line = scanner.nextLine();
 			
 				if(line.contains("podRobot")) {
-					robots.add(line);
 					String[] temp = line.split(" ");
 					for (int i = 0; i < temp.length;i++) {
 						podRob.add(temp[i]);
@@ -139,7 +127,7 @@ public class Order {
 	/**
 	 * Clears all the ArrayLists
 	 */
-	public static void clearLists() {
+	public void clearLists() {
 		podRob.clear();
 		shelves.clear();
 		stations.clear();
