@@ -14,7 +14,6 @@ import gui.MainController;
  */
 
 public class Robot extends Warehouse implements Entity  {
-<<<<<<< HEAD
 
 	/**
 	 * The x coordinate of a robot on the grid
@@ -27,10 +26,6 @@ public class Robot extends Warehouse implements Entity  {
 
 	protected int robotY;*/
 
-=======
-	
-	
->>>>>>> origin/master
 	/**
 	 * When calculating the distance, there is a twenty percent safety margin of
 	 * battery power

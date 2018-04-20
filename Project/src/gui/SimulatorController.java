@@ -73,9 +73,7 @@ public class SimulatorController {
 		addPane();
 		addRobots();
 		addStorage();
-		addPackage();	
-		move();
-
+		addPackage();
 	}
 	
 	public void addColumns() {
@@ -189,6 +187,11 @@ public class SimulatorController {
 		circleList.add(i, circle); //may need to remove if this doesn't work
 		grid.add(circle, x.intValue(), y.intValue());
 		GridPane.setHalignment((Node) circle, HPos.CENTER);
+	}
+	
+	@FXML
+	public void oneTickPressed() {
+		move();
 	}
 
 }
