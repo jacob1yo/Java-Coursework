@@ -15,7 +15,7 @@ import java.awt.Point;
  * 
  */
 public class Manhattan extends Robot implements Entity {
-	private static HashMap<Point, Point> hashMap;
+	private HashMap<Point, Point> hashMap;
 
 	public Manhattan() {
 		hashMap = new HashMap<Point, Point>();
@@ -90,7 +90,7 @@ public class Manhattan extends Robot implements Entity {
 	 * Returns the HashMap created in manhattanCalc
 	 * @return <code>HashMap<Point, Point></code>
 	 */
-	public static HashMap<Point, Point> getNewNodes() {
+	public HashMap<Point, Point> getNewNodes() {
 		return hashMap;
 	}
 
