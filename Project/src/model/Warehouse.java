@@ -11,12 +11,16 @@ public class Warehouse {
 	private ArrayList<ChargingPod> chargeList;
 	private ArrayList<StorageShelf> storageList;
 	private ArrayList<PackingStation> packingList;
+	private static ArrayList<Point> robotPoints;
+	private HashMap<Point, Point> hashmap;
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
 		storageList = new ArrayList<StorageShelf>();
 		packingList = new ArrayList<PackingStation>();
+		robotPoints = new ArrayList<Point>();
+		hashmap = new HashMap<Point, Point>();
 	}
 
 	/**
@@ -173,6 +177,15 @@ public class Warehouse {
 		return true;
 	}
 
+	public boolean checkRobot(int x, int y) {
+		for (int i = 0; i < robotList.size(); i++) {
+			if (robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	/**
 	 * Get the an ArrayList of coordinates of every robot
 	 * 
@@ -183,7 +196,12 @@ public class Warehouse {
 		for (int i = 0; i < robotList.size(); i++) {
 			robots.add(robotList.get(i).getRobotCoordinates());
 		}
+		robotPoints = robots;
 		return robots;
+	}
+
+	public static ArrayList<Point> getRobotPoints(){
+		return robotPoints;
 	}
 
 	/**
@@ -226,15 +244,15 @@ public class Warehouse {
 	}
 
 	/**
-	 * Get the an ArrayList of coordinates of every space that is available
+	 * Get the an ArrayList of coordinates of every space that is available for a robot to move to
 	 * 
 	 * @return <code>ArrayList<Point></code>
 	 */
-	public ArrayList<Point> freeSpacePoints(int numRows, int numCols) {
+	public ArrayList<Point> freeSpacePoints(int numCols, int numRows) {
 		ArrayList<Point> spaces = new ArrayList<Point>();
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numCols; j++) {
-				if (check(i, j)) {
+				if (checkRobot(i, j)) {
 					Point point = new Point(i, j);
 					spaces.add(point);
 				}
@@ -245,23 +263,23 @@ public class Warehouse {
 
 	public HashMap<Point, Point> move() {
 		Manhattan manhattan = new Manhattan();
-		Point destination = new Point(5, 5);
+		Point destination = new Point(4, 4);
 		manhattan.manhattanCalc(destination);
 		if (!robotList.isEmpty()) {
 			//hashmap = robotList.get(0).move();
-			HashMap<Point, Point> hashmap = manhattan.getNewNodes();
-			System.out.println("hashmap size: " + hashmap.size());
-			ArrayList<Point> robots = robotPoints();
-			for (int i = 0; i < robotList.size(); i++) {
-				Point coordinates = robots.get(i);
-				Point next = hashmap.get(coordinates);
-				Double x = next.getX();
-				Double y = next.getY();
-				robotList.get(i).setCoordinates(x.intValue(), y.intValue());
-			}
+			hashmap = manhattan.getNewNodes();
 			return hashmap;
 		}
 		return null;
+	}
+
+	public void moveRobot(int i) {
+		ArrayList<Point> robots = robotPoints();
+		Point coordinates = robots.get(i);
+		Point next = hashmap.get(coordinates);
+		Double x = next.getX();
+		Double y = next.getY();
+		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
 
 }

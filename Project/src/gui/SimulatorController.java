@@ -48,9 +48,7 @@ public class SimulatorController {
 		finalGridHeight = MainController.getNumRows();
 		finalGridWidth = MainController.getNumCols();
 		warehouse = MainController.warehouse;
-		System.out.println("Height: " + finalGridHeight + " Width: " + finalGridWidth);
 		circleList = new ArrayList<Circle>();
-		//move();
 	}
 
 	@FXML
@@ -74,8 +72,7 @@ public class SimulatorController {
 		addPane();
 		addRobots();
 		addStorage();
-		addPackage();			
-
+		addPackage();
 	}
 	
 	public void addColumns() {
@@ -99,12 +96,12 @@ public class SimulatorController {
 		for(int i = 0; i < warehouse.robotPoints().size(); i++) {
 			Circle circle = new Circle(20);
 			circle.setFill(Color.GREEN);
+			circleList.add(circle);
 			Rectangle rect = new Rectangle(50,50);
 			rect.setFill(Color.BLUE);
 			
 			Double x = warehouse.robotPoints().get(i).getX();
 			Double y = warehouse.robotPoints().get(i).getY();
-			circleList.add(circle);
 			grid.add(rect, x.intValue(), y.intValue());
 			grid.add(circle, x.intValue(), y.intValue());
 			GridPane.setHalignment((Node) circle, HPos.CENTER);
@@ -168,6 +165,7 @@ public class SimulatorController {
 			Point current = robots.get(i);
 			Point next = hashmap.get(current);
 			moveRobot(i, current, next);
+			warehouse.moveRobot(i);
 		}
 	}
 	
@@ -176,6 +174,7 @@ public class SimulatorController {
 		Circle delCirc = circleList.get(i);	//may need to remove if this doesn't work
 		grid.getChildren().remove(delCirc);	//may need to remove if this doesn't work
 		circleList.remove(i);				//may need to remove if this doesn't work
+		
 		//Adds circle/robot to the next location
 		Circle circle = new Circle(20);
 		circle.setFill(Color.GREEN);
@@ -183,6 +182,19 @@ public class SimulatorController {
 		Double y = next.getY();
 		circleList.add(i, circle); //may need to remove if this doesn't work
 		grid.add(circle, x.intValue(), y.intValue());
+		GridPane.setHalignment((Node) circle, HPos.CENTER);
+	}
+	
+	@FXML
+	public void oneTickPressed() {
+		move();
+	}
+	
+	@FXML
+	public void tenTicksPressed() {
+		for(int i = 0; i < 10; i++) {
+			move();
+		}
 	}
 
 }

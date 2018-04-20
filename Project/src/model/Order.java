@@ -78,7 +78,7 @@ public class Order {
 	/**
 	 * Filters the results from the .sim file into their respective ArrayLists
 	 */
-	public static void fillLists() {
+	public void fillLists() {
 		try {
 			Scanner scanner = new Scanner(file);
 			clearLists();
@@ -117,19 +117,17 @@ public class Order {
 						configuration.add(temp[i]);
 				}
 			}
-			scanner.close();
-			}
+			} scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println(podRob.size());
-			
+	
 	}
 
 	/**
 	 * Clears all the ArrayLists
 	 */
-	public static void clearLists() {
+	public void clearLists() {
 		podRob.clear();
 		shelves.clear();
 		stations.clear();
@@ -137,12 +135,17 @@ public class Order {
 		orders.clear();
 		configuration.clear();
 	}
+	
 
 	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen
 		file = f;
 	}
 
+	private ArrayList<String> getPodRob(){
+		return podRob;
+	}
+	
 	/**
 	 * Checks if an order has been completed, and moves it to "completedOrders" if
 	 * it is completed.
