@@ -87,13 +87,12 @@ public class MainController {
 	/**
 	 * Contains all the entities that are on the grid and does all the computation
 	 */
-	static Warehouse warehouse;
-
+	private static Warehouse warehouse;
 	
-	static ArrayList<Circle> circleList;
+	public MainController() {}
 	
-	public MainController() {
-		circleList = new ArrayList<Circle>();
+	public static Warehouse getWarehouse() {
+		return warehouse;
 	}
 
 	@FXML
@@ -185,7 +184,6 @@ public class MainController {
 				warehouse.addRobot(col, row, batteryLevel, chargeRate);
 				Circle circle = new Circle(20);
 				circle.setFill(Color.GREEN);
-				circleList.add(circle);
 				Rectangle rect = new Rectangle(50,50);
 				rect.setFill(Color.BLUE);
 				grid.add(rect, col, row);

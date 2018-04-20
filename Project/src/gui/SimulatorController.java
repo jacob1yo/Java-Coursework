@@ -55,7 +55,7 @@ public class SimulatorController {
 	public SimulatorController() {
 		finalGridHeight = MainController.getNumRows();
 		finalGridWidth = MainController.getNumCols();
-		warehouse = MainController.warehouse;
+		warehouse = MainController.getWarehouse();
 		System.out.println("Height: " + finalGridHeight + " Width: " + finalGridWidth);
 		circleList = new ArrayList<Circle>();
 	}
