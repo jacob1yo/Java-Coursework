@@ -19,7 +19,7 @@ public class Order {
 	 *      #removeFromUnassigned, #removeFromAssigned
 	 */
 	private static ArrayList<String> commands = new ArrayList<String>(); // reads a full sim file
-	private static ArrayList<String> orders = new ArrayList<String>();
+	private static ArrayList<ArrayList<String>> orders = new ArrayList<ArrayList<String>>();
 	private static ArrayList<String> configuration = new ArrayList<String>();
 	private static ArrayList<String> podRob = new ArrayList<String>();
 	private static ArrayList<String> shelves = new ArrayList<String>();
@@ -78,7 +78,7 @@ public class Order {
 	/**
 	 * Filters the results from the .sim file into their respective ArrayLists
 	 */
-	public void fillLists() {
+	public static void fillLists() {
 		try {
 			Scanner scanner = new Scanner(file);
 			clearLists();
@@ -96,36 +96,40 @@ public class Order {
 					String[] temp = line.split(" ");
 					for (int i = 0; i < temp.length;i++) {
 						shelves.add(temp[i]);
-						}
+					}
 					
 				}
 				else if(line.contains("station")) {
 					String[] temp = line.split(" ");
 					for (int i = 0; i < temp.length;i++) {
-					stations.add(temp[i]);
+						stations.add(temp[i]);
 					}
 				}
 				else if(line.contains("order")){
 					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length;i++) {
-						orders.add(temp[i]);
+					ArrayList<String> sentence = new ArrayList<String>();
+					for(int i = 0; i < temp.length; i++) {
+						sentence.add(temp[i]);
 					}
+					orders.add(sentence);
 				}
 				else {
-					configuration.add(line);
-				
-			}
+					String[] temp = line.split(" ");
+					for (int i = 0; i < temp.length;i++) {
+						configuration.add(temp[i]);
+					}
+				}
 			} scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	
+		System.out.println("Array: " + orders.get(4).size());
 	}
 
 	/**
 	 * Clears all the ArrayLists
 	 */
-	public void clearLists() {
+	public static void clearLists() {
 		podRob.clear();
 		shelves.clear();
 		stations.clear();

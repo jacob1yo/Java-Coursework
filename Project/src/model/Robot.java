@@ -2,7 +2,6 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import gui.MainController;
 
@@ -131,18 +130,6 @@ public class Robot extends Warehouse implements Entity  {
 	public boolean needsCharging() {
 
 		return false; // if statement needed
-	}
-
-	/**
-	 * Implements the movement of a robot
-	 * @return 
-	 */
-	public HashMap<Point, Point> move() {
-		/**
-		 * A* Determines it's movement, left, right etc etc Movement would be in it's
-		 * own class
-		 */
-		//return Manhattan.getNewNodes();
 	}
 
 	/**

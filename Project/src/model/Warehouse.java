@@ -285,23 +285,14 @@ public class Warehouse {
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
 
-	public String getRobotID(int i) {
-		return robotList.get(i).getID();
-	}
-
-<<<<<<< HEAD
 	public String getRobotID() {
-		String robotID = "";
-		for(int i = 0; i < robotList.size(); i++) {
+		String robotID = ""; 
+		for (int i = 0; i < robotList.size(); i++) {
 			robotID += robotList.get(i).getID() + " \n";
 		}
 		return robotID;
-=======
-	public ArrayList<Robot> getRobotList(){
-		return robotList;
->>>>>>> 52f92d256f7a3f0fbe1493482935cc2e5261abac
 	}
-	
+
 	public String getPackingID() {
 		String packingID = ""; 
 		for (int i = 0; i < packingList.size(); i++) {
@@ -309,7 +300,7 @@ public class Warehouse {
 		}
 		return packingID;
 	}
-	
+
 
 	/**
 	 * Reads needed values from a SIM file
