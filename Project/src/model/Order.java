@@ -38,10 +38,9 @@ public class Order {
 	 * processData(); for (int i = 0; i < coordinates.length; i+=4) { for (int j =
 	 * 0; j < coordinates.length; j+)
 	 * 
-	 * } 
-	 * }
+	 * } }
 	 */
-	
+
 	/**
 	 * Reads the .sim file and stores each line in an ArrayList
 	 * 
@@ -82,46 +81,43 @@ public class Order {
 		try {
 			Scanner scanner = new Scanner(file);
 			clearLists();
-			while(scanner.hasNextLine()) {
+			while (scanner.hasNextLine()) {
 				String line = scanner.nextLine();
-			
-				if(line.contains("podRobot")) {
+
+				if (line.contains("podRobot")) {
 					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length;i++) {
+					for (int i = 0; i < temp.length; i++) {
 						podRob.add(temp[i]);
 					}
-				
-				}
-				else if(line.contains("shelf")) {
+
+				} else if (line.contains("shelf")) {
 					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length;i++) {
+					for (int i = 0; i < temp.length; i++) {
 						shelves.add(temp[i]);
-						}
-					
-				}
-				else if(line.contains("station")) {
-					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length;i++) {
-					stations.add(temp[i]);
 					}
-				}
-				else if(line.contains("order")){
+
+				} else if (line.contains("station")) {
 					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length;i++) {
+					for (int i = 0; i < temp.length; i++) {
+						stations.add(temp[i]);
+					}
+				} else if (line.contains("order")) {
+					String[] temp = line.split(" ");
+					for (int i = 0; i < temp.length; i++) {
 						orders.add(temp[i]);
 					}
-				}
-				else {
+				} else {
 					String[] temp = line.split(" ");
-					for (int i = 0; i < temp.length;i++) {
+					for (int i = 0; i < temp.length; i++) {
 						configuration.add(temp[i]);
+					}
 				}
 			}
-			} scanner.close();
+			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-	
+
 	}
 
 	/**
@@ -135,17 +131,20 @@ public class Order {
 		orders.clear();
 		configuration.clear();
 	}
-	
 
 	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen
 		file = f;
 	}
 
-	private ArrayList<String> getPodRob(){
+	static ArrayList<String> getPodRob() {
 		return podRob;
 	}
 	
+	static ArrayList<String> getConfiguration() {
+		return configuration;
+	}
+
 	/**
 	 * Checks if an order has been completed, and moves it to "completedOrders" if
 	 * it is completed.

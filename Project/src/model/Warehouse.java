@@ -185,6 +185,40 @@ public class Warehouse {
 		}
 		return robots;
 	}
+	
+	/**
+	 * Reads needed values from a SIM file
+	 */
+	public void readRobotCoordinates() {
+		for (int i = 0; i < Order.getPodRob().size(); i+=3) {
+			Integer x = Integer.valueOf(Order.getPodRob().get(i));
+			System.out.println(x);
+			for (int j = 0; j < Order.getPodRob().size(); j+=4) {
+				Integer y = Integer.valueOf(Order.getPodRob().get(j));
+				System.out.println(y);
+				addRobot(x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
+			}
+		}
+		
+	}
+	
+	/**
+	 * Reads battery level from a SIM file
+	 * @return
+	 */
+	public int readBatteryLevel() {
+		Integer capacity =  Integer.valueOf(Order.getConfiguration().get(7));
+		return capacity.intValue();
+	}
+	
+	/**
+	 * Reads charge rate from a SIM file
+	 */
+	public int readChargeRate() {
+		Integer chargeRate = Integer.valueOf(Order.getConfiguration().get(9));
+		return chargeRate.intValue();
+	}
+	
 
 	/**
 	 * Get the an ArrayList of coordinates of every charging pod
@@ -249,7 +283,7 @@ public class Warehouse {
 		manhattan.manhattanCalc(destination);
 		if (!robotList.isEmpty()) {
 			//hashmap = robotList.get(0).move();
-			HashMap<Point, Point> hashmap = manhattan.getNewNodes();
+			HashMap<Point, Point> hashmap = Manhattan.getNewNodes();
 			System.out.println("hashmap size: " + hashmap.size());
 			ArrayList<Point> robots = robotPoints();
 			for (int i = 0; i < robotList.size(); i++) {
