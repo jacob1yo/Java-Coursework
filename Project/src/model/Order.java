@@ -142,8 +142,13 @@ public class Order {
 		file = f;
 	}
 
-	private ArrayList<String> getPodRob(){
-		return podRob;
+	public static ArrayList<String> getPodRob(){
+		ArrayList<String> podRobot = podRob;
+		return podRobot;
+	}
+	
+	static ArrayList<String> getConfiguration() {
+		return configuration;
 	}
 	
 	/**
