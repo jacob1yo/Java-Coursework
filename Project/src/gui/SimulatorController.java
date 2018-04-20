@@ -48,35 +48,9 @@ public class SimulatorController {
 	 */
 	@FXML private GridPane grid;
 	
-
-	/**
-	 * The listview for the robot entities.
-	 */
 	@FXML private ListView<String> listRobots;
 	
-
-	/**
-	 * The listview for the packing station entities. 
-	 */
 	@FXML private ListView<String> listPacking;
-	
-
-	/**
-	 * Lists the unassigned orders.
-	 */
-	@FXML private ListView<String> listUnassigned;
-	
-
-	/**
-	 * Lists the assigned orders.
-	 */
-	@FXML private ListView<String> listAssigned;
-	
-
-	/**
-	 * Lists the dispatched orders.
-	 */
-	@FXML private ListView<String> listDispatched;
 	
 	private ArrayList<Circle> circleList;
 
@@ -110,16 +84,23 @@ public class SimulatorController {
 		addRobots();
 		addStorage();
 		addPackage();
-
+<<<<<<< HEAD
+		
+<<<<<<< HEAD
 		listRobots.getItems().addAll(warehouse.getRobotID());
-
+=======
 		for(int i = 0; i < warehouse.getRobotList().size(); i++) {
 			listRobots.getItems().addAll(warehouse.getRobotID(i));
 		}
+<<<<<<< HEAD
 
+=======
 
 		listRobots.getItems().addAll(warehouse.getRobotID());
-
+>>>>>>> 3b044998c0b9c4a1e9f5d3a492151e4c69a903c4
+=======
+>>>>>>> 52f92d256f7a3f0fbe1493482935cc2e5261abac
+>>>>>>> parent of 066a1a4... Adding
 		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		listPacking.getItems().addAll(warehouse.getPackingID());
