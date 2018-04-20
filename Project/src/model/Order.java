@@ -9,7 +9,6 @@ package model;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Order {
@@ -70,7 +69,10 @@ public class Order {
 		}
 	}
 */
-	// This method will be used tomorrow to separate out the orders
+	/**
+	 * Reads the .sim file and stores each line in an ArrayList
+	 * @return
+	 */
 	public static ArrayList<String> printCommands(){
 		try{
 			Scanner scanner = new Scanner(file);
@@ -86,7 +88,10 @@ public class Order {
 		return commands;
 	}
 	
-	
+	/**
+	 * Prints the .sim file in the GUI
+	 * @return
+	 */
 	public static String getCommands(){
 		String line = "";
 		for(int i=0; i < commands.size(); i++ ) {
@@ -95,6 +100,9 @@ public class Order {
 		return line;
 	}
 	
+	/**
+	 * Filters the results from the .sim file into their respective ArrayLists
+	 */
 	public void fillLists() {
 		try {
 			Scanner scanner = new Scanner(file);
@@ -124,6 +132,9 @@ public class Order {
 		
 	}
 	
+	/**
+	 * Clears all the ArrayLists
+	 */
 	public void clearLists() { 
 		podRob.clear();
 		shelves.clear();
@@ -138,11 +149,6 @@ public class Order {
 		file = f;
 	}
 
-	
-	/**
-	 * Shows the list of orders.
-	 */
-	public void show() {}
 	
 	/**
 	 * Checks if an order has been completed, and moves it to
