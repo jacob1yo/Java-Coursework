@@ -92,13 +92,6 @@ public class ChargingPod extends Warehouse implements Entity {
 	}
 	
 	/**
-	 * Decrease lastNum field by 1.
-	 */
-	public void decreaseUID() {
-		lastNum--;
-	}
-	
-	/**
 	 * 
 	 */
 	public void updateChargeRate(int chargeRate) {
