@@ -290,11 +290,6 @@ public class Warehouse {
 		for(int i = 0; i < robotList.size(); i++) {
 			robotID += robotList.get(i).getID() + ", ";
 		}
-		
-		/*for (Robot robot: robotList) {
-			robotID = robot.getID();
-			System.out.println("IDENTITY: " + robotID);
-		}*/
 		return robotID;
 	}
 
@@ -374,5 +369,4 @@ public class Warehouse {
 			}
 		}
 	}
-
 }
