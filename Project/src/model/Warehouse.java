@@ -284,9 +284,6 @@ public class Warehouse {
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
-<<<<<<< HEAD
-=======
-	
 
 	public String getRobotList() {
 		
@@ -306,12 +303,7 @@ public class Warehouse {
 		return robotID;
 		
 	}
-<<<<<<< HEAD
-		
-=======
->>>>>>> f0840fe83f178b1a85c991c6f0051b8801f49e59
 
->>>>>>> 411b2240994b5b116ff6cd5128bfd40034f67192
 	/**
 	 * Reads needed values from a SIM file
 	 */
