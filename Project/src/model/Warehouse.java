@@ -284,17 +284,18 @@ public class Warehouse {
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
 	
-<<<<<<< HEAD
+
 	public String getRobotList() {
-		String temp = "";
+	/*	String temp = "";
 		for (Robot robot: robotList) {
 			temp = robot.getID();
+			System.out.println(temp);
 		}
-			return temp;
+			return temp;*/
 			
-		
+		return "This is a test";
 	}
-=======
+
 	/**
 	 * Reads needed values from a SIM file
 	 */
@@ -327,6 +328,5 @@ public class Warehouse {
 		Integer chargeRate = Integer.valueOf(Order.getConfiguration().get(9));
 		return chargeRate.intValue();
 	}
->>>>>>> 2de4ce845d5bdf1c6c3c292ac2b1f5a1ce6f86fa
 
 }
