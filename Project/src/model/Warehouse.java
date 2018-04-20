@@ -284,6 +284,21 @@ public class Warehouse {
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
+<<<<<<< HEAD
+=======
+	
+
+	public String getRobotList() {
+	/*	String temp = "";
+		for (Robot robot: robotList) {
+			temp = robot.getID();
+			System.out.println(temp);
+		}
+			return temp;*/
+			
+		return "This is a test";
+	}
+>>>>>>> f0840fe83f178b1a85c991c6f0051b8801f49e59
 
 	/**
 	 * Reads needed values from a SIM file
