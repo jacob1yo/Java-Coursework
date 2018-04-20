@@ -84,8 +84,23 @@ public class SimulatorController {
 		addRobots();
 		addStorage();
 		addPackage();
+<<<<<<< HEAD
+		
+<<<<<<< HEAD
+		listRobots.getItems().addAll(warehouse.getRobotID());
+=======
+		for(int i = 0; i < warehouse.getRobotList().size(); i++) {
+			listRobots.getItems().addAll(warehouse.getRobotID(i));
+		}
+<<<<<<< HEAD
+
+=======
 
 		listRobots.getItems().addAll(warehouse.getRobotID());
+>>>>>>> 3b044998c0b9c4a1e9f5d3a492151e4c69a903c4
+=======
+>>>>>>> 52f92d256f7a3f0fbe1493482935cc2e5261abac
+>>>>>>> parent of 066a1a4... Adding
 		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		listPacking.getItems().addAll(warehouse.getPackingID());
