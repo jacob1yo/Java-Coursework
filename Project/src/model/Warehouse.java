@@ -203,7 +203,7 @@ public class Warehouse {
 	/**
 	 * Reads needed values from a SIM file
 	 */
-	public void readRobotCoordinates() {
+	public void readRobotData() {
 		for (int i = 0; i < Order.getPodRob().size(); i+=3) {
 			Integer x = Integer.valueOf(Order.getPodRob().get(i));
 			System.out.println(x);
@@ -313,6 +313,13 @@ public class Warehouse {
 		Double x = next.getX();
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
+	}
+	
+	/**
+	 * Displays the robot on the screen
+	 */
+	public void showRobot() {
+		
 	}
 
 }
