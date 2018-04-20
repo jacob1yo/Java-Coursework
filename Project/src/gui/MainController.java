@@ -295,6 +295,7 @@ public class MainController {
 		battery.setDisable(true);
 		charge.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
+		Order.fillLists();
 		
 	}
 	

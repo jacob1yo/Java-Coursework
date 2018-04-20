@@ -103,14 +103,18 @@ public class Order {
 	/**
 	 * Filters the results from the .sim file into their respective ArrayLists
 	 */
-	public void fillLists() {
+	public static void fillLists() {
 		try {
 			Scanner scanner = new Scanner(file);
 			clearLists();
 			while(scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				if(line.contains("podRobot")) {
-					podRob.add(line);
+					String[] temp = line.split(" ");
+					for (int i = 0; i < temp.length;i++) {
+						podRob.add(temp[i]);
+					}
+				
 				}
 				else if(line.contains("shelf")) {
 					shelves.add(line);
@@ -129,13 +133,14 @@ public class Order {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		System.out.println(podRob.size());
 		
 	}
 	
 	/**
 	 * Clears all the ArrayLists
 	 */
-	public void clearLists() { 
+	public static void clearLists() { 
 		podRob.clear();
 		shelves.clear();
 		stations.clear();
