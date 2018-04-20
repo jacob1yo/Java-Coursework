@@ -92,13 +92,6 @@ public class ChargingPod extends Warehouse implements Entity {
 	}
 	
 	/**
-	 * Decrease lastNum field by 1.
-	 */
-	public void decreaseUID() {
-		lastNum--;
-	}
-	
-	/**
 	 * 
 	 */
 	public void updateChargeRate(int chargeRate) {
@@ -120,6 +113,12 @@ public class ChargingPod extends Warehouse implements Entity {
 	public boolean compare(Entity r) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	@Override
+	public void changeId(String newUid) {
+		uid = newUid;
+		
 	}
 
 }
