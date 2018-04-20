@@ -41,7 +41,7 @@ public class SimulatorController {
 	private Warehouse warehouse;
 	
 	/**
-	 * The grid from Simulator.fxml
+	 * The grid from Simulator.fxml.
 	 */
 	@FXML private GridPane grid;
 	
