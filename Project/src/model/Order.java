@@ -135,12 +135,17 @@ public class Order {
 		orders.clear();
 		configuration.clear();
 	}
+	
 
 	public static void setFile(File f) {
 		// happens in maincontroller just sets the file that's been chosen
 		file = f;
 	}
 
+	private ArrayList<String> getPodRob(){
+		return podRob;
+	}
+	
 	/**
 	 * Checks if an order has been completed, and moves it to "completedOrders" if
 	 * it is completed.
