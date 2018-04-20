@@ -199,6 +199,40 @@ public class Warehouse {
 		robotPoints = robots;
 		return robots;
 	}
+	
+	/**
+	 * Reads needed values from a SIM file
+	 */
+	public void readRobotData() {
+		for (int i = 0; i < Order.getPodRob().size(); i+=3) {
+			Integer x = Integer.valueOf(Order.getPodRob().get(i));
+			System.out.println(x);
+			for (int j = 0; j < Order.getPodRob().size(); j+=4) {
+				Integer y = Integer.valueOf(Order.getPodRob().get(j));
+				System.out.println(y);
+				addRobot(x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
+			}
+		}
+		
+	}
+	
+	/**
+	 * Reads battery level from a SIM file
+	 * @return
+	 */
+	public int readBatteryLevel() {
+		Integer capacity =  Integer.valueOf(Order.getConfiguration().get(7));
+		return capacity.intValue();
+	}
+	
+	/**
+	 * Reads charge rate from a SIM file
+	 */
+	public int readChargeRate() {
+		Integer chargeRate = Integer.valueOf(Order.getConfiguration().get(9));
+		return chargeRate.intValue();
+	}
+	
 
 	public static ArrayList<Point> getRobotPoints(){
 		return robotPoints;
@@ -267,8 +301,6 @@ public class Warehouse {
 		manhattan.manhattanCalc(destination);
 		if (!robotList.isEmpty()) {
 			//hashmap = robotList.get(0).move();
-			hashmap = manhattan.getNewNodes();
-			System.out.println("hashmap size: " + hashmap.size());
 			return hashmap;
 		}
 		return null;
@@ -281,6 +313,13 @@ public class Warehouse {
 		Double x = next.getX();
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
+	}
+	
+	/**
+	 * Displays the robot on the screen
+	 */
+	public void showRobot() {
+		
 	}
 
 }

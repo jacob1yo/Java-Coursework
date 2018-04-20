@@ -67,17 +67,10 @@ public class StorageShelf extends Warehouse implements Entity{
 		lastNum = 0;
 	}
 	
-	/**
-	 * Decrease lastNum field by 1.
-	 */
-	public void decreaseUID() {
-		lastNum--;
-	}
-	
 	@Override
 	public void generateID() {
 		int num = lastNum++;
-		uid = "s" + num;
+		uid = "ss" + num;
 		
 	}
 
