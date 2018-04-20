@@ -296,15 +296,24 @@ public class MainController {
 		charge.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 		Order.fillLists();
-		Order.del();
+		addRobots();
 		
 	}
 	
 	public void addRobots() {
-		Circle circle = new Circle(20);
-		circle.setFill(Color.GREEN);
-		
-		System.out.println("Size: " + warehouse.robotPoints().size());
+		Integer x = 0;
+		Integer y = 0;
+		for(int i = 0; i < Order.getPodRob().size(); i++) {
+			Circle circle = new Circle(20);
+			circle.setFill(Color.GREEN);
+			for(int j = 3; j < Order.getPodRob().size(); j+=5) {
+				x = Integer.valueOf(Order.getPodRob().get(j));
+			}
+			for(int k = 4; k < Order.getPodRob().size(); k+=5) {
+				y = Integer.valueOf(Order.getPodRob().get(k));
+			}
+			grid.add(circle, x.intValue(), y.intValue());
+		}
 	}
 	
 	public static ArrayList<Point> getFreeSpaces(int numCols, int numRows){
