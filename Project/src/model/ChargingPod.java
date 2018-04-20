@@ -11,7 +11,7 @@ import java.awt.Point;
 
 public class ChargingPod extends Warehouse implements Entity {
 	/**
-	 * The x coordinate of a charging pod on the grid
+	 * The x coordinate of a charging pod on the grid.
 	 */
 	//private int chargingX;
 	
