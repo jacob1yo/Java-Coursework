@@ -297,7 +297,7 @@ public class MainController {
 		battery.setDisable(true);
 		charge.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
-		
+	
 	}
 	
 	public static ArrayList<Point> getFreeSpaces(int numCols, int numRows){

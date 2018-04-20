@@ -14,6 +14,7 @@ import gui.MainController;
  */
 
 public class Robot extends Warehouse implements Entity  {
+<<<<<<< HEAD
 
 	/**
 	 * The x coordinate of a robot on the grid
@@ -26,6 +27,10 @@ public class Robot extends Warehouse implements Entity  {
 
 	protected int robotY;*/
 
+=======
+	
+	
+>>>>>>> origin/master
 	/**
 	 * When calculating the distance, there is a twenty percent safety margin of
 	 * battery power
@@ -35,7 +40,8 @@ public class Robot extends Warehouse implements Entity  {
 	 *      The battery level of the robot
 	 * @see #getBatteryLevel, #decreaseBatteryLevel
 	 */
-	private int safetyMargin, batteryLevel;
+	private int batteryLevel;
+	private double safetyMargin;
 
 	/**
 	 * Whether the robot is currently processing an order or not
@@ -59,7 +65,7 @@ public class Robot extends Warehouse implements Entity  {
 	//add fields, explain how this might change
 
 	public Robot() {
-		safetyMargin = 20;
+		safetyMargin = 0.2;
 		orderStatus = false;
 		generateID();
 	}
@@ -98,7 +104,7 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public boolean  orderDecision() {
 		if (orderStatus == false) {
-			if(actualdistance <CostEstimationStrategy.distanceToTicks() + safetyMargin) {
+			if(CostEstimationStrategy.distanceToSteps() < (safetyMargin*batteryLevel)) {
 				move();
 				return true;
 			}
@@ -118,6 +124,7 @@ public class Robot extends Warehouse implements Entity  {
 			 */
 
 		}
+		return orderStatus;
 	}
 
 	/**

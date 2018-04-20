@@ -12,49 +12,35 @@ import java.util.ArrayList;
 public class CostEstimationStrategy extends Robot {
 	
 	
-	/**
-	 * Start location for the algorithm.
-	 * @see #distanceCalculator
-	 */
-	private Point startPosition; // x and y of the start position
+	
 	
 	/**
-	 * End location for the algorithm.
+	 * Stores the distance estimated.
 	 * @see #distanceCalculator
 	 */
-	private Point endPosition;//x and y of the end position
+	private static double distanceEstimate;
 
-	private Point byPosition;//x and y of the end position
-	
-	private double distanceEstimate;
-
-
+	/**
+	 * Stores the no number of steps required for the estimated as double.
+	 * @see #distanceCalculator
+	 */
+	private static double noSteps;
 	
 	public CostEstimationStrategy() {
 		super();
-		startPosition = robotCoordinates;
-		endPosition = PackingStation.getPackingCoordinates();
-		byPosition=StorageShelf.getStorageCoordinates();
-		//route = new Point[2];
+		noSteps=0.0;
+		distanceEstimate=0.0;
 	}
+
 
 	/**
 	 * Calculates the distance from one point to another.
-	 * @param firstStop 
-	 * @param secondStop 
-	 * @param returnStop 
+	 * @param r2s 
+	 * @param s2p 
+	 * @param p2c 
 	 * @return <code>double</code> Distance between locations
 	 * this is repeated code, so we will write down the maths into a single function and call the function in every time with parameters
 	 */
-	/*public double distanceCalculator(double firstStop, double secondStop, double returnStop) {
-		firstStop=Math.sqrt((Math.pow(startPosition.getX()-byPosition.getX(),2))+(Math.pow(startPosition.getY()-byPosition.getY(),2)));
-		secondStop=Math.sqrt((Math.pow(byPosition.getX()-endPosition.getX(),2))+(Math.pow(byPosition.getY()-endPosition.getY(),2)));
-		returnStop=Math.sqrt((Math.pow(endPosition.getX()-startPosition.getX(),2))+(Math.pow(endPosition.getY()-startPosition.getY(),2)));
-		distanceEstimate=firstStop+secondStop+returnStop;
-		return distanceEstimate;
-	}*/
-
-
 	public double distanceCalculator (double r2s, double s2p, double p2c) {
 		robotPoints().get(1).getX();
 		int i =0;
@@ -68,12 +54,10 @@ public class CostEstimationStrategy extends Robot {
 	
 	}
 	
-	public static double distanceToTicks() {
-		double ticks = (1.415*distanceEstimate)-0.2762;
-		return ticks;
-		/*
-		 * a method to create a corelation and convert distances to ticks in order to estimate wheter or not could accept the order.
-		 */
+	public static double distanceToSteps() {
+		 noSteps = (0.7062*distanceEstimate)+0.05221;
+		System.out.println(noSteps);
+		 return noSteps;
 	}
 	
 	
