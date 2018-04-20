@@ -112,6 +112,9 @@ public class SimulatorController {
 		
 		listPacking.getItems().addAll(warehouse.getPackingID());
 		listPacking.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
+		
+		
 	}
 	
 	public void addColumns() {

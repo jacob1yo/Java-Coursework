@@ -363,7 +363,6 @@ public class Warehouse {
 			}	
 
 		}
-
 	}
 
 	public void showPackingStations() {

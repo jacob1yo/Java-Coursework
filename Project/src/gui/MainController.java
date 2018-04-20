@@ -298,7 +298,6 @@ public class MainController {
 		Order.fillLists();
 		warehouse.readRobotData();
 		addRobots();
-		
 	}
 	
 	public void addRobots() {

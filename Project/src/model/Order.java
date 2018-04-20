@@ -214,5 +214,11 @@ public class Order {
 			storagePoints.add(storages);
 		}
 	}
+	
+	public static void del() {
+		for (int i = 0; i < podRob.size(); i++) {
+			System.out.println(podRob.get(i));
+		}
+	}
 
 }
