@@ -268,7 +268,6 @@ public class Warehouse {
 		if (!robotList.isEmpty()) {
 			//hashmap = robotList.get(0).move();
 			hashmap = manhattan.getNewNodes();
-			System.out.println("hashmap size: " + hashmap.size());
 			return hashmap;
 		}
 		return null;

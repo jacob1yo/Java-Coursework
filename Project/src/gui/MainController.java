@@ -313,8 +313,6 @@ public class MainController {
 	 */
 	@FXML
 	public void startPressed() {
-		warehouse.freeSpacePoints(numCols, numRows);
-		System.out.println("Number of Freespaces: " + warehouse.freeSpacePoints(numCols, numRows).size());
 		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Simulator.FXML"));
 		final SimulatorController simulatorController = new SimulatorController();

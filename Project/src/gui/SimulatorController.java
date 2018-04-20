@@ -48,7 +48,6 @@ public class SimulatorController {
 		finalGridHeight = MainController.getNumRows();
 		finalGridWidth = MainController.getNumCols();
 		warehouse = MainController.warehouse;
-		System.out.println("Height: " + finalGridHeight + " Width: " + finalGridWidth);
 		circleList = new ArrayList<Circle>();
 	}
 
@@ -98,7 +97,6 @@ public class SimulatorController {
 			Circle circle = new Circle(20);
 			circle.setFill(Color.GREEN);
 			circleList.add(circle);
-			System.out.println("addRobots: " + circleList.size());
 			Rectangle rect = new Rectangle(50,50);
 			rect.setFill(Color.BLUE);
 			
@@ -165,7 +163,6 @@ public class SimulatorController {
 		ArrayList<Point> robots = warehouse.robotPoints();
 		for(int i = 0; i < hashmap.size(); i++) {
 			Point current = robots.get(i);
-			System.out.println("move current:" + current);
 			Point next = hashmap.get(current);
 			moveRobot(i, current, next);
 			warehouse.moveRobot(i);
@@ -174,7 +171,6 @@ public class SimulatorController {
 	
 	public void moveRobot(int i,Point current, Point next) {
 		//Removes the current circle representing the robot from the grid
-		System.out.println("moveRobot: " + circleList.size());
 		Circle delCirc = circleList.get(i);	//may need to remove if this doesn't work
 		grid.getChildren().remove(delCirc);	//may need to remove if this doesn't work
 		circleList.remove(i);				//may need to remove if this doesn't work
@@ -192,6 +188,13 @@ public class SimulatorController {
 	@FXML
 	public void oneTickPressed() {
 		move();
+	}
+	
+	@FXML
+	public void tenTicksPressed() {
+		for(int i = 0; i < 10; i++) {
+			move();
+		}
 	}
 
 }

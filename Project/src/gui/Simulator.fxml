@@ -11,7 +11,7 @@
       <HBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onAction="#oneTickPressed" text="1 tick" />
-            <Button mnemonicParsing="false" text="10 ticks" />
+            <Button mnemonicParsing="false" onAction="#tenTicksPressed" text="10 ticks" />
             <Button mnemonicParsing="false" text="End" />
             <Button mnemonicParsing="false" onAction="#returnPressed" text="Return" />
          </children>
