@@ -25,7 +25,7 @@ public class Warehouse {
 
 	/**
 	 * Creates a new robot and corresponding charging pod, and adds both to their
-	 * own ArrayList
+	 * own ArrayList.
 	 * 
 	 * @param x
 	 * @param y
@@ -284,6 +284,10 @@ public class Warehouse {
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> dabc22d4f1378360aa44fae252680de231217405
 
 	public String getRobotList() {
 		String robotID = "";
