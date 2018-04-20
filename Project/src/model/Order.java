@@ -95,74 +95,33 @@ public class Order {
 		return line;
 	}
 	
-	public void fillPodRobList() {
+	public void fillLists() {
 		try {
 			Scanner scanner = new Scanner(file);
+			clearLists();
 			while(scanner.hasNextLine()) {
 				String line = scanner.nextLine();
 				if(line.contains("podRobot")) {
 					podRob.add(line);
 				}
-				scanner.close();
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		System.out.println(podRob.size()); //delete manual test after; need to clear list after
-	}
-	
-	public void fillShelvesList() {
-		try {
-			Scanner scanner = new Scanner(file);
-			while(scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				if(line.contains("shelf")){
+				else if(line.contains("shelf")) {
 					shelves.add(line);
 				}
-			}
-			scanner.close();
-		}catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		System.out.println(shelves.size()); //delete manual test after; need to clear list after
-	}
-	
-	public void fillStationsList() {
-		try {
-			Scanner scanner = new Scanner(file);
-			while(scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				if(line.contains("station")) {
+				else if(line.contains("station")) {
 					stations.add(line);
 				}
-			}
-			scanner.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		System.out.println(stations.size()); //delete manual test after; need to clear list after
-	}
-	
-	public static void fillOrdersList() {
-		try {
-			Scanner scanner = new Scanner(file);
-			while(scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				if(line.contains("order")) {
-					orders.add(line);		
+				else if(line.contains("order")){
+					orders.add(line);
 				}
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
-		for (int i = 0; i < orders.size(); i++) {
-			System.out.println(orders.get(i).toString() + "\n"); // test
 		}
 		
 	}
 	
-	public void clearLists() { //needs to be implemented
+	public void clearLists() { 
 		podRob.clear();
 		shelves.clear();
 		stations.clear();

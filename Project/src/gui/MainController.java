@@ -295,10 +295,8 @@ public class MainController {
 		battery.setDisable(true);
 		charge.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
-		Order.fillOrdersList();
+		
 	}
-	
-
 	
 	/**
 	 * Opens a new window where the simulation can be run through
