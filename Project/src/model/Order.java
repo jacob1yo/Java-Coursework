@@ -33,15 +33,6 @@ public class Order {
 
 	public Order() {
 	}
-
-	/*
-	 * public static ArrayList<Point> getCoordinates() { String[] coordinates =
-	 * processData(); for (int i = 0; i < coordinates.length; i+=4) { for (int j =
-	 * 0; j < coordinates.length; j+)
-	 * 
-	 * } 
-	 * }
-	 */
 	
 	/**
 	 * Reads the .sim file and stores each line in an ArrayList

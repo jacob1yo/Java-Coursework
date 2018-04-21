@@ -202,15 +202,6 @@ public class Warehouse {
 		robotPoints = robots;
 		return robots;
 	}
-	
-	public void addToPoints() {
-		for(int i = 0; i < Order.getPodRob().size(); i+=5) {
-			Integer x = Integer.valueOf(Order.getPodRob().get(i+3)).intValue();
-			Integer y = Integer.valueOf(Order.getPodRob().get(i+4)).intValue();
-			Point p = new Point(x, y);
-			robotPoints.add(p);
-		}
-	}
 
 	public static ArrayList<Point> getRobotPoints() {
 		return robotPoints;
@@ -317,11 +308,13 @@ public class Warehouse {
 	 * Reads needed values from a SIM file
 	 */
 	public void readRobotData() {
-		Integer x = Integer.valueOf(Order.getPodRob().get(3));
+		for(int i = 0; i < Order.getPodRob().size(); i+=5) {
+		Integer x = Integer.valueOf(Order.getPodRob().get(i+3));
 		System.out.println(x);
-		Integer y = Integer.valueOf(Order.getPodRob().get(4));
+		Integer y = Integer.valueOf(Order.getPodRob().get(i+4));
 		System.out.println(y);
 		addRobot(x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
+		}
 	}
 
 	/**
