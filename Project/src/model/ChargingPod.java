@@ -43,10 +43,10 @@ public class ChargingPod extends Warehouse implements Entity {
 
 	public ChargingPod(int x, int y) {
 		chargingCoordinates = new Point(x, y);
-		generateID();
+		//generateID();
 		occupied = false;
-	//	this.chargingX = chargingX;
-	//	this.chargingY = chargingY;
+		//this.chargingX = chargingX;
+		//this.chargingY = chargingY;
 	}
 	
 	/**
@@ -101,7 +101,6 @@ public class ChargingPod extends Warehouse implements Entity {
 	public void generateID() {
 		int num = lastNum++;
 		uid = "c" + num;
-
 	}
 
 	@Override
@@ -116,9 +115,8 @@ public class ChargingPod extends Warehouse implements Entity {
 	}
 
 	@Override
-	public void changeId(String newUid) {
+	public void setId(String newUid) {
 		uid = newUid;
-		
 	}
 
 }

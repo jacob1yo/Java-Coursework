@@ -42,7 +42,7 @@ public class PackingStation extends Warehouse implements Entity{
 	public PackingStation(int x, int y) {
 		packingCoordinates = new Point(x, y);
 		completed = false;
-		generateID();
+		//generateID();
 	/*	this.packingX = packingX;
 		this.packingY = packingY;*/
 	}
@@ -132,16 +132,16 @@ public class PackingStation extends Warehouse implements Entity{
 	public String getID() {
 		return uid;
 	}
-	
-	@Override
-	public void changeId(String newUid) {
-		uid = newUid;
-	}
 
 	@Override
 	public boolean compare(Entity r) {
 		// TODO Auto-generated method stub
 		return true;
 
+	}
+
+	@Override
+	public void setId(String newUid) {
+		uid = newUid;
 	}
 }

@@ -33,8 +33,8 @@ public class StorageShelf extends Warehouse implements Entity{
 	
 	public StorageShelf(int x, int y) {
 		storageCoordinates = new Point(x, y);
-		generateID();
-	//	this.storageX =storageX;
+		//generateID();
+		//this.storageX =storageX;
 		//this.storageY = storageY;
 	}
 	
@@ -84,10 +84,10 @@ public class StorageShelf extends Warehouse implements Entity{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
+
 	@Override
-	public void changeId(String oldId, String newUid) {
-		uid.replace(oldId, newUid);
+	public void setId(String newUid) {
+		uid = newUid;
 	}
 
 }

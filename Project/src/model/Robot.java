@@ -61,7 +61,7 @@ public class Robot extends Warehouse implements Entity  {
 	public Robot() {
 		safetyMargin = 0.2;
 		orderStatus = false;
-		generateID();
+		//generateID();
 	}
 	/*
 	 * The current battery level of the robot.
@@ -202,12 +202,6 @@ public class Robot extends Warehouse implements Entity  {
 		int num = lastNum++;
 		uid = "r" + num;
 	}
-	
-	public void changeId(String newUid) {
-		uid = newUid;
-		
-		
-	}
 
 	@Override
 	public String getID() {
@@ -218,5 +212,9 @@ public class Robot extends Warehouse implements Entity  {
 	public boolean compare(Entity r) {
 		// TODO Auto-generated method stub
 		return true;
+	}
+	@Override
+	public void setId(String newUid) {
+		uid = newUid;
 	}
 }

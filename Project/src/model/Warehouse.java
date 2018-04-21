@@ -351,21 +351,6 @@ public class Warehouse {
 		return chargeRate.intValue();
 	}
 
-	public void changeIds() {
-		for(int i = 0; i < storageList.size(); i++) {
-			for(int j = 1; j < Order.getStorageShelves().size(); j+=4) {
-				storageList.get(i).changeId(storageList.get(i).getID(),Order.getStorageShelves().get(j));
-			}
-		}
-		for(int i = 0; i < storageList.size(); i++) {
-			System.out.println("org: " + storageList.get(i).getID());
-			System.out.println("New Storage: " + storageList.get(i).getID());
-		}
-		for(int j = 1; j < Order.getStorageShelves().size(); j+=4) {
-				System.out.println("gweg: " + Order.getStorageShelves().get(j));
-		}
-	}
-
 	public static ArrayList<StorageShelf> getStorageShelfs(){
 		return storages;
 	}
