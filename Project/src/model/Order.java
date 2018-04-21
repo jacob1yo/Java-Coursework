@@ -154,11 +154,11 @@ public class Order {
 		return configuration;
 	}
 	
-	static ArrayList<String> getPackingStations() {
+	public static ArrayList<String> getPackingStations() {
 		return stations;
 	}
 	
-	static ArrayList<String> getStorageShelves() {
+	public static ArrayList<String> getStorageShelves() {
 		return shelves;
 	}
 	

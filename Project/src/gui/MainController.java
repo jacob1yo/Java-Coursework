@@ -312,7 +312,7 @@ public class MainController {
 		//addRobots();
 		warehouse.readRobotData();
 		addRobots();
-
+		addStorage();
 	}
 	
 	public void setUpGrid() {
@@ -356,6 +356,15 @@ public class MainController {
 	public void addStorage() {
 		Integer x = 0;
 		Integer y = 0;
+		for(int i = 1; i < Order.getStorageShelves().size(); i+=4) {
+			Polygon triangle = new Polygon();
+			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
+			triangle.setFill(Color.RED);
+			GridPane.setHalignment((Node) triangle, HPos.CENTER);
+			x = Integer.valueOf(Order.getStorageShelves().get(i+1));
+			y = Integer.valueOf(Order.getStorageShelves().get(i+2));
+			grid.add(triangle, x, y);
+		}
 	}
 	
 	public static ArrayList<Point> getFreeSpaces(int numCols, int numRows){
