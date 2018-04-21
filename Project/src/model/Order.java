@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Order {
@@ -26,7 +27,7 @@ public class Order {
 	private static ArrayList<String> shelves = new ArrayList<String>();
 	private static ArrayList<String> stations = new ArrayList<String>();
 	private static File file;
-
+	private static HashMap<String, Point> storagePoints = new HashMap<String, Point>();
 	/**
 	 * Reads the orders from a file.
 	 */
@@ -190,7 +191,7 @@ public class Order {
 	/**
 	 * Converts orders to an ArrayList of an ArrayList of storage shelf points
 	 */
-	public static void ordersToPoints() {
+	/*public static void ordersToPoints() {
 		ArrayList<ArrayList<Point>> storagePoints = new ArrayList<ArrayList<Point>>();
 		ArrayList<Point> storages = new ArrayList<Point>();
 		for(int i = 0; i < orders.size(); i++) {
@@ -204,6 +205,13 @@ public class Order {
 			}
 			storagePoints.add(storages);
 		}
+	}*/
+	public static HashMap<String, Point> storagePoints() {
+		for(int i = 0; i < Warehouse.getStorageShelfs().size(); i++) {
+			storagePoints.put(Warehouse.getStorageShelfs().get(i).getID(), Warehouse.getStorageShelfs().get(i).getStorageCoordinates());
+		}
+		System.out.println("ejwkfg: " + storagePoints.size());
+		return storagePoints;
 	}
 	
 	public static void del() {

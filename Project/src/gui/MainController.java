@@ -194,7 +194,7 @@ public class MainController {
 				GridPane.setHalignment((Node) rect, HPos.CENTER);
 			}
 			else if(pressed.equals("storage")) {
-				warehouse.addStorage(col, row);
+				warehouse.addStorage(null, col, row);
 				Polygon triangle = new Polygon();
 				triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 				triangle.setFill(Color.RED);
@@ -316,7 +316,7 @@ public class MainController {
 		addRobots();
 		addStorage();
 		addPacking();
-		warehouse.changeIDs();
+		Order.storagePoints();
 	}
 	
 	public void setUpGrid() {
