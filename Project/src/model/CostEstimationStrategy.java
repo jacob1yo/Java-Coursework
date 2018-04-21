@@ -74,6 +74,16 @@ public class CostEstimationStrategy extends Robot {
 		}
 	}
 	
+	public void distanceEstimator() {
+		for (int i=0; i< Order.getOrders().size(); i++) {
+			for (int j=2; j< Order.getOrders().get(i).size(); j++) {//get the sentence i.e order 9 ss0 ss3 ss1 etc 
+				Order.getOrders().get(i).get(j); // gets the ss1 ss2 etc
+			
+			}
+		}
+		
+	}
+	
 /*	public void test() {
 		System.out.println(Order.getOrders().get(2));
 		for (int j=2; j < Order.getOrders().size(); j++) {
