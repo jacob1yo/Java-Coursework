@@ -333,19 +333,15 @@ public class MainController {
 	public void addRobots() {
 		Integer x = 0;
 		Integer y = 0;
-		for(int i = 0; i < Order.getPodRob().size(); i++) {
+		for(int i = 2; i < Order.getPodRob().size(); i+=5) {
 			Circle circle = new Circle(20);
 			circle.setFill(Color.GREEN);
 			GridPane.setHalignment((Node) circle, HPos.CENTER);
 			Rectangle rect = new Rectangle(50,50);
 			rect.setFill(Color.BLUE);
 			GridPane.setHalignment((Node) rect, HPos.CENTER);
-			for(int j = 3; j < Order.getPodRob().size(); j+=5) {
-				x = Integer.valueOf(Order.getPodRob().get(j));
-			}
-			for(int k = 4; k < Order.getPodRob().size(); k+=5) {
-				y = Integer.valueOf(Order.getPodRob().get(k));
-			}
+				x = Integer.valueOf(Order.getPodRob().get(i+1));
+				y = Integer.valueOf(Order.getPodRob().get(i+2));
 			grid.add(rect, x.intValue(), y.intValue());
 			grid.add(circle, x.intValue(), y.intValue());
 		}
