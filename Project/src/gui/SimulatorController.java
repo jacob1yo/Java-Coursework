@@ -91,14 +91,14 @@ public class SimulatorController {
 		grid.getRowConstraints().clear();
 		for (int i = 0; i < finalGridHeight; i++) {
 			RowConstraints rowConst = new RowConstraints();
-			rowConst.setPercentHeight(100.0 / finalGridHeight); //fix
+			rowConst.setPercentHeight(100.0 / finalGridHeight); 
 			grid.getRowConstraints().add(rowConst);
 		}
 		
 		grid.getColumnConstraints().clear();
 		for (int i = 0; i < finalGridWidth; i++) {
 			ColumnConstraints colConst = new ColumnConstraints();
-			colConst.setPercentWidth(100.0 / finalGridWidth); //fix
+			colConst.setPercentWidth(100.0 / finalGridWidth); 
 			grid.getColumnConstraints().add(colConst);
 		}
 		

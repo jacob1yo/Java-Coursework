@@ -303,7 +303,7 @@ public class MainController {
 		Order.fillLists();
 		//Order.del();
 		setUpGrid();
-		addRobots();
+		//addRobots();
 		//warehouse.readRobotData();
 		//addRobots();
 
@@ -312,6 +312,25 @@ public class MainController {
 	public void setUpGrid() {
 		numCols = Integer.valueOf(Order.getConfiguration().get(3)).intValue();
 		numRows = Integer.valueOf(Order.getConfiguration().get(5)).intValue();
+		System.out.println("Cols: " + numCols);
+		System.out.println("Rows: " + numRows);
+		//grid.getChildren().clear();
+		
+		grid.getRowConstraints().clear();
+		for (int i = 0; i < numRows; i++) {
+			RowConstraints rowConst = new RowConstraints();
+			rowConst.setPercentHeight(100.0 / numRows); //fix
+			grid.getRowConstraints().add(rowConst);
+		}
+		
+		grid.getColumnConstraints().clear();
+		for (int i = 0; i < numCols; i++) {
+			ColumnConstraints colConst = new ColumnConstraints();
+			colConst.setPercentWidth(100.0 / numCols); //fix
+			grid.getColumnConstraints().add(colConst);
+		}
+		
+		addRobots();
 	}
 	
 	public void addRobots() {
