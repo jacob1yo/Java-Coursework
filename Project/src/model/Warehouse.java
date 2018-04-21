@@ -10,7 +10,7 @@ public class Warehouse {
 	private ArrayList<Robot> robotList;
 	private ArrayList<ChargingPod> chargeList;
 	static ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
-	private ArrayList<PackingStation> packingList;
+	static ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();;
 	private static ArrayList<Point> robotPoints;
 	private HashMap<Point, Point> hashmap;
 	private static ArrayList<StorageShelf> storages;
@@ -19,7 +19,7 @@ public class Warehouse {
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
 		//storageList = new ArrayList<StorageShelf>();
-		packingList = new ArrayList<PackingStation>();
+		//packingList = new ArrayList<PackingStation>();
 		robotPoints = new ArrayList<Point>();
 		hashmap = new HashMap<Point, Point>();
 		storages = new ArrayList<StorageShelf>();
@@ -34,9 +34,10 @@ public class Warehouse {
 	 * @param batteryLevel
 	 * @param chargeRate
 	 */
-	public void addRobot(int x, int y, int batteryLevel, int chargeRate) {
+	public void addRobot(String ruid, String cuid, int x, int y, int batteryLevel, int chargeRate) {
 		Robot robot = new Robot();
 		robot.setCoordinates(x, y);
+		robot.setId(ruid);
 		robotList.add(robot);
 		for (int i = 0; i < robotList.size(); i++) {
 			robotList.get(i).updateBattery(batteryLevel);
@@ -44,6 +45,7 @@ public class Warehouse {
 		}
 
 		ChargingPod chargePod = new ChargingPod(x, y);
+		chargePod.setId(cuid);
 		chargeList.add(chargePod);
 		for (int i = 0; i < chargeList.size(); i++) {
 			chargeList.get(i).updateChargeRate(chargeRate);
@@ -68,8 +70,9 @@ public class Warehouse {
 	 * @param x
 	 * @param y
 	 */
-	public void addPacking(int x, int y) {
+	public void addPacking(String uid, int x, int y) {
 		PackingStation packing = new PackingStation(x, y);
+		packing.setId(uid);
 		packingList.add(packing);
 	}
 
@@ -308,10 +311,10 @@ public class Warehouse {
 	public void readRobotData() {
 		for(int i = 0; i < Order.getPodRob().size(); i+=5) {
 			Integer x = Integer.valueOf(Order.getPodRob().get(i+3));
-		System.out.println(x);
 			Integer y = Integer.valueOf(Order.getPodRob().get(i+4));
-		System.out.println(y);
-			addRobot(x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
+			String ruid = Order.getPodRob().get(i+2);
+			String cuid = Order.getPodRob().get(i+1);
+			addRobot(ruid, cuid, x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
 		}
 	}
 	
@@ -328,7 +331,8 @@ public class Warehouse {
 		for(int i = 0; i < Order.getPackingStations().size(); i+=4) {
 			Integer x = Integer.valueOf(Order.getPackingStations().get(i+2));
 			Integer y = Integer.valueOf(Order.getPackingStations().get(i+3));
-			addPacking(x.intValue(), y.intValue());
+			String uid = Order.getStorageShelves().get(i+1);
+			addPacking(uid, x.intValue(), y.intValue());
 		}
 	}
 
@@ -350,30 +354,12 @@ public class Warehouse {
 		return chargeRate.intValue();
 	}
 	
-	public void changeIDs() {
-		/*String uid = "";
-		int i = 0;
-		//for(int i = 0; i < storageList.size(); i++) {
-		while(i < storageList.size()) {
-			for(int j = 1; j < Order.getStorageShelves().size(); j+=4) {
-				String oldid = storageList.get(i).getID().toString();
-				uid = Order.getStorageShelves().get(j).toString();
-				//System.out.println("SIM: " + Order.getStorageShelves().get(j).toString());
-				storageList.get(i).setId(oldid, uid);
-				i++;
-			}
-		}
-		for(int j = 0; j < storageList.size(); j++) {
-			System.out.println("StorageID: " + storageList.get(j).getID());
-		}*/
-		for (int i = 0; i < storageList.size(); i++) {
-			System.out.println(storageList.get(i).getID()); // delete this manual test after
-		}
-	}
-	
-
 	public static ArrayList<StorageShelf> getStorageShelfs(){
 		return storages;
+	}
+	
+	public static ArrayList<PackingStation> getPackingStations(){
+		return packingList;
 	}
 	
 	public static ArrayList<StorageShelf> getStorageList(){ //may need to change from static

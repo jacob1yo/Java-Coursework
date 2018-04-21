@@ -183,7 +183,7 @@ public class MainController {
 		int row = rowIndex;
 		if(warehouse.check(col, row)) {
 			if(pressed.equals("robot")) {
-				warehouse.addRobot(col, row, batteryLevel, chargeRate);
+				warehouse.addRobot(null, null, col, row, batteryLevel, chargeRate);
 				Circle circle = new Circle(20);
 				circle.setFill(Color.GREEN);
 				Rectangle rect = new Rectangle(50,50);
@@ -202,7 +202,7 @@ public class MainController {
 				GridPane.setHalignment((Node) triangle, HPos.CENTER);
 			}
 			else if(pressed.equals("packing")) {
-				warehouse.addPacking(col, row);
+				warehouse.addPacking(null, col, row);
 				Polygon triangle = new Polygon();
 				triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 				triangle.setFill(Color.YELLOW);
@@ -316,7 +316,6 @@ public class MainController {
 		addRobots();
 		addStorage();
 		addPacking();
-		Order.storagePoints();
 	}
 	
 	public void setUpGrid() {

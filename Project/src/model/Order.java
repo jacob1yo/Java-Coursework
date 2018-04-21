@@ -28,6 +28,7 @@ public class Order {
 	private static ArrayList<String> stations = new ArrayList<String>();
 	private static File file;
 	private static HashMap<String, Point> storagePoints = new HashMap<String, Point>();
+	private static HashMap<String, Point> packingPoints = new HashMap<String, Point>();
 	/**
 	 * Reads the orders from a file.
 	 */
@@ -188,29 +189,23 @@ public class Order {
 	public void removeFromAssigned() {
 	}
 	
+	
 	/**
-	 * Converts orders to an ArrayList of an ArrayList of storage shelf points
+	 * 
+	 * @return
 	 */
-	/*public static void ordersToPoints() {
-		ArrayList<ArrayList<Point>> storagePoints = new ArrayList<ArrayList<Point>>();
-		ArrayList<Point> storages = new ArrayList<Point>();
-		for(int i = 0; i < orders.size(); i++) {
-			for(int j = 2; j < orders.get(i).size(); j++) {
-				ArrayList<StorageShelf> storageList = Warehouse.getStorageShelfs();
-				for(int n = 0; n < storageList.size(); n++) {
-					if(storageList.get(n).getID() == orders.get(i).get(j)) {
-						storages.add(storageList.get(n).getStorageCoordinates());
-					}
-				}
-			}
-			storagePoints.add(storages);
-		}
-	}*/
 	public static HashMap<String, Point> storagePoints() {
 		for(StorageShelf s: Warehouse.getStorageList()) {
 			storagePoints.put(s.getID(), s.getStorageCoordinates());
 		}
 		return storagePoints;
+	}
+	
+	public static HashMap<String, Point> packingPoints(){
+		for(PackingStation p : Warehouse.getPackingStations()) {
+			packingPoints.put(p.getID(), p.getPackingCoordinates());
+		}
+		return packingPoints;
 	}
 	
 	public static void del() {
