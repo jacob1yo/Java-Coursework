@@ -207,10 +207,9 @@ public class Order {
 		}
 	}*/
 	public static HashMap<String, Point> storagePoints() {
-		for(int i = 0; i < Warehouse.getStorageShelfs().size(); i++) {
-			storagePoints.put(Warehouse.getStorageShelfs().get(i).getID(), Warehouse.getStorageShelfs().get(i).getStorageCoordinates());
+		for(StorageShelf s: Warehouse.getStorageList()) {
+			storagePoints.put(s.getID(), s.getStorageCoordinates());
 		}
-		System.out.println("ejwkfg: " + storagePoints.size());
 		return storagePoints;
 	}
 	

@@ -9,7 +9,7 @@ public class Warehouse {
 
 	private ArrayList<Robot> robotList;
 	private ArrayList<ChargingPod> chargeList;
-	private ArrayList<StorageShelf> storageList;
+	static ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
 	private ArrayList<PackingStation> packingList;
 	private static ArrayList<Point> robotPoints;
 	private HashMap<Point, Point> hashmap;
@@ -18,7 +18,7 @@ public class Warehouse {
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
-		storageList = new ArrayList<StorageShelf>();
+		//storageList = new ArrayList<StorageShelf>();
 		packingList = new ArrayList<PackingStation>();
 		robotPoints = new ArrayList<Point>();
 		hashmap = new HashMap<Point, Point>();
@@ -374,5 +374,9 @@ public class Warehouse {
 
 	public static ArrayList<StorageShelf> getStorageShelfs(){
 		return storages;
+	}
+	
+	public static ArrayList<StorageShelf> getStorageList(){ //may need to change from static
+		return storageList;
 	}
 }
