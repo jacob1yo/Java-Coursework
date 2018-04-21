@@ -304,7 +304,6 @@ public class Warehouse {
 		return packingID;
 	}
 
-
 	/**
 	 * Reads needed values from a SIM file
 	 */

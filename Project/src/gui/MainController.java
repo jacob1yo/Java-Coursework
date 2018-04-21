@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
@@ -54,9 +56,9 @@ public class MainController {
 	@FXML private Button load, robotButton, storageButton, packingButton, deleteButton, clearButton;
 	
 	/**
-	 * 
+	 * Lists the .sim file
 	 */
-	@FXML private TextArea orderArea;
+	@FXML private ListView <String> listOrders;
 	
 	/**
 	 * The number of rows in the grid
@@ -285,10 +287,11 @@ public class MainController {
 		File selectedFile = filechooser.showOpenDialog(null);
 
 		Order.setFile(selectedFile);
-		//Order.processData();
 		Order.printCommands();
 		String line = Order.getCommands();
-		orderArea.setText(line);
+		
+		listOrders.getItems().addAll(line);
+		listOrders.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		height.setDisable(true);
 		width.setDisable(true);
