@@ -324,6 +324,14 @@ public class Warehouse {
 			addStorage(x.intValue(), y.intValue());
 		}
 	}
+	
+	public void readPackingData() {
+		for(int i = 0; i < Order.getPackingStations().size(); i+=4) {
+			Integer x = Integer.valueOf(Order.getPackingStations().get(i+2));
+			Integer y = Integer.valueOf(Order.getPackingStations().get(i+3));
+			addPacking(x.intValue(), y.intValue());
+		}
+	}
 
 	/**
 	 * Reads battery level from a SIM file

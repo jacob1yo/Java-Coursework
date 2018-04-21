@@ -312,6 +312,7 @@ public class MainController {
 
 		warehouse.readRobotData();
 		warehouse.readStorageData();
+		warehouse.readPackingData();
 		addRobots();
 		addStorage();
 		addPacking();
