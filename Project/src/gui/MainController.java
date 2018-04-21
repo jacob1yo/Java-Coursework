@@ -282,6 +282,8 @@ public class MainController {
 	 */
 	@FXML
 	public void loadPressed() {
+		listOrders.getItems().clear();
+		
 		grid.getChildren().clear();
 		FileChooser filechooser = new FileChooser();
 		filechooser.getExtensionFilters().addAll(new ExtensionFilter(".SIM Files", "*.sim"));
