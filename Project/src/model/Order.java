@@ -150,7 +150,7 @@ public class Order {
 		return podRobot;
 	}
 	
-	static ArrayList<String> getConfiguration() {
+	public static ArrayList<String> getConfiguration() {
 		return configuration;
 	}
 	
@@ -216,8 +216,8 @@ public class Order {
 	}
 	
 	public static void del() {
-		for (int i = 0; i < podRob.size(); i++) {
-			System.out.println(podRob.get(i));
+		for (int i = 0; i < configuration.size(); i++) {
+			System.out.println(configuration.get(i));
 		}
 	}
 

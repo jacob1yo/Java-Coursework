@@ -51,7 +51,7 @@ public class MainController {
 	/**
 	 * When pressed loads a file from which instructions are read
 	 */
-	@FXML private Button load;
+	@FXML private Button load, robotButton, storageButton, packingButton, deleteButton, clearButton;
 	
 	/**
 	 * 
@@ -294,13 +294,24 @@ public class MainController {
 		width.setDisable(true);
 		battery.setDisable(true);
 		charge.setDisable(true);
+		robotButton.setDisable(true);
+		storageButton.setDisable(true);
+		packingButton.setDisable(true);
+		deleteButton.setDisable(true);
+		clearButton.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 		Order.fillLists();
-		
+		//Order.del();
+		setUpGrid();
 		addRobots();
 		//warehouse.readRobotData();
 		//addRobots();
 
+	}
+	
+	public void setUpGrid() {
+		numCols = Integer.valueOf(Order.getConfiguration().get(3)).intValue();
+		numRows = Integer.valueOf(Order.getConfiguration().get(5)).intValue();
 	}
 	
 	public void addRobots() {
@@ -309,12 +320,17 @@ public class MainController {
 		for(int i = 0; i < Order.getPodRob().size(); i++) {
 			Circle circle = new Circle(20);
 			circle.setFill(Color.GREEN);
+			GridPane.setHalignment((Node) circle, HPos.CENTER);
+			Rectangle rect = new Rectangle(50,50);
+			rect.setFill(Color.BLUE);
+			GridPane.setHalignment((Node) rect, HPos.CENTER);
 			for(int j = 3; j < Order.getPodRob().size(); j+=5) {
 				x = Integer.valueOf(Order.getPodRob().get(j));
 			}
 			for(int k = 4; k < Order.getPodRob().size(); k+=5) {
 				y = Integer.valueOf(Order.getPodRob().get(k));
 			}
+			grid.add(rect, x.intValue(), y.intValue());
 			grid.add(circle, x.intValue(), y.intValue());
 		}
 	}
