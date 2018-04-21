@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="1200.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="1000.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <right>
       <VBox style="-fx-border-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" style="-fx-border-color: black; -fx-background-color: lightgrey;">
+            <VBox alignment="CENTER" style="-fx-border-color: black; -fx-background-color: lightgrey;" VBox.vgrow="ALWAYS">
                <children>
                   <Label style="-fx-font-weight: bold;" text="Warehouse">
                      <VBox.margin>
