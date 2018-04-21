@@ -202,6 +202,15 @@ public class Warehouse {
 		robotPoints = robots;
 		return robots;
 	}
+	
+	public void addToPoints() {
+		for(int i = 0; i < Order.getPodRob().size(); i+=5) {
+			Integer x = Integer.valueOf(Order.getPodRob().get(i+3)).intValue();
+			Integer y = Integer.valueOf(Order.getPodRob().get(i+4)).intValue();
+			Point p = new Point(x, y);
+			robotPoints.add(p);
+		}
+	}
 
 	public static ArrayList<Point> getRobotPoints() {
 		return robotPoints;
