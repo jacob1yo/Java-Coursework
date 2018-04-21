@@ -56,12 +56,10 @@ public class Warehouse {
 	 * @param x
 	 * @param y
 	 */
-	public void addStorage(int x, int y) {
+	public void addStorage(String uid, int x, int y) {
 		StorageShelf storage = new StorageShelf(x, y);
+		storage.setId(uid);
 		storageList.add(storage);
-		/*for (int i = 0; i < storageList.size(); i++) {
-			System.out.println(storageList.get(i).getID()); // delete this manual test after
-		}*/
 	}
 
 	/**
@@ -321,7 +319,8 @@ public class Warehouse {
 		for(int i = 0; i < Order.getStorageShelves().size(); i+=4) {
 			Integer x = Integer.valueOf(Order.getStorageShelves().get(i+2));
 			Integer y = Integer.valueOf(Order.getStorageShelves().get(i+3));
-			addStorage(x.intValue(), y.intValue());
+			String uid = Order.getStorageShelves().get(i+1);
+			addStorage(uid, x.intValue(), y.intValue());
 		}
 	}
 	
@@ -352,7 +351,7 @@ public class Warehouse {
 	}
 	
 	public void changeIDs() {
-		String uid = "";
+		/*String uid = "";
 		int i = 0;
 		//for(int i = 0; i < storageList.size(); i++) {
 		while(i < storageList.size()) {
@@ -364,10 +363,14 @@ public class Warehouse {
 				i++;
 			}
 		}
-		for(int j = 0; i < storageList.size(); j++) {
+		for(int j = 0; j < storageList.size(); j++) {
 			System.out.println("StorageID: " + storageList.get(j).getID());
+		}*/
+		for (int i = 0; i < storageList.size(); i++) {
+			System.out.println(storageList.get(i).getID()); // delete this manual test after
 		}
 	}
+	
 
 	public static ArrayList<StorageShelf> getStorageShelfs(){
 		return storages;
