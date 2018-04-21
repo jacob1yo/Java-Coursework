@@ -59,9 +59,9 @@ public class Warehouse {
 	public void addStorage(int x, int y) {
 		StorageShelf storage = new StorageShelf(x, y);
 		storageList.add(storage);
-		for (int i = 0; i < storageList.size(); i++) {
+		/*for (int i = 0; i < storageList.size(); i++) {
 			System.out.println(storageList.get(i).getID()); // delete this manual test after
-		}
+		}*/
 	}
 
 	/**
@@ -349,6 +349,24 @@ public class Warehouse {
 	public int readChargeRate() {
 		Integer chargeRate = Integer.valueOf(Order.getConfiguration().get(9));
 		return chargeRate.intValue();
+	}
+	
+	public void changeIDs() {
+		String uid = "";
+		int i = 0;
+		//for(int i = 0; i < storageList.size(); i++) {
+		while(i < storageList.size()) {
+			for(int j = 1; j < Order.getStorageShelves().size(); j+=4) {
+				String oldid = storageList.get(i).getID().toString();
+				uid = Order.getStorageShelves().get(j).toString();
+				//System.out.println("SIM: " + Order.getStorageShelves().get(j).toString());
+				storageList.get(i).setId(oldid, uid);
+				i++;
+			}
+		}
+		for(int j = 0; i < storageList.size(); j++) {
+			System.out.println("StorageID: " + storageList.get(j).getID());
+		}
 	}
 
 	public static ArrayList<StorageShelf> getStorageShelfs(){
