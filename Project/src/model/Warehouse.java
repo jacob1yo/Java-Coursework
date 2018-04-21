@@ -354,7 +354,7 @@ public class Warehouse {
 	/**
 	 * Allows displaying of Robot on screen
 	 */
-	public void showRobot() {
+	/*public void showRobot() {
 		for (int i = 2; i < Order.getPodRob().size(); i += 5) { // If the uid doesn't correspond with the one stated in
 			// sim file, change uid so robot is placed in right
 			// position
@@ -410,7 +410,7 @@ public class Warehouse {
 				storageList.add(ss);
 			}
 		}
-	}
+	}*/
 
 	public static ArrayList<StorageShelf> getStorageShelfs(){
 		return storages;

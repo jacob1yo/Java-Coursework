@@ -124,7 +124,7 @@ public class PackingStation extends Warehouse implements Entity{
 	@Override
 	public void generateID() {
 		int num = lastNum++;
-		uid = "p" + num;
+		uid = "ps" + num;
 		
 	}
 
