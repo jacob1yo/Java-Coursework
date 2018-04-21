@@ -194,6 +194,7 @@ public class SimulatorController {
 			scene.getStylesheets().add(getClass().getResource("grid-borders.css").toExternalForm());
 			stage.setScene(scene);
 			stage.setTitle("Warehouse Simulator");
+			warehouse.removeAll();
 			grid.getScene().getWindow().hide();
 			stage.show();
 		} catch (IOException ex) {
