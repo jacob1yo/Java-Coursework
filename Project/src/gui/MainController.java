@@ -309,7 +309,7 @@ public class MainController {
 		Order.fillLists();
 		//Order.del();
 		setUpGrid();
-
+		warehouse.removeAll();
 		warehouse.readRobotData();
 		warehouse.readStorageData();
 		warehouse.readPackingData();
