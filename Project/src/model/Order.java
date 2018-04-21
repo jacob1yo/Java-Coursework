@@ -150,11 +150,11 @@ public class Order {
 	}
 	
 	public static ArrayList<String> getStorageShelves() {
-		return shelves;
+		return shelves; //gets storageshelves both uid and coordinates
 	}
 	
 	static ArrayList<ArrayList<String>> getOrders() {
-		return orders;
+		return orders; //gets orders i.e. for i=0 order 9 ss0 ss1 ss3 for i=1 order 7 ss0 ss1 ss5 etc.
 	}
 	/**
 	 * Checks if an order has been completed, and moves it to "completedOrders" if
