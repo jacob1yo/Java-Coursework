@@ -292,8 +292,8 @@ public class MainController {
 		
 		height.setDisable(true);
 		width.setDisable(true);
-		battery.setDisable(true);
-		charge.setDisable(true);
+		//battery.setDisable(true);
+		//charge.setDisable(true);
 		robotButton.setDisable(true);
 		storageButton.setDisable(true);
 		packingButton.setDisable(true);
@@ -304,17 +304,14 @@ public class MainController {
 		//Order.del();
 		setUpGrid();
 		//addRobots();
-		//warehouse.readRobotData();
-		//addRobots();
+		warehouse.readRobotData();
+		addRobots();
 
 	}
 	
 	public void setUpGrid() {
 		numCols = Integer.valueOf(Order.getConfiguration().get(3)).intValue();
 		numRows = Integer.valueOf(Order.getConfiguration().get(5)).intValue();
-		System.out.println("Cols: " + numCols);
-		System.out.println("Rows: " + numRows);
-		//grid.getChildren().clear();
 		
 		grid.getRowConstraints().clear();
 		for (int i = 0; i < numRows; i++) {
@@ -330,7 +327,7 @@ public class MainController {
 			grid.getColumnConstraints().add(colConst);
 		}
 		
-		addRobots();
+		//addRobots();
 	}
 	
 	public void addRobots() {

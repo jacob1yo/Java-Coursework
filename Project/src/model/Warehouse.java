@@ -343,7 +343,7 @@ public class Warehouse {
 			// position
 			Robot r = new Robot();
 			if (r.getID().contains(Order.getPodRob().get(i))) {
-				robotList.add(i, r);
+				robotList.add(i, r);		//modify to add robots coordinates?
 			} else {
 				r.changeId(Order.getPodRob().get(i));
 				robotList.add(r);
