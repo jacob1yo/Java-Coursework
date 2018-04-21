@@ -309,11 +309,19 @@ public class Warehouse {
 	 */
 	public void readRobotData() {
 		for(int i = 0; i < Order.getPodRob().size(); i+=5) {
-		Integer x = Integer.valueOf(Order.getPodRob().get(i+3));
+			Integer x = Integer.valueOf(Order.getPodRob().get(i+3));
 		System.out.println(x);
-		Integer y = Integer.valueOf(Order.getPodRob().get(i+4));
+			Integer y = Integer.valueOf(Order.getPodRob().get(i+4));
 		System.out.println(y);
-		addRobot(x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
+			addRobot(x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
+		}
+	}
+	
+	public void readStorageData() {
+		for(int i = 0; i < Order.getStorageShelves().size(); i+=4) {
+			Integer x = Integer.valueOf(Order.getStorageShelves().get(i+2));
+			Integer y = Integer.valueOf(Order.getStorageShelves().get(i+3));
+			addStorage(x.intValue(), y.intValue());
 		}
 	}
 

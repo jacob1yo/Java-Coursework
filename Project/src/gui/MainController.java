@@ -311,6 +311,7 @@ public class MainController {
 		setUpGrid();
 
 		warehouse.readRobotData();
+		warehouse.readStorageData();
 		addRobots();
 		addStorage();
 		addPacking();
