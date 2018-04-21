@@ -7,7 +7,9 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
-//import javafx.geometry.Point2D;
+import java.util.Scanner; 
+
+
 
 public class CostEstimationStrategy extends Robot {
 	
@@ -75,22 +77,17 @@ public class CostEstimationStrategy extends Robot {
 	}
 	
 	public void distanceEstimator() {
-		for (int i=0; i< Order.getOrders().size(); i++) {
-			for (int j=2; j< Order.getOrders().get(i).size(); j++) {//get the sentence i.e order 9 ss0 ss3 ss1 etc 
-				Order.getOrders().get(i).get(j); // gets the ss1 ss2 etc
+		for (int i=0; i< Order.getOrders().size(); i++) {//get the sentence i.e order 9 ss0 ss3 ss1 etc
+			for (int j=2; j< Order.getOrders().get(i).size(); j++) {  // gets the ss1 ss2 etc
+				
+				System.out.println(Order.getOrders().get(i).get(j));
+				
 			
 			}
 		}
 		
 	}
 	
-/*	public void test() {
-		System.out.println(Order.getOrders().get(2));
-		for (int j=2; j < Order.getOrders().size(); j++) {
-			ArrayList<String> r;
-			r=Order.getOrders().get(j);
-		}
-	}*/
 	
 	public int pointToPoint(Point start, Point end) {
 		int distance = 0;
