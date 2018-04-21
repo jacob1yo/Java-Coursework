@@ -69,7 +69,7 @@ public class SimulatorController {
 	@FXML private ListView<String> listAssigned;
 	
 	/**
-	 * Displays a list of dispatched orders.
+	 * Displays a list of dispatched orders..
 	 */
 	@FXML private ListView<String> listDispatched;
 	
