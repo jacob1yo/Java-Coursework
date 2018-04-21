@@ -351,66 +351,20 @@ public class Warehouse {
 		return chargeRate.intValue();
 	}
 
-	/**
-	 * Allows displaying of Robot on screen
-	 */
-	/*public void showRobot() {
-		for (int i = 2; i < Order.getPodRob().size(); i += 5) { // If the uid doesn't correspond with the one stated in
-			// sim file, change uid so robot is placed in right
-			// position
-			Robot r = new Robot();
-			if (r.getID().contains(Order.getPodRob().get(i))) {
-				robotList.add(i, r);		//modify to add robots coordinates?
-			} else {
-				r.changeId(Order.getPodRob().get(i));
-				robotList.add(r);
-
+	public void changeIds() {
+		for(int i = 0; i < storageList.size(); i++) {
+			for(int j = 1; j < Order.getStorageShelves().size(); j+=4) {
+				storageList.get(i).changeId(storageList.get(i).getID(),Order.getStorageShelves().get(j));
 			}
 		}
-		for (int j = 1; j < Order.getPodRob().size(); j += 5) {
-			Integer x = Integer.valueOf(Order.getPodRob().get(j + 2));
-			Integer y = Integer.valueOf(Order.getPodRob().get(j + 3));
-			ChargingPod cp = new ChargingPod(x.intValue(), y.intValue());
-
-			if (cp.getID().contains(Order.getPodRob().get(j))) {
-				chargeList.add(j, cp);
-			} else {
-				cp.changeId(Order.getPodRob().get(j));
-				chargeList.add(cp);
-			}	
-
+		for(int i = 0; i < storageList.size(); i++) {
+			System.out.println("org: " + storageList.get(i).getID());
+			System.out.println("New Storage: " + storageList.get(i).getID());
+		}
+		for(int j = 1; j < Order.getStorageShelves().size(); j+=4) {
+				System.out.println("gweg: " + Order.getStorageShelves().get(j));
 		}
 	}
-
-	public void showPackingStations() {
-		for (int i = 1; i < Order.getPackingStations().size(); i+=4) {
-			Integer x = Integer.valueOf(Order.getPackingStations().get(i + 1));
-			Integer y = Integer.valueOf(Order.getPodRob().get(i + 2));
-			PackingStation ps = new PackingStation(x.intValue(), y.intValue());
-
-			if (ps.getID().contains(Order.getPackingStations().get(i))) {
-				packingList.add(i, ps);
-			} else {
-				ps.changeId(Order.getPackingStations().get(i));
-				packingList.add(ps);
-			}
-		}
-	}
-
-	public void showStorageShelves() {
-		for (int i  = 1; i < Order.getStorageShelves().size(); i+=4 ) {
-			Integer x = Integer.valueOf(Order.getStorageShelves().get(i + 1));
-			Integer y = Integer.valueOf(Order.getStorageShelves().get(i + 2));
-			StorageShelf ss = new StorageShelf(x.intValue(), y.intValue());
-
-			if (ss.getID().contains(Order.getStorageShelves().get(i))) {
-				storageList.add(i, ss);
-			} else {
-				ss.changeId(Order.getStorageShelves().get(i));
-				storageList.add(ss);
-			}
-		}
-	}*/
 
 	public static ArrayList<StorageShelf> getStorageShelfs(){
 		return storages;

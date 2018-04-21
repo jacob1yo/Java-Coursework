@@ -316,6 +316,7 @@ public class MainController {
 		addRobots();
 		addStorage();
 		addPacking();
+		warehouse.changeIds();
 	}
 	
 	public void setUpGrid() {

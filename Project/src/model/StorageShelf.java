@@ -86,8 +86,8 @@ public class StorageShelf extends Warehouse implements Entity{
 	}
 	
 	@Override
-	public void changeId(String newUid) {
-		uid = newUid;
+	public void changeId(String oldId, String newUid) {
+		uid.replace(oldId, newUid);
 	}
 
 }
