@@ -282,6 +282,7 @@ public class MainController {
 	 */
 	@FXML
 	public void loadPressed() {
+		grid.getChildren().clear();
 		FileChooser filechooser = new FileChooser();
 		filechooser.getExtensionFilters().addAll(new ExtensionFilter(".SIM Files", "*.sim"));
 		File selectedFile = filechooser.showOpenDialog(null);
@@ -330,7 +331,7 @@ public class MainController {
 			grid.getColumnConstraints().add(colConst);
 		}
 		
-		//addRobots();
+		addPane();
 	}
 	
 	public void addRobots() {
@@ -348,6 +349,11 @@ public class MainController {
 			grid.add(rect, x.intValue(), y.intValue());
 			grid.add(circle, x.intValue(), y.intValue());
 		}
+	}
+	
+	public void addStorage() {
+		Integer x = 0;
+		Integer y = 0;
 	}
 	
 	public static ArrayList<Point> getFreeSpaces(int numCols, int numRows){
