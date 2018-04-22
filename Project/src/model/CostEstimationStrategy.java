@@ -28,6 +28,12 @@ public class CostEstimationStrategy extends Robot {
 	 */
 	private static double noSteps;
 	
+	private static double storagePacking;
+	
+	private static double robotStorage;
+	
+	private static double sum;
+	
 	public CostEstimationStrategy() {
 		super();
 		noSteps=0.0;
@@ -57,7 +63,7 @@ public class CostEstimationStrategy extends Robot {
 	}*/
 	
 	public static double distanceToSteps() {
-		 noSteps = (1.422*distanceEstimate)-0.07577;
+		 noSteps = ((1.422*robotStorage)-0.07577)+(2*(1.422*(sum+storagePacking)-0.07577));
 		System.out.println(noSteps);
 		 return noSteps;
 	}
@@ -68,17 +74,17 @@ public class CostEstimationStrategy extends Robot {
 	
 			double storageDistances = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.storagePoints().get(j++).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.storagePoints().get(j++).getY()),2));
 			
-			 double sum =+ storageDistances;
-			
-			double sumnoSteps = 2*((1.422*sum)-0.07577);
+			 sum =+ storageDistances;
 			
 			}
 		}
-		double robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(0).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(0).getY()-getRobotY()), 2));
 		
 		if (j == Order.storagePoints().size()-1) {
-			double storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.packingPoints().get(j).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.packingPoints().get(j).getY()), 2));
+			 storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.packingPoints().get(j).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.packingPoints().get(j).getY()), 2));
 			}
+		 robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(0).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(0).getY()-getRobotY()), 2));
+		
+	
 	
 	}
 	
