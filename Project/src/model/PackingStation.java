@@ -8,17 +8,6 @@ import java.awt.Point;
  */
 
 public class PackingStation extends Warehouse implements Entity{
-	// Declare fields
-	/**
-	 * The x coordinate of a packing station on the grid
-	 */
-//	private int packingX;
-	
-	/**
-	 * The y coordinate of a packing station on the grid
-	 */
-	//private int packingY;
-	
 	/**
 	 * If packing has been completed by robot
 	 * 
@@ -35,7 +24,7 @@ public class PackingStation extends Warehouse implements Entity{
 	/**
 	 * Stores the last number used for the ID
 	 */
-	private static int lastNum = 0;
+	private static int lastNum = 0; //may need to be deleted
 
 	private Point packingCoordinates;
 	
