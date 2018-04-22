@@ -50,18 +50,16 @@ public class CostEstimationStrategy extends Robot {
 	 * this is repeated code, so we will write down the maths into a single function and call the function in every time with parameters
 	 */
 	
-	public void distanceEstimator() {
+	public void distanceEstimator(int i, String uid) {
 		 robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(0).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(0).getY()-getRobotY()), 2));
-		 
-		for (int i=0; i< Order.getOrders().size(); i++) {//get the sentence i.e order 9 ss0 ss3 ss1 etc
-			for (int j=2; j< Order.getOrders().get(i).size(); j++) {  // gets the ss1 ss2 etc
+		
+		for (int j=2; j< Order.getOrders().get(i).size(); j++) {  // gets the ss1 ss2 etc
 	
 			double storageDistances = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.storagePoints().get(j++).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.storagePoints().get(j++).getY()),2));
-			
-			 sum =+ storageDistances;
-			
-			}
+			sum =+ storageDistances;
+			double ss2ps = Math.sqrt((Math.pow(Order.storagePoints().get(Order.storagePoints().size()-1),2) + Math.pow(Order.packingPoints().get(uid).getX()
 		}
+		
 		
 		if (j == Order.storagePoints().size()-1) {
 			 storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.packingPoints().get(j).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.packingPoints().get(j).getY()), 2));
