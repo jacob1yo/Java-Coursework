@@ -88,7 +88,6 @@ public class Warehouse {
 			if(robotList.get(i).getID() == null) {
 				robotList.get(i).generateID(robIds.size());
 			}
-			System.out.println("Ids: " + robotList.get(i).getID());
 		}
 		ArrayList<ChargingPod> chIds = new ArrayList<ChargingPod>();
 		for(int i = 0; i < chargeList.size(); i++) {
