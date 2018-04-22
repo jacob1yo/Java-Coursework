@@ -56,14 +56,9 @@ public class CostEstimationStrategy extends Robot {
 		for (int j=2; j< Order.getOrders().get(i).size(); j++) {  // gets the ss1 ss2 etc
 	
 			double storageDistances = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.storagePoints().get(j++).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.storagePoints().get(j++).getY()),2));
-			sum =+ storageDistances;
-			double ss2ps = Math.sqrt((Math.pow(Order.storagePoints().get(Order.storagePoints().size()-1),2) + Math.pow(Order.packingPoints().get(uid).getX()
+			sum += storageDistances;
+			storagePacking = Math.sqrt((Math.pow(Order.storagePoints().get(Order.storagePoints().size()-1),2) + Math.pow(Order.packingPoints().get(uid).getX()
 		}
-		
-		
-		if (j == Order.storagePoints().size()-1) {
-			 storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.packingPoints().get(j).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.packingPoints().get(j).getY()), 2));
-			}
 	}
 	
 	public static double distanceToSteps() {
