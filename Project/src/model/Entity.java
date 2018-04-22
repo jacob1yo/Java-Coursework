@@ -7,16 +7,23 @@ package model;
  */
 
 public interface Entity {
-	/**
-	 * generates each entities unique ID
+	
+	/** 
+	 * Generates the ID for the each ChargingPod object
+	 * @param id. ID value assigned to num and then incremented by 1 for each object created
 	 */
 	public abstract void generateID(int id);
+	
 	/**
-	 * get the unique id of each entity
-	 * @return uid
+	 * Gets the ID generated 
+	 * @return <code>String</code>. The uid of the Charging Pod object created.
 	 */
 	public abstract String getID();
 	
+	
+	/**
+	 * Ensures each ChargingPod created when read from .SIM file is assigned a new uid.
+	 */
 	public abstract void setId(String newUid);
 	
 	/**

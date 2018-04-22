@@ -63,7 +63,7 @@ public class Robot extends Warehouse implements Entity  {
 		orderStatus = false;
 		//generateID();
 	}
-	/*
+	/**
 	 * The current battery level of the robot.
 	 * 
 	 * @return <code>int</code> how much battery life of a robot is left.
