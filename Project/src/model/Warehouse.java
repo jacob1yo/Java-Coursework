@@ -27,8 +27,6 @@ public class Warehouse {
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
-		//storageList = new ArrayList<StorageShelf>();
-		//packingList = new ArrayList<PackingStation>();
 		robotPoints = new ArrayList<Point>();
 		hashmap = new HashMap<Point, Point>();
 		storages = new ArrayList<StorageShelf>();
