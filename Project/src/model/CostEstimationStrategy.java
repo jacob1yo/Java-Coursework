@@ -51,7 +51,7 @@ public class CostEstimationStrategy extends Robot {
 	 */
 	
 	public void distanceEstimator(int i, String uid) {
-		 robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(0).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(0).getY()-getRobotY()), 2));
+		 robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(uid).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(uid).getY()-getRobotY()), 2));
 		
 		for (int j=2; j< Order.getOrders().get(i).size(); j++) {  // gets the ss1 ss2 etc
 	
