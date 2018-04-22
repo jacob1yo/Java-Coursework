@@ -57,7 +57,7 @@ public class CostEstimationStrategy extends Robot {
 	
 			double storageDistances = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.storagePoints().get(j++).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.storagePoints().get(j++).getY()),2));
 			sum += storageDistances;
-			storagePacking = Math.sqrt((Math.pow(Order.storagePoints().get(Order.storagePoints().size()-1),2) + Math.pow(Order.packingPoints().get(uid).getX()
+			storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getX()-Order.packingPoints().get(uid).getX()),2)) + Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getY()-Order.packingPoints().get(uid).getY()),2));
 		}
 	}
 	
