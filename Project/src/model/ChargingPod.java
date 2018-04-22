@@ -105,24 +105,23 @@ public class ChargingPod extends Warehouse implements Entity {
 		this.chargeRate = chargeRate;
 	}
 	
-	
 	@Override
 	public void generateID(int id) {
-			int num = id;
+			int num = id++;
 			uid = "c" + num;
 	}
-
+	
 	@Override
 	public String getID() {
 		return uid;
 	}
-
+	
 	@Override
 	public boolean compare(Entity r) {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
+	
 	@Override
 	public void setId(String newUid) {
 		uid = newUid;
