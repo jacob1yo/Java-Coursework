@@ -331,7 +331,7 @@ public class Warehouse {
 		for(int i = 0; i < Order.getPackingStations().size(); i+=4) {
 			Integer x = Integer.valueOf(Order.getPackingStations().get(i+2));
 			Integer y = Integer.valueOf(Order.getPackingStations().get(i+3));
-			String uid = Order.getStorageShelves().get(i+1);
+			String uid = Order.getPackingStations().get(i+1);
 			addPacking(uid, x.intValue(), y.intValue());
 		}
 	}
