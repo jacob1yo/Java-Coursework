@@ -125,7 +125,7 @@ public class PackingStation extends Warehouse implements Entity{
 	public void generateID(int id) {
 		if(uid == null) {
 			//int num = lastNum++;
-			int num = id++;
+			int num = id;
 			uid = "ps" + num;
 		}
 	}

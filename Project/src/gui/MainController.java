@@ -184,6 +184,7 @@ public class MainController {
 		if(warehouse.check(col, row)) {
 			if(pressed.equals("robot")) {
 				warehouse.addRobot(null, null, col, row, batteryLevel, chargeRate);
+				warehouse.genId();
 				Circle circle = new Circle(20);
 				circle.setFill(Color.GREEN);
 				Rectangle rect = new Rectangle(50,50);
@@ -195,6 +196,7 @@ public class MainController {
 			}
 			else if(pressed.equals("storage")) {
 				warehouse.addStorage(null, col, row);
+				warehouse.genId();
 				Polygon triangle = new Polygon();
 				triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 				triangle.setFill(Color.RED);
@@ -203,6 +205,7 @@ public class MainController {
 			}
 			else if(pressed.equals("packing")) {
 				warehouse.addPacking(null, col, row);
+				warehouse.genId();
 				Polygon triangle = new Polygon();
 				triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 				triangle.setFill(Color.YELLOW);
