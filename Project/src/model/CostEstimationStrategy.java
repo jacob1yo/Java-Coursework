@@ -43,7 +43,7 @@ public class CostEstimationStrategy extends Robot {
 	 * @return <code>double</code> Distance between locations
 	 * this is repeated code, so we will write down the maths into a single function and call the function in every time with parameters
 	 */
-	public double distanceCalculator (double r2s, double s2p, double p2c) {
+/*	public double distanceCalculator (double r2s, double s2p, double p2c) {
 		robotPoints().get(1).getX();
 		int i =0;
 		
@@ -54,26 +54,12 @@ public class CostEstimationStrategy extends Robot {
 	
 		return distanceEstimate;
 	
-	}
+	}*/
 	
 	public static double distanceToSteps() {
 		 noSteps = (1.422*distanceEstimate)-0.07577;
 		System.out.println(noSteps);
 		 return noSteps;
-	}
-	
-	
-	//NEW implementation of cost estimation
-	
-	public void totalDistance() {
-		int totalDistance = 0;
-		Point n = robotPoint;
-		for(int i = 0; i < ssPoints.size(); i++) {
-			totalDistance += pointToPoint(n, ssPoints.get(i).getCoordinates());
-			
-			
-		
-		}
 	}
 	
 	public void distanceEstimator() {
@@ -83,11 +69,8 @@ public class CostEstimationStrategy extends Robot {
 			double storageDistances = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.storagePoints().get(j++).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.storagePoints().get(j++).getY()),2));
 			
 			 double sum =+ storageDistances;
-			//System.out.println(Order.getOrders().get(i).get(j));
 			
-			if (j == Order.storagePoints().size()-1) {
-			double storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.packingPoints().get(j).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.packingPoints().get(j).getY()), 2));
-			}
+			double sumnoSteps = 2*((1.422*sum)-0.07577);
 			
 			}
 		}
@@ -97,13 +80,6 @@ public class CostEstimationStrategy extends Robot {
 			double storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.packingPoints().get(j).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.packingPoints().get(j).getY()), 2));
 			}
 	
-	}
-	
-	
-	public int pointToPoint(Point start, Point end) {
-		int distance = 0;
-		
-		return distance;
 	}
 	
 	
