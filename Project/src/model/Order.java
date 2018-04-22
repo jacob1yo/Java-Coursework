@@ -22,6 +22,9 @@ public class Order {
 	 */
 	private static ArrayList<String> commands = new ArrayList<String>(); // reads a full sim file
 	private static ArrayList<ArrayList<String>> orders = new ArrayList<ArrayList<String>>();
+	private static ArrayList<String> assignedOrders = new ArrayList<String>();
+	private static ArrayList<String> unassignedOrders = new ArrayList<String>();
+	private static ArrayList<String> completedOrders = new ArrayList<String>();
 	private static ArrayList<String> configuration = new ArrayList<String>();
 	private static ArrayList<String> podRob = new ArrayList<String>();
 	private static ArrayList<String> shelves = new ArrayList<String>();
@@ -100,6 +103,7 @@ public class Order {
 					}
 				}
 				else if(line.contains("order")){
+					unassignedOrders.add(line);
 					String[] temp = line.split(" ");
 					ArrayList<String> sentence = new ArrayList<String>();
 					for(int i = 0; i < temp.length; i++) {
@@ -134,8 +138,7 @@ public class Order {
 	
 
 	public static void setFile(File f) {
-		// happens in maincontroller just sets the file that's been chosen
-		file = f;
+		file = f;// happens in maincontroller just sets the file that's been chosen
 	}
 
 	public static ArrayList<String> getPodRob(){
@@ -152,7 +155,7 @@ public class Order {
 	}
 	
 	public static ArrayList<String> getStorageShelves() {
-		return shelves; //gets storageshelves both uid and coordinates
+		return shelves; //gets storage shelves both uid and coordinates
 	}
 	
 	static ArrayList<ArrayList<String>> getOrders() {
@@ -164,29 +167,33 @@ public class Order {
 	 */
 	public void isCompleted() {
 	}
-
+	
 	/**
-	 * Adds an order to the "unassigned" list.
+	 * 
 	 */
-	public void addToUnassigned() {
+	public static ArrayList<String> getUnassignedOrders() {
+		return unassignedOrders;
 	}
-
+	
 	/**
 	 * Adds an order to the "assigned" list.
 	 */
-	public void addToAssigned() {
+	public static void addToAssigned(String order) {
+		assignedOrders.add(order);
 	}
 
 	/**
 	 * Removes an order from the "unassigned" list.
 	 */
-	public void removeFromUnassigned() {
+	public static void removeFromUnassigned(int index) {
+		unassignedOrders.remove(index);
 	}
 
 	/**
 	 * Removes an order from the "assigned" list.
 	 */
 	public void removeFromAssigned() {
+		assignedOrders.remove();
 	}
 	
 	

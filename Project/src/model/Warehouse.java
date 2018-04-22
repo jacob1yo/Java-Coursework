@@ -363,7 +363,7 @@ public class Warehouse {
 			
 			robotInfo= "Robot ID :" + robotID + "\n" + "Charge Rate :" + robotCharge + "\n" + "Coordinates :" + robotCoordinates + " ";
 			
-			}
+		}
 		
 			return robotInfo;
 	}

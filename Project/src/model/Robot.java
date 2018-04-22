@@ -86,25 +86,14 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public boolean  orderDecision() {
 		if (orderStatus == false) {
+			CostEstimationStrategy.distanceEstimator(PackingStation.passOnIndex(), PackingStation.passOnUid());
 			if(CostEstimationStrategy.distanceToSteps() < (safetyMargin*batteryLevel)+(batteryLevel)) {
 				move();
-				return true;
+				orderStatus= true;
 			}
 			else {
-				return false;
+				orderStatus= false;
 			}
-
-			//meaning a robot is free
-			// sub-class method (Cost est strategy and Path finding strategy for batt level requirement)
-			//	if (//subclass){
-			/* if it returns true
-			 * carry out the distance stuff
-			 * invoke move method
-			 * return true
-			 * else
-			 *return false
-			 */
-
 		}
 		return orderStatus;
 	}

@@ -23,7 +23,7 @@ public class PackingStation extends Warehouse implements Entity{
 	 * The unique identifier of each charging pod
 	 * @see #getID, #generateID
 	 */
-	private String uid;
+	private static String uid;
 	
 	/**
 	 * Stores the last number used for the ID
@@ -31,6 +31,8 @@ public class PackingStation extends Warehouse implements Entity{
 	private static int lastNum = 0; //may need to be deleted
 
 	private Point packingCoordinates;
+	
+	private static int index = 0;
 	
 	public PackingStation(int x, int y) {
 		packingCoordinates = new Point(x, y);
@@ -99,15 +101,28 @@ public class PackingStation extends Warehouse implements Entity{
 	 * This method requests another order once current order is completed.
 	 * @return
 	 */
-	public Order nextOrder() {
-		return 0; //this needs changing for correct implementation
-
+	public String getNextOrder() {
+		return Order.getUnassignedOrders().get(index);
+	}
+	
+	/**
+	 * 
+	 */
+	public static int passOnIndex() {
+		return index;
+	}
+	
+	/**
+	 * 
+	 */
+	public static String passOnUid() {
+		return uid;
 	}
 	
 	/**
 	 * Rests the lastNum field to 0.
 	 */
-	public void resetID() {
+	public void resetID() {	//maybe delete
 		lastNum = 0;
 	}
 	
