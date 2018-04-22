@@ -69,11 +69,8 @@ public class StorageShelf extends Warehouse implements Entity{
 	
 	@Override
 	public void generateID(int id) {
-		if(uid == null) {
-			//int num = lastNum++;
-			int num = id++;
+			int num = id;
 			uid = "ss" + num;
-		}
 	}
 
 	@Override

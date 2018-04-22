@@ -108,7 +108,13 @@ public class ChargingPod extends Warehouse implements Entity {
 	
 	@Override
 	public void generateID(int id) {
+<<<<<<< HEAD
 			int num = id++;
+=======
+		if(uid == null) {
+			//int num = lastNum++;
+			int num = id;
+>>>>>>> ab6cdbf9635e572739dbdd9c26f13edadc7e44b1
 			uid = "c" + num;
 	}
 
