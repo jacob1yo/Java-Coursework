@@ -336,7 +336,29 @@ public class Warehouse {
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
-
+	
+	
+	public String getRobotInfo() {
+		String robotInfo = "";
+		String robotID = "";
+		String robotCharge = "";
+		String robotCoordinates = "";
+		
+		for (int i = 0; i < robotList.size(); i++) {
+			robotID += robotList.get(i). getID() + " ";
+			robotCharge += robotList.get(i).getBatteryLevel() + " ";
+			robotCoordinates += robotList.get(i).getRobotCoordinates().getX() + ", " + robotList.get(i).getRobotCoordinates().getY() + " ";
+			robotInfo = "\n";
+			
+			robotInfo= "Robot ID :" + robotID + "\n" + "Charge Rate :" + robotCharge + "\n" + "Coordinates :" + robotCoordinates + " ";
+			
+			}
+		
+			return robotInfo;
+	}
+	
+	
+/*
 	public String getRobotID() {
 		String robotID = ""; 
 		for (int i = 0; i < robotList.size(); i++) {
@@ -344,6 +366,8 @@ public class Warehouse {
 		}
 		return robotID;
 	}
+	
+	*/
 
 	public String getPackingID() {
 		String packingID = ""; 
