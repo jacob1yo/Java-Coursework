@@ -10,7 +10,7 @@ public interface Entity {
 	/**
 	 * generates each entities unique ID
 	 */
-	public abstract void generateID();
+	public abstract void generateID(int id);
 	/**
 	 * get the unique id of each entity
 	 * @return uid

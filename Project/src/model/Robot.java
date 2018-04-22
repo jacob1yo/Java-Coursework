@@ -198,9 +198,12 @@ public class Robot extends Warehouse implements Entity  {
 	}
 
 	@Override
-	public void generateID() {
-		int num = lastNum++;
-		uid = "r" + num;
+	public void generateID(int id) {
+		if(uid == null) {
+			//int num = lastNum++;
+			int num = id++;
+			uid = "r" + num;
+		}
 	}
 
 	@Override

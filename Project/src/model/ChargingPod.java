@@ -98,9 +98,12 @@ public class ChargingPod extends Warehouse implements Entity {
 		this.chargeRate = chargeRate;
 	}
 	@Override
-	public void generateID() {
-		int num = lastNum++;
-		uid = "c" + num;
+	public void generateID(int id) {
+		if(uid == null) {
+			//int num = lastNum++;
+			int num = id++;
+			uid = "c" + num;
+		}
 	}
 
 	@Override
