@@ -207,11 +207,4 @@ public class Order {
 		}
 		return packingPoints;
 	}
-	
-	public static void del() {
-		for (int i = 0; i < configuration.size(); i++) {
-			System.out.println(configuration.get(i));
-		}
-	}
-
 }

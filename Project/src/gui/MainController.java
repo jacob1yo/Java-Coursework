@@ -301,8 +301,6 @@ public class MainController {
 		
 		height.setDisable(true);
 		width.setDisable(true);
-		//battery.setDisable(true);
-		//charge.setDisable(true);
 		robotButton.setDisable(true);
 		storageButton.setDisable(true);
 		packingButton.setDisable(true);
@@ -310,7 +308,7 @@ public class MainController {
 		clearButton.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 		Order.fillLists();
-		//Order.del();
+
 		setUpGrid();
 		warehouse.removeAll();
 		warehouse.readRobotData();

@@ -42,9 +42,6 @@ public class PackingStation extends Warehouse implements Entity{
 	public PackingStation(int x, int y) {
 		packingCoordinates = new Point(x, y);
 		completed = false;
-		//generateID();
-	/*	this.packingX = packingX;
-		this.packingY = packingY;*/
 	}
 
 	/**
