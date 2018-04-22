@@ -86,8 +86,14 @@ public class Warehouse {
 				robIds.add(robotList.get(i));
 			}
 			if(robotList.get(i).getID() == null) {
-				robotList.get(i).generateID(robIds.size());
+				if(!robIds.isEmpty()) {		//needs to debug
+					robotList.get(i).generateID(robIds.size());
+				}
+				else {
+					robotList.get(i).generateID(0);
+				}
 			}
+			System.out.println("Size: " + robIds.size());
 		}
 		ArrayList<ChargingPod> chIds = new ArrayList<ChargingPod>();
 		for(int i = 0; i < chargeList.size(); i++) {
@@ -129,9 +135,9 @@ public class Warehouse {
 			if (robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
 				robotList.get(i).resetID();
 				robotList.remove(i);
-				for (int n = 0; n < robotList.size(); n++) {
+				/*for (int n = 0; n < robotList.size(); n++) {
 					robotList.get(n).generateID();
-				}
+				}*/
 			}
 		}
 		for (int i = 0; i < chargeList.size(); i++) {
