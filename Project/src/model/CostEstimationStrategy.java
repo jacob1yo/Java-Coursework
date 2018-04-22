@@ -49,26 +49,10 @@ public class CostEstimationStrategy extends Robot {
 	 * @return <code>double</code> Distance between locations
 	 * this is repeated code, so we will write down the maths into a single function and call the function in every time with parameters
 	 */
-/*	public double distanceCalculator (double r2s, double s2p, double p2c) {
-		robotPoints().get(1).getX();
-		int i =0;
-		
-		r2s=Math.sqrt((Math.pow(robotPoints().get(i).getX()-storageShelfPoints().get(i).getX(),2))+(Math.pow(robotPoints().get(i).getY()-storageShelfPoints().get(i).getY(), 2)));
-		s2p=Math.sqrt((Math.pow(storageShelfPoints().get(i).getX()-packingStationPoints().get(i).getX(),2))+(Math.pow(storageShelfPoints().get(i).getY()-packingStationPoints().get(i).getY(), 2)));
-		p2c=Math.sqrt((Math.pow(packingStationPoints().get(i).getX()-chargingPodPoints().get(i).getX(),2))+(Math.pow(packingStationPoints().get(i).getY()-chargingPodPoints().get(i).getY(), 2)));
-		distanceEstimate = r2s+s2p+p2c;
-	
-		return distanceEstimate;
-	
-	}*/
-	
-	public static double distanceToSteps() {
-		 noSteps = ((1.422*robotStorage)-0.07577)+(2*(1.422*(sum+storagePacking)-0.07577));
-		System.out.println(noSteps);
-		 return noSteps;
-	}
 	
 	public void distanceEstimator() {
+		 robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(0).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(0).getY()-getRobotY()), 2));
+		 
 		for (int i=0; i< Order.getOrders().size(); i++) {//get the sentence i.e order 9 ss0 ss3 ss1 etc
 			for (int j=2; j< Order.getOrders().get(i).size(); j++) {  // gets the ss1 ss2 etc
 	
@@ -82,11 +66,12 @@ public class CostEstimationStrategy extends Robot {
 		if (j == Order.storagePoints().size()-1) {
 			 storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.packingPoints().get(j).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.packingPoints().get(j).getY()), 2));
 			}
-		 robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(0).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(0).getY()-getRobotY()), 2));
-		
-	
-	
 	}
 	
+	public static double distanceToSteps() {
+		 noSteps = ((1.422*robotStorage)-0.07577)+(2*(1.422*(sum+storagePacking)-0.07577));
+		System.out.println(noSteps);
+		 return noSteps;
 	
+	}
 }
