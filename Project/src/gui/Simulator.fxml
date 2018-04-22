@@ -91,4 +91,7 @@
          </BorderPane.margin>
       </GridPane>
    </center>
+   <top>
+      <Label fx:id="tickLabel" text="Tick: 0" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>

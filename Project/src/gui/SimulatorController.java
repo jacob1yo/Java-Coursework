@@ -15,6 +15,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -40,6 +41,8 @@ public class SimulatorController {
 	 * Value of the previously set width of the grid
 	 */
 	private int finalGridWidth;
+	
+	private int ticks;
 	
 	private Warehouse warehouse;
 	
@@ -72,6 +75,8 @@ public class SimulatorController {
 	 * Displays a list of dispatched orders..
 	 */
 	@FXML private ListView<String> listDispatched;
+	
+	@FXML private Label tickLabel;
 	
 	
 	private ArrayList<Circle> circleList;
@@ -236,6 +241,8 @@ public class SimulatorController {
 	@FXML
 	public void oneTickPressed() {
 		move();
+		ticks++;
+		tickLabel.setText("Tick: " + ticks);
 	}
 	
 	@FXML
