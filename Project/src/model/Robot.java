@@ -6,35 +6,24 @@ import java.util.ArrayList;
 import gui.MainController;
 
 /**
+ * This class contains the implementation of the Robot methods.
  * 
  * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
- *         Vivek Bhukhan, Christos Dolopikos
- *
+ *         Vivek Bhukhan, Christos Dolopikos.
+ *         
+ * @version 1.0
  */
 
 public class Robot extends Warehouse implements Entity  {
 
 	/**
-	 * The x coordinate of a robot on the grid
-	 */
-	/**
-	 * The y coordinate of a robot on the grid
-	 */
-	/*private int robotX;
-
-
-	protected int robotY;*/
-
-	/**
-	 * When calculating the distance, there is a twenty percent safety margin of
-	 * battery power
+	 * The value of the battery level of Robot objects.
 	 * 
-	 * @see #orderDecision
-	 * 
-	 *      The battery level of the robot
-	 * @see #getBatteryLevel, #decreaseBatteryLevel
+	 * @see #orderDecision #getBatteryLevel #decreaseBatteryLevel
 	 */
 	private int batteryLevel;
+	
+	
 	private double safetyMargin;
 
 	/**

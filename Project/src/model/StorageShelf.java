@@ -1,9 +1,12 @@
 package model;
 
 /**
+ * This class contains the implementation of the Storage Shelf methods.
  * 
- * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, Vivek Bhukhan, Christos Dolopikos 
- *
+ * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
+ *         Vivek Bhukhan, Christos Dolopikos.
+ *         
+ * @version 1.0
  */
 import java.awt.Point;
 
@@ -11,24 +14,28 @@ public class StorageShelf extends Warehouse implements Entity {
 
 	/**
 	 * The unique identifier of each charging pod
+	 * 
 	 * @see #getID, #generateID
 	 */
 	private String uid;
 
 	/**
 	 * Stores the last number used for the ID.
+	 * 
 	 * @see #resetID
 	 */
 	private static int lastNum = 0;
 
 	/**
 	 * The Point coordinates where the Storage Shelf is placed on the grid.
+	 * 
 	 * @see #chargingPod #getStorageCoordinates #getStorageX #getStorageY
 	 */
 	private Point storageCoordinates;
 
 	/**
 	 * Storage Shelf Constructor.
+	 * 
 	 * @param int x and int y {@link storageCoordinates} used to initialise a new Point coordinate for a Storage Shelf.
 	 */
 	public StorageShelf(int x, int y) {
@@ -37,6 +44,7 @@ public class StorageShelf extends Warehouse implements Entity {
 
 	/**
 	 * Gets the X and Y coordinates of the Storage Shelf.
+	 * 
 	 * @return <code>Point</code> The coordinate value.
 	 */
 	public Point getStorageCoordinates() {
@@ -45,6 +53,7 @@ public class StorageShelf extends Warehouse implements Entity {
 
 	/**
 	 * Accesses the X coordinate of the Storage Shelf.
+	 * 
 	 * @return <code>Point</code>. The X coordinate value.
 	 */
 	public double getStorageX() {
@@ -53,6 +62,7 @@ public class StorageShelf extends Warehouse implements Entity {
 
 	/**
 	 * Accesses the Y coordinate of the Storage Shelf.
+	 * 
 	 * @return <code>Point</code>. The Y coordinate value.
 	 */
 	public double getStorageY() {

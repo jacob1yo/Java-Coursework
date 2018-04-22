@@ -3,8 +3,12 @@ package model;
 import java.awt.Point;
 
 /**
+  * This class contains the implementation of the Packing Station methods.
+ * 
  * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
- *         Vivek Bhukhan, Christos Dolopikos
+ *         Vivek Bhukhan, Christos Dolopikos.
+ *         
+ * @version 1.0
  */
 
 public class PackingStation extends Warehouse implements Entity{

@@ -5,6 +5,15 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+* This class contains the implementation of the Warehouse methods.
+* 
+* @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
+*         Vivek Bhukhan, Christos Dolopikos.
+*         
+* @version 1.0
+*/
+
 public class Warehouse {
 
 	private ArrayList<Robot> robotList;
@@ -29,6 +38,8 @@ public class Warehouse {
 	 * Creates a new robot and corresponding charging pod, and adds both to their
 	 * own ArrayList.
 	 * 
+	 * @param ruid
+	 * @param cuid
 	 * @param x
 	 * @param y
 	 * @param batteryLevel

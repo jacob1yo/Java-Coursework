@@ -1,9 +1,12 @@
 package model;
 
 /**
+ * This abstract interface contains the abstract methods for all entities in the simulation.
  * 
- * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, Vivek Bhukhan, Christos Dolopikos 
- *
+ * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
+ *         Vivek Bhukhan, Christos Dolopikos.
+ *         
+ * @version 1.0
  */
 
 public interface Entity {
