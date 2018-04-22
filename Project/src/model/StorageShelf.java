@@ -7,70 +7,73 @@ package model;
  */
 import java.awt.Point;
 
-public class StorageShelf extends Warehouse implements Entity{
-	/**
-	 * The x coordinate of a storage shelf on the grid
-	 */
-	/**
-	 * The y coordinate of a storage shelf on the grid
-	 */
-	/*public int storageX;
-	
+public class StorageShelf extends Warehouse implements Entity {
 
-	private int storageY;*/
 	/**
 	 * The unique identifier of each charging pod
+	 * 
 	 * @see #getID, #generateID
 	 */
 	private String uid;
-	
+
 	/**
-	 * Stores the last number used for the ID
+	 * Stores the last number used for the ID.
+	 * 
+	 * @see #resetID
 	 */
 	private static int lastNum = 0;
-	
+
+	/**
+	 * The Point coordinates where the Storage Shelf is placed on the grid.
+	 * 
+	 * @see #chargingPod #getStorageCoordinates #getStorageX #getStorageY
+	 */
 	private Point storageCoordinates;
-	
+
+	/**
+	 * Storage Shelf Constructor.
+	 * 
+	 * @param int x and int y {@link storageCoordinates} used to initialise a new Point coordinate for a Storage Shelf.
+	 */
 	public StorageShelf(int x, int y) {
 		storageCoordinates = new Point(x, y);
-		//generateID();
-		//this.storageX =storageX;
-		//this.storageY = storageY;
 	}
-	
+
 	/**
-	 * Gets the X n' Y co-ordinates of the Storage.
-	 * @return <code>Point</code> The co-ordinate value.
+	 * Gets the X and Y coordinates of the Storage Shelf.
+	 * @return <code>Point</code> The coordinate value.
 	 */
 	public Point getStorageCoordinates() {
 		return storageCoordinates;
 	}
-	
+
 	/**
-	 * Accesses the X-coordinate of the Storage
+	 * Accesses the X coordinate of the Storage Shelf.
+	 * @return <code>Point</code>. The X coordinate value.
 	 */
 	public double getStorageX() {
 		return storageCoordinates.getX();
 	}
 
 	/**
-	 * Accesses the Y-coordinate of the Storage
+	 * Accesses the Y coordinate of the Storage Shelf.
+	 * @return <code>Point</code>. The Y coordinate value.
 	 */
 	public double getStorageY() {
 		return storageCoordinates.getY();
 	}
-	
+
 	/**
 	 * Rests the lastNum field to 0.
 	 */
 	public void resetID() {
 		lastNum = 0;
 	}
-	
+
 	@Override
 	public void generateID(int id) {
-			int num = id;
-			uid = "ss" + num;
+		int num = id;
+		uid = "ss" + num;
 	}
 
 	@Override

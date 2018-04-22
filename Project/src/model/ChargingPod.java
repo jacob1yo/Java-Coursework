@@ -61,7 +61,7 @@ public class ChargingPod extends Warehouse implements Entity {
 	}
 	
 	/**
-	 * Accesses the X coordinate of the charging Pod
+	 * Accesses the X coordinate of the charging Pod.
 	 * @return <code>Point</code>. The X coordinate value.
 	 */
 	public double getChargingX(){
