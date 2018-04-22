@@ -101,8 +101,15 @@ public class PackingStation extends Warehouse implements Entity{
 	 * This method requests another order once current order is completed.
 	 * @return
 	 */
-	public String getNextOrder() {
+	public static String getNextOrder() {
 		return Order.getUnassignedOrders().get(index);
+	}
+	
+	/**
+	 * 
+	 */
+	public static void incrementIndex() {
+		index++;
 	}
 	
 	/**
