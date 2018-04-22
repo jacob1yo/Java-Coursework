@@ -61,9 +61,8 @@ public class Robot extends Warehouse implements Entity  {
 	public Robot() {
 		safetyMargin = 0.2;
 		orderStatus = false;
-		//generateID();
 	}
-	/*
+	/**
 	 * The current battery level of the robot.
 	 * 
 	 * @return <code>int</code> how much battery life of a robot is left.
@@ -150,7 +149,8 @@ public class Robot extends Warehouse implements Entity  {
 	 * packed.
 	 */
 	public void dropOrder(Robot r, PackingStation ps) {
-
+		//some code here
+		orderStatus = true;
 	}
 
 	public void setCoordinates(int x, int y) {
@@ -199,11 +199,8 @@ public class Robot extends Warehouse implements Entity  {
 
 	@Override
 	public void generateID(int id) {
-		if(uid == null) {
-			//int num = lastNum++;
-			int num = id++;
-			uid = "r" + num;
-		}
+		int num = id;
+		uid = "r" + num;
 	}
 
 	@Override

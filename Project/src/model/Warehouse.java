@@ -75,7 +75,49 @@ public class Warehouse {
 		packing.setId(uid);
 		packingList.add(packing);
 	}
-
+	
+	/**
+	 * 
+	 */
+	public void genId() {
+		ArrayList<Robot> robIds = new ArrayList<Robot>();
+		for(int i = 0; i < robotList.size(); i++){
+			if(robotList.get(i).getID() != null) {
+				robIds.add(robotList.get(i));
+			}
+			if(robotList.get(i).getID() == null) {
+				robotList.get(i).generateID(robIds.size());
+			}
+		}
+		ArrayList<ChargingPod> chIds = new ArrayList<ChargingPod>();
+		for(int i = 0; i < chargeList.size(); i++) {
+			if(chargeList.get(i).getID() != null) {
+				chIds.add(chargeList.get(i));
+			}
+			if(chargeList.get(i).getID() == null) {
+				chargeList.get(i).generateID(chIds.size());
+			}
+		}
+		ArrayList<StorageShelf> ssIds = new ArrayList<StorageShelf>();
+		for(int i = 0; i < storageList.size(); i++) {
+			if(storageList.get(i).getID() != null) {
+				ssIds.add(storageList.get(i));
+			}
+			if(storageList.get(i).getID() == null) {
+				storageList.get(i).generateID(ssIds.size());
+			}
+		}
+		ArrayList<PackingStation> psIds = new ArrayList<PackingStation>();
+		for(int i = 0; i < packingList.size(); i++) {
+			if(packingList.get(i).getID() != null) {
+				psIds.add(packingList.get(i));
+			}
+			if(packingList.get(i).getID() == null) {
+				packingList.get(i).generateID(psIds.size());
+			}
+		}
+	}
+	
 	/**
 	 * Deletes an item from entity lists depending on the coordinates given
 	 * 
