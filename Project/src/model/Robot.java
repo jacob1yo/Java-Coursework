@@ -111,7 +111,6 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public boolean orderDecision() {
 		if (orderStatus == false) {
-			CostEstimationStrategy.distanceEstimator();
 			if(CostEstimationStrategy.distanceEstimator() < (safetyMargin*batteryLevel)+(batteryLevel)) {
 				Order.removeFromUnassigned(PackingStation.passOnIndex());
 				Order.addToAssigned(PackingStation.getNextOrder());

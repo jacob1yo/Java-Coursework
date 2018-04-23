@@ -48,7 +48,9 @@ public class CostEstimationStrategy extends Robot {
 		//TODO gets in order and point from packing. clean up. decide order. "i" is sentence = first line of order. j is each word
 		robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(Order.getOrders().get(i).get(2)).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(Order.getOrders().get(i).get(2)).getY()-getRobotY()), 2));
 		
-		for (int j=2; j< Order.getOrders().get(i).size(); j++) {  // gets the ss1 ss2 etc
+		ArrayList<ArrayList<String>> order  = PackingStation.getNextOrder();
+		
+		for (int j=2; j< order.size(); j++) {  // gets the ss1 ss2 etc
 
 			double storageDistances = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.storagePoints().get(j++).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.storagePoints().get(j++).getY()),2));
 			double storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getX()-Order.packingPoints().get(uid).getX()),2)) + Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getY()-Order.packingPoints().get(uid).getY()),2));
