@@ -320,6 +320,7 @@ public class Warehouse {
 	public HashMap<Point, Point> move() {
 		PathFinding pathFinding = new PathFinding();
 		Point destination = new Point(4, 4);
+		pathFinding.pathCalc(destination);
 		if (!robotList.isEmpty()) {
 			hashmap = pathFinding.getNewNodes();
 			// hashmap = robotList.get(0).move();
