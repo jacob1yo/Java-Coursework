@@ -110,7 +110,7 @@ public class PackingStation extends Warehouse implements Entity{
 	 * Passes on point to cost estimation
 	 * @return
 	 */
-	public static Point passOnPoint() {
+	public Point passOnPoint() {
 		Point p = Order.packingPoints().get(uid);
 		return p;
 	}
