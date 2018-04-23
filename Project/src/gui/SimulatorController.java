@@ -114,12 +114,15 @@ public class SimulatorController {
 
 		//Need to get the robot ID, charge rate, destination and coordinates of the current robot
 		
+		
 		listRobots.getItems().addAll(warehouse.getRobotInfo());
 		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		listPacking.getItems().addAll(warehouse.getPackingID());
 		listPacking.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
+		listUnassigned.getItems().addAll("test");
+		listUnassigned.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		
 	}
