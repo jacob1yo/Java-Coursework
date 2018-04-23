@@ -14,10 +14,10 @@ import java.awt.Point;
  * 
  */
 public class PathFinding extends Robot implements Entity {
-	private HashMap<Point, Point> hashMap;
+	private HashMap<Point, Point> currentToNext;
 
 	public PathFinding() {
-		hashMap = new HashMap<Point, Point>();
+		currentToNext = new HashMap<Point, Point>();
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class PathFinding extends Robot implements Entity {
 				}
 			}
 			takenNodes.add(node.getLocation());
-			hashMap.put(robotLocations.get(i), node);
+			currentToNext.put(robotLocations.get(i), node);
 		}
 	}
 
@@ -94,7 +94,7 @@ public class PathFinding extends Robot implements Entity {
 	 * @return <code>HashMap<Point, Point></code>
 	 */
 	public HashMap<Point, Point> getNewNodes() {
-		return hashMap;
+		return currentToNext;
 	}
 
 	// add all the path into an Arraylist and sum the all the indexes (indexes=steps=ticks), in order to compare them to the estimated + mos
