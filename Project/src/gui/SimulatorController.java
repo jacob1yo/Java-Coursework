@@ -123,10 +123,6 @@ public class SimulatorController {
 		
 		
 	}
-	
-	public void addColumns() {
-		
-	}
 
 	/**
 	 * Adds a stack pane to every node in the grid
