@@ -45,6 +45,8 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	private String uid;
 
+	private Point nextDestination;
+	
 	/**
 	 * Stores the last number used for the ID
 	 * 
@@ -66,6 +68,8 @@ public class Robot extends Warehouse implements Entity  {
 	public Robot() {
 		safetyMargin = 0.2;
 		orderStatus = false;
+		nextDestination = getRobotCoordinates();
+		order = new ArrayList<String>();
 	}
 
 	/**
@@ -102,9 +106,7 @@ public class Robot extends Warehouse implements Entity  {
 	/**
 	 * 
 	 */
-	public void recieveOrder() {
-
-	}
+	public void recieveOrder() {}
 
 	/**
 	 * Decides whether a robot can take an order or not.
@@ -141,6 +143,14 @@ public class Robot extends Warehouse implements Entity  {
 			orderStatus = false;
 		// to be continued
 
+	}
+	
+	public Point nextInPath() {
+		
+	}
+	
+	public void updateDestination(Point node) {
+		nextDestination = node;
 	}
 
 	/**

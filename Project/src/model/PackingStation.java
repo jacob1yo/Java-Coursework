@@ -115,15 +115,13 @@ public class PackingStation extends Warehouse implements Entity{
 	 */
 	public static ArrayList<String> getNextOrder() {
 		ArrayList<String> order = Order.getOrders().get(0);
+		Order.addToDecision(order);
+		Order.removeFromOrders();
 		return order;
 	}
 	
-	/**
-	 * Adds an order (that is being decided by a robot) to an ArrayList in Order
-	 * @param order
-	 */
-	public static void addToDecision(ArrayList<String> order) {
-		Order.addToDecision(order);
+	public void addToAssigned() {
+		
 	}
 	
 	/**

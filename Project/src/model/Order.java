@@ -176,8 +176,9 @@ public class Order {
 		decisionsList.add(order);
 	}
 	
-	public static void removeFromDecision(int index) {
-		decisionsList.remove(index);
+	public static void removeFromDecision(ArrayList<String> order) {
+		//decisionsList.remove(index);
+		decisionsList.remove(order);
 	}
 	
 	public static void addToAssigned(ArrayList<String> order) {
