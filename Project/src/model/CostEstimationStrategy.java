@@ -50,14 +50,13 @@ public class CostEstimationStrategy extends Robot {
 		
 		ArrayList<String> sentence = PackingStation.getNextOrder();
 		
-		robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(Order.getOrders().get(i).get(2)).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(Order.getOrders().get(i).get(2)).getY()-getRobotY()), 2));
+		robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(sentence.get(2)).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(sentence.get(2)).getY()-getRobotY()), 2));
 		
-		ArrayList<ArrayList<String>> order  = PackingStation.getNextOrder();
-		
-		for (int j=2; j< order.size(); j++) {  // gets the ss1 ss2 etc
+				for (int j=2; j< sentence.size(); j++) {  // gets the ss1 ss2 etc
 
 			double storageDistances = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.storagePoints().get(j++).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.storagePoints().get(j++).getY()),2));
-			double storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getX()-Order.packingPoints().get(uid).getX()),2)) + Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getY()-Order.packingPoints().get(uid).getY()),2));
+			
+			double storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getX()-destination.getX()),2)) + Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getY()-destination.getY()),2));
 			doblediagonals += storageDistances+storagePacking;
 		}
 		noSteps = ((1.422*robotStorage)-0.07577)+(2*(1.422*(doblediagonals)-0.07577));
