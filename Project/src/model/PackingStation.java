@@ -119,6 +119,14 @@ public class PackingStation extends Warehouse implements Entity{
 	}
 	
 	/**
+	 * Adds an order (that is being decided by a robot) to an ArrayList in Order
+	 * @param order
+	 */
+	public static void addToDecision(ArrayList<String> order) {
+		Order.addToDecision(order);
+	}
+	
+	/**
 	 * Rests the lastNum field to 0.
 	 */
 	public void resetID() {	//maybe delete
