@@ -21,14 +21,14 @@ public class Robot extends Warehouse implements Entity  {
 	 * 
 	 * @see #orderDecision #getBatteryLevel #decreaseBatteryLevel #updateBattery #orderDecision
 	 */
-	private int batteryLevel;
+	protected int batteryLevel;
 	
 	/**
 	 * The value of the safety margin for each robots battery level
 	 * 
 	 * @see #orderDecision
 	 */	
-	private double safetyMargin;
+	protected double safetyMargin;
 
 	/**
 	 * Whether the robot is currently processing an order or not
@@ -97,15 +97,22 @@ public class Robot extends Warehouse implements Entity  {
 	public void updateBattery(int batteryLevel) {
 		this.batteryLevel = batteryLevel;
 	}
-
+	
+	/**
+	 * 
+	 */
+	public void recieveOrder() {
+		
+	}
+	
 	/**
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> True if an order is accepted, otherwise false.
 	 */
 	public boolean orderDecision() {
 		if (orderStatus == false) {
-			CostEstimationStrategy.distanceEstimator(PackingStation.passOnIndex(), PackingStation.passOnUid());
-			if(CostEstimationStrategy.distanceToSteps() < (safetyMargin*batteryLevel)+(batteryLevel)) {
+			CostEstimationStrategy.distanceEstimator();
+			if(CostEstimationStrategy.distanceEstimator() < (safetyMargin*batteryLevel)+(batteryLevel)) {
 				Order.removeFromUnassigned(PackingStation.passOnIndex());
 				Order.addToAssigned(PackingStation.getNextOrder());
 				PackingStation.incrementIndex();

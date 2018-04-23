@@ -102,7 +102,17 @@ public class PackingStation extends Warehouse implements Entity{
 	 * @return
 	 */
 	public static String getNextOrder() {
-		return Order.getUnassignedOrders().get(index);
+		String order = Order.getUnassignedOrders().get(index);
+		return order;
+	}
+	
+	/**
+	 * Passes on point to cost estimation
+	 * @return
+	 */
+	public static Point passOnPoint() {
+		Point p = Order.packingPoints().get(uid);
+		return p;
 	}
 	
 	/**
