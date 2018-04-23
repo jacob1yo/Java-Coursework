@@ -95,14 +95,8 @@ public class Warehouse {
 				robIds.add(robotList.get(i));
 			}
 			if(robotList.get(i).getID() == null) {
-				if(!robIds.isEmpty()) {		//needs to debug
 					robotList.get(i).generateID(robIds.size());
-				}
-				else {
-					robotList.get(i).generateID(0);
-				}
 			}
-			System.out.println("Size: " + robIds.size());
 		}
 		ArrayList<ChargingPod> chIds = new ArrayList<ChargingPod>();
 		for(int i = 0; i < chargeList.size(); i++) {
@@ -144,7 +138,7 @@ public class Warehouse {
 			if (robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
 				robotList.get(i).resetID();
 				robotList.remove(i);
-				/*for (int n = 0; n < robotList.size(); n++) {
+				/*for (int n = 0; n < robotList.size(); n++) { //keep for later
 					robotList.get(n).generateID();
 				}*/
 			}
@@ -153,19 +147,19 @@ public class Warehouse {
 			if (chargeList.get(i).getChargingX() == (double) x && chargeList.get(i).getChargingY() == (double) y) {
 				chargeList.get(i).resetID();
 				chargeList.remove(i);
-				for (int n = 0; n < chargeList.size(); n++) {
+				/*for (int n = 0; n < chargeList.size(); n++) {
 					chargeList.get(n).generateID();
-				}
+				}*/
 			}
 		}
 		for (int i = 0; i < storageList.size(); i++) {
 			if (storageList.get(i).getStorageX() == (double) x && storageList.get(i).getStorageY() == (double) y) {
 				storageList.get(i).resetID();
 				storageList.remove(i);
-				for (int n = 0; n < storageList.size(); n++) {
+				/*for (int n = 0; n < storageList.size(); n++) {
 					storageList.get(n).generateID();
 				}
-				storages = storageList;
+				storages = storageList;*/
 			}
 		}
 
@@ -173,9 +167,9 @@ public class Warehouse {
 			if (packingList.get(i).getPackingX() == (double) x && packingList.get(i).getPackingY() == (double) y) {
 				packingList.get(i).resetID();
 				packingList.remove(i);
-				for (int n = 0; n < packingList.size(); n++) {
+				/*for (int n = 0; n < packingList.size(); n++) {
 					packingList.get(n).generateID();
-				}
+				}*/
 			}
 		}
 	}
