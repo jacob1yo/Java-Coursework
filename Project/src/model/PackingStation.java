@@ -103,7 +103,6 @@ public class PackingStation extends Warehouse implements Entity{
 	 */
 	public static String getNextOrder() {
 		String order = Order.getUnassignedOrders().get(index);
-		index++;
 		return order;
 	}
 	

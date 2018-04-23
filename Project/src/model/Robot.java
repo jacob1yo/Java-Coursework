@@ -97,14 +97,21 @@ public class Robot extends Warehouse implements Entity  {
 	public void updateBattery(int batteryLevel) {
 		this.batteryLevel = batteryLevel;
 	}
-
+	
+	/**
+	 * 
+	 */
+	public void recieveOrder() {
+		
+	}
+	
 	/**
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> True if an order is accepted, otherwise false.
 	 */
 	public boolean orderDecision() {
 		if (orderStatus == false) {
-			CostEstimationStrategy.distanceEstimator(PackingStation.passOnIndex(), PackingStation.passOnUid());
+			CostEstimationStrategy.distanceEstimator();
 			if(CostEstimationStrategy.distanceToSteps() < (safetyMargin*batteryLevel)+(batteryLevel)) {
 				Order.removeFromUnassigned(PackingStation.passOnIndex());
 				Order.addToAssigned(PackingStation.getNextOrder());

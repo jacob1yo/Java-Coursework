@@ -45,7 +45,7 @@ public class CostEstimationStrategy extends Robot {
 	 * this is repeated code, so we will write down the maths into a single function and call the function in every time with parameters
 	 */
 	
-	public void distanceEstimator(int i, String uid) {
+	public void distanceEstimator() {
 		robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(Order.getOrders().get(i).get(2)).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(Order.getOrders().get(i).get(2)).getY()-getRobotY()), 2));
 		
 		for (int j=3; j< Order.getOrders().get(i).size(); j++) {  // gets the ss1 ss2 etc
