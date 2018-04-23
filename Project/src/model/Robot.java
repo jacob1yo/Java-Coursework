@@ -45,8 +45,16 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	private String uid;
 
+	private ArrayList<Point> order;
+
 	private Point nextDestination;
-	
+
+	private Point nextNode;
+
+	private int index;
+
+	private boolean carrying;
+
 	/**
 	 * Stores the last number used for the ID
 	 * 
@@ -69,7 +77,10 @@ public class Robot extends Warehouse implements Entity  {
 		safetyMargin = 0.2;
 		orderStatus = false;
 		nextDestination = getRobotCoordinates();
-		order = new ArrayList<String>();
+		order = new ArrayList<Point>();
+		nextNode = new Point();
+		int index =  0;
+		carrying = false;
 	}
 
 	/**
@@ -106,15 +117,21 @@ public class Robot extends Warehouse implements Entity  {
 	/**
 	 * 
 	 */
-	public void recieveOrder() {}
+	public void recieveOrder() {
+		order = CostEstimationStrategy.getDestinations();
+		order.add(Order.chargePoints().get(Warehouse.getRobotsChargePod().get(getID())));
+	}
 
 	/**
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> True if an order is accepted, otherwise false.
 	 */
 	public void orderDecision() {
-		if (orderStatus == false) {
-			CostEstimationStrategy.decideOrder();
+		if(CostEstimationStrategy.getDecision()) {
+			orderStatus = true;
+		}
+		else {
+			orderStatus = false;
 		}
 	}
 
@@ -131,37 +148,31 @@ public class Robot extends Warehouse implements Entity  {
 
 	/**
 	 * Robots takes the items from the storage shelf.
-	 * 
-	 * @param r a Robot object.
-	 * @param ss a Storage Shelf object.
 	 */
-	public void pickUpItems(Robot r, StorageShelf ss) {
-
-		if (orderDecision()) {
-			orderStatus = true;
-		} else
-			orderStatus = false;
-		// to be continued
-
+	public void pickUpItems() {
+		if(getRobotCoordinates() == nextDestination) {
+			carrying = true;
+			updateDestination();
+		}
 	}
-	
+
 	public Point nextInPath() {
-		
+		nextNode = order.get(index);
+		index++;
+		return nextNode;
 	}
-	
-	public void updateDestination(Point node) {
-		nextDestination = node;
+
+	public void updateDestination() {
+		nextDestination = nextInPath();
 	}
 
 	/**
 	 * When a robot drops off items at a packing station and waits until it's packed.
-	 * 
-	 * @param r a Robot object.
-	 * @param ps a Packing Station object.
 	 */
-	public void dropOrder(Robot r, PackingStation ps) {
-		//some code here
-		orderStatus = true;
+	public void dropOrder() {
+		if(getRobotCoordinates() == order.get(order.size() - 2)) {
+			carrying = false;
+		}
 	}
 
 	/**
