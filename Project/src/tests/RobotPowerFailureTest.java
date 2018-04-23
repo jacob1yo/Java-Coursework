@@ -5,25 +5,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import model.StorageShelf;
+class RobotPowerFailureTest {
+	/**
+	 * If power failures are reported during simulation
+	 * 
+	 */
 
-class StorageShelfTest {
-	private StorageShelf s1;
-		
 	@BeforeEach
 	void setUp() throws Exception {
-		s1 = new StorageShelf();
-	}
-
-
-	@Test
-	void testGetID() {
-		s1.generateID();
-		assertEquals("s1", s1.getID());
 	}
 
 	@Test
-	void testCompare() {
+	void test() {
 		fail("Not yet implemented");
 	}
 
