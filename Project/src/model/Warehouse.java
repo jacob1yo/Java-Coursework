@@ -319,7 +319,18 @@ public class Warehouse {
 	}
 
 	public HashMap<Point, Point> move() {
-		PathFinding pathFinding = new PathFinding();
+		currentToNext = null;
+		for(int i = 0; i < robotList.size(); i++) {
+			PathFinding pathFinding = new PathFinding();
+			robotList.get(i).initializeOrder();
+			Point destination = robotList.get(i).getDestination();
+			System.out.println("Robot dest: " + destination);
+			pathFinding.pathCalc(destination);
+			currentToNext = pathFinding.getNewNodes();
+		}
+		return currentToNext;
+		
+		/*PathFinding pathFinding = new PathFinding();
 		Point destination = new Point(4, 4);
 		pathFinding.pathCalc(destination);
 		if (!robotList.isEmpty()) {
@@ -329,7 +340,7 @@ public class Warehouse {
 			System.out.println("currentToNext size: " + currentToNext.size());
 			return currentToNext;
 		}
-		return null;
+		return null;*/
 	}
 
 	public void moveRobot(int i) {
@@ -341,6 +352,11 @@ public class Warehouse {
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
 	
+	public void readOrders() {
+		for(int i = 0; i < robotList.size(); i++) {
+			robotList.get(i).recieveOrder();
+		}
+	}
 	
 	public String getRobotInfo() {
 		String robotInfo = "";

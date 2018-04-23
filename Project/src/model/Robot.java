@@ -82,6 +82,14 @@ public class Robot extends Warehouse implements Entity  {
 		int index =  0;
 		carrying = false;
 	}
+	
+	public void initializeOrder() {
+		recieveOrder();
+		/*while(!orderStatus) {
+			recieveOrder();
+		}*/
+		//Call method to go to charge pod and charge
+	}
 
 	/**
 	 * The current battery level of the robot.
@@ -164,6 +172,10 @@ public class Robot extends Warehouse implements Entity  {
 
 	public void updateDestination() {
 		nextDestination = nextInPath();
+	}
+	
+	public Point getDestination() {
+		return nextDestination;
 	}
 
 	/**
