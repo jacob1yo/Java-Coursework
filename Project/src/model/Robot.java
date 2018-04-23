@@ -50,27 +50,18 @@ public class Robot extends Warehouse implements Entity  {
 	 * @see #resetID
 	 */
 	private static int lastNum = 0;
-<<<<<<< HEAD
 	
 	/**
 	 * The Point coordinates where the Robot is placed on the grid.
 	 * 
 	 * @see #setCoordinates #getRobotCoordinates #getRobotX #getRobotY
 	 */
-	protected static Point robotCoordinates;
+	protected Point robotCoordinates;
 	
 	/**
 	 * Storage Shelf Constructor. Creates a <code>Robot</code> and sets a safety margin of 20%. It also has a <code>boolean</code>
 	 * set to false automatically for the Order Status.
-	 * 
-	 */
-=======
-
-	protected Point robotCoordinates;
-
-	//add fields, explain how this might change
-
->>>>>>> 497d6e5271ac637e906be5f27e14aeef08828973
+	 */	
 	public Robot() {
 		safetyMargin = 0.2;
 		orderStatus = false;
@@ -111,7 +102,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> True if an order is accepted, otherwise false.
 	 */
-	public boolean  orderDecision() {
+	public boolean orderDecision() {
 		if (orderStatus == false) {
 			CostEstimationStrategy.distanceEstimator(PackingStation.passOnIndex(), PackingStation.passOnUid());
 			if(CostEstimationStrategy.distanceToSteps() < (safetyMargin*batteryLevel)+(batteryLevel)) {
