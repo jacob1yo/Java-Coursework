@@ -43,7 +43,7 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	private static int lastNum = 0;
 
-	protected static Point robotCoordinates;
+	protected Point robotCoordinates;
 
 	//add fields, explain how this might change
 
@@ -150,7 +150,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * Gets the Y co-ordinate of the robot.
 	 * @return <code>int</code> The co-ordinate value.
 	 */
-	public static double getRobotY() {
+	public double getRobotY() {
 		return robotCoordinates.getY();
 	}
 
@@ -158,7 +158,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * Gets the x co-ordinate of the robot.
 	 * @return <code>int</code> The co-ordinate value.
 	 */
-	public static double getRobotX() {
+	public double getRobotX() {
 		return robotCoordinates.getX();
 	}
 
