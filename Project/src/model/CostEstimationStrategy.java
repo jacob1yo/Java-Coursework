@@ -23,15 +23,17 @@ public class CostEstimationStrategy extends Robot {
 	 */
 	private static double noSteps;
 
+<<<<<<< HEAD
 	private static double sum;
 
 	private static boolean value;
 
+=======
+>>>>>>> origin/master
 	public CostEstimationStrategy() {
 		super();
 		noSteps=0.0;
 	}
-
 
 	/**
 	 * Calculates the distance from one point to another.
