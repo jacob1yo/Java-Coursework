@@ -167,14 +167,29 @@ public class Order {
 	public void isCompleted() {
 	}
 	
-	public void removeFromOrders() {
+	public static void removeFromOrders() {
 		orders.remove(0);
 	}
 	
-	public void addToDecision(ArrayList<String> order) {
+	public static void addToDecision(ArrayList<String> order) {
 		decisionsList.add(order);
 	}
 	
+	public static void removeFromDecision(int index) {
+		decisionsList.remove(index);
+	}
+	
+	public static void addToAssigned(ArrayList<String> order) {
+		assignedOrders.add(order);
+	}
+	
+	public static void removeFromAssigned(int index) {
+		assignedOrders.remove(index);
+	}
+	
+	public static void addToCompleted(ArrayList<String> order) {
+		completedOrders.add(order);
+	}
 	
 	/**
 	 * 
