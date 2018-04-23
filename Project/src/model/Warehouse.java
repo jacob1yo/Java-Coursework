@@ -318,13 +318,12 @@ public class Warehouse {
 	}
 
 	public HashMap<Point, Point> move() {
-		Manhattan manhattan = new Manhattan();
+		PathFinding pathFinding = new PathFinding();
 		Point destination = new Point(4, 4);
-		manhattan.manhattanCalc(destination);
 		if (!robotList.isEmpty()) {
-			hashmap = manhattan.getNewNodes();
+			hashmap = pathFinding.getNewNodes();
 			// hashmap = robotList.get(0).move();
-			hashmap = manhattan.getNewNodes();
+			hashmap = pathFinding.getNewNodes();
 			System.out.println("hashmap size: " + hashmap.size());
 			return hashmap;
 		}

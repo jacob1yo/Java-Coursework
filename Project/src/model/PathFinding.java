@@ -13,10 +13,10 @@ import java.awt.Point;
  *         Vivek Bhukhan, Christos Dolopikos
  * 
  */
-public class Manhattan extends Robot implements Entity {
+public class PathFinding extends Robot implements Entity {
 	private HashMap<Point, Point> hashMap;
 
-	public Manhattan() {
+	public PathFinding() {
 		hashMap = new HashMap<Point, Point>();
 	}
 
@@ -24,13 +24,10 @@ public class Manhattan extends Robot implements Entity {
 	 * Finds all possible available adjacent nodes and from them, finds the best one to choose
 	 * @param destination
 	 */
-	public void manhattanCalc(Point destination) {
 		ArrayList<Point> takenNodes = new ArrayList<Point>();
 		ArrayList<Point> freeSpaces = super.getFreeSpacePoints(MainController.getNumCols(), MainController.getNumRows());
-		System.out.println("FreeSpaces: " + freeSpaces.size());
 		ArrayList<Point> robotLocations = super.getRobotSpaces();
-		System.out.println("Robot Locations: " + robotLocations.size());
-
+		
 		takenNodes.add(new Point(-1, -1));
 
 		for(int i = 0; i < robotLocations.size(); i++) {
@@ -44,7 +41,6 @@ public class Manhattan extends Robot implements Entity {
 			Point node = robotLocations.get(i);
 
 			if(freeSpaces.contains(left) && !takenNodes.contains(left)) {
-				System.out.println("Left");
 				double result = pythagoras(left, destination);
 				if(result < compare) {
 					node = left;
@@ -52,7 +48,6 @@ public class Manhattan extends Robot implements Entity {
 				}
 			}
 			if(freeSpaces.contains(right) && !takenNodes.contains(right)) {
-				System.out.println("Right");
 				double result = pythagoras(right, destination);
 				if(result < compare) {
 					node = right;
@@ -60,7 +55,6 @@ public class Manhattan extends Robot implements Entity {
 				}
 			}
 			if(freeSpaces.contains(up) && !takenNodes.contains(up)) {
-				System.out.println("Up");
 				double result = pythagoras(up, destination);
 				if(result < compare) {
 					node = up;
@@ -68,7 +62,6 @@ public class Manhattan extends Robot implements Entity {
 				}
 			}
 			if(freeSpaces.contains(down) && !takenNodes.contains(down)) {
-				System.out.println("Down");
 				double result = pythagoras(down, destination);
 				if(result < compare) {
 					node = down;
