@@ -23,7 +23,7 @@ public class PackingStation extends Warehouse implements Entity{
 	 * The unique identifier of each charging pod
 	 * @see #getID, #generateID
 	 */
-	private static String uid;
+	private String uid;
 	
 	/**
 	 * Stores the last number used for the ID
