@@ -56,7 +56,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * 
 	 * @see #setCoordinates #getRobotCoordinates #getRobotX #getRobotY
 	 */
-	protected Point robotCoordinates;
+	protected static Point robotCoordinates;
 	
 	/**
 	 * Storage Shelf Constructor. Creates a <code>Robot</code> and sets a safety margin of 20%. It also has a <code>boolean</code>
@@ -112,7 +112,7 @@ public class Robot extends Warehouse implements Entity  {
 	public boolean orderDecision() {
 		if (orderStatus == false) {
 	//		CostEstimationStrategy.distanceEstimator();
-			if(CostEstimationStrategy.distanceEstimator() < (safetyMargin*batteryLevel)+(batteryLevel)) {
+			if(distanceEstimator() < (safetyMargin*batteryLevel)+(batteryLevel)) {
 				Order.removeFromUnassigned(PackingStation.passOnIndex());
 				Order.addToAssigned(PackingStation.getNextOrder());
 				PackingStation.incrementIndex();
@@ -187,7 +187,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * Gets the Y coordinate of the robot.
 	 * @return <code>double</code> The Y coordinate value.
 	 */
-	public double getRobotY() {
+	public static double getRobotY() {
 		return robotCoordinates.getY();
 	}
 
@@ -195,7 +195,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * Gets the X coordinate of the robot.
 	 * @return <code>double</code> The X coordinate value.
 	 */
-	public double getRobotX() {
+	public static double getRobotX() {
 		return robotCoordinates.getX();
 	}
 

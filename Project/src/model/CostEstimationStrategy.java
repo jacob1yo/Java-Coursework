@@ -54,10 +54,23 @@ public class CostEstimationStrategy extends Robot {
 			double storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getX()-Order.packingPoints().get(uid).getX()),2)) + Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getY()-Order.packingPoints().get(uid).getY()),2));
 			doblediagonals += storageDistances+storagePacking;
 		}
-		
 		noSteps = ((1.422*robotStorage)-0.07577)+(2*(1.422*(doblediagonals)-0.07577));
 		System.out.println(noSteps);
 		return noSteps;
-	
+	}
+	public static boolean decideOrder() {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }
