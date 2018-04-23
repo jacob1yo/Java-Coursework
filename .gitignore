@@ -7,3 +7,5 @@ JavaStarExample/src/A_StarAlgorithm.ctxt
 *.class
 *.ctxt
 *.bluej
+Project/src/UML.ucls
+Project/src/tests/RobotBatteryTest.java
