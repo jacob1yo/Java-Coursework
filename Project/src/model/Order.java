@@ -22,8 +22,9 @@ public class Order {
 	 */
 	private static ArrayList<String> commands = new ArrayList<String>(); // reads a full sim file
 	private static ArrayList<ArrayList<String>> orders = new ArrayList<ArrayList<String>>();
-	private static ArrayList<String> assignedOrders = new ArrayList<String>();
-	private static ArrayList<String> completedOrders = new ArrayList<String>();
+	private static ArrayList<ArrayList<String>> assignedOrders = new ArrayList<ArrayList<String>>();
+	private static ArrayList<ArrayList<String>> completedOrders = new ArrayList<ArrayList<String>>();
+	private static ArrayList<ArrayList<String>> decisionsList = new ArrayList<ArrayList<String>>();
 	private static ArrayList<String> configuration = new ArrayList<String>();
 	private static ArrayList<String> podRob = new ArrayList<String>();
 	private static ArrayList<String> shelves = new ArrayList<String>();
@@ -166,32 +167,12 @@ public class Order {
 	public void isCompleted() {
 	}
 	
-	/**
-	 * 
-	 */
-	public static ArrayList<String> getUnassignedOrders() {
-		
+	public void removeFromOrders() {
+		orders.remove(0);
 	}
 	
-	/**
-	 * Adds an order to the "assigned" list.
-	 */
-	public static void addToAssigned(String order) {
-		assignedOrders.add(order);
-	}
-
-	/**
-	 * Removes an order from the "unassigned" list.
-	 */
-	public static void removeFromUnassigned(int index) {
-		
-	}
-
-	/**
-	 * Removes an order from the "assigned" list.
-	 */
-	public void removeFromAssigned(int index) {
-		assignedOrders.remove(index);
+	public void addToDecision(ArrayList<String> order) {
+		decisionsList.add(order);
 	}
 	
 	
