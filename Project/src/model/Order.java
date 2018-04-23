@@ -23,7 +23,6 @@ public class Order {
 	private static ArrayList<String> commands = new ArrayList<String>(); // reads a full sim file
 	private static ArrayList<ArrayList<String>> orders = new ArrayList<ArrayList<String>>();
 	private static ArrayList<String> assignedOrders = new ArrayList<String>();
-	private static ArrayList<String> unassignedOrders = new ArrayList<String>();
 	private static ArrayList<String> completedOrders = new ArrayList<String>();
 	private static ArrayList<String> configuration = new ArrayList<String>();
 	private static ArrayList<String> podRob = new ArrayList<String>();
@@ -103,7 +102,6 @@ public class Order {
 					}
 				}
 				else if(line.contains("order")){
-					unassignedOrders.add(line);
 					String[] temp = line.split(" ");
 					ArrayList<String> sentence = new ArrayList<String>();
 					for(int i = 0; i < temp.length; i++) {
@@ -172,7 +170,7 @@ public class Order {
 	 * 
 	 */
 	public static ArrayList<String> getUnassignedOrders() {
-		return unassignedOrders;
+		
 	}
 	
 	/**
@@ -186,7 +184,7 @@ public class Order {
 	 * Removes an order from the "unassigned" list.
 	 */
 	public static void removeFromUnassigned(int index) {
-		unassignedOrders.remove(index);
+		
 	}
 
 	/**
