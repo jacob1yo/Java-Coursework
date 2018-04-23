@@ -23,6 +23,7 @@ public class Warehouse {
 	private static ArrayList<Point> robotPoints;
 	private HashMap<Point, Point> hashmap;
 	private static ArrayList<StorageShelf> storages;
+	private static HashMap<String, String> robotsChargePod = new HashMap<String, String>();
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
@@ -425,6 +426,21 @@ public class Warehouse {
 	public int readChargeRate() {
 		Integer chargeRate = Integer.valueOf(Order.getConfiguration().get(9));
 		return chargeRate.intValue();
+	}
+	
+	/**
+	 * 
+	 */
+	public void addToRobotsChargePod() {
+		for(int i = 0; i < robotList.size(); i++) {
+			String robot = "r" + i;
+			String charge = "c" + i;
+			robotsChargePod.put(robot, charge);
+		}
+	}
+	
+	public static HashMap<String, String> getRobotsChargePod() {
+		return robotsChargePod;
 	}
 	
 	public static ArrayList<StorageShelf> getStorageShelfs(){

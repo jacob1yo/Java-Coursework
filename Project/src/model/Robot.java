@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import gui.MainController;
 
@@ -66,7 +67,7 @@ public class Robot extends Warehouse implements Entity  {
 		safetyMargin = 0.2;
 		orderStatus = false;
 	}
-	
+		
 	/**
 	 * The current battery level of the robot.
 	 * 
