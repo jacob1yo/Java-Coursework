@@ -15,7 +15,7 @@ public class CostEstimationStrategy extends Robot {
 	 * Stores the distance estimated.
 	 * @see #distanceCalculator
 	 */
-	private static double distanceEstimate;
+	 Point destination;
 
 	/**
 	 * Stores the no number of steps required for the estimated as double.
@@ -46,6 +46,10 @@ public class CostEstimationStrategy extends Robot {
 	 */
 	public double distanceEstimator() {
 		//TODO gets in order and point from packing. clean up. decide order. "i" is sentence = first line of order. j is each word
+		Point destination=PackingStation.passOnPoint();
+		
+		ArrayList<String> sentence = PackingStation.getNextOrder();
+		
 		robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(Order.getOrders().get(i).get(2)).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(Order.getOrders().get(i).get(2)).getY()-getRobotY()), 2));
 		
 		ArrayList<ArrayList<String>> order  = PackingStation.getNextOrder();
