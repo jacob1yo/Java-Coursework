@@ -81,8 +81,9 @@ public class CostEstimationStrategy extends Robot {
 	public static ArrayList<Point> getDestinations(){
 		ArrayList<Point> destinations = new ArrayList<Point>();
 		ArrayList<String> order = PackingStation.getNextOrder();
-		for(int i = 2; i < order.size(); i++) {
-			destinations.add(Order.storagePoints().get(order.get(i)));
+		for(int i = 0; i < order.size(); i++) {
+			//destinations.add(Order.storagePoints().get(order.get(i)));
+			System.out.println(order.get(i));
 		}
 		destinations.add(PackingStation.passOnPoint());
 		return destinations;
