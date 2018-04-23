@@ -22,19 +22,14 @@ public class CostEstimationStrategy extends Robot {
 	 * @see #distanceCalculator
 	 */
 	private static double noSteps;
-	
 
 	
-	private static double robotStorage;
-	
-	private static double doublediagonals;
 	
 	private static double sum;
 	
 	public CostEstimationStrategy() {
 		super();
 		noSteps=0.0;
-		distanceEstimate=0.0;
 	}
 
 
@@ -49,9 +44,11 @@ public class CostEstimationStrategy extends Robot {
 		Point destination=PackingStation.passOnPoint();
 		
 		ArrayList<String> sentence = PackingStation.getNextOrder();
-		double storageDistances;
-		double storagePacking;
+		double storageDistances = 0.0;
+		double storagePacking = 0.0;
 		double packingPod;
+		double doublediagonals=0.0;
+		double robotStorage=0.0;
 		
 		robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(sentence.get(2)).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(sentence.get(2)).getY()-getRobotY()), 2));
 		
@@ -64,12 +61,10 @@ public class CostEstimationStrategy extends Robot {
 						}
 					doublediagonals += storageDistances+storagePacking;	
 		}
-		packingPod = Math.sqrt((Math.pow((Order.chargePoints().get(2).getX() -destination.getX()),2)) + Math.pow((Order.chargePoints().get(2).getY()-destination.getY()),2));
+		packingPod = Math.sqrt((Math.pow((Order.chargePoints().get(Warehouse.getRobotsChargePod().get(super.getID())).getX() -destination.getX()),2)) + Math.pow((Order.chargePoints().get(Warehouse.getRobotsChargePod().get(super.getID())).getY()-destination.getY()),2));
 		
 		noSteps = ((1.422*(robotStorage + packingPod))-0.07577)+(2*(1.422*(doublediagonals)-0.07577));
 		System.out.println(noSteps);
-	//	return noSteps;
-	
 
 		if(noSteps < (safetyMargin*batteryLevel)+(batteryLevel)) {
 			return true;
