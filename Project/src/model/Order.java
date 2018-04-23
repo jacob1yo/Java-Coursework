@@ -192,8 +192,8 @@ public class Order {
 	/**
 	 * Removes an order from the "assigned" list.
 	 */
-	public void removeFromAssigned() {
-		assignedOrders.remove();
+	public void removeFromAssigned(int index) {
+		assignedOrders.remove(index);
 	}
 	
 	

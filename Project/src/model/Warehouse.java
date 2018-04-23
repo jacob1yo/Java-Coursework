@@ -348,20 +348,18 @@ public class Warehouse {
 		String robotCoordinates = "";
 		
 		for (int i = 0; i < robotList.size(); i++) {
-			robotID += robotList.get(i). getID() + " ";
-			robotCharge += robotList.get(i).getBatteryLevel() + " ";
-			robotCoordinates += robotList.get(i).getRobotCoordinates().getX() + ", " + robotList.get(i).getRobotCoordinates().getY() + " ";
-			robotInfo = "\n";
+			robotID = robotList.get(i). getID() + " ";
+			robotCharge = robotList.get(i).getBatteryLevel() + " ";
+			robotCoordinates = robotList.get(i).getRobotCoordinates().getX() + ", " + robotList.get(i).getRobotCoordinates().getY() + " ";
 			
-			robotInfo= "Robot ID :" + robotID + "\n" + "Charge Rate :" + robotCharge + "\n" + "Coordinates :" + robotCoordinates + " ";
-			
+			robotInfo += "Robot ID :" + robotID + "\n" + "Charge Rate :" + robotCharge + "\n" + "Coordinates :" + robotCoordinates + "\n" + "\n";	
 		}
-		
 			return robotInfo;
 	}
 	
-	
-/*
+	/* 
+	 * Currently unused
+	 */
 	public String getRobotID() {
 		String robotID = ""; 
 		for (int i = 0; i < robotList.size(); i++) {
@@ -370,7 +368,7 @@ public class Warehouse {
 		return robotID;
 	}
 	
-	*/
+	
 
 	public String getPackingID() {
 		String packingID = ""; 

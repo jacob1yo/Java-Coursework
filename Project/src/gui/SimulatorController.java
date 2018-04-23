@@ -245,6 +245,13 @@ public class SimulatorController {
 		tickLabel.setText("Tick: " + ticks);
 	}
 	
+	@FXML 
+	public void tenTickPressed() {
+		for(int i = 0; i < 10; i++) {
+			oneTickPressed();
+		}
+	}
+	
 	@FXML
 	public void endPressed() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);

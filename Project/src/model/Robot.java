@@ -50,6 +50,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * @see #resetID
 	 */
 	private static int lastNum = 0;
+<<<<<<< HEAD
 	
 	/**
 	 * The Point coordinates where the Robot is placed on the grid.
@@ -63,6 +64,13 @@ public class Robot extends Warehouse implements Entity  {
 	 * set to false automatically for the Order Status.
 	 * 
 	 */
+=======
+
+	protected Point robotCoordinates;
+
+	//add fields, explain how this might change
+
+>>>>>>> 497d6e5271ac637e906be5f27e14aeef08828973
 	public Robot() {
 		safetyMargin = 0.2;
 		orderStatus = false;
@@ -181,7 +189,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * Gets the Y coordinate of the robot.
 	 * @return <code>double</code> The Y coordinate value.
 	 */
-	public static double getRobotY() {
+	public double getRobotY() {
 		return robotCoordinates.getY();
 	}
 
@@ -189,7 +197,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * Gets the X coordinate of the robot.
 	 * @return <code>double</code> The X coordinate value.
 	 */
-	public static double getRobotX() {
+	public double getRobotX() {
 		return robotCoordinates.getX();
 	}
 
