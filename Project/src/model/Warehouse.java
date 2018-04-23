@@ -17,18 +17,19 @@ import java.util.HashMap;
 public class Warehouse {
 
 	private ArrayList<Robot> robotList;
-	private ArrayList<ChargingPod> chargeList;
+	static ArrayList<ChargingPod> chargeList; //if gui messes up, change back from static
 	static ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
 	static ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();;
 	private static ArrayList<Point> robotPoints;
-	private HashMap<Point, Point> hashmap;
+	private HashMap<Point, Point> currentToNext;
 	private static ArrayList<StorageShelf> storages;
+	private static HashMap<String, String> robotsChargePod = new HashMap<String, String>();
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
 		robotPoints = new ArrayList<Point>();
-		hashmap = new HashMap<Point, Point>();
+		currentToNext = new HashMap<Point, Point>();
 		storages = new ArrayList<StorageShelf>();
 	}
 
@@ -322,11 +323,11 @@ public class Warehouse {
 		Point destination = new Point(4, 4);
 		pathFinding.pathCalc(destination);
 		if (!robotList.isEmpty()) {
-			hashmap = pathFinding.getNewNodes();
-			// hashmap = robotList.get(0).move();
-			hashmap = pathFinding.getNewNodes();
-			System.out.println("hashmap size: " + hashmap.size());
-			return hashmap;
+			currentToNext = pathFinding.getNewNodes();
+			// currentToNext = robotList.get(0).move();
+			currentToNext = pathFinding.getNewNodes();
+			System.out.println("currentToNext size: " + currentToNext.size());
+			return currentToNext;
 		}
 		return null;
 	}
@@ -334,7 +335,7 @@ public class Warehouse {
 	public void moveRobot(int i) {
 		ArrayList<Point> robots = robotPoints();
 		Point coordinates = robots.get(i);
-		Point next = hashmap.get(coordinates);
+		Point next = currentToNext.get(coordinates);
 		Double x = next.getX();
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
@@ -427,6 +428,21 @@ public class Warehouse {
 		return chargeRate.intValue();
 	}
 	
+	/**
+	 * 
+	 */
+	public void addToRobotsChargePod() {
+		for(int i = 0; i < robotList.size(); i++) {
+			String robot = "r" + i;
+			String charge = "c" + i;
+			robotsChargePod.put(robot, charge);
+		}
+	}
+	
+	public static HashMap<String, String> getRobotsChargePod() {
+		return robotsChargePod;
+	}
+	
 	public static ArrayList<StorageShelf> getStorageShelfs(){
 		return storages;
 	}
@@ -437,5 +453,9 @@ public class Warehouse {
 	
 	public static ArrayList<StorageShelf> getStorageList(){ //may need to change from static
 		return storageList;
+	}
+	
+	public static ArrayList<ChargingPod> getChargeList(){
+		return chargeList;
 	}
 }

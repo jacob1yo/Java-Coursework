@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
   * This class contains the implementation of the Packing Station methods.
@@ -34,9 +35,20 @@ public class PackingStation extends Warehouse implements Entity{
 	
 	private static int index = 0;
 	
+	private static Point p;
+	
 	public PackingStation(int x, int y) {
 		packingCoordinates = new Point(x, y);
 		completed = false;
+		p = Order.packingPoints().get(uid);
+	}
+	
+	/**
+	 * Passes on point to cost estimation
+	 * @return
+	 */
+	public static Point passOnPoint() {
+		return p;
 	}
 
 	/**
@@ -101,39 +113,15 @@ public class PackingStation extends Warehouse implements Entity{
 	 * This method requests another order once current order is completed.
 	 * @return
 	 */
-	public static String getNextOrder() {
-		String order = Order.getUnassignedOrders().get(index);
+	public static ArrayList<String> getNextOrder() {
+		ArrayList<String> order = Order.getOrders().get(0);
+		Order.addToDecision(order);
+		Order.removeFromOrders();
 		return order;
 	}
 	
-	/**
-	 * Passes on point to cost estimation
-	 * @return
-	 */
-	public static Point passOnPoint() {
-		Point p = Order.packingPoints().get(uid);
-		return p;
-	}
-	
-	/**
-	 * 
-	 */
-	public static void incrementIndex() {
-		index++;
-	}
-	
-	/**
-	 * 
-	 */
-	public static int passOnIndex() {
-		return index;
-	}
-	
-	/**
-	 * 
-	 */
-	public String passOnUid() {
-		return uid;
+	public void addToAssigned() {
+		
 	}
 	
 	/**

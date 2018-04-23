@@ -22,8 +22,9 @@ public class Order {
 	 */
 	private static ArrayList<String> commands = new ArrayList<String>(); // reads a full sim file
 	private static ArrayList<ArrayList<String>> orders = new ArrayList<ArrayList<String>>();
-	private static ArrayList<String> assignedOrders = new ArrayList<String>();
-	private static ArrayList<String> completedOrders = new ArrayList<String>();
+	private static ArrayList<ArrayList<String>> assignedOrders = new ArrayList<ArrayList<String>>();
+	private static ArrayList<ArrayList<String>> completedOrders = new ArrayList<ArrayList<String>>();
+	private static ArrayList<ArrayList<String>> decisionsList = new ArrayList<ArrayList<String>>();
 	private static ArrayList<String> configuration = new ArrayList<String>();
 	private static ArrayList<String> podRob = new ArrayList<String>();
 	private static ArrayList<String> shelves = new ArrayList<String>();
@@ -31,6 +32,7 @@ public class Order {
 	private static File file;
 	private static HashMap<String, Point> storagePoints = new HashMap<String, Point>();
 	private static HashMap<String, Point> packingPoints = new HashMap<String, Point>();
+	private static HashMap<String, Point> chargePoints = new HashMap<String, Point>();
 	/**
 	 * Reads the orders from a file.
 	 */
@@ -166,34 +168,30 @@ public class Order {
 	public void isCompleted() {
 	}
 	
-	/**
-	 * 
-	 */
-	public static ArrayList<String> getUnassignedOrders() {
-		
+	public static void removeFromOrders() {
+		orders.remove(0);
 	}
 	
-	/**
-	 * Adds an order to the "assigned" list.
-	 */
-	public static void addToAssigned(String order) {
+	public static void addToDecision(ArrayList<String> order) {
+		decisionsList.add(order);
+	}
+	
+	public static void removeFromDecision(ArrayList<String> order) {
+		//decisionsList.remove(index);
+		decisionsList.remove(order);
+	}
+	
+	public static void addToAssigned(ArrayList<String> order) {
 		assignedOrders.add(order);
 	}
-
-	/**
-	 * Removes an order from the "unassigned" list.
-	 */
-	public static void removeFromUnassigned(int index) {
-		
-	}
-
-	/**
-	 * Removes an order from the "assigned" list.
-	 */
-	public void removeFromAssigned(int index) {
+	
+	public static void removeFromAssigned(int index) {
 		assignedOrders.remove(index);
 	}
 	
+	public static void addToCompleted(ArrayList<String> order) {
+		completedOrders.add(order);
+	}
 	
 	/**
 	 * 
@@ -211,5 +209,12 @@ public class Order {
 			packingPoints.put(p.getID(), p.getPackingCoordinates());
 		}
 		return packingPoints;
+	}
+	
+	public static HashMap<String, Point> chargePoints(){
+		for(ChargingPod c : Warehouse.getChargeList()) {
+			chargePoints.put(c.getID(), c.getChargingCoordinates());
+		}
+		return chargePoints;
 	}
 }

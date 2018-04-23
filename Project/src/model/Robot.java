@@ -2,6 +2,7 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import gui.MainController;
 
@@ -22,7 +23,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * @see #orderDecision #getBatteryLevel #decreaseBatteryLevel #updateBattery #orderDecision
 	 */
 	protected int batteryLevel;
-	
+
 	/**
 	 * The value of the safety margin for each robots battery level
 	 * 
@@ -36,28 +37,38 @@ public class Robot extends Warehouse implements Entity  {
 	 * @see #decreaseBatteryLevel #orderDecision #pickUpItems #dropOrder
 	 */
 	private boolean orderStatus;
-	
+
 	/**
 	 * The unique identifier of each robot
 	 * 
 	 * @see #generateID, #setId
 	 */
 	private String uid;
-	
+
+	private ArrayList<Point> order;
+
+	private Point nextDestination;
+
+	private Point nextNode;
+
+	private int index;
+
+	private boolean carrying;
+
 	/**
 	 * Stores the last number used for the ID
 	 * 
 	 * @see #resetID
 	 */
 	private static int lastNum = 0;
-	
+
 	/**
 	 * The Point coordinates where the Robot is placed on the grid.
 	 * 
 	 * @see #setCoordinates #getRobotCoordinates #getRobotX #getRobotY
 	 */
 	protected Point robotCoordinates;
-	
+
 	/**
 	 * Storage Shelf Constructor. Creates a <code>Robot</code> and sets a safety margin of 20%. It also has a <code>boolean</code>
 	 * set to false automatically for the Order Status.
@@ -65,8 +76,13 @@ public class Robot extends Warehouse implements Entity  {
 	public Robot() {
 		safetyMargin = 0.2;
 		orderStatus = false;
+		nextDestination = getRobotCoordinates();
+		order = new ArrayList<Point>();
+		nextNode = new Point();
+		int index =  0;
+		carrying = false;
 	}
-	
+
 	/**
 	 * The current battery level of the robot.
 	 * 
@@ -97,33 +113,26 @@ public class Robot extends Warehouse implements Entity  {
 	public void updateBattery(int batteryLevel) {
 		this.batteryLevel = batteryLevel;
 	}
-	
+
 	/**
 	 * 
 	 */
 	public void recieveOrder() {
-		
+		order = CostEstimationStrategy.getDestinations();
+		order.add(Order.chargePoints().get(Warehouse.getRobotsChargePod().get(getID())));
 	}
-	
+
 	/**
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> True if an order is accepted, otherwise false.
 	 */
-	public boolean orderDecision() {
-		if (orderStatus == false) {
-			CostEstimationStrategy.distanceEstimator();
-			if(CostEstimationStrategy.distanceEstimator() < (safetyMargin*batteryLevel)+(batteryLevel)) {
-				Order.removeFromUnassigned(PackingStation.passOnIndex());
-				Order.addToAssigned(PackingStation.getNextOrder());
-				PackingStation.incrementIndex();
-				move();
-				orderStatus= true;
-			}
-			else {
-				orderStatus= false;
-			}
+	public void orderDecision() {
+		if(CostEstimationStrategy.getDecision()) {
+			orderStatus = true;
 		}
-		return orderStatus;
+		else {
+			orderStatus = false;
+		}
 	}
 
 	/**
@@ -139,31 +148,33 @@ public class Robot extends Warehouse implements Entity  {
 
 	/**
 	 * Robots takes the items from the storage shelf.
-	 * 
-	 * @param r a Robot object.
-	 * @param ss a Storage Shelf object.
 	 */
-	public void pickUpItems(Robot r, StorageShelf ss) {
+	public void pickUpItems() {
+		if(getRobotCoordinates() == nextDestination) {
+			carrying = true;
+			updateDestination();
+		}
+	}
 
-		if (orderDecision()) {
-			orderStatus = true;
-		} else
-			orderStatus = false;
-		// to be continued
+	public Point nextInPath() {
+		nextNode = order.get(index);
+		index++;
+		return nextNode;
+	}
 
+	public void updateDestination() {
+		nextDestination = nextInPath();
 	}
 
 	/**
 	 * When a robot drops off items at a packing station and waits until it's packed.
-	 * 
-	 * @param r a Robot object.
-	 * @param ps a Packing Station object.
 	 */
-	public void dropOrder(Robot r, PackingStation ps) {
-		//some code here
-		orderStatus = true;
+	public void dropOrder() {
+		if(getRobotCoordinates() == order.get(order.size() - 2)) {
+			carrying = false;
+		}
 	}
-	
+
 	/**
 	 * Sets the coordinate values for the robot and uses the X and Y int values to create a point on the grid.
 	 * 
