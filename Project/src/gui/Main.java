@@ -9,10 +9,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-	private int ticks;
 
 	public Main() {
-		ticks = 0;
 	}
 	
 	public static void main(String[] args) {

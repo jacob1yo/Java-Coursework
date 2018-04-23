@@ -43,7 +43,7 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	private static int lastNum = 0;
 
-	protected Point robotCoordinates;
+	protected static Point robotCoordinates;
 
 	//add fields, explain how this might change
 
@@ -86,25 +86,17 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public boolean  orderDecision() {
 		if (orderStatus == false) {
+			CostEstimationStrategy.distanceEstimator(PackingStation.passOnIndex(), PackingStation.passOnUid());
 			if(CostEstimationStrategy.distanceToSteps() < (safetyMargin*batteryLevel)+(batteryLevel)) {
+				Order.removeFromUnassigned(PackingStation.passOnIndex());
+				Order.addToAssigned(PackingStation.getNextOrder());
+				PackingStation.incrementIndex();
 				move();
-				return true;
+				orderStatus= true;
 			}
 			else {
-				return false;
+				orderStatus= false;
 			}
-
-			//meaning a robot is free
-			// sub-class method (Cost est strategy and Path finding strategy for batt level requirement)
-			//	if (//subclass){
-			/* if it returns true
-			 * carry out the distance stuff
-			 * invoke move method
-			 * return true
-			 * else
-			 *return false
-			 */
-
 		}
 		return orderStatus;
 	}
@@ -158,7 +150,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * Gets the Y co-ordinate of the robot.
 	 * @return <code>int</code> The co-ordinate value.
 	 */
-	public double getRobotY() {
+	public static double getRobotY() {
 		return robotCoordinates.getY();
 	}
 
@@ -166,7 +158,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * Gets the x co-ordinate of the robot.
 	 * @return <code>int</code> The co-ordinate value.
 	 */
-	public double getRobotX() {
+	public static double getRobotX() {
 		return robotCoordinates.getX();
 	}
 
