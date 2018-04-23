@@ -67,11 +67,7 @@ public class Robot extends Warehouse implements Entity  {
 		safetyMargin = 0.2;
 		orderStatus = false;
 	}
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> 03bcb214b59f1cb15dd8fb02948743be6d968c82
 	/**
 	 * The current battery level of the robot.
 	 * 
