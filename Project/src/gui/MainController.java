@@ -398,6 +398,7 @@ public class MainController {
 	 */
 	@FXML
 	public void startPressed() {
+		warehouse.addToRobotsChargePod();
 		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Simulator.FXML"));
 		final SimulatorController simulatorController = new SimulatorController();
