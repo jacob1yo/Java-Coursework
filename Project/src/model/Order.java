@@ -32,6 +32,7 @@ public class Order {
 	private static File file;
 	private static HashMap<String, Point> storagePoints = new HashMap<String, Point>();
 	private static HashMap<String, Point> packingPoints = new HashMap<String, Point>();
+	private static HashMap<String, Point> chargePoints = new HashMap<String, Point>();
 	/**
 	 * Reads the orders from a file.
 	 */
@@ -207,5 +208,12 @@ public class Order {
 			packingPoints.put(p.getID(), p.getPackingCoordinates());
 		}
 		return packingPoints;
+	}
+	
+	public static HashMap<String, Point> chargePoints(){
+		for(ChargingPod c : Warehouse.getChargeList()) {
+			chargePoints.put(c.getID(), c.getChargingCoordinates());
+		}
+		return chargePoints;
 	}
 }

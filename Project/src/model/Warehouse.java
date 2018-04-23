@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class Warehouse {
 
 	private ArrayList<Robot> robotList;
-	private ArrayList<ChargingPod> chargeList;
+	static ArrayList<ChargingPod> chargeList; //if gui messes up, change back from static
 	static ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
 	static ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();;
 	private static ArrayList<Point> robotPoints;
@@ -453,5 +453,9 @@ public class Warehouse {
 	
 	public static ArrayList<StorageShelf> getStorageList(){ //may need to change from static
 		return storageList;
+	}
+	
+	public static ArrayList<ChargingPod> getChargeList(){
+		return chargeList;
 	}
 }
