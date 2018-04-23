@@ -22,7 +22,7 @@ public class Robot extends Warehouse implements Entity  {
 	 * @see #orderDecision #getBatteryLevel #decreaseBatteryLevel #updateBattery #orderDecision
 	 */
 	protected int batteryLevel;
-	
+
 	/**
 	 * The value of the safety margin for each robots battery level
 	 * 
@@ -36,28 +36,28 @@ public class Robot extends Warehouse implements Entity  {
 	 * @see #decreaseBatteryLevel #orderDecision #pickUpItems #dropOrder
 	 */
 	private boolean orderStatus;
-	
+
 	/**
 	 * The unique identifier of each robot
 	 * 
 	 * @see #generateID, #setId
 	 */
 	private String uid;
-	
+
 	/**
 	 * Stores the last number used for the ID
 	 * 
 	 * @see #resetID
 	 */
 	private static int lastNum = 0;
-	
+
 	/**
 	 * The Point coordinates where the Robot is placed on the grid.
 	 * 
 	 * @see #setCoordinates #getRobotCoordinates #getRobotX #getRobotY
 	 */
 	protected Point robotCoordinates;
-	
+
 	/**
 	 * Storage Shelf Constructor. Creates a <code>Robot</code> and sets a safety margin of 20%. It also has a <code>boolean</code>
 	 * set to false automatically for the Order Status.
@@ -66,7 +66,7 @@ public class Robot extends Warehouse implements Entity  {
 		safetyMargin = 0.2;
 		orderStatus = false;
 	}
-	
+
 	/**
 	 * The current battery level of the robot.
 	 * 
@@ -97,32 +97,22 @@ public class Robot extends Warehouse implements Entity  {
 	public void updateBattery(int batteryLevel) {
 		this.batteryLevel = batteryLevel;
 	}
-	
+
 	/**
 	 * 
 	 */
 	public void recieveOrder() {
-		
+
 	}
-	
+
 	/**
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> True if an order is accepted, otherwise false.
 	 */
-	public boolean orderDecision() {
+	public void orderDecision() {
 		if (orderStatus == false) {
-			if(CostEstimationStrategy.distanceEstimator() < (safetyMargin*batteryLevel)+(batteryLevel)) {
-				Order.removeFromUnassigned(PackingStation.passOnIndex());
-				Order.addToAssigned(PackingStation.getNextOrder());
-				PackingStation.incrementIndex();
-				move();
-				orderStatus= true;
-			}
-			else {
-				orderStatus= false;
-			}
+			CostEstimationStrategy.decideOrder();
 		}
-		return orderStatus;
 	}
 
 	/**
@@ -162,7 +152,7 @@ public class Robot extends Warehouse implements Entity  {
 		//some code here
 		orderStatus = true;
 	}
-	
+
 	/**
 	 * Sets the coordinate values for the robot and uses the X and Y int values to create a point on the grid.
 	 * 
