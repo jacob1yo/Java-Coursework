@@ -242,6 +242,8 @@ public class SimulatorController {
 		move();
 		ticks++;
 		tickLabel.setText("Tick: " + ticks);
+		warehouse.getUpdatedRobotCoordinates();
+		
 	}
 	
 	@FXML 
