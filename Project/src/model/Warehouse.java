@@ -404,15 +404,27 @@ public class Warehouse {
 		String robotID = "";
 		String robotCharge = "";
 		String robotCoordinates = "";
+		getUpdatedRobotCoordinates();
 		
 		for (int i = 0; i < robotList.size(); i++) {
 			robotID = robotList.get(i). getID() + " ";
 			robotCharge = robotList.get(i).getBatteryLevel() + " ";
-			robotCoordinates = robotList.get(i).getRobotCoordinates().getX() + ", " + robotList.get(i).getRobotCoordinates().getY() + " ";
-			
+			robotCoordinates += /*robotList.get(i).getRobotCoordinates().getX() + ", " + robotList.get(i).getRobotCoordinates().getY() + " ";*/
 			robotInfo += "Robot ID :" + robotID + "\n" + "Charge Rate :" + robotCharge + "\n" + "Coordinates :" + robotCoordinates + "\n" + "\n";	
 		}
 			return robotInfo;
+	}
+	
+	public String getUpdatedRobotCoordinates() {
+		String coordinates = "";
+		for (Point value : currentToNext.values()) {
+			String x = String.valueOf(value.getX());
+			String y = String.valueOf(value.getY());
+			coordinates += x + " " + y;
+			System.out.print(coordinates);
+		}
+			return coordinates;
+		
 	}
 	
 	/* 
