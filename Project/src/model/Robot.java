@@ -56,13 +56,6 @@ public class Robot extends Warehouse implements Entity  {
 	private boolean carrying;
 
 	/**
-	 * Stores the last number used for the ID
-	 * 
-	 * @see #resetID
-	 */
-	private static int lastNum = 0;
-
-	/**
 	 * The Point coordinates where the Robot is placed on the grid.
 	 * 
 	 * @see #setCoordinates #getRobotCoordinates #getRobotX #getRobotY
@@ -223,13 +216,6 @@ public class Robot extends Warehouse implements Entity  {
 	}
 
 	/**
-	 * Rests the lastNum field to 0.
-	 */
-	public void resetID() {
-		lastNum = 0;
-	}
-
-	/**
 	 * Gets the location of each robot from the {@link MainController class} and stores it in an ArrayList. 
 	 * 
 	 * @return Returns a <code>ArrayList<Point></code>. ArrayList of Point Objects.
@@ -270,5 +256,10 @@ public class Robot extends Warehouse implements Entity  {
 	@Override
 	public void setId(String newUid) {
 		uid = newUid;
+	}
+
+	@Override
+	public void decreaseID(int selectedId) {
+		selectedId--;
 	}
 }

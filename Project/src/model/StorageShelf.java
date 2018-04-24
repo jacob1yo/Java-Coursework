@@ -20,13 +20,6 @@ public class StorageShelf extends Warehouse implements Entity {
 	private String uid;
 
 	/**
-	 * Stores the last number used for the ID.
-	 * 
-	 * @see #resetID
-	 */
-	private static int lastNum = 0;
-
-	/**
 	 * The Point coordinates where the Storage Shelf is placed on the grid.
 	 * 
 	 * @see #chargingPod #getStorageCoordinates #getStorageX #getStorageY
@@ -69,13 +62,6 @@ public class StorageShelf extends Warehouse implements Entity {
 		return storageCoordinates.getY();
 	}
 
-	/**
-	 * Rests the lastNum field to 0.
-	 */
-	public void resetID() {
-		lastNum = 0;
-	}
-
 	@Override
 	public void generateID(int id) {
 		int num = id;
@@ -96,6 +82,11 @@ public class StorageShelf extends Warehouse implements Entity {
 	@Override
 	public void setId(String newUid) {
 		uid = newUid;
+	}
+
+	@Override
+	public void decreaseID(int selectedId) {
+		selectedId--;
 	}
 
 }

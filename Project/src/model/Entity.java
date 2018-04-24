@@ -19,6 +19,11 @@ public interface Entity {
 	public abstract void generateID(int id);
 	
 	/**
+	 * 
+	 */
+	public abstract void decreaseID(int selectedId);
+	
+	/**
 	 * Gets the ID generated.
 	 * 
 	 * @return <code>String</code>. The uid of the Charging Pod object created.

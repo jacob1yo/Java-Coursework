@@ -25,11 +25,6 @@ public class PackingStation extends Warehouse implements Entity{
 	 * @see #getID, #generateID
 	 */
 	private String uid;
-	
-	/**
-	 * Stores the last number used for the ID
-	 */
-	private static int lastNum = 0; //may need to be deleted
 
 	private Point packingCoordinates;
 	
@@ -124,13 +119,6 @@ public class PackingStation extends Warehouse implements Entity{
 		
 	}
 	
-	/**
-	 * Rests the lastNum field to 0.
-	 */
-	public void resetID() {	//maybe delete
-		lastNum = 0;
-	}
-	
 	@Override
 	public void generateID(int id) {
 		int num = id;
@@ -152,5 +140,10 @@ public class PackingStation extends Warehouse implements Entity{
 	@Override
 	public void setId(String newUid) {
 		uid = newUid;
+	}
+
+	@Override
+	public void decreaseID(int selectedId) {
+		selectedId--;
 	}
 }
