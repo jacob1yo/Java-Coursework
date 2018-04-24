@@ -286,9 +286,10 @@ public class MainController {
 		filechooser.getExtensionFilters().addAll(new ExtensionFilter(".SIM Files", "*.sim"));
 		File selectedFile = filechooser.showOpenDialog(null);
 
-		Order.setFile(selectedFile);
-		Order.printCommands();
-		String line = Order.getCommands();
+		Order order = warehouse.getOrder();
+		order.setFile(selectedFile);
+		order.printCommands();
+		String line = order.getCommands();
 		
 		listOrders.getItems().addAll(line);
 		listOrders.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -301,7 +302,7 @@ public class MainController {
 		deleteButton.setDisable(true);
 		clearButton.setDisable(true);
 		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
-		Order.fillLists();
+		warehouse.fillLists();
 
 		setUpGrid();
 		warehouse.removeAll();
@@ -314,8 +315,8 @@ public class MainController {
 	}
 	
 	public void setUpGrid() {
-		numCols = Integer.valueOf(Order.getConfiguration().get(3)).intValue();
-		numRows = Integer.valueOf(Order.getConfiguration().get(5)).intValue();
+		numCols = Integer.valueOf(warehouse.getConfiguration().get(3)).intValue();
+		numRows = Integer.valueOf(warehouse.getConfiguration().get(5)).intValue();
 		
 		grid.getRowConstraints().clear();
 		for (int i = 0; i < numRows; i++) {
@@ -337,15 +338,15 @@ public class MainController {
 	public void addRobots() {
 		Integer x = 0;
 		Integer y = 0;
-		for(int i = 2; i < Order.getPodRob().size(); i+=5) {
+		for(int i = 2; i < warehouse.getPodRob().size(); i+=5) {
 			Circle circle = new Circle(20);
 			circle.setFill(Color.GREEN);
 			GridPane.setHalignment((Node) circle, HPos.CENTER);
 			Rectangle rect = new Rectangle(50,50);
 			rect.setFill(Color.BLUE);
 			GridPane.setHalignment((Node) rect, HPos.CENTER);
-				x = Integer.valueOf(Order.getPodRob().get(i+1));
-				y = Integer.valueOf(Order.getPodRob().get(i+2));
+				x = Integer.valueOf(warehouse.getPodRob().get(i+1));
+				y = Integer.valueOf(warehouse.getPodRob().get(i+2));
 			grid.add(rect, x.intValue(), y.intValue());
 			grid.add(circle, x.intValue(), y.intValue());
 		}
@@ -354,13 +355,13 @@ public class MainController {
 	public void addStorage() {
 		Integer x = 0;
 		Integer y = 0;
-		for(int i = 1; i < Order.getStorageShelves().size(); i+=4) {
+		for(int i = 1; i < warehouse.getStorageShelves().size(); i+=4) {
 			Polygon triangle = new Polygon();
 			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 			triangle.setFill(Color.RED);
 			GridPane.setHalignment((Node) triangle, HPos.CENTER);
-			x = Integer.valueOf(Order.getStorageShelves().get(i+1));
-			y = Integer.valueOf(Order.getStorageShelves().get(i+2));
+			x = Integer.valueOf(warehouse.getStorageShelves().get(i+1));
+			y = Integer.valueOf(warehouse.getStorageShelves().get(i+2));
 			grid.add(triangle, x, y);
 		}
 	}
@@ -368,13 +369,13 @@ public class MainController {
 	public void addPacking() {
 		Integer x = 0;
 		Integer y = 0;
-		for(int i = 1; i < Order.getPackingStations().size(); i+=4) {
+		for(int i = 1; i < warehouse.getPackingStations().size(); i+=4) {
 			Polygon triangle = new Polygon();
 			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 			triangle.setFill(Color.YELLOW);
 			GridPane.setHalignment((Node) triangle, HPos.CENTER);
-			x = Integer.valueOf(Order.getPackingStations().get(i+1));
-			y = Integer.valueOf(Order.getPackingStations().get(i+2));
+			x = Integer.valueOf(warehouse.getPackingStations().get(i+1));
+			y = Integer.valueOf(warehouse.getPackingStations().get(i+2));
 			grid.add(triangle, x, y);
 		}
 	}

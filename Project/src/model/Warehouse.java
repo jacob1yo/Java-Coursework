@@ -1,21 +1,22 @@
 package model;
 
 import java.awt.Point;
-
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 /**
-* This class contains the implementation of the Warehouse methods.
-* 
-* @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
-*         Vivek Bhukhan, Christos Dolopikos.
-*         
-* @version 1.0
-*/
+ * This class contains the implementation of the Warehouse methods.
+ * 
+ * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
+ *         Vivek Bhukhan, Christos Dolopikos.
+ *         
+ * @version 1.0
+ */
 
 public class Warehouse {
-	
+
 	/**
 	 * Robot objects used in the simulation, are stored in this ArrayList.
 	 * 
@@ -23,55 +24,66 @@ public class Warehouse {
 	 * @see #getRobotInfo #getRobotID #addToRobotsChargePod
 	 */
 	private ArrayList<Robot> robotList;
-	
+
 	/**
 	 * Charging Pod objects used in the simulation, are stored in this ArrayList.
 	 * 
 	 * @see #addRobot #genID #delete #removeAll #check #chargingPodPoints #getChargeList
 	 */
-	static ArrayList<ChargingPod> chargeList; //if gui messes up, change back from static
-	
+	private ArrayList<ChargingPod> chargeList; //if gui messes up, change back from static
+
 	/**
 	 * Storage Shelf objects used in the simulation, are stored in this ArrayList.
 	 * 
 	 * @see #addStorage #genID #delete #removeAll #check #storageShelfPoints #getStorageList
 	 */
-	static ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
-	
+	private ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
+
 	/**
 	 * Packing Station objects used in the simulation, are stored in this ArrayList.
 	 * 
 	 * @see #addPacking #genID #delete #removeAll #check #packingStationPoints #getPackingID #getPackingStations
 	 */
-	static ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();
-	
+	private ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();
+
 	/**
 	 * Robot point coordinates used in the simulation, are stored in this ArrayList.
 	 * 
 	 * @see #robotPoints
 	 */
-	private static ArrayList<Point> robotPoints;
-	
+	private ArrayList<Point> robotPoints;
+
 	/**
 	 * Robots current Point coordinate and next Point coordinate, are stored in this HashMap.
 	 * 
 	 * @see #move #moveRobot
 	 */
 	private HashMap<Point, Point> currentToNext;
-	
+
 	/**
 	 * Storages is a static variable, which has the same data as Storage Lists. Therefore, the data can be returned through a static method.
 	 * 
 	 * @see #addStorage #genID
 	 */
-	private static ArrayList<StorageShelf> storages;
-	
+	private ArrayList<StorageShelf> storages;
+
 	/**
 	 * The string representation of Robot UID (key) to the Charging Pods UID (value) are mapped and stored in this HashMap.
 	 * 
 	 * @see #addToRobotsChargePod #getRobotChargePod
 	 */
-	private static HashMap<String, String> robotsChargePod = new HashMap<String, String>();
+	private HashMap<String, String> robotsChargePod = new HashMap<String, String>();
+
+	private HashMap<String, Point> storagePoints = new HashMap<String, Point>();
+	private HashMap<String, Point> packingPoints = new HashMap<String, Point>();
+	private HashMap<String, Point> chargePoints = new HashMap<String, Point>();
+
+	private ArrayList<String> configuration = new ArrayList<String>();
+	private ArrayList<String> podRob = new ArrayList<String>();
+	private ArrayList<String> shelves = new ArrayList<String>();
+	private ArrayList<String> stations = new ArrayList<String>();
+
+	private Order order;
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
@@ -79,6 +91,7 @@ public class Warehouse {
 		robotPoints = new ArrayList<Point>();
 		currentToNext = new HashMap<Point, Point>();
 		storages = new ArrayList<StorageShelf>();
+		order = new Order();
 	}
 
 	/**
@@ -135,7 +148,7 @@ public class Warehouse {
 		packing.setId(uid);
 		packingList.add(packing);
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -146,7 +159,7 @@ public class Warehouse {
 				robIds.add(robotList.get(i));
 			}
 			if(robotList.get(i).getID() == null) {
-					robotList.get(i).generateID(robIds.size());
+				robotList.get(i).generateID(robIds.size());
 			}
 		}
 		ArrayList<ChargingPod> chIds = new ArrayList<ChargingPod>();
@@ -177,7 +190,7 @@ public class Warehouse {
 			}
 		}
 	}
-	
+
 	/**
 	 * Deletes an item from entity lists depending on the coordinates given
 	 * 
@@ -297,7 +310,7 @@ public class Warehouse {
 		return robots;
 	}
 
-	public static ArrayList<Point> getRobotPoints() {
+	public ArrayList<Point> getRobotPoints() {
 		return robotPoints;
 	}
 
@@ -374,7 +387,7 @@ public class Warehouse {
 			currentToNext = pathFinding.getNewNodes();
 		}
 		return currentToNext;
-		
+
 		/*PathFinding pathFinding = new PathFinding();
 		Point destination = new Point(4, 4);
 		pathFinding.pathCalc(destination);
@@ -396,29 +409,29 @@ public class Warehouse {
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
-	
+
 	public void readOrders() {
 		for(int i = 0; i < robotList.size(); i++) {
 			robotList.get(i).recieveOrder();
 		}
 	}
-	
+
 	public String getRobotInfo() {
 		String robotInfo = "";
 		String robotID = "";
 		String robotCharge = "";
 		String robotCoordinates = "";
 		getUpdatedRobotCoordinates();
-		
+
 		for (int i = 0; i < robotList.size(); i++) {
 			robotID = robotList.get(i). getID() + " ";
 			robotCharge = robotList.get(i).getBatteryLevel() + " ";
 			robotCoordinates += /*robotList.get(i).getRobotCoordinates().getX() + ", " + robotList.get(i).getRobotCoordinates().getY() + " ";*/
-			robotInfo += "Robot ID :" + robotID + "\n" + "Charge Rate :" + robotCharge + "\n" + "Coordinates :" + robotCoordinates + "\n" + "\n";	
+					robotInfo += "Robot ID :" + robotID + "\n" + "Charge Rate :" + robotCharge + "\n" + "Coordinates :" + robotCoordinates + "\n" + "\n";	
 		}
-			return robotInfo;
+		return robotInfo;
 	}
-	
+
 	public String getUpdatedRobotCoordinates() {
 		String coordinates = "";
 		for (Point value : currentToNext.values()) {
@@ -427,10 +440,10 @@ public class Warehouse {
 			coordinates += x + " " + y;
 			System.out.print(coordinates);
 		}
-			return coordinates;
-		
+		return coordinates;
+
 	}
-	
+
 	/* 
 	 * Currently unused
 	 */
@@ -441,8 +454,8 @@ public class Warehouse {
 		}
 		return robotID;
 	}
-	
-	
+
+
 
 	public String getPackingID() {
 		String packingID = ""; 
@@ -456,29 +469,29 @@ public class Warehouse {
 	 * Reads needed values from a SIM file
 	 */
 	public void readRobotData() {
-		for(int i = 0; i < Order.getPodRob().size(); i+=5) {
-			Integer x = Integer.valueOf(Order.getPodRob().get(i+3));
-			Integer y = Integer.valueOf(Order.getPodRob().get(i+4));
-			String ruid = Order.getPodRob().get(i+2);
-			String cuid = Order.getPodRob().get(i+1);
+		for(int i = 0; i < podRob.size(); i+=5) {
+			Integer x = Integer.valueOf(podRob.get(i+3));
+			Integer y = Integer.valueOf(podRob.get(i+4));
+			String ruid = podRob.get(i+2);
+			String cuid = podRob.get(i+1);
 			addRobot(ruid, cuid, x.intValue(), y.intValue(), readBatteryLevel(), readChargeRate());
 		}
 	}
-	
+
 	public void readStorageData() {
-		for(int i = 0; i < Order.getStorageShelves().size(); i+=4) {
-			Integer x = Integer.valueOf(Order.getStorageShelves().get(i+2));
-			Integer y = Integer.valueOf(Order.getStorageShelves().get(i+3));
-			String uid = Order.getStorageShelves().get(i+1);
+		for(int i = 0; i < shelves.size(); i+=4) {
+			Integer x = Integer.valueOf(shelves.get(i+2));
+			Integer y = Integer.valueOf(shelves.get(i+3));
+			String uid = shelves.get(i+1);
 			addStorage(uid, x.intValue(), y.intValue());
 		}
 	}
-	
+
 	public void readPackingData() {
-		for(int i = 0; i < Order.getPackingStations().size(); i+=4) {
-			Integer x = Integer.valueOf(Order.getPackingStations().get(i+2));
-			Integer y = Integer.valueOf(Order.getPackingStations().get(i+3));
-			String uid = Order.getPackingStations().get(i+1);
+		for(int i = 0; i < stations.size(); i+=4) {
+			Integer x = Integer.valueOf(stations.get(i+2));
+			Integer y = Integer.valueOf(stations.get(i+3));
+			String uid = stations.get(i+1);
 			addPacking(uid, x.intValue(), y.intValue());
 		}
 	}
@@ -489,7 +502,7 @@ public class Warehouse {
 	 * @return
 	 */
 	public int readBatteryLevel() {
-		Integer capacity = Integer.valueOf(Order.getConfiguration().get(7));
+		Integer capacity = Integer.valueOf(configuration.get(7));
 		return capacity.intValue();
 	}
 
@@ -497,10 +510,10 @@ public class Warehouse {
 	 * Reads charge rate from a SIM file
 	 */
 	public int readChargeRate() {
-		Integer chargeRate = Integer.valueOf(Order.getConfiguration().get(9));
+		Integer chargeRate = Integer.valueOf(configuration.get(9));
 		return chargeRate.intValue();
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -513,24 +526,112 @@ public class Warehouse {
 			System.out.println("Looping: " + robotsChargePod.get("r0"));
 		}
 	}
-	
-	public static HashMap<String, String> getRobotsChargePod() {
+
+	public HashMap<String, String> getRobotsChargePod() {
 		return robotsChargePod;
 	}
-	
-	public static ArrayList<StorageShelf> getStorageShelfs(){
+
+	public ArrayList<StorageShelf> getStorageShelfs(){
 		return storages;
 	}
-	
-	public static ArrayList<PackingStation> getPackingStations(){
+
+	public ArrayList<PackingStation> getPackingStationList(){
 		return packingList;
 	}
-	
-	public static ArrayList<StorageShelf> getStorageList(){ //may need to change from static
+
+	public ArrayList<StorageShelf> getStorageList(){ //may need to change from static
 		return storageList;
 	}
-	
-	public static ArrayList<ChargingPod> getChargeList(){
+
+	public ArrayList<ChargingPod> getChargeList(){
 		return chargeList;
+	}
+
+	public HashMap<String, Point> storagePoints() {
+		for(StorageShelf s: getStorageList()) {
+			storagePoints.put(s.getID(), s.getStorageCoordinates());
+		}
+		return storagePoints;
+	}
+
+	public HashMap<String, Point> packingPoints(){
+		for(PackingStation p : getPackingStationList()) {
+			packingPoints.put(p.getID(), p.getPackingCoordinates());
+		}
+		return packingPoints;
+	}
+
+	public HashMap<String, Point> chargePoints(){
+		for(ChargingPod c : getChargeList()) {
+			chargePoints.put(c.getID(), c.getChargingCoordinates());
+		}
+		return chargePoints;
+	}
+
+	public void fillLists() {
+		try {
+			Scanner scanner = new Scanner(order.getFile());
+			clearLists();
+			while(scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+
+				if(line.contains("podRobot")) {
+					String[] temp = line.split(" ");
+					for (int i = 0; i < temp.length;i++) {
+						podRob.add(temp[i]);
+					}
+
+				}
+				else if(line.contains("shelf")) {
+					String[] temp = line.split(" ");
+					for (int i = 0; i < temp.length;i++) {
+						shelves.add(temp[i]);
+					}
+
+				}
+				else if(line.contains("station")) {
+					String[] temp = line.split(" ");
+					for (int i = 0; i < temp.length;i++) {
+						stations.add(temp[i]);
+					}
+				}
+				else if(!line.contains("podRob") && !line.contains("shelf") && !line.contains("station") && !line.contains("order")) {
+					String[] temp = line.split(" ");
+					for(int i = 0; i < temp.length; i++) {
+						configuration.add(temp[i]);
+					}
+				}
+				System.out.println("Warehouse config: " + configuration.size());
+			} scanner.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void clearLists() {
+		podRob.clear();
+		shelves.clear();
+		stations.clear();
+		configuration.clear();
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+	
+	public ArrayList<String> getConfiguration(){
+		return configuration;
+	}
+	
+	public ArrayList<String> getPodRob(){
+		return podRob;
+	}
+	
+	public ArrayList<String> getStorageShelves(){
+		return shelves;
+	}
+	
+	public ArrayList<String> getPackingStations(){
+		return stations;
 	}
 }
