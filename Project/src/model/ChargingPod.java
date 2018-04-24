@@ -123,10 +123,4 @@ public class ChargingPod extends Warehouse implements Entity {
 	public void setId(String newUid) {
 		uid = newUid;
 	}
-
-	@Override
-	public void decreaseID(int selectedId) {
-		selectedId--;
-	}
-
 }

@@ -19,13 +19,6 @@ public interface Entity {
 	public abstract void generateID(int id);
 	
 	/**
-	 * Changes the uid of each entity, when an entity is deleted
-	 * 
-	 * @param selectedId. The id of the entity being deleted
-	 */
-	public abstract void decreaseID(int selectedId);
-	
-	/**
 	 * Gets the ID generated.
 	 * 
 	 * @return <code>String</code>. The uid of the Charging Pod object created.
