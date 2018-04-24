@@ -28,8 +28,6 @@ public class PackingStation extends Warehouse implements Entity{
 
 	private Point packingCoordinates;
 	
-	private static int index = 0;
-	
 	private static Point p;
 	
 	public PackingStation(int x, int y) {
