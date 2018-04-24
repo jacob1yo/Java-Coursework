@@ -76,10 +76,9 @@ public class Robot extends Warehouse implements Entity  {
 	}
 	
 	public void initializeOrder() {
-		recieveOrder();
-		/*while(!orderStatus) {
-			recieveOrder();
-		}*/
+		if(!orderStatus) {
+			//recieveOrder();
+		}
 		//Call method to go to charge pod and charge
 	}
 
@@ -129,6 +128,8 @@ public class Robot extends Warehouse implements Entity  {
 	public void orderDecision() {
 		if(CostEstimationStrategy.getDecision()) {
 			orderStatus = true;
+			System.out.println("Order accepted. ");
+			recieveOrder();
 		}
 		else {
 			orderStatus = false;

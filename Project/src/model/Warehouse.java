@@ -139,7 +139,7 @@ public class Warehouse {
 			if (robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
 				robotList.remove(i);
 				for(int j = i; j < robotList.size(); j++) {
-					robotList.get(j).decreaseId(robotList.get(j).getID());
+					robotList.get(j).generateID(j);
 				}
 			}
 		}
@@ -147,7 +147,7 @@ public class Warehouse {
 			if (chargeList.get(i).getChargingX() == (double) x && chargeList.get(i).getChargingY() == (double) y) {
 				chargeList.remove(i);
 				for(int j = i; j < chargeList.size(); j++) {
-					chargeList.get(j).decreaseId(chargeList.get(j).getID());
+					chargeList.get(j).generateID(j);
 				}
 			}
 		}
@@ -155,7 +155,7 @@ public class Warehouse {
 			if (storageList.get(i).getStorageX() == (double) x && storageList.get(i).getStorageY() == (double) y) {
 				storageList.remove(i);
 				for(int j = i; j < storageList.size(); j++) {
-					storageList.get(j).decreaseId(storageList.get(j).getID());
+					storageList.get(j).generateID(j);
 				}
 			}
 		}
@@ -164,7 +164,7 @@ public class Warehouse {
 			if (packingList.get(i).getPackingX() == (double) x && packingList.get(i).getPackingY() == (double) y) {
 				packingList.remove(i);
 				for(int j = i; j < packingList.size(); j++) {
-					packingList.get(j).decreaseId(packingList.get(j).getID());
+					packingList.get(j).generateID(j);
 				}
 			}
 		}
@@ -175,19 +175,15 @@ public class Warehouse {
 	 */
 	public void removeAll() {
 		if (!robotList.isEmpty()) {
-			robotList.get(0).resetID();
 			robotList.clear();
 		}
 		if (!chargeList.isEmpty()) {
-			chargeList.get(0).resetID();
 			chargeList.clear();
 		}
 		if (!storageList.isEmpty()) {
-			storageList.get(0).resetID();
 			storageList.clear();
 		}
 		if (!packingList.isEmpty()) {
-			packingList.get(0).resetID();
 			packingList.clear();
 		}
 	}
@@ -317,7 +313,8 @@ public class Warehouse {
 		currentToNext = null;
 		for(int i = 0; i < robotList.size(); i++) {
 			PathFinding pathFinding = new PathFinding();
-			robotList.get(i).initializeOrder();
+			robotList.get(i).orderDecision();
+			//robotList.get(i).initializeOrder();
 			Point destination = robotList.get(i).getDestination();
 			System.out.println("Robot dest: " + destination);
 			pathFinding.pathCalc(destination);
