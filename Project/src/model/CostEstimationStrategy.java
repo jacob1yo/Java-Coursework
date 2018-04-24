@@ -84,12 +84,19 @@ public class CostEstimationStrategy extends Robot {
 		ArrayList<String> order = PackingStation.getNextOrder();
 		for(int i = 2; i < order.size(); i++) {
 			destinations.add(Order.storagePoints().get(order.get(i)));
-			//System.out.println(order.get(i));
 		}
-		//destinations.add(PackingStation.passOnPoint());
-		destinations.add(new Point(0, 2));
+		destinations.add(PackingStation.passOnPoint());
+		System.out.println(PackingStation.passOnPoint());
+		//destinations.add(new Point(0, 2));
 		System.out.println("Cost estimation dest: " + destinations.toString());
 		return destinations;
+	}
+	
+	public static int numTicks() {
+		String temp = PackingStation.getNextOrder().get(1);
+		Integer ticks = Integer.parseInt(temp);
+		System.out.println("Ticks: " + ticks);
+		return ticks;
 	}
 
 }

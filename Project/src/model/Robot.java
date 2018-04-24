@@ -53,8 +53,10 @@ public class Robot extends Warehouse implements Entity  {
 	private int index;
 
 	private boolean carrying;
-	
+
 	private Point start;
+
+	private int waitTime;
 
 	/**
 	 * The Point coordinates where the Robot is placed on the grid.
@@ -76,8 +78,9 @@ public class Robot extends Warehouse implements Entity  {
 		int index =  0;
 		carrying = false;
 		start = new Point();
+		waitTime = 0;
 	}
-	
+
 	public void setStart(int x, int y) {
 		start = new Point(x, y);
 		nextDestination = start;
@@ -164,11 +167,17 @@ public class Robot extends Warehouse implements Entity  {
 			carrying = true;
 		}
 	}
-	
-	public void firstStep() {
-		
+
+	public int waitTicks() {
+		if(getRobotCoordinates() == order.get(order.size() - 1)) {
+			waitTime = CostEstimationStrategy.numTicks();
+		}
+		else {
+			waitTime = 1;
+		}
+		return waitTime;
 	}
-	
+
 	public boolean atLocation() {
 		System.out.println("Start = " + start + " nextDestination = " + nextDestination + " robot coords: " + getRobotCoordinates());
 		if(getRobotCoordinates().equals(nextDestination)) {
@@ -187,7 +196,7 @@ public class Robot extends Warehouse implements Entity  {
 		}
 		return nextNode;
 	}
-	
+
 	public Point updateDestination() {
 		nextDestination = nextInPath();
 		return nextDestination;
