@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 
-public class PackingStation extends Warehouse implements Entity{
+public class PackingStation implements Entity{
 	/**
 	 * If packing has been completed by robot
 	 * 
@@ -33,7 +33,7 @@ public class PackingStation extends Warehouse implements Entity{
 	public PackingStation(int x, int y) {
 		packingCoordinates = new Point(x, y);
 		completed = false;
-		p = Order.packingPoints().get(uid);
+		p = new Point(x, y);
 	}
 	
 	/**

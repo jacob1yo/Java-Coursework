@@ -14,7 +14,7 @@ import gui.MainController;
  * @version 1.0
  */
 
-public class Robot extends Warehouse implements Entity  {
+public class Robot implements Entity  {
 
 	/**
 	 * The value of the battery level of Robot objects.

@@ -106,6 +106,7 @@ public class Warehouse {
 		ChargingPod chargePod = new ChargingPod(x, y);
 		chargePod.setId(cuid);
 		chargeList.add(chargePod);
+		System.out.println("ChargeL: " + chargeList.size());
 		for (int i = 0; i < chargeList.size(); i++) {
 			chargeList.get(i).updateChargeRate(chargeRate);
 		}
@@ -360,7 +361,10 @@ public class Warehouse {
 
 	public HashMap<Point, Point> move() {
 		currentToNext = null;
+		CostEstimationStrategy costEst = new CostEstimationStrategy();
 		for(int i = 0; i < robotList.size(); i++) {
+			Robot robot = robotList.get(i);
+			costEst.addToRobotCoordinates(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel());
 			PathFinding pathFinding = new PathFinding();
 			robotList.get(i).orderDecision();
 			//robotList.get(i).initializeOrder();
@@ -489,10 +493,12 @@ public class Warehouse {
 	 * 
 	 */
 	public void addToRobotsChargePod() {
+		System.out.println("robot size: " + robotList.size());
 		for(int i = 0; i < robotList.size(); i++) {
 			String robot = "r" + i;
 			String charge = "c" + i;
 			robotsChargePod.put(robot, charge);
+			System.out.println("Looping: " + robotsChargePod.get("r0"));
 		}
 	}
 	

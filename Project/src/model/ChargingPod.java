@@ -11,7 +11,7 @@ import java.awt.Point;
  *
  */
 
-public class ChargingPod extends Warehouse implements Entity {
+public class ChargingPod implements Entity {
 
 	/**
 	 * Determines the speed at which the battery of a robot is charged.

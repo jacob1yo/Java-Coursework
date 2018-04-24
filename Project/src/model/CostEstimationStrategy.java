@@ -23,10 +23,28 @@ public class CostEstimationStrategy extends Robot {
 	private static double noSteps;
 
 	private static boolean value;
+	
+	private static double robotX;
+	
+	private static double robotY;
+	
+	private static String uid;
+	
+	private static double safetyMargin;
+	
+	private static int batteryLevel;
 
 	public CostEstimationStrategy() {
 		super();
 		noSteps=0.0;
+	}
+	
+	public void addToRobotCoordinates(double x, double y, String uid, int batteryLvl) {
+		robotX = x;
+		robotY = y;
+		this.uid = uid;
+		safetyMargin = 0.2;
+		batteryLevel = batteryLvl;
 	}
 
 	/**
@@ -35,7 +53,7 @@ public class CostEstimationStrategy extends Robot {
 	 * @return <code>double</code> Distance between locations
 	 * this is repeated code, so we will write down the maths into a single function and call the function in every time with parameters
 	 */
-	public void distanceEstimator() {
+	public static void distanceEstimator() {
 		Point destination=PackingStation.passOnPoint();
 
 		ArrayList<String> sentence = PackingStation.getNextOrder();
@@ -44,19 +62,26 @@ public class CostEstimationStrategy extends Robot {
 		double packingPod;
 		double doublediagonals=0.0;
 		double robotStorage=0.0;
+		System.out.println("Destionation: " + destination);
+		System.out.println("PackingX: " + Warehouse.getRobotsChargePod().size());
+		System.out.println("DestX: " + destination.getX());
+		System.out.println("String: " + Order.chargePoints().get(Warehouse.getRobotsChargePod().size()-1));
+		robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(sentence.get(2)).getX()-robotX),2))+Math.pow((Order.storagePoints().get(sentence.get(2)).getY()-robotY), 2));
 
-		robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(sentence.get(2)).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(sentence.get(2)).getY()-getRobotY()), 2));
-
-		for (int j = 2; j< sentence.size(); j++) {  // gets the ss1 ss2 etc	
-			if (j++ < sentence.size()) {
+		for (int j = 2; j< sentence.size(); j++) {  // gets the ss1 ss2 etc
+			System.out.println("StorageP: " + Order.storagePoints().size());
+			System.out.println("Sentence: " + sentence.size());
+			System.out.println("X: " + Order.storagePoints().get(sentence.get(j)).getX());
+			System.out.println("SecX: " + Order.storagePoints().get(sentence.get(j++)).getX());
+			if ((j++) < sentence.size()) {
 				storageDistances = Math.sqrt((Math.pow((Order.storagePoints().get(sentence.get(j)).getX()-Order.storagePoints().get(sentence.get(j++)).getX()),2))+Math.pow((Order.storagePoints().get(sentence.get(j)).getY()-Order.storagePoints().get(sentence.get(j++)).getY()),2));
 			}
 			else {
-				storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(PackingStation.getNextOrder().get(PackingStation.getNextOrder().size() - 1)).getX()-destination.getX()),2)) + Math.pow((Order.storagePoints().get(PackingStation.getNextOrder().get(PackingStation.getNextOrder().size() - 1)).getY()-destination.getY()),2));
+				storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(sentence.get(sentence.size() - 1)).getX()-destination.getX()),2)) + Math.pow((Order.storagePoints().get(sentence.get(sentence.size() - 1)).getY()-destination.getY()),2));
 			}
 			doublediagonals += storageDistances+storagePacking;
 		}
-		packingPod = Math.sqrt((Math.pow((Order.chargePoints().get(Warehouse.getRobotsChargePod().get(super.getID())).getX() -destination.getX()),2)) + Math.pow((Order.chargePoints().get(Warehouse.getRobotsChargePod().get(super.getID())).getY()-destination.getY()),2));
+		packingPod = Math.sqrt((Math.pow((Order.chargePoints().get(Warehouse.getRobotsChargePod().get(uid)).getX() -destination.getX()),2)) + Math.pow((Order.chargePoints().get(Warehouse.getRobotsChargePod().get(uid)).getY()-destination.getY()),2));
 
 		noSteps = ((1.422*(robotStorage + packingPod))-0.07577)+(2*(1.422*(doublediagonals)-0.07577));
 		System.out.println(noSteps);
@@ -70,8 +95,8 @@ public class CostEstimationStrategy extends Robot {
 	}
 
 	public static boolean getDecision() {
-		//return value;
-		return true;
+		distanceEstimator();
+		return value;
 	}
 
 	public void getDistanceEstimator(ArrayList<String> sentence) {

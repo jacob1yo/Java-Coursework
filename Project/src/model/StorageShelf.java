@@ -10,7 +10,7 @@ package model;
  */
 import java.awt.Point;
 
-public class StorageShelf extends Warehouse implements Entity {
+public class StorageShelf implements Entity {
 
 	/**
 	 * The unique identifier of each charging pod
