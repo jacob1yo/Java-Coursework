@@ -19,7 +19,7 @@ public class Warehouse {
 	private ArrayList<Robot> robotList;
 	private ArrayList<ChargingPod> chargeList;
 	static ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
-	static ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();;
+	static ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();
 	private static ArrayList<Point> robotPoints;
 	private HashMap<Point, Point> hashmap;
 	private static ArrayList<StorageShelf> storages;

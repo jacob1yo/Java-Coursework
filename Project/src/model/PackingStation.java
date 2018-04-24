@@ -23,7 +23,7 @@ public class PackingStation extends Warehouse implements Entity{
 	 * The unique identifier of each charging pod
 	 * @see #getID, #generateID
 	 */
-	private String uid;
+	private static String uid;
 	
 	/**
 	 * Stores the last number used for the ID
@@ -110,7 +110,7 @@ public class PackingStation extends Warehouse implements Entity{
 	 * Passes on point to cost estimation
 	 * @return
 	 */
-	public Point passOnPoint() {
+	public static Point passOnPoint() {
 		Point p = Order.packingPoints().get(uid);
 		return p;
 	}
