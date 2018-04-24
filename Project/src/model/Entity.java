@@ -15,9 +15,9 @@ public interface Entity {
 	/**
 	 * Generates the ID for the each Entity object.
 	 * 
-	 * @param id.
-	 *            ID value assigned to num and then incremented by 1 for each object
-	 *            created
+	 * @param id ID value assigned to num and then incremented by 1 for each object
+	 * created.
+	 * 
 	 */
 	public abstract void generateID(int id);
 
@@ -32,17 +32,15 @@ public interface Entity {
 	 * Ensures each ChargingPod created when read from .SIM file is assigned a new
 	 * uid.
 	 * 
-	 * @param newUid
-	 *            a String representation for the uid of each Entity object.
+	 * @param newUid a String representation for the uid of each Entity object.       
 	 */
 	public abstract void setId(String newUid);
 
 	/**
 	 * Compares if the robot is in the same position as another entity.
 	 * 
-	 * @param r
-	 *            a Robot object.
-	 * 
+	 * @param r :a Robot object.
+	 *            
 	 * @return <code>boolean</code> true if there is an entity in the same location
 	 *         or false otherwise.
 	 */
