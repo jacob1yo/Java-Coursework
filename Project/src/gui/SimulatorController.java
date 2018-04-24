@@ -26,6 +26,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import model.Order;
 import model.Warehouse;
 
 
@@ -44,6 +45,8 @@ public class SimulatorController {
 	private int ticks;
 	
 	private Warehouse warehouse;
+	
+	private Order order;
 	
 	/**
 	 * The grid from Simulator.fxml.
@@ -122,6 +125,9 @@ public class SimulatorController {
 		
 		listUnassigned.getItems().addAll("test");
 		listUnassigned.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
+		listAssigned.getItems().addAll(Order.getAssigned());
+		listAssigned.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		
 	}
