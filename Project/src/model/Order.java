@@ -19,7 +19,7 @@ public class Order {
 	 *      #removeFromUnassigned, #removeFromAssigned
 	 */
 	private ArrayList<String> commands = new ArrayList<String>(); // reads a full sim file
-	private static ArrayList<ArrayList<String>> orders = new ArrayList<ArrayList<String>>();
+	private ArrayList<ArrayList<String>> orders = new ArrayList<ArrayList<String>>();
 	private ArrayList<ArrayList<String>> assignedOrders = new ArrayList<ArrayList<String>>();
 	private ArrayList<ArrayList<String>> completedOrders = new ArrayList<ArrayList<String>>();
 	private ArrayList<ArrayList<String>> decisionsList = new ArrayList<ArrayList<String>>();
@@ -48,7 +48,7 @@ public class Order {
 		return file;
 	}
 
-	static ArrayList<ArrayList<String>> getOrders() {
+	public ArrayList<ArrayList<String>> getOrders() {
 		return orders; //gets orders i.e. for i=0 order 9 ss0 ss1 ss3 for i=1 order 7 ss0 ss1 ss5 etc.
 	}
 	/**
@@ -58,7 +58,7 @@ public class Order {
 	public void isCompleted() {
 	}
 
-	public static void removeFromOrders() {
+	public void removeFromOrders() {
 		orders.remove(0);
 	}
 

@@ -39,7 +39,7 @@ public class CostEstimationStrategy extends Robot {
 		noSteps=0.0;
 	}
 	
-	public void addToRobotCoordinates(double x, double y, String uid, int batteryLvl) {
+	public void addToRobotCoordinates(Order order, double x, double y, String uid, int batteryLvl) {
 		robotX = x;
 		robotY = y;
 		this.uid = uid;
@@ -122,6 +122,10 @@ public class CostEstimationStrategy extends Robot {
 		Integer ticks = Integer.parseInt(temp);
 		System.out.println("Ticks: " + ticks);
 		return ticks;
+	}
+	
+	private double pythagoras(double x, double y, double X, double Y) {
+		return Math.sqrt((X - x)*(X - x) + (Y - y)*(Y - y));	
 	}
 
 }

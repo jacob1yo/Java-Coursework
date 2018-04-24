@@ -28,7 +28,7 @@ public class PackingStation implements Entity{
 
 	private Point packingCoordinates;
 	
-	private static Point p;
+	private Point p;
 	
 	public PackingStation(int x, int y) {
 		packingCoordinates = new Point(x, y);
@@ -40,7 +40,7 @@ public class PackingStation implements Entity{
 	 * Passes on point to cost estimation
 	 * @return
 	 */
-	public static Point passOnPoint() {
+	public Point passOnPoint() {
 		return p;
 	}
 
@@ -106,10 +106,10 @@ public class PackingStation implements Entity{
 	 * This method requests another order once current order is completed.
 	 * @return
 	 */
-	public static ArrayList<String> getNextOrder() {
-		ArrayList<String> order = Order.getOrders().get(0);
-		Order.addToDecision(order);
-		Order.removeFromOrders();
+	public ArrayList<String> getNextOrder(Order o) {
+		ArrayList<String> order = o.getOrders().get(0);
+		o.addToDecision(order);
+		o.removeFromOrders();
 		return order;
 	}
 	
