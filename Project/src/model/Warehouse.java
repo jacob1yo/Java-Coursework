@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class Warehouse {
 	
 	/**
-	 * Robot objects used in the simulation, stored in this ArrayList.
+	 * Robot objects used in the simulation, are stored in this ArrayList.
 	 * 
 	 * @see #addRobot #genId #delete #removeAll #check #checkRobot #robotPoints #move #moveRobot 
 	 * @see #getRobotInfo #getRobotID #addToRobotsChargePod
@@ -25,26 +25,52 @@ public class Warehouse {
 	private ArrayList<Robot> robotList;
 	
 	/**
-	 * Charging Pod objects used in the simulation, stored in this ArrayList.
+	 * Charging Pod objects used in the simulation, are stored in this ArrayList.
 	 * 
 	 * @see #addRobot #genID #delete #removeAll #check #chargingPodPoints #getChargeList
 	 */
 	static ArrayList<ChargingPod> chargeList; //if gui messes up, change back from static
 	
 	/**
-	 * Storage Shelf objects used in the simulation, stored in this ArrayList.
+	 * Storage Shelf objects used in the simulation, are stored in this ArrayList.
 	 * 
 	 * @see #addStorage #genID #delete #removeAll #check #storageShelfPoints #getStorageList
 	 */
 	static ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
 	
 	/**
-	 * Packing Station objects used in the simulation, stored in this ArrayList.
+	 * Packing Station objects used in the simulation, are stored in this ArrayList.
+	 * 
+	 * @see #addPacking #genID #delete #removeAll #check #packingStationPoints #getPackingID #getPackingStations
 	 */
 	static ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();
+	
+	/**
+	 * Robot point coordinates used in the simulation, are stored in this ArrayList.
+	 * 
+	 * @see #robotPoints
+	 */
 	private static ArrayList<Point> robotPoints;
+	
+	/**
+	 * Robots current Point coordinate and next Point coordinate, are stored in this HashMap.
+	 * 
+	 * @see #move #moveRobot
+	 */
 	private HashMap<Point, Point> currentToNext;
+	
+	/**
+	 * Storages is a static variable, which has the same data as Storage Lists. Therefore, the data can be returned through a static method.
+	 * 
+	 * @see #addStorage #genID
+	 */
 	private static ArrayList<StorageShelf> storages;
+	
+	/**
+	 * The string representation of Robot UID (key) to the Charging Pods UID (value) are mapped and stored in this HashMap.
+	 * 
+	 * @see #addToRobotsChargePod #getRobotChargePod
+	 */
 	private static HashMap<String, String> robotsChargePod = new HashMap<String, String>();
 
 	public Warehouse() {
