@@ -8,7 +8,8 @@ import gui.MainController;
 import java.awt.Point;
 
 /**
- *
+ * This class contains the implementation of the methods for the robots to find a path between destinations.
+ * 
  * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
  *         Vivek Bhukhan, Christos Dolopikos
  * 
@@ -16,13 +17,18 @@ import java.awt.Point;
 public class PathFinding extends Robot implements Entity {
 	private HashMap<Point, Point> currentToNext;
 
+	/**
+	 * PathFinding constructor. Creates a <code>hashMap</code> to store <code>Point</code> coordinates
+	 *
+	 */
 	public PathFinding() {
 		currentToNext = new HashMap<Point, Point>();
 	}
 
 	/**
 	 * Finds all possible available adjacent nodes and from them, finds the best one to choose
-	 * @param destination
+	 * 
+	 * @param destination. The destination point for the robot.
 	 */
 	public void pathCalc(Point destination) {
 		ArrayList<Point> takenNodes = new ArrayList<Point>();
@@ -76,8 +82,10 @@ public class PathFinding extends Robot implements Entity {
 
 	/**
 	 * Returns the result of Pythagoras's theorem between node and destination
+	 * 
 	 * @param node Point coordinate of where the robot currently is
 	 * @param destination Point coordinate of the robot's destination
+	 * 
 	 * @return <code>double</code>
 	 */
 	public double pythagoras(Point node, Point destination) {
@@ -91,6 +99,7 @@ public class PathFinding extends Robot implements Entity {
 
 	/**
 	 * Returns the HashMap created in manhattanCalc
+	 * 
 	 * @return <code>HashMap<Point, Point></code>
 	 */
 	public HashMap<Point, Point> getNewNodes() {

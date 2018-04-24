@@ -7,7 +7,6 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Scanner; 
 
 public class CostEstimationStrategy extends Robot {
 
@@ -23,13 +22,8 @@ public class CostEstimationStrategy extends Robot {
 	 */
 	private static double noSteps;
 
-<<<<<<< HEAD
-	private static double sum;
-
 	private static boolean value;
 
-=======
->>>>>>> origin/master
 	public CostEstimationStrategy() {
 		super();
 		noSteps=0.0;
@@ -53,14 +47,14 @@ public class CostEstimationStrategy extends Robot {
 
 		robotStorage = Math.sqrt((Math.pow((Order.storagePoints().get(sentence.get(2)).getX()-getRobotX()),2))+Math.pow((Order.storagePoints().get(sentence.get(2)).getY()-getRobotY()), 2));
 
-		for (int j=2; j< sentence.size(); j++) {  // gets the ss1 ss2 etc	
-			if (j++<sentence.size()) {
-				storageDistances = Math.sqrt((Math.pow((Order.storagePoints().get(j).getX()-Order.storagePoints().get(j++).getX()),2))+Math.pow((Order.storagePoints().get(j).getY()-Order.storagePoints().get(j++).getY()),2));
+		for (int j = 2; j< sentence.size(); j++) {  // gets the ss1 ss2 etc	
+			if (j++ < sentence.size()) {
+				storageDistances = Math.sqrt((Math.pow((Order.storagePoints().get(sentence.get(j)).getX()-Order.storagePoints().get(sentence.get(j++)).getX()),2))+Math.pow((Order.storagePoints().get(sentence.get(j)).getY()-Order.storagePoints().get(sentence.get(j++)).getY()),2));
 			}
 			else {
-				storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getX()-destination.getX()),2)) + Math.pow((Order.storagePoints().get(Order.storagePoints().size()-1).getY()-destination.getY()),2));
+				storagePacking = Math.sqrt((Math.pow((Order.storagePoints().get(PackingStation.getNextOrder().get(PackingStation.getNextOrder().size() - 1)).getX()-destination.getX()),2)) + Math.pow((Order.storagePoints().get(PackingStation.getNextOrder().get(PackingStation.getNextOrder().size() - 1)).getY()-destination.getY()),2));
 			}
-			doublediagonals += storageDistances+storagePacking;	
+			doublediagonals += storageDistances+storagePacking;
 		}
 		packingPod = Math.sqrt((Math.pow((Order.chargePoints().get(Warehouse.getRobotsChargePod().get(super.getID())).getX() -destination.getX()),2)) + Math.pow((Order.chargePoints().get(Warehouse.getRobotsChargePod().get(super.getID())).getY()-destination.getY()),2));
 
@@ -76,7 +70,8 @@ public class CostEstimationStrategy extends Robot {
 	}
 
 	public static boolean getDecision() {
-		return value;
+		//return value;
+		return true;
 	}
 
 	public void getDistanceEstimator(ArrayList<String> sentence) {
@@ -91,7 +86,17 @@ public class CostEstimationStrategy extends Robot {
 			destinations.add(Order.storagePoints().get(order.get(i)));
 		}
 		destinations.add(PackingStation.passOnPoint());
+		System.out.println(PackingStation.passOnPoint());
+		//destinations.add(new Point(0, 2));
+		System.out.println("Cost estimation dest: " + destinations.toString());
 		return destinations;
+	}
+	
+	public static int numTicks() {
+		String temp = PackingStation.getNextOrder().get(1);
+		Integer ticks = Integer.parseInt(temp);
+		System.out.println("Ticks: " + ticks);
+		return ticks;
 	}
 
 }

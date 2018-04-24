@@ -5,20 +5,23 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import model.CostEstimationStrategy;
+
 class CostEstimationStrategyTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		CostEstimationStrategy costEstimation = new CostEstimationStrategy();
 	}
 
 	@Test
 	void testCostEstimationStrategy() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
-	void testDistanceCalculator() {
-		fail("Not yet implemented");
+	void testdistanceEstimator() {
+		assertEquals();
 	}
 
 	@Test

@@ -2,7 +2,6 @@ package model;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import gui.MainController;
 
@@ -55,12 +54,9 @@ public class Robot extends Warehouse implements Entity  {
 
 	private boolean carrying;
 
-	/**
-	 * Stores the last number used for the ID
-	 * 
-	 * @see #resetID
-	 */
-	private static int lastNum = 0;
+	private Point start;
+
+	private int waitTime;
 
 	/**
 	 * The Point coordinates where the Robot is placed on the grid.
@@ -70,17 +66,31 @@ public class Robot extends Warehouse implements Entity  {
 	protected Point robotCoordinates;
 
 	/**
-	 * Storage Shelf Constructor. Creates a <code>Robot</code> and sets a safety margin of 20%. It also has a <code>boolean</code>
-	 * set to false automatically for the Order Status.
+	 * Storage Shelf Constructor. Creates a <code>Robot</code> and sets a safety margin of 20% and a <code>boolean</code>
+	 * value set to false automatically for the Order Status.
 	 */	
 	public Robot() {
 		safetyMargin = 0.2;
 		orderStatus = false;
-		nextDestination = getRobotCoordinates();
+		nextDestination = new Point();
 		order = new ArrayList<Point>();
 		nextNode = new Point();
 		int index =  0;
 		carrying = false;
+		start = new Point();
+		waitTime = 0;
+	}
+
+	public void setStart(int x, int y) {
+		start = new Point(x, y);
+		nextDestination = start;
+	}
+
+	public void initializeOrder() {
+		if(!orderStatus) {
+			//recieveOrder();
+		}
+		//Call method to go to charge pod and charge
 	}
 
 	/**
@@ -119,7 +129,8 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public void recieveOrder() {
 		order = CostEstimationStrategy.getDestinations();
-		order.add(Order.chargePoints().get(Warehouse.getRobotsChargePod().get(getID())));
+		order.add(start);
+		System.out.println("Robot order: " + order.toString());
 	}
 
 	/**
@@ -129,6 +140,8 @@ public class Robot extends Warehouse implements Entity  {
 	public void orderDecision() {
 		if(CostEstimationStrategy.getDecision()) {
 			orderStatus = true;
+			System.out.println("Order accepted. ");
+			recieveOrder();
 		}
 		else {
 			orderStatus = false;
@@ -150,20 +163,47 @@ public class Robot extends Warehouse implements Entity  {
 	 * Robots takes the items from the storage shelf.
 	 */
 	public void pickUpItems() {
-		if(getRobotCoordinates() == nextDestination) {
+		if(atLocation()) {
 			carrying = true;
-			updateDestination();
 		}
 	}
 
+	public int waitTicks() {
+		if(getRobotCoordinates() == order.get(order.size() - 1)) {
+			waitTime = CostEstimationStrategy.numTicks();
+		}
+		else {
+			waitTime = 1;
+		}
+		return waitTime;
+	}
+
+	public boolean atLocation() {
+		System.out.println("Start = " + start + " nextDestination = " + nextDestination + " robot coords: " + getRobotCoordinates());
+		if(getRobotCoordinates().equals(nextDestination)) {
+			System.out.println("atLocation = true");
+			return true;
+		}
+		return false;
+	}
+
 	public Point nextInPath() {
-		nextNode = order.get(index);
-		index++;
+		if(atLocation()) {
+			if(index < order.size()) {
+				nextNode = order.get(index);
+				index++;
+			}
+		}
 		return nextNode;
 	}
 
-	public void updateDestination() {
+	public Point updateDestination() {
 		nextDestination = nextInPath();
+		return nextDestination;
+	}
+
+	public Point getDestination() {
+		return updateDestination();
 	}
 
 	/**
@@ -208,13 +248,6 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public double getRobotX() {
 		return robotCoordinates.getX();
-	}
-
-	/**
-	 * Rests the lastNum field to 0.
-	 */
-	public void resetID() {
-		lastNum = 0;
 	}
 
 	/**

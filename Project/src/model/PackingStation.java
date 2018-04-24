@@ -25,15 +25,8 @@ public class PackingStation extends Warehouse implements Entity{
 	 * @see #getID, #generateID
 	 */
 	private String uid;
-	
-	/**
-	 * Stores the last number used for the ID
-	 */
-	private static int lastNum = 0; //may need to be deleted
 
 	private Point packingCoordinates;
-	
-	private static int index = 0;
 	
 	private static Point p;
 	
@@ -67,7 +60,7 @@ public class PackingStation extends Warehouse implements Entity{
 	}
 	
 	/**
-	 * Acceses the Y-coordinate of the Packing Station
+	 * Accesses the Y-coordinate of the Packing Station
 	 */
 	public double getPackingY() {
 		return packingCoordinates.getY();
@@ -118,17 +111,6 @@ public class PackingStation extends Warehouse implements Entity{
 		Order.addToDecision(order);
 		Order.removeFromOrders();
 		return order;
-	}
-	
-	public void addToAssigned() {
-		
-	}
-	
-	/**
-	 * Rests the lastNum field to 0.
-	 */
-	public void resetID() {	//maybe delete
-		lastNum = 0;
 	}
 	
 	@Override
