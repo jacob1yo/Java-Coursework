@@ -70,7 +70,8 @@ public class CostEstimationStrategy extends Robot {
 	}
 
 	public static boolean getDecision() {
-		return value;
+		//return value;
+		return true;
 	}
 
 	public void getDistanceEstimator(ArrayList<String> sentence) {
@@ -86,6 +87,7 @@ public class CostEstimationStrategy extends Robot {
 			//System.out.println(order.get(i));
 		}
 		//destinations.add(PackingStation.passOnPoint());
+		destinations.add(new Point(0, 2));
 		System.out.println("Cost estimation dest: " + destinations.toString());
 		return destinations;
 	}

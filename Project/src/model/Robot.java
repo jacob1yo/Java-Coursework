@@ -53,6 +53,8 @@ public class Robot extends Warehouse implements Entity  {
 	private int index;
 
 	private boolean carrying;
+	
+	private Point start;
 
 	/**
 	 * The Point coordinates where the Robot is placed on the grid.
@@ -68,13 +70,19 @@ public class Robot extends Warehouse implements Entity  {
 	public Robot() {
 		safetyMargin = 0.2;
 		orderStatus = false;
-		nextDestination = getRobotCoordinates();
+		nextDestination = new Point();
 		order = new ArrayList<Point>();
 		nextNode = new Point();
 		int index =  0;
 		carrying = false;
+		start = new Point();
 	}
 	
+	public void setStart(int x, int y) {
+		start = new Point(x, y);
+		nextDestination = start;
+	}
+
 	public void initializeOrder() {
 		if(!orderStatus) {
 			//recieveOrder();
@@ -118,7 +126,8 @@ public class Robot extends Warehouse implements Entity  {
 	 */
 	public void recieveOrder() {
 		order = CostEstimationStrategy.getDestinations();
-		order.add(Order.chargePoints().get(Warehouse.getRobotsChargePod().get(getID())));
+		order.add(start);
+		System.out.println("Robot order: " + order.toString());
 	}
 
 	/**
@@ -151,24 +160,41 @@ public class Robot extends Warehouse implements Entity  {
 	 * Robots takes the items from the storage shelf.
 	 */
 	public void pickUpItems() {
-		if(getRobotCoordinates() == nextDestination) {
+		if(atLocation()) {
 			carrying = true;
-			updateDestination();
 		}
+	}
+	
+	public void firstStep() {
+		
+	}
+	
+	public boolean atLocation() {
+		System.out.println("Start = " + start + " nextDestination = " + nextDestination + " robot coords: " + getRobotCoordinates());
+		if(getRobotCoordinates().equals(nextDestination)) {
+			System.out.println("atLocation = true");
+			return true;
+		}
+		return false;
 	}
 
 	public Point nextInPath() {
-		nextNode = order.get(index);
-		index++;
+		if(atLocation()) {
+			if(index < order.size()) {
+				nextNode = order.get(index);
+				index++;
+			}
+		}
 		return nextNode;
 	}
-
-	public void updateDestination() {
-		nextDestination = nextInPath();
-	}
 	
-	public Point getDestination() {
+	public Point updateDestination() {
+		nextDestination = nextInPath();
 		return nextDestination;
+	}
+
+	public Point getDestination() {
+		return updateDestination();
 	}
 
 	/**
