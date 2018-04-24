@@ -5,18 +5,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Slider;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
@@ -34,7 +29,6 @@ import javafx.scene.layout.RowConstraints;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
 import java.util.ArrayList;
 
 import java.awt.Point;
@@ -398,6 +392,7 @@ public class MainController {
 	 */
 	@FXML
 	public void startPressed() {
+		warehouse.addToRobotsChargePod();
 		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Simulator.FXML"));
 		final SimulatorController simulatorController = new SimulatorController();

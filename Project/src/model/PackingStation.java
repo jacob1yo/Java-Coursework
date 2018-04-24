@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 /**
   * This class contains the implementation of the Packing Station methods.
@@ -23,20 +24,33 @@ public class PackingStation extends Warehouse implements Entity{
 	 * The unique identifier of each charging pod
 	 * @see #getID, #generateID
 	 */
+<<<<<<< HEAD
 	private static String uid;
 	
 	/**
 	 * Stores the last number used for the ID
 	 */
 	private static int lastNum = 0; //may need to be deleted
+=======
+	private String uid;
+>>>>>>> bcb04dcb7d6feb21d1b47dfbc3441fe4014a6dde
 
 	private Point packingCoordinates;
 	
-	private static int index = 0;
+	private static Point p;
 	
 	public PackingStation(int x, int y) {
 		packingCoordinates = new Point(x, y);
 		completed = false;
+		p = Order.packingPoints().get(uid);
+	}
+	
+	/**
+	 * Passes on point to cost estimation
+	 * @return
+	 */
+	public static Point passOnPoint() {
+		return p;
 	}
 
 	/**
@@ -101,11 +115,14 @@ public class PackingStation extends Warehouse implements Entity{
 	 * This method requests another order once current order is completed.
 	 * @return
 	 */
-	public static String getNextOrder() {
-		String order = Order.getUnassignedOrders().get(index);
+	public static ArrayList<String> getNextOrder() {
+		ArrayList<String> order = Order.getOrders().get(0);
+		Order.addToDecision(order);
+		Order.removeFromOrders();
 		return order;
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * Passes on point to cost estimation
 	 * @return
@@ -141,6 +158,10 @@ public class PackingStation extends Warehouse implements Entity{
 	 */
 	public void resetID() {	//maybe delete
 		lastNum = 0;
+=======
+	public void addToAssigned() {
+		
+>>>>>>> bcb04dcb7d6feb21d1b47dfbc3441fe4014a6dde
 	}
 	
 	@Override

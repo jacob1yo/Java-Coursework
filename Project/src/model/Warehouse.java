@@ -17,18 +17,19 @@ import java.util.HashMap;
 public class Warehouse {
 
 	private ArrayList<Robot> robotList;
-	private ArrayList<ChargingPod> chargeList;
+	static ArrayList<ChargingPod> chargeList; //if gui messes up, change back from static
 	static ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
 	static ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();
 	private static ArrayList<Point> robotPoints;
-	private HashMap<Point, Point> hashmap;
+	private HashMap<Point, Point> currentToNext;
 	private static ArrayList<StorageShelf> storages;
+	private static HashMap<String, String> robotsChargePod = new HashMap<String, String>();
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
 		robotPoints = new ArrayList<Point>();
-		hashmap = new HashMap<Point, Point>();
+		currentToNext = new HashMap<Point, Point>();
 		storages = new ArrayList<StorageShelf>();
 	}
 
@@ -136,40 +137,35 @@ public class Warehouse {
 	public void delete(int x, int y) {
 		for (int i = 0; i < robotList.size(); i++) {
 			if (robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
-				robotList.get(i).resetID();
 				robotList.remove(i);
-				/*for (int n = 0; n < robotList.size(); n++) { //keep for later
-					robotList.get(n).generateID();
-				}*/
+				for(int j = i; j < robotList.size(); j++) {
+					robotList.get(j).decreaseId(robotList.get(j).getID());
+				}
 			}
 		}
 		for (int i = 0; i < chargeList.size(); i++) {
 			if (chargeList.get(i).getChargingX() == (double) x && chargeList.get(i).getChargingY() == (double) y) {
-				chargeList.get(i).resetID();
 				chargeList.remove(i);
-				/*for (int n = 0; n < chargeList.size(); n++) {
-					chargeList.get(n).generateID();
-				}*/
+				for(int j = i; j < chargeList.size(); j++) {
+					chargeList.get(j).decreaseId(chargeList.get(j).getID());
+				}
 			}
 		}
 		for (int i = 0; i < storageList.size(); i++) {
 			if (storageList.get(i).getStorageX() == (double) x && storageList.get(i).getStorageY() == (double) y) {
-				storageList.get(i).resetID();
 				storageList.remove(i);
-				/*for (int n = 0; n < storageList.size(); n++) {
-					storageList.get(n).generateID();
+				for(int j = i; j < storageList.size(); j++) {
+					storageList.get(j).decreaseId(storageList.get(j).getID());
 				}
-				storages = storageList;*/
 			}
 		}
 
 		for (int i = 0; i < packingList.size(); i++) {
 			if (packingList.get(i).getPackingX() == (double) x && packingList.get(i).getPackingY() == (double) y) {
-				packingList.get(i).resetID();
 				packingList.remove(i);
-				/*for (int n = 0; n < packingList.size(); n++) {
-					packingList.get(n).generateID();
-				}*/
+				for(int j = i; j < packingList.size(); j++) {
+					packingList.get(j).decreaseId(packingList.get(j).getID());
+				}
 			}
 		}
 	}
@@ -318,28 +314,44 @@ public class Warehouse {
 	}
 
 	public HashMap<Point, Point> move() {
-		PathFinding pathFinding = new PathFinding();
+		currentToNext = null;
+		for(int i = 0; i < robotList.size(); i++) {
+			PathFinding pathFinding = new PathFinding();
+			robotList.get(i).initializeOrder();
+			Point destination = robotList.get(i).getDestination();
+			System.out.println("Robot dest: " + destination);
+			pathFinding.pathCalc(destination);
+			currentToNext = pathFinding.getNewNodes();
+		}
+		return currentToNext;
+		
+		/*PathFinding pathFinding = new PathFinding();
 		Point destination = new Point(4, 4);
 		pathFinding.pathCalc(destination);
 		if (!robotList.isEmpty()) {
-			hashmap = pathFinding.getNewNodes();
-			// hashmap = robotList.get(0).move();
-			hashmap = pathFinding.getNewNodes();
-			System.out.println("hashmap size: " + hashmap.size());
-			return hashmap;
+			currentToNext = pathFinding.getNewNodes();
+			// currentToNext = robotList.get(0).move();
+			currentToNext = pathFinding.getNewNodes();
+			System.out.println("currentToNext size: " + currentToNext.size());
+			return currentToNext;
 		}
-		return null;
+		return null;*/
 	}
 
 	public void moveRobot(int i) {
 		ArrayList<Point> robots = robotPoints();
 		Point coordinates = robots.get(i);
-		Point next = hashmap.get(coordinates);
+		Point next = currentToNext.get(coordinates);
 		Double x = next.getX();
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
 	
+	public void readOrders() {
+		for(int i = 0; i < robotList.size(); i++) {
+			robotList.get(i).recieveOrder();
+		}
+	}
 	
 	public String getRobotInfo() {
 		String robotInfo = "";
@@ -427,6 +439,21 @@ public class Warehouse {
 		return chargeRate.intValue();
 	}
 	
+	/**
+	 * 
+	 */
+	public void addToRobotsChargePod() {
+		for(int i = 0; i < robotList.size(); i++) {
+			String robot = "r" + i;
+			String charge = "c" + i;
+			robotsChargePod.put(robot, charge);
+		}
+	}
+	
+	public static HashMap<String, String> getRobotsChargePod() {
+		return robotsChargePod;
+	}
+	
 	public static ArrayList<StorageShelf> getStorageShelfs(){
 		return storages;
 	}
@@ -437,5 +464,9 @@ public class Warehouse {
 	
 	public static ArrayList<StorageShelf> getStorageList(){ //may need to change from static
 		return storageList;
+	}
+	
+	public static ArrayList<ChargingPod> getChargeList(){
+		return chargeList;
 	}
 }

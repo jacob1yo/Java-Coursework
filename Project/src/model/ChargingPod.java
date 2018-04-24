@@ -28,13 +28,6 @@ public class ChargingPod extends Warehouse implements Entity {
 	private String uid;
 	
 	/**
-	 * Stores the last number used for the ID.
-	 * 
-	 *  @see #resetID
-	 */
-	private static int lastNum = 0;
-	
-	/**
 	 * Boolean value used to check if robots unique charging pod is occupied.
 	 * 
 	 * @see #ChargingPod #charge
@@ -101,13 +94,6 @@ public class ChargingPod extends Warehouse implements Entity {
 	}
 	
 	/**
-	 * Resets the lastNum field to 0.
-	 */
-	public void resetID() {
-		lastNum = 0;
-	}
-	
-	/**
 	 * Updates the chargeRate of the Charging Pod
 	 * 
 	 * @param chargeRate {@link chargeRate}. Int value assigned to link the chargeRate parameter to the chargeRate field.
@@ -137,5 +123,4 @@ public class ChargingPod extends Warehouse implements Entity {
 	public void setId(String newUid) {
 		uid = newUid;
 	}
-
 }
