@@ -193,6 +193,18 @@ public class Order {
 		completedOrders.add(order);
 	}
 	
+	//private static ArrayList<ArrayList<String>> assignedOrders = new ArrayList<ArrayList<String>>();
+
+	public static String getAssigned() {
+		String assigned = "";
+		for (int i = 0; i < assignedOrders.size(); i++) {
+			for (int j = 0; j < assignedOrders.get(i).size(); j++) {
+				assigned = assignedOrders.get(i).get(j);
+			}
+		}
+		return assigned;
+	}
+	
 	/**
 	 * 
 	 * @return
