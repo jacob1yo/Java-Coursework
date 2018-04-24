@@ -15,10 +15,32 @@ import java.util.HashMap;
 */
 
 public class Warehouse {
-
+	
+	/**
+	 * Robot objects used in the simulation, stored in this ArrayList.
+	 * 
+	 * @see #addRobot #genId #delete #removeAll #check #checkRobot #robotPoints #move #moveRobot 
+	 * @see #getRobotInfo #getRobotID #addToRobotsChargePod
+	 */
 	private ArrayList<Robot> robotList;
+	
+	/**
+	 * Charging Pod objects used in the simulation, stored in this ArrayList.
+	 * 
+	 * @see #addRobot #genID #delete #removeAll #check #chargingPodPoints #getChargeList
+	 */
 	static ArrayList<ChargingPod> chargeList; //if gui messes up, change back from static
+	
+	/**
+	 * Storage Shelf objects used in the simulation, stored in this ArrayList.
+	 * 
+	 * @see #addStorage #genID #delete #removeAll #check #storageShelfPoints #getStorageList
+	 */
 	static ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
+	
+	/**
+	 * Packing Station objects used in the simulation, stored in this ArrayList.
+	 */
 	static ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();
 	private static ArrayList<Point> robotPoints;
 	private HashMap<Point, Point> currentToNext;
@@ -46,6 +68,7 @@ public class Warehouse {
 	 */
 	public void addRobot(String ruid, String cuid, int x, int y, int batteryLevel, int chargeRate) {
 		Robot robot = new Robot();
+		robot.setStart(x, y);
 		robot.setCoordinates(x, y);
 		robot.setId(ruid);
 		robotList.add(robot);
