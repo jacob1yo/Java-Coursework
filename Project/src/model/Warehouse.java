@@ -137,40 +137,35 @@ public class Warehouse {
 	public void delete(int x, int y) {
 		for (int i = 0; i < robotList.size(); i++) {
 			if (robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
-				robotList.get(i).resetID();
 				robotList.remove(i);
-				/*for (int n = 0; n < robotList.size(); n++) { //keep for later
-					robotList.get(n).generateID();
-				}*/
+				for(int j = i; j < robotList.size(); j++) {
+					robotList.get(j).decreaseId(robotList.get(j).getID());
+				}
 			}
 		}
 		for (int i = 0; i < chargeList.size(); i++) {
 			if (chargeList.get(i).getChargingX() == (double) x && chargeList.get(i).getChargingY() == (double) y) {
-				chargeList.get(i).resetID();
 				chargeList.remove(i);
-				/*for (int n = 0; n < chargeList.size(); n++) {
-					chargeList.get(n).generateID();
-				}*/
+				for(int j = i; j < chargeList.size(); j++) {
+					chargeList.get(j).decreaseId(chargeList.get(j).getID());
+				}
 			}
 		}
 		for (int i = 0; i < storageList.size(); i++) {
 			if (storageList.get(i).getStorageX() == (double) x && storageList.get(i).getStorageY() == (double) y) {
-				storageList.get(i).resetID();
 				storageList.remove(i);
-				/*for (int n = 0; n < storageList.size(); n++) {
-					storageList.get(n).generateID();
+				for(int j = i; j < storageList.size(); j++) {
+					storageList.get(j).decreaseId(storageList.get(j).getID());
 				}
-				storages = storageList;*/
 			}
 		}
 
 		for (int i = 0; i < packingList.size(); i++) {
 			if (packingList.get(i).getPackingX() == (double) x && packingList.get(i).getPackingY() == (double) y) {
-				packingList.get(i).resetID();
 				packingList.remove(i);
-				/*for (int n = 0; n < packingList.size(); n++) {
-					packingList.get(n).generateID();
-				}*/
+				for(int j = i; j < packingList.size(); j++) {
+					packingList.get(j).decreaseId(packingList.get(j).getID());
+				}
 			}
 		}
 	}
