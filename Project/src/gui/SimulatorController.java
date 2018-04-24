@@ -126,7 +126,7 @@ public class SimulatorController {
 		listUnassigned.getItems().addAll("test");
 		listUnassigned.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
-		listAssigned.getItems().addAll(Order.getAssigned());
+		listAssigned.getItems().addAll(warehouse.getOrder().getAssigned());
 		listAssigned.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		
