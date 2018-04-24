@@ -339,7 +339,7 @@ public class Warehouse {
 			robotList.get(i).orderDecision();
 			//robotList.get(i).initializeOrder();
 			Point destination = robotList.get(i).getDestination();
-			System.out.println("Robot dest: " + destination);
+			System.out.println("Warehouse dest: " + destination);
 			pathFinding.pathCalc(destination);
 			currentToNext = pathFinding.getNewNodes();
 		}

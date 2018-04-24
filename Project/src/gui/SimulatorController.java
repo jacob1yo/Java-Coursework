@@ -238,7 +238,7 @@ public class SimulatorController {
 	
 	@FXML
 	public void oneTickPressed() {
-		warehouse.readOrders();
+		//warehouse.readOrders();
 		move();
 		ticks++;
 		tickLabel.setText("Tick: " + ticks);
