@@ -28,7 +28,7 @@ public class PathFinding extends Robot implements Entity {
 	/**
 	 * Finds all possible available adjacent nodes and from them, finds the best one to choose
 	 * 
-	 * @param destination
+	 * @param destination. The destination point for the robot.
 	 */
 	public void pathCalc(Point destination) {
 		ArrayList<Point> takenNodes = new ArrayList<Point>();
