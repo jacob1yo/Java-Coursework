@@ -560,24 +560,31 @@ public class Warehouse {
 		return chargeList;
 	}
 
-	public HashMap<String, Point> storagePoints() {
+	public void addToStoragePoints() {
 		for(StorageShelf s: getStorageList()) {
 			storagePoints.put(s.getID(), s.getStorageCoordinates());
 		}
+	}
+	public HashMap<String, Point> storagePoints() {
 		return storagePoints;
 	}
 
-	public HashMap<String, Point> packingPoints(){
+	public void addToPackingPoints() {
 		for(PackingStation p : getPackingStationList()) {
 			packingPoints.put(p.getID(), p.getPackingCoordinates());
 		}
+	}
+	public HashMap<String, Point> packingPoints(){
 		return packingPoints;
 	}
-
-	public HashMap<String, Point> chargePoints(){
+	
+	public void addToChargePoints() {
 		for(ChargingPod c : getChargeList()) {
 			chargePoints.put(c.getID(), c.getChargingCoordinates());
 		}
+	}
+
+	public HashMap<String, Point> chargePoints(){
 		return chargePoints;
 	}
 
@@ -618,9 +625,9 @@ public class Warehouse {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		storagePoints();
-		packingPoints();
-		chargePoints();
+		addToStoragePoints();
+		addToPackingPoints();
+		addToChargePoints();
 		order.fillLists();
 	}
 
