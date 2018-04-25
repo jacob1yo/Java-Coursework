@@ -28,7 +28,7 @@ public class Robot implements Entity  {
 	 * 
 	 * @see #orderDecision
 	 */	
-	protected double safetyMargin;
+	protected final double SAFETY_MARGIN = 0.2;
 
 	/**
 	 * Whether the robot is currently processing an order or not
@@ -70,7 +70,6 @@ public class Robot implements Entity  {
 	 * value set to false automatically for the Order Status.
 	 */	
 	public Robot() {
-		safetyMargin = 0.2;
 		orderStatus = false;
 		nextDestination = new Point();
 		order = new ArrayList<Point>();
@@ -127,8 +126,8 @@ public class Robot implements Entity  {
 	/**
 	 * 
 	 */
-	public void recieveOrder() {
-		order = CostEstimationStrategy.getDestinations();
+	public void recieveOrder(ArrayList<Point> destination) {
+		order = destination;
 		order.add(start);
 		System.out.println("Robot order: " + order.toString());
 	}
@@ -137,11 +136,11 @@ public class Robot implements Entity  {
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> True if an order is accepted, otherwise false.
 	 */
-	public void orderDecision() {
-		if(CostEstimationStrategy.getDecision()) {
+	public void orderDecision(boolean decision, ArrayList<Point> destination) {
+		if(decision) {
 			orderStatus = true;
 			System.out.println("Order accepted. ");
-			recieveOrder();
+			recieveOrder(destination);
 		}
 		else {
 			orderStatus = false;
@@ -168,9 +167,9 @@ public class Robot implements Entity  {
 		}
 	}
 
-	public int waitTicks() {
+	public int waitTicks(int numTicks) {
 		if(getRobotCoordinates() == order.get(order.size() - 1)) {
-			waitTime = CostEstimationStrategy.numTicks();
+			waitTime = numTicks;
 		}
 		else {
 			waitTime = 1;
@@ -291,5 +290,9 @@ public class Robot implements Entity  {
 	@Override
 	public void setId(String newUid) {
 		uid = newUid;
+	}
+	
+	public double pythagoras(double x, double y, double X, double Y) {
+		return Math.sqrt(Math.pow((X - x), 2) + Math.pow((Y - y),2));	
 	}
 }
