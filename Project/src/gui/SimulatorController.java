@@ -26,6 +26,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import model.CostEstimationStrategy;
 import model.Order;
 import model.Warehouse;
 
@@ -36,51 +37,51 @@ public class SimulatorController {
 	 * Value of the previously set height of the grid
 	 */
 	private int finalGridHeight;
-	
+
 	/**
 	 * Value of the previously set width of the grid
 	 */
 	private int finalGridWidth;
-	
+
 	private int ticks;
-	
+
 	private Warehouse warehouse;
-	
+
 	private Order order;
-	
+
 	/**
 	 * The grid from Simulator.fxml.
 	 */
 	@FXML private GridPane grid;
-	
+
 	/**
 	 * Displays a list of robot entities. 
 	 */
 	@FXML private ListView<String> listRobots;
-	
+
 	/**
 	 * Displays a list of packing station entities.
 	 */
 	@FXML private ListView<String> listPacking;
-	
+
 	/**
 	 * Displays a list of unassigned orders.
 	 */
 	@FXML private ListView<String> listUnassigned;
-	
+
 	/**
 	 * Displays a list of assigned orders.
 	 */
 	@FXML private ListView<String> listAssigned;
-	
+
 	/**
 	 * Displays a list of dispatched orders..
 	 */
 	@FXML private ListView<String> listDispatched;
-	
+
 	@FXML private Label tickLabel;
-	
-	
+
+
 	private ArrayList<Circle> circleList;
 
 	public SimulatorController() {
@@ -94,42 +95,42 @@ public class SimulatorController {
 	@FXML
 	public void initialize() {
 		grid.getChildren().clear();
-		
+
 		grid.getRowConstraints().clear();
 		for (int i = 0; i < finalGridHeight; i++) {
 			RowConstraints rowConst = new RowConstraints();
 			rowConst.setPercentHeight(100.0 / finalGridHeight); 
 			grid.getRowConstraints().add(rowConst);
 		}
-		
+
 		grid.getColumnConstraints().clear();
 		for (int i = 0; i < finalGridWidth; i++) {
 			ColumnConstraints colConst = new ColumnConstraints();
 			colConst.setPercentWidth(100.0 / finalGridWidth); 
 			grid.getColumnConstraints().add(colConst);
 		}
-		
+
 		addPane();
 		addRobots();
 		addStorage();
 		addPackage();
 
 		//Need to get the robot ID, charge rate, destination and coordinates of the current robot
-		
-		
+
+
 		listRobots.getItems().addAll(warehouse.getRobotInfo());
 		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		
+
 		listPacking.getItems().addAll(warehouse.getPackingID());
 		listPacking.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		
+
 		listUnassigned.getItems().addAll("test");
 		listUnassigned.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		
-		listAssigned.getItems().addAll(warehouse.getOrder().getAssigned());
-		listAssigned.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		
-		
+
+		//listAssigned.getItems().addAll(warehouse.getOrder().getAssigned());
+		//listAssigned.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+
 	}
 
 	/**
@@ -144,7 +145,7 @@ public class SimulatorController {
 			}
 		}
 	}
-	
+
 	public void addRobots() {
 		for(int i = 0; i < warehouse.robotPoints().size(); i++) {
 			Circle circle = new Circle(20);
@@ -153,7 +154,7 @@ public class SimulatorController {
 			System.out.println("addRobots: " + circleList.size());
 			Rectangle rect = new Rectangle(50,50);
 			rect.setFill(Color.BLUE);
-			
+
 			Double x = warehouse.robotPoints().get(i).getX();
 			Double y = warehouse.robotPoints().get(i).getY();
 			grid.add(rect, x.intValue(), y.intValue());
@@ -162,36 +163,36 @@ public class SimulatorController {
 			GridPane.setHalignment((Node) rect, HPos.CENTER);
 		}
 	}
-	
+
 	public void addStorage() {
 		for(int i = 0; i < warehouse.storageShelfPoints().size(); i++) {
 			Polygon triangle = new Polygon();
 			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 			triangle.setFill(Color.RED);
-			
+
 			Double x = warehouse.storageShelfPoints().get(i).getX();
 			Double y = warehouse.storageShelfPoints().get(i).getY();
-			
+
 			grid.add(triangle, x.intValue(), y.intValue());
 			GridPane.setHalignment((Node) triangle, HPos.CENTER);
 		}
 	}
-	
+
 	public void addPackage() {
 		for(int i = 0; i < warehouse.packingStationPoints().size(); i++) {
 			Polygon triangle = new Polygon();
 			triangle.getPoints().addAll(new Double[] {50.0, 0.0, 100.0, 50.0, 0.0, 50.0});
 			triangle.setFill(Color.YELLOW);
-			
+
 			Double x = warehouse.packingStationPoints().get(i).getX();
 			Double y = warehouse.packingStationPoints().get(i).getY();
-			
+
 			grid.add(triangle, x.intValue(), y.intValue());
 			GridPane.setHalignment((Node) triangle, HPos.CENTER);
 		}
-		
+
 	}
-	
+
 	@FXML
 	public void returnPressed() {
 		final FXMLLoader loader = new FXMLLoader();
@@ -212,25 +213,27 @@ public class SimulatorController {
 			ex.printStackTrace();
 		}
 	}
-	
-	public void move() {
-		HashMap<Point, Point> hashmap = warehouse.move();
+
+	public void move(int i) {
+		HashMap<Point, Point> hashmap = warehouse.move(i);
 		ArrayList<Point> robots = warehouse.robotPoints();
-		for(int i = 0; i < hashmap.size(); i++) {
-			Point current = robots.get(i);
+		for(int j = 0; j < hashmap.size(); j++) {
+			Point current = robots.get(j);
 			Point next = hashmap.get(current);
-			moveRobot(i, current, next);
-			warehouse.moveRobot(i);
+			if(hashmap != null) {
+				moveRobot(j, current, next);
+				warehouse.moveRobot(j);
+			}
 		}
 	}
-	
+
 	public void moveRobot(int i,Point current, Point next) {
 		//Removes the current circle representing the robot from the grid
 		System.out.println("moveRobot: " + circleList.size());
 		Circle delCirc = circleList.get(i);	//may need to remove if this doesn't work
 		grid.getChildren().remove(delCirc);	//may need to remove if this doesn't work
 		circleList.remove(i);				//may need to remove if this doesn't work
-		
+
 		//Adds circle/robot to the next location
 		Circle circle = new Circle(20);
 		circle.setFill(Color.GREEN);
@@ -240,24 +243,29 @@ public class SimulatorController {
 		grid.add(circle, x.intValue(), y.intValue());
 		GridPane.setHalignment((Node) circle, HPos.CENTER);
 	}
-	
+
 	@FXML
 	public void oneTickPressed() {
 		//warehouse.readOrders();
-		move();
+		for(int i = 0; i < circleList.size(); i++) {
+			if(warehouse.costEst(i)) {
+				//warehouse.setAssigned();
+				move(i);
+			}
+		}
 		ticks++;
 		tickLabel.setText("Tick: " + ticks);
-		warehouse.getUpdatedRobotCoordinates();
-		
+		//warehouse.getUpdatedRobotCoordinates();
+
 	}
-	
+
 	@FXML 
 	public void tenTickPressed() {
 		for(int i = 0; i < 10; i++) {
 			oneTickPressed();
 		}
 	}
-	
+
 	@FXML
 	public void endPressed() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);

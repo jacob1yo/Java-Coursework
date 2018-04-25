@@ -387,7 +387,7 @@ public class Warehouse {
 		return packing;
 	}
 
-	public Robot costEstmation(CostEstimationStrategy costEst) {
+	/*public Robot costEstmation(CostEstimationStrategy costEst) {
 		for(int i = 0; i < robotList.size(); i++) {
 			Robot robot = robotList.get(i);
 			boolean result = costEst.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel(), robotsChargePod, chargePoints);
@@ -397,13 +397,46 @@ public class Warehouse {
 		}
 		return null;
 	}
-	
+
 	public ArrayList<Point> getDestination(CostEstimationStrategy costEst){
 		return costEst.getDestinations();
+	}*/
+	
+	/**
+	 * Returns true if robot can move, false otherwise
+	 * @param i
+	 * @return
+	 */
+	public boolean costEst(int i) {
+			Robot robot = robotList.get(i);
+			boolean value = true;
+			if(!robot.getOrderStatus()) {
+				CostEstimationStrategy costEstimation = new CostEstimationStrategy(order, getPacking(), storagePoints);
+				//robot.getDestinations().clear();
+				//robot.recieveOrder(getDestinations());
+				value =  costEstimation.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel(), robotsChargePod, chargePoints);
+				setAssigned();
+				robot.orderDecision(getDestinations());
+			}
+			return value;
+	}
+	
+	public void setAssigned() {
+		ArrayList<ArrayList<String>> sentence = order.getDecision();
+		order.addToAssigned(sentence.get(0));
+		order.removeFromDecision(sentence.get(0));	//figure this shit out
 	}
 
-	public HashMap<Point, Point> move() {
+	public HashMap<Point, Point> move(int i) {
 		currentToNext = null;
+		Robot robot = robotList.get(i);
+		PathFinding pathFinding = new PathFinding();
+		Point destination = robot.getDestination();
+		pathFinding.pathCalc(destination);
+		currentToNext = pathFinding.getNewNodes();
+		return currentToNext;
+		
+		/*currentToNext = null;
 		CostEstimationStrategy costEst = new CostEstimationStrategy(order, getPacking(), storagePoints);
 		Robot robot = costEstmation(costEst);
 		ArrayList<Point> destinations = getDestination(costEst);
@@ -411,13 +444,12 @@ public class Warehouse {
 			PathFinding pathFinding = new PathFinding();
 			robot.orderDecision(destinations);
 			robot.recieveOrder(destinations);
-			//robotList.get(i).initializeOrder();
 			Point destination = robot.getDestination();
 			System.out.println("Warehouse dest: " + destination);
 			pathFinding.pathCalc(destination);
 			currentToNext = pathFinding.getNewNodes();
 		}
-		return currentToNext;
+		return currentToNext;*/
 	}
 
 	public void moveRobot(int i) {
@@ -451,7 +483,7 @@ public class Warehouse {
 			String x = String.valueOf(value.getX());
 			String y = String.valueOf(value.getY());
 			coordinates += x + " " + y;
-			System.out.print(coordinates);
+			//System.out.println(coordinates);
 		}
 		return coordinates;
 
@@ -561,7 +593,9 @@ public class Warehouse {
 	}
 
 	public void addToStoragePoints() {
-		for(StorageShelf s: getStorageList()) {
+		System.out.println("addToStoragePoints called... " + storageList.size());
+		for(StorageShelf s: storageList) {
+			System.out.print("For loop called... ");
 			storagePoints.put(s.getID(), s.getStorageCoordinates());
 		}
 	}
@@ -577,7 +611,7 @@ public class Warehouse {
 	public HashMap<String, Point> packingPoints(){
 		return packingPoints;
 	}
-	
+
 	public void addToChargePoints() {
 		for(ChargingPod c : getChargeList()) {
 			chargePoints.put(c.getID(), c.getChargingCoordinates());
@@ -625,10 +659,13 @@ public class Warehouse {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		order.fillLists();
+	}
+
+	public void addPoints() {
 		addToStoragePoints();
 		addToPackingPoints();
 		addToChargePoints();
-		order.fillLists();
 	}
 
 	public void clearLists() {
@@ -656,5 +693,21 @@ public class Warehouse {
 
 	public ArrayList<String> getPackingStations(){
 		return stations;
+	}
+	
+	public ArrayList<Point> getDestinations(){
+		ArrayList<Point> destinations = new ArrayList<Point>();
+		ArrayList<String> newOrder = new ArrayList<String>();
+		newOrder = order.getAssigned();
+		for(int i = 2; i < newOrder.size(); i++) {
+			destinations.add(storagePoints.get(newOrder.get(i)));
+			destinations.add(getPacking().passOnPoint());
+		}
+		System.out.println("Cost estimation dest: " + destinations.toString());
+		return destinations;
+	}
+	
+	public boolean getOrderStatus(int index) {
+		return robotList.get(index).getOrderStatus();
 	}
 }

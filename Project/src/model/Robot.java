@@ -73,7 +73,7 @@ public class Robot implements Entity  {
 		orderStatus = false;
 		nextDestination = new Point();
 		order = new ArrayList<Point>();
-		nextNode = new Point();
+		//nextNode = new Point();
 		int index =  0;
 		carrying = false;
 		start = new Point();
@@ -183,21 +183,23 @@ public class Robot implements Entity  {
 
 	public Point nextInPath() {
 		if(atLocation()) {
+			System.out.println("Robot nextInPath: " + order.size());
 			if(index < order.size()) {
-				nextNode = order.get(index);
+				nextDestination = order.get(index);
+				finishOrder(index);
 				index++;
 			}
 		}
-		return nextNode;
-	}
-
-	public Point updateDestination() {
-		nextDestination = nextInPath();
 		return nextDestination;
 	}
 
+	/*public Point updateDestination() {
+		nextDestination = nextInPath();
+		return nextDestination;
+	}*/
+
 	public Point getDestination() {
-		return updateDestination();
+		return nextInPath();
 	}
 
 	/**
@@ -286,8 +288,24 @@ public class Robot implements Entity  {
 	public void setId(String newUid) {
 		uid = newUid;
 	}
+	
+	public boolean getOrderStatus() {
+		return orderStatus;
+	}
 
 	public double pythagoras(double x, double y, double X, double Y) {
 		return Math.sqrt(Math.pow((X - x), 2) + Math.pow((Y - y),2));	
+	}
+	
+	public ArrayList<Point> getDestinations(){
+		return order;
+	}
+	
+	public void finishOrder(int index) {
+		if(index == order.size() - 2) {
+			if(getRobotCoordinates() == order.get(order.size() - 1)) {
+				orderStatus = false;
+			}
+		}
 	}
 }

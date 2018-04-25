@@ -82,17 +82,25 @@ public class Order {
 	public void addToCompleted(ArrayList<String> order) {
 		completedOrders.add(order);
 	}
+	
+	public ArrayList<ArrayList<String>> getDecision() {
+		System.out.println("Order getDecision: " + decisionsList.size());
+		return decisionsList;
+	}
 
 	//private static ArrayList<ArrayList<String>> assignedOrders = new ArrayList<ArrayList<String>>();
 
-	public String getAssigned() {
-		String assigned = "";
-		for (int i = 0; i < assignedOrders.size(); i++) {
+	public ArrayList<String> getAssigned(/*int i*/) {
+		//return assignedOrders.get(i);
+		System.out.println("Order getAssigned: " + assignedOrders.size());
+		return assignedOrders.get(0);
+		
+		/*for (int i = 0; i < assignedOrders.size(); i++) {
 			for (int j = 0; j < assignedOrders.get(i).size(); j++) {
 				assigned = assignedOrders.get(i).get(j);
 			}
 		}
-		return assigned;
+		return assigned;*/
 	}
 
 	public void fillLists() {

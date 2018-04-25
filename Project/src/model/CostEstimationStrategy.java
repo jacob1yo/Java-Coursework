@@ -58,47 +58,50 @@ public class CostEstimationStrategy extends Robot {
 		Point destination = packingStation.passOnPoint();
 
 		ArrayList<String> sentence = packingStation.getNextOrder(order);
-		double storageDistances = 0.0;
+		double packingStorage = 0.0;
 		double storagePacking = 0.0;
 		double packingPod = 0.0;
-		double doublediagonals = 0.0;
 		double robotStorage = 0.0;
-		
+
 		System.out.println("CostEst storagePoints: " + storagePoints.size());
 		double X = storagePoints.get(sentence.get(2)).getX();
 		double Y = storagePoints.get(sentence.get(2)).getY();
-		
-		if(robotX != X || robotY != Y) {
-			robotStorage = super.pythagoras(robotX, X, robotY, Y);
-		}
 
+		robotStorage = super.pythagoras(robotX, X, robotY, Y);	//1X
+		System.out.println("CostEst sentence size: " + sentence.size());
 		for (int j = 2; j< sentence.size(); j++) {  // gets the ss1 ss2 etc
-			if ((j++) < sentence.size()) {
+			if((j + 1) < sentence.size()) {
 				double x1 = storagePoints.get(sentence.get(j)).getX();
-				double x2 = storagePoints.get(sentence.get(j++)).getX();
+				double x2 = destination.getX();
 				double y1 = storagePoints.get(sentence.get(j)).getY();
-				double y2 = storagePoints.get(sentence.get(j++)).getY();
-				storageDistances += super.pythagoras(x1, y1, x2, y2);
+				double y2 = destination.getY();
+				storagePacking += super.pythagoras(x1, y1, x2, y2);	//2X
+
+				//	double X1 = destination.getX();
+				double X1 = storagePoints.get(sentence.get(j++)).getX();
+				//	double Y1 = destination.getY();
+				double Y1 = storagePoints.get(sentence.get(j++)).getY();
+				packingStorage += super.pythagoras(X1, Y1, x2, y2);	//1X
 			}
 			else {
 				double x1 = storagePoints.get(sentence.get(sentence.size() - 1)).getX();
 				double x2 = destination.getX();
 				double y1 = storagePoints.get(sentence.get(sentence.size() - 1)).getY();
 				double y2 = destination.getY();
-				storagePacking = super.pythagoras(x1, y1, x2, y2);
+				storagePacking += super.pythagoras(x1, y1, x2, y2);	//2X
 			}
-			doublediagonals += storageDistances+storagePacking;
 		}
+		
 		double x1 = chargePoints.get(robotsChargePod.get(uid)).getX();
 		double x2 = destination.getX();
 		double y1 = chargePoints.get(robotsChargePod.get(uid)).getY();
 		double y2 = destination.getY();
-		packingPod = super.pythagoras(x1, y1, x2, y2);
+		packingPod = super.pythagoras(x1, y1, x2, y2);	//1X
 
-		noSteps = ((GRADIENT*(robotStorage + packingPod))-INTERCEPT)+(2*(GRADIENT*(doublediagonals)-INTERCEPT));
+		noSteps = ((GRADIENT * (robotStorage + packingStorage + packingPod)) - INTERCEPT) + (2 * (GRADIENT * (storagePacking) - INTERCEPT));
 		System.out.println(noSteps);
 
-		if(noSteps < (SAFETY_MARGIN*batteryLevel)+(batteryLevel)) {
+		if(noSteps < (SAFETY_MARGIN*batteryLevel) + (batteryLevel)) {
 			return true;
 		}
 		else {
