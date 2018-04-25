@@ -293,6 +293,6 @@ public class Robot implements Entity  {
 	}
 	
 	public double pythagoras(double x, double y, double X, double Y) {
-		return Math.sqrt((X - x)*(X - x) + (Y - y)*(Y - y));	
+		return Math.sqrt(Math.pow((X - x), 2) + Math.pow((Y - y),2));	
 	}
 }
