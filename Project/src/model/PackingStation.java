@@ -14,39 +14,22 @@ import java.util.ArrayList;
 
 public class PackingStation implements Entity{
 	/**
-	 * If packing of an order has been completed.
+	 * If packing has been completed by robot
 	 * 
-	 * @see #isCompleted #resetCompleted
+	 * @see #isCompleted
+	 * @see #resetCompleted
 	 */
 	private boolean completed;
-	
 	/**
-	 * The unique identifier of each Packing station.
-	 * 
+	 * The unique identifier of each charging pod
 	 * @see #getID, #generateID
 	 */
 	private String uid;
-	
-	/**
-	 * The Point coordinates where the Packing Station is placed on the grid.
-	 * 
-	 * @see #getPackingCoordinates #getPackingX #getPackingY
-	 */
+
 	private Point packingCoordinates;
 	
-	/**
-	 * This parameter is instantiated with integers for the X and Y coordinates.
-	 * 
-	 * @see #passOnPoint
-	 */
 	private Point p;
 	
-	/**
-	 * Packing Station Constructor. Creates a new <code>Point</code> and assigns it to p and sets a <code>boolean</code>
-	 * value set to false automatically for the Order to be completed.
-	 * 
-	 * @param int x and int y {@link packingCoordinates} used to initialise a new <code>Point</code> coordinate for each Packing Station.
-	 */	
 	public PackingStation(int x, int y) {
 		packingCoordinates = new Point(x, y);
 		completed = false;
@@ -54,52 +37,49 @@ public class PackingStation implements Entity{
 	}
 	
 	/**
-	 * This method is called to pass on the coordinate, to the Cost Estimation class.
-	 * 
-	 * @return Returns <code>p</code>. Which is the <code>Point</code> coordinate for the Cost Estimation class.
+	 * Passes on point to cost estimation
+	 * @return
 	 */
 	public Point passOnPoint() {
 		return p;
 	}
 
 	/**
-	 * Gets the Point coordinate of the Packing station.
-	 * 
-	 * @return Returns <code>Point</code>. The coordinate values of the Point.
+	 * Gets the X n' Y co-ordinates of the Packing.
+	 * @return <code>Point</code> The co-ordinate value.
 	 */
 	public Point getPackingCoordinates() {
 		return packingCoordinates;
 	}
 	
 	/**
-	 * Accesses the double value of the X coordinate of the Packing Station.
-	 * 
-	 * @return Returns <code>double</code>. Representing the X coordinate value.
+	 * Accesses the X-coordinate of the Packing Station
 	 */
 	public double getPackingX() {
 		return packingCoordinates.getX();
 	}
 	
 	/**
-	 * Accesses the double value of the Y coordinate of the Packing Station.
-	 * 
-	 * @return Returns <code>double</code>. Representing the Y coordinate value.
+	 * Accesses the Y-coordinate of the Packing Station
 	 */
 	public double getPackingY() {
 		return packingCoordinates.getY();
 	}
 	
+	
 	/**
-	 * This method checks and signals, if the packing station has completed packing the order it is assigned.
-	 *
-	 * @return Returns <code>boolean</code>. Assigned value of true if completed, otherwise false until it is completed {@link #completed}.
+	 * This method signals if the packing station has completed its order packing.
+	 * 
+	 * @return <code>boolean</code> true if completed otherwise false.
+	 *         {@link #completed}
 	 */
 	public boolean isCompleted() {
 		return completed;
 	}
 
 	/**
-	 * This method resets the value of {@link #completed} when called, back to false when an order is finished.
+	 * This method resets the value of {@link #completed} back to false when an
+	 * order is finished.
 	 */
 	public void resetCompleted() {
 		completed = false;
@@ -107,15 +87,15 @@ public class PackingStation implements Entity{
 	}
 
 	/**
-	 * This method keeps track of how the packing process. It depends on the number of ticks defined in the "SIM" files for different simulation scenarios.
+	 * This method keeps track of how long the robot packs for according to the
+	 * number of ticks in the simulation
 	 */
 	public void packing() {
 		
 	}
 
 	/**
-	 * This method sets the value of {@link #completed} to true. It is called to let simulation know order is ready for delivery, completing the order.
-	 * 
+	 * This method dispatches item for delivery, completing the order.
 	 */
 	public void dispatch() {
 		completed = true;
@@ -123,12 +103,8 @@ public class PackingStation implements Entity{
 
 	
 	/**
-	 * This method gets the next <code>String</code> order out of the ArrayList and requests another order once current order is completed. The method passes parameter to
-	 * the decision making method where the robot decides whether to accept the order. If accepted, the order is removed from the ArrayList.
-	 * 
-	 * @param o a Order object. Used to call the getOrder method and assigns to the ArrayList. Which is passed into the decision making process.
-	 * 
-	 * @return Returns the Order which is selected from this method. 
+	 * This method requests another order once current order is completed.
+	 * @return
 	 */
 	public ArrayList<String> getNextOrder(Order o) {
 		ArrayList<String> order = o.getOrders().get(0);
