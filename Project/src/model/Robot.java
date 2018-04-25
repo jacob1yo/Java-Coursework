@@ -66,7 +66,7 @@ public class Robot implements Entity  {
 	protected Point robotCoordinates;
 
 	/**
-	 * Storage Shelf Constructor. Creates a <code>Robot</code> and sets a safety margin of 20% and a <code>boolean</code>
+	 * Robot Constructor. Creates a <code>Robot</code> and sets a safety margin of 20% and a <code>boolean</code>
 	 * value set to false automatically for the Order Status.
 	 */	
 	public Robot() {
