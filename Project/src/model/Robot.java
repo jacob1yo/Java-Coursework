@@ -126,8 +126,8 @@ public class Robot implements Entity  {
 	/**
 	 * 
 	 */
-	public void recieveOrder() {
-		order = CostEstimationStrategy.getDestinations();
+	public void recieveOrder(ArrayList<Point> destination) {
+		order = destination;
 		order.add(start);
 		System.out.println("Robot order: " + order.toString());
 	}
@@ -136,11 +136,11 @@ public class Robot implements Entity  {
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> True if an order is accepted, otherwise false.
 	 */
-	public void orderDecision() {
-		if(CostEstimationStrategy.getDecision()) {
+	public void orderDecision(boolean decision, ArrayList<Point> destination) {
+		if(decision) {
 			orderStatus = true;
 			System.out.println("Order accepted. ");
-			recieveOrder();
+			recieveOrder(destination);
 		}
 		else {
 			orderStatus = false;
@@ -167,9 +167,9 @@ public class Robot implements Entity  {
 		}
 	}
 
-	public int waitTicks() {
+	public int waitTicks(int numTicks) {
 		if(getRobotCoordinates() == order.get(order.size() - 1)) {
-			waitTime = CostEstimationStrategy.numTicks();
+			waitTime = numTicks;
 		}
 		else {
 			waitTime = 1;
