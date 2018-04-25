@@ -187,6 +187,7 @@ public class Robot implements Entity  {
 			if(index < order.size()) {
 				nextDestination = order.get(index);
 				finishOrder(index);
+				//finalDestination(index);
 				index++;
 			}
 		}
@@ -218,6 +219,7 @@ public class Robot implements Entity  {
 	 * @param y a int value. Used for the Y coordinate.
 	 */
 	public void setCoordinates(int x, int y) {
+		System.out.println("setCoords executing... " + x + " " + y);
 		robotCoordinates = new Point(x, y);
 	}
 
@@ -302,9 +304,22 @@ public class Robot implements Entity  {
 	}
 	
 	public void finishOrder(int index) {
-		if(index == order.size() - 2) {
-			if(getRobotCoordinates() == order.get(order.size() - 1)) {
+		System.out.println("finishOrder executed..." + index + " " + (order.size() - 2));
+		if(index == (order.size() - 1)) {
+			System.out.println("First WORKING  " + getRobotCoordinates() + " " + order.get(order.size() - 2));
+			if(getRobotCoordinates().equals(order.get(order.size() - 2))) {
+				System.out.println("orderStatus is set to false");
 				orderStatus = false;
+			}
+		}
+	}
+	
+	public void finalDestination(int index) {
+		if(index == (order.size()-1)) {
+			System.out.println("FinalDestination executing... ");
+			if(getRobotCoordinates().equals(order.get(order.size() - 1))) {
+				System.out.println("FinalDestination executing... again ");
+				order.clear();
 			}
 		}
 	}

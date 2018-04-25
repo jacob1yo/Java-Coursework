@@ -222,6 +222,7 @@ public class SimulatorController {
 			Point next = hashmap.get(current);
 			if(hashmap != null) {
 				moveRobot(j, current, next);
+				System.out.println("SIM WORKINFENSK " + j);
 				warehouse.moveRobot(j);
 			}
 		}
