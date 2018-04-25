@@ -374,10 +374,10 @@ public class Warehouse {
 
 	public HashMap<Point, Point> move() {
 		currentToNext = null;
-		CostEstimationStrategy costEst = new CostEstimationStrategy();
+		CostEstimationStrategy costEst = new CostEstimationStrategy(order, packingStation, storagePoints);
 		for(int i = 0; i < robotList.size(); i++) {
 			Robot robot = robotList.get(i);
-			costEst.addToRobotCoordinates(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel());
+			costEst.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel(), robotsChargePod, chargePoints);
 			PathFinding pathFinding = new PathFinding();
 			robotList.get(i).orderDecision();
 			//robotList.get(i).initializeOrder();

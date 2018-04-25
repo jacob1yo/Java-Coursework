@@ -28,7 +28,7 @@ public class Robot implements Entity  {
 	 * 
 	 * @see #orderDecision
 	 */	
-	protected double safetyMargin;
+	protected final double SAFETY_MARGIN = 0.2;
 
 	/**
 	 * Whether the robot is currently processing an order or not
@@ -70,7 +70,6 @@ public class Robot implements Entity  {
 	 * value set to false automatically for the Order Status.
 	 */	
 	public Robot() {
-		safetyMargin = 0.2;
 		orderStatus = false;
 		nextDestination = new Point();
 		order = new ArrayList<Point>();
@@ -291,5 +290,9 @@ public class Robot implements Entity  {
 	@Override
 	public void setId(String newUid) {
 		uid = newUid;
+	}
+	
+	public double pythagoras(double x, double y, double X, double Y) {
+		return Math.sqrt((X - x)*(X - x) + (Y - y)*(Y - y));	
 	}
 }
