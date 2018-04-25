@@ -48,28 +48,28 @@ public class PathFinding extends Robot implements Entity {
 			Point node = robotLocations.get(i);
 
 			if(freeSpaces.contains(left) && !takenNodes.contains(left)) {
-				double result = pythagoras(left, destination);
+				double result = super.pythagoras(left.getX(), left.getY(), destination.getX(), destination.getY());
 				if(result < compare) {
 					node = left;
 					compare = result;
 				}
 			}
 			if(freeSpaces.contains(right) && !takenNodes.contains(right)) {
-				double result = pythagoras(right, destination);
+				double result = super.pythagoras(right.getX(), right.getY(), destination.getX(), destination.getY());
 				if(result < compare) {
 					node = right;
 					compare = result;
 				}
 			}
 			if(freeSpaces.contains(up) && !takenNodes.contains(up)) {
-				double result = pythagoras(up, destination);
+				double result = super.pythagoras(up.getX(), up.getY(), destination.getX(), destination.getY());
 				if(result < compare) {
 					node = up;
 					compare = result;
 				}
 			}
 			if(freeSpaces.contains(down) && !takenNodes.contains(down)) {
-				double result = pythagoras(down, destination);
+				double result = super.pythagoras(down.getX(), down.getY(), destination.getX(), destination.getY());
 				if(result < compare) {
 					node = down;
 					compare = result;
@@ -78,23 +78,6 @@ public class PathFinding extends Robot implements Entity {
 			takenNodes.add(node.getLocation());
 			currentToNext.put(robotLocations.get(i), node);
 		}
-	}
-
-	/**
-	 * Returns the result of Pythagoras's theorem between node and destination
-	 * 
-	 * @param node Point coordinate of where the robot currently is
-	 * @param destination Point coordinate of the robot's destination
-	 * 
-	 * @return <code>double</code>
-	 */
-	public double pythagoras(Point node, Point destination) {
-		double x = node.getX();
-		double y = node.getY();
-		double X = destination.getX();
-		double Y = destination.getY();
-
-		return Math.sqrt((X - x)*(X - x) + (Y - y)*(Y - y));	
 	}
 
 	/**

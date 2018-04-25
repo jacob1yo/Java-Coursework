@@ -85,6 +85,8 @@ public class Warehouse {
 
 	private Order order;
 
+	private static int next;
+
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
@@ -92,6 +94,7 @@ public class Warehouse {
 		currentToNext = new HashMap<Point, Point>();
 		storages = new ArrayList<StorageShelf>();
 		order = new Order();
+		next = 0;
 	}
 
 	/**
@@ -372,33 +375,49 @@ public class Warehouse {
 		return spaces;
 	}
 
-	public HashMap<Point, Point> move() {
-		currentToNext = null;
-		CostEstimationStrategy costEst = new CostEstimationStrategy();
+	public PackingStation getPacking() {
+		PackingStation packing = null;
+		if(next < packingList.size()) {
+			packing = packingList.get(next);
+			next++;
+		}
+		if(next >= packingList.size()) {
+			next = 0;
+		}
+		return packing;
+	}
+
+	public Robot costEstmation(CostEstimationStrategy costEst) {
 		for(int i = 0; i < robotList.size(); i++) {
 			Robot robot = robotList.get(i);
-			costEst.addToRobotCoordinates(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel());
+			boolean result = costEst.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel(), robotsChargePod, chargePoints);
+			if(result) {
+				return robot;
+			}
+		}
+		return null;
+	}
+	
+	public ArrayList<Point> getDestination(CostEstimationStrategy costEst){
+		return costEst.getDestinations();
+	}
+
+	public HashMap<Point, Point> move() {
+		currentToNext = null;
+		CostEstimationStrategy costEst = new CostEstimationStrategy(order, getPacking(), storagePoints);
+		Robot robot = costEstmation(costEst);
+		ArrayList<Point> destinations = getDestination(costEst);
+		if(robot != null) {
 			PathFinding pathFinding = new PathFinding();
-			robotList.get(i).orderDecision();
+			robot.orderDecision(destinations);
+			robot.recieveOrder(destinations);
 			//robotList.get(i).initializeOrder();
-			Point destination = robotList.get(i).getDestination();
+			Point destination = robot.getDestination();
 			System.out.println("Warehouse dest: " + destination);
 			pathFinding.pathCalc(destination);
 			currentToNext = pathFinding.getNewNodes();
 		}
 		return currentToNext;
-
-		/*PathFinding pathFinding = new PathFinding();
-		Point destination = new Point(4, 4);
-		pathFinding.pathCalc(destination);
-		if (!robotList.isEmpty()) {
-			currentToNext = pathFinding.getNewNodes();
-			// currentToNext = robotList.get(0).move();
-			currentToNext = pathFinding.getNewNodes();
-			System.out.println("currentToNext size: " + currentToNext.size());
-			return currentToNext;
-		}
-		return null;*/
 	}
 
 	public void moveRobot(int i) {
@@ -408,12 +427,6 @@ public class Warehouse {
 		Double x = next.getX();
 		Double y = next.getY();
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
-	}
-
-	public void readOrders() {
-		for(int i = 0; i < robotList.size(); i++) {
-			robotList.get(i).recieveOrder();
-		}
 	}
 
 	public String getRobotInfo() {
@@ -547,24 +560,31 @@ public class Warehouse {
 		return chargeList;
 	}
 
-	public HashMap<String, Point> storagePoints() {
+	public void addToStoragePoints() {
 		for(StorageShelf s: getStorageList()) {
 			storagePoints.put(s.getID(), s.getStorageCoordinates());
 		}
+	}
+	public HashMap<String, Point> storagePoints() {
 		return storagePoints;
 	}
 
-	public HashMap<String, Point> packingPoints(){
+	public void addToPackingPoints() {
 		for(PackingStation p : getPackingStationList()) {
 			packingPoints.put(p.getID(), p.getPackingCoordinates());
 		}
+	}
+	public HashMap<String, Point> packingPoints(){
 		return packingPoints;
 	}
-
-	public HashMap<String, Point> chargePoints(){
+	
+	public void addToChargePoints() {
 		for(ChargingPod c : getChargeList()) {
 			chargePoints.put(c.getID(), c.getChargingCoordinates());
 		}
+	}
+
+	public HashMap<String, Point> chargePoints(){
 		return chargePoints;
 	}
 
@@ -601,11 +621,14 @@ public class Warehouse {
 						configuration.add(temp[i]);
 					}
 				}
-				System.out.println("Warehouse config: " + configuration.size());
 			} scanner.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		addToStoragePoints();
+		addToPackingPoints();
+		addToChargePoints();
+		order.fillLists();
 	}
 
 	public void clearLists() {
@@ -618,19 +641,19 @@ public class Warehouse {
 	public Order getOrder() {
 		return order;
 	}
-	
+
 	public ArrayList<String> getConfiguration(){
 		return configuration;
 	}
-	
+
 	public ArrayList<String> getPodRob(){
 		return podRob;
 	}
-	
+
 	public ArrayList<String> getStorageShelves(){
 		return shelves;
 	}
-	
+
 	public ArrayList<String> getPackingStations(){
 		return stations;
 	}

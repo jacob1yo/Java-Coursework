@@ -218,7 +218,6 @@ public class SimulatorController {
 		ArrayList<Point> robots = warehouse.robotPoints();
 		for(int i = 0; i < hashmap.size(); i++) {
 			Point current = robots.get(i);
-			System.out.println("move current:" + current);
 			Point next = hashmap.get(current);
 			moveRobot(i, current, next);
 			warehouse.moveRobot(i);
