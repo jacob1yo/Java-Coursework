@@ -84,6 +84,8 @@ public class Warehouse {
 	private ArrayList<String> stations = new ArrayList<String>();
 
 	private Order order;
+	
+	private static int next;
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
@@ -92,6 +94,7 @@ public class Warehouse {
 		currentToNext = new HashMap<Point, Point>();
 		storages = new ArrayList<StorageShelf>();
 		order = new Order();
+		next = 0;
 	}
 
 	/**
@@ -371,15 +374,28 @@ public class Warehouse {
 		}
 		return spaces;
 	}
+	
+	public PackingStation getPacking() {
+		PackingStation packing = null;
+		if(next < packingList.size()) {
+			packing = packingList.get(next);
+			next++;
+		}
+		if(next >= packingList.size()) {
+			next = 0;
+		}
+		return packing;
+	}
 
 	public HashMap<Point, Point> move() {
 		currentToNext = null;
-		CostEstimationStrategy costEst = new CostEstimationStrategy(order, packingStation, storagePoints);
 		for(int i = 0; i < robotList.size(); i++) {
 			Robot robot = robotList.get(i);
-			costEst.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel(), robotsChargePod, chargePoints);
+			CostEstimationStrategy costEst = new CostEstimationStrategy(order, getPacking(), storagePoints);
+			boolean result = costEst.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel(), robotsChargePod, chargePoints);
+			ArrayList<Point> destinations = costEst.getDestinations();
 			PathFinding pathFinding = new PathFinding();
-			robotList.get(i).orderDecision();
+			robotList.get(i).orderDecision(result, destinations);
 			//robotList.get(i).initializeOrder();
 			Point destination = robotList.get(i).getDestination();
 			System.out.println("Warehouse dest: " + destination);
