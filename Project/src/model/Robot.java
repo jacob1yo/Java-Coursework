@@ -136,15 +136,10 @@ public class Robot implements Entity  {
 	 * Decides whether a robot can take an order or not.
 	 * @return <code>boolean</code> True if an order is accepted, otherwise false.
 	 */
-	public void orderDecision(boolean decision, ArrayList<Point> destination) {
-		if(decision) {
-			orderStatus = true;
-			System.out.println("Order accepted. ");
-			recieveOrder(destination);
-		}
-		else {
-			orderStatus = false;
-		}
+	public void orderDecision(ArrayList<Point> destination) {
+		orderStatus = true;
+		System.out.println("Order accepted. ");
+		recieveOrder(destination);
 	}
 
 	/**
@@ -291,7 +286,7 @@ public class Robot implements Entity  {
 	public void setId(String newUid) {
 		uid = newUid;
 	}
-	
+
 	public double pythagoras(double x, double y, double X, double Y) {
 		return Math.sqrt(Math.pow((X - x), 2) + Math.pow((Y - y),2));	
 	}

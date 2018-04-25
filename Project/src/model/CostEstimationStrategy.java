@@ -28,9 +28,9 @@ public class CostEstimationStrategy extends Robot {
 	private PackingStation packingStation;
 
 	private HashMap<String, Point> storagePoints;
-	
+
 	public final double GRADIENT = 1.422;
-	
+
 	public final double INTERCEPT = 0.07577;
 
 	public CostEstimationStrategy(Order order, PackingStation packing, HashMap<String, Point> storagePoints) {
@@ -63,7 +63,14 @@ public class CostEstimationStrategy extends Robot {
 		double packingPod = 0.0;
 		double doublediagonals = 0.0;
 		double robotStorage = 0.0;
-		robotStorage = super.pythagoras(storagePoints.get(sentence.get(2)).getX(), storagePoints.get(sentence.get(2)).getY(), robotX, robotY);
+		
+		System.out.println("CostEst storagePoints: " + storagePoints.size());
+		double X = storagePoints.get(sentence.get(2)).getX();
+		double Y = storagePoints.get(sentence.get(2)).getY();
+		
+		if(robotX != X || robotY != Y) {
+			robotStorage = super.pythagoras(robotX, X, robotY, Y);
+		}
 
 		for (int j = 2; j< sentence.size(); j++) {  // gets the ss1 ss2 etc
 			if ((j++) < sentence.size()) {
@@ -87,7 +94,7 @@ public class CostEstimationStrategy extends Robot {
 		double y1 = chargePoints.get(robotsChargePod.get(uid)).getY();
 		double y2 = destination.getY();
 		packingPod = super.pythagoras(x1, y1, x2, y2);
-		
+
 		noSteps = ((GRADIENT*(robotStorage + packingPod))-INTERCEPT)+(2*(GRADIENT*(doublediagonals)-INTERCEPT));
 		System.out.println(noSteps);
 
