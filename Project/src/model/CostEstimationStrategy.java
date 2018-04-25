@@ -28,6 +28,10 @@ public class CostEstimationStrategy extends Robot {
 	private PackingStation packingStation;
 
 	private HashMap<String, Point> storagePoints;
+	
+	public final double GRADIENT = 1.422;
+	
+	public final double INTERCEPT = 0.07577;
 
 	public CostEstimationStrategy(Order order, PackingStation packing, HashMap<String, Point> storagePoints) {
 		super();
@@ -84,7 +88,7 @@ public class CostEstimationStrategy extends Robot {
 		double y2 = destination.getY();
 		packingPod = super.pythagoras(x1, y1, x2, y2);
 		
-		noSteps = ((1.422*(robotStorage + packingPod))-0.07577)+(2*(1.422*(doublediagonals)-0.07577));
+		noSteps = ((GRADIENT*(robotStorage + packingPod))-INTERCEPT)+(2*(GRADIENT*(doublediagonals)-INTERCEPT));
 		System.out.println(noSteps);
 
 		if(noSteps < (SAFETY_MARGIN*batteryLevel)+(batteryLevel)) {
