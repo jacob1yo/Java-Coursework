@@ -86,9 +86,9 @@ public class Warehouse {
 	private Order order;
 
 	private static int next;
-	
+
 	private int waitTime;
-	
+
 	private boolean waited;
 
 	public Warehouse() {
@@ -121,13 +121,11 @@ public class Warehouse {
 		for (int i = 0; i < robotList.size(); i++) {
 			robotList.get(i).setBatteryCap(batteryLevel);
 			robotList.get(i).updateBattery(batteryLevel);
-			System.out.println(robotList.get(i).getID()); // delete this manual test after
 		}
 
 		ChargingPod chargePod = new ChargingPod(x, y);
 		chargePod.setId(cuid);
 		chargeList.add(chargePod);
-		System.out.println("ChargeL: " + chargeList.size());
 		for (int i = 0; i < chargeList.size(); i++) {
 			chargeList.get(i).updateChargeRate(chargeRate);
 		}
@@ -418,8 +416,6 @@ public class Warehouse {
 		System.out.println("CostEst being EXECUTED... " + robot.getOrderStatus());
 		if(!robot.getOrderStatus()) {
 			CostEstimationStrategy costEstimation = new CostEstimationStrategy(order, getPacking(), storagePoints);
-			//robot.getDestinations().clear();
-			//robot.recieveOrder(getDestinations());
 			value =  costEstimation.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel(), robotsChargePod, chargePoints);
 			if(value == true) {
 				setAssigned();
@@ -427,10 +423,18 @@ public class Warehouse {
 				robot.setWaitTime(waitTime);
 			}
 			else {
+				System.out.println("SET COMPLETED CALLED");
+				setCompleted();
 				robot.orderDecision(robot.getStart());
 			}
 		}
 		return value;
+	}
+
+	public void setCompleted() {
+		ArrayList<ArrayList<String>> sentence = order.getDecision();
+		order.addToCompleted(sentence.get(0));
+		order.removeFromAssigned(0);
 	}
 
 	public void setAssigned() {
@@ -500,7 +504,6 @@ public class Warehouse {
 			String x = String.valueOf(value.getX());
 			String y = String.valueOf(value.getY());
 			coordinates += x + " " + y;
-			//System.out.println(coordinates);
 		}
 		return coordinates;
 
@@ -580,12 +583,10 @@ public class Warehouse {
 	 * 
 	 */
 	public void addToRobotsChargePod() {
-		System.out.println("robot size: " + robotList.size());
 		for(int i = 0; i < robotList.size(); i++) {
 			String robot = "r" + i;
 			String charge = "c" + i;
 			robotsChargePod.put(robot, charge);
-			System.out.println("Looping: " + robotsChargePod.get("r0"));
 		}
 	}
 
@@ -610,9 +611,7 @@ public class Warehouse {
 	}
 
 	public void addToStoragePoints() {
-		System.out.println("addToStoragePoints called... " + storageList.size());
 		for(StorageShelf s: storageList) {
-			System.out.print("For loop called... ");
 			storagePoints.put(s.getID(), s.getStorageCoordinates());
 		}
 	}
@@ -711,7 +710,7 @@ public class Warehouse {
 	public ArrayList<String> getPackingStations(){
 		return stations;
 	}
-	
+
 	public void setWaitTime(String time) {
 		Integer wait = Integer.parseInt(time);
 		waitTime = wait.intValue();
@@ -726,7 +725,7 @@ public class Warehouse {
 			destinations.add(storagePoints.get(newOrder.get(i)));
 			destinations.add(getPacking().passOnPoint());
 		}
-		System.out.println("Cost estimation dest: " + destinations.toString());
+		System.out.println("COST estimation dest: " + newOrder.toString());
 		return destinations;
 	}
 

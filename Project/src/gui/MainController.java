@@ -301,7 +301,6 @@ public class MainController {
 		packingButton.setDisable(true);
 		deleteButton.setDisable(true);
 		clearButton.setDisable(true);
-		System.out.println("File loaded: " + selectedFile.getName() + "\n " + selectedFile.getAbsolutePath());
 		warehouse.fillLists();
 
 		setUpGrid();
@@ -395,7 +394,6 @@ public class MainController {
 	@FXML
 	public void startPressed() {
 		warehouse.addToRobotsChargePod();
-		System.out.println("WC: " + warehouse.getRobotsChargePod().size());
 		final FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("Simulator.FXML"));
 		final SimulatorController simulatorController = new SimulatorController();

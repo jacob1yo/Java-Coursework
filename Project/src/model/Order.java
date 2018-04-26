@@ -119,7 +119,9 @@ public class Order {
 	 * when an order is moved to a different ArrayList.
 	 */
 	public void removeFromOrders() {
-		orders.remove(0);
+		if(!orders.isEmpty()) {
+			orders.remove(0);
+		}
 	}
 
 	/**
@@ -137,7 +139,9 @@ public class Order {
 	 * @param order a <code>String</code>. Removed from the {@link #decisionsList} ArrayList.
 	 */
 	public void removeFromDecision(ArrayList<String> order) {
-		decisionsList.remove(order);
+		if(!decisionsList.isEmpty()) {
+			decisionsList.remove(order);
+		}
 	}
 
 	/**
@@ -155,7 +159,9 @@ public class Order {
 	 * @param index a <code>int</code> value. Removed from {@link #assignedOrders} ArrayList.
 	 */
 	public void removeFromAssigned(int index) {
-		assignedOrders.remove(index);
+		if(!assignedOrders.isEmpty()) {
+			assignedOrders.remove(index);
+		}
 	}
 
 	/**

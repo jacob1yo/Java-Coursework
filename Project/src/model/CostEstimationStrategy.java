@@ -66,12 +66,10 @@ public class CostEstimationStrategy extends Robot {
 			double packingPod = 0.0;
 			double robotStorage = 0.0;
 
-			System.out.println("CostEst storagePoints: " + storagePoints.size());
 			double X = storagePoints.get(sentence.get(2)).getX();
 			double Y = storagePoints.get(sentence.get(2)).getY();
 
 			robotStorage = super.pythagoras(robotX, X, robotY, Y);	//1X
-			System.out.println("CostEst sentence size: " + sentence.size());
 			for (int j = 2; j< sentence.size(); j++) {  // gets the ss1 ss2 etc
 				if((j + 1) < sentence.size()) {
 					double x1 = storagePoints.get(sentence.get(j)).getX();
@@ -102,8 +100,7 @@ public class CostEstimationStrategy extends Robot {
 			packingPod = super.pythagoras(x1, y1, x2, y2);	//1X
 
 			noSteps = ((GRADIENT * (robotStorage + packingStorage + packingPod)) - INTERCEPT) + (2 * (GRADIENT * (storagePacking) - INTERCEPT));
-			System.out.println(noSteps);
-
+			
 			if(noSteps < (SAFETY_MARGIN*batteryLevel) + (batteryLevel)) {
 				return true;
 			}
@@ -126,16 +123,12 @@ public class CostEstimationStrategy extends Robot {
 			destinations.add(storagePoints.get(newOrder.get(i)));
 		}
 		destinations.add(packingStation.passOnPoint());
-		System.out.println(packingStation.passOnPoint());
-		//destinations.add(new Point(0, 2));
-		System.out.println("Cost estimation dest: " + destinations.toString());
 		return destinations;
 	}
 
 	public int numTicks() {
 		String temp = packingStation.getNextOrder(order).get(1);
 		Integer ticks = Integer.parseInt(temp);
-		System.out.println("Ticks: " + ticks);
 		return ticks;
 	}
 

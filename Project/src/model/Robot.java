@@ -215,9 +215,7 @@ public class Robot implements Entity  {
 	}
 
 	public boolean atLocation() {
-		System.out.println("Start = " + start + " nextDestination = " + nextDestination + " robot coords: " + getRobotCoordinates());
 		if(getRobotCoordinates().equals(nextDestination)) {
-			System.out.println("atLocation = true");
 			return true;
 		}
 		return false;
@@ -225,13 +223,10 @@ public class Robot implements Entity  {
 
 	public Point nextInPath() {
 		if(atLocation()) {
-			System.out.println("Robot nextInPath: " + order.size());
 			if(index < order.size()) {
 				pickUpItems();
 				atPacking();
 				finishOrder(index);
-				System.out.println("Robot nextInPath carrying: " + carrying);
-				//finalDestination(index);
 				nextDestination = order.get(index);
 				index++;
 			}
@@ -264,7 +259,6 @@ public class Robot implements Entity  {
 	 * @param y a int value. Used for the Y coordinate.
 	 */
 	public void setCoordinates(int x, int y) {
-		System.out.println("setCoords executing... " + x + " " + y);
 		robotCoordinates = new Point(x, y);
 	}
 
@@ -349,9 +343,7 @@ public class Robot implements Entity  {
 	}
 
 	public void finishOrder(int index) {
-		System.out.println("finishOrder executed..." + index + " " + (order.size() - 2));
 		if(index == (order.size() - 1)) {
-			System.out.println("First WORKING  " + getRobotCoordinates() + " " + order.get(order.size() - 2));
 			if(getRobotCoordinates().equals(order.get(order.size() - 2))) {
 				System.out.println("orderStatus is set to false");
 				orderStatus = false;
