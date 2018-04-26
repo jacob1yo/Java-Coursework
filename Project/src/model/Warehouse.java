@@ -716,4 +716,8 @@ public class Warehouse {
 	public boolean getOrderStatus(int index) {
 		return robotList.get(index).getOrderStatus();
 	}
+	
+	public ArrayList<Robot> getRobotList() {
+		return robotList;
+	}
 }
