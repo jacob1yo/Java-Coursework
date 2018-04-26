@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 /**
-  * This class contains the implementation of the Packing Station methods.
+ * This class contains the implementation of the Packing Station methods.
  * 
  * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
  *         Vivek Bhukhan, Christos Dolopikos.
@@ -19,28 +19,28 @@ public class PackingStation implements Entity{
 	 * @see #isCompleted #resetCompleted
 	 */
 	private boolean completed;
-	
+
 	/**
 	 * The unique identifier of each Packing station.
 	 * 
 	 * @see #getID, #generateID
 	 */
 	private String uid;
-	
+
 	/**
 	 * The Point coordinates where the Packing Station is placed on the grid.
 	 * 
 	 * @see #getPackingCoordinates #getPackingX #getPackingY
 	 */
 	private Point packingCoordinates;
-	
+
 	/**
 	 * This parameter is instantiated with integers for the X and Y coordinates.
 	 * 
 	 * @see #passOnPoint
 	 */
 	private Point p;
-	
+
 	/**
 	 * Packing Station Constructor. Creates a new <code>Point</code> and assigns it to p and sets a <code>boolean</code>
 	 * value set to false automatically for the Order to be completed.
@@ -52,7 +52,7 @@ public class PackingStation implements Entity{
 		completed = false;
 		p = new Point(x, y);
 	}
-	
+
 	/**
 	 * This method is called to pass on the coordinate, to the Cost Estimation class.
 	 * 
@@ -70,7 +70,7 @@ public class PackingStation implements Entity{
 	public Point getPackingCoordinates() {
 		return packingCoordinates;
 	}
-	
+
 	/**
 	 * Accesses the double value of the X coordinate of the Packing Station.
 	 * 
@@ -79,7 +79,7 @@ public class PackingStation implements Entity{
 	public double getPackingX() {
 		return packingCoordinates.getX();
 	}
-	
+
 	/**
 	 * Accesses the double value of the Y coordinate of the Packing Station.
 	 * 
@@ -88,7 +88,7 @@ public class PackingStation implements Entity{
 	public double getPackingY() {
 		return packingCoordinates.getY();
 	}
-	
+
 	/**
 	 * This method checks and signals, if the packing station has completed packing the order it is assigned.
 	 *
@@ -110,7 +110,7 @@ public class PackingStation implements Entity{
 	 * This method keeps track of how the packing process. It depends on the number of ticks defined in the "SIM" files for different simulation scenarios.
 	 */
 	public void packing() {
-		
+
 	}
 
 	/**
@@ -121,7 +121,7 @@ public class PackingStation implements Entity{
 		completed = true;
 	}
 
-	
+
 	/**
 	 * This method gets the next <code>String</code> order out of the ArrayList and requests another order once current order is completed. The method passes parameter to
 	 * the decision making method where the robot decides whether to accept the order. If accepted, the order is removed from the ArrayList.
@@ -131,12 +131,15 @@ public class PackingStation implements Entity{
 	 * @return Returns the Order which is selected from this method. 
 	 */
 	public ArrayList<String> getNextOrder(Order o) {
-		ArrayList<String> order = o.getOrders().get(0);
-		o.addToDecision(order);
-		o.removeFromOrders();
-		return order;
+		if(o.getOrders().size() != 0) {
+			ArrayList<String> order = o.getOrders().get(0);
+			o.addToDecision(order);
+			o.removeFromOrders();
+			return order;
+		}
+		return null;
 	}
-	
+
 	@Override
 	public void generateID(int id) {
 		int num = id;

@@ -129,6 +129,7 @@ public class Robot implements Entity  {
 	public void recieveOrder(ArrayList<Point> destination) {
 		order = destination;
 		order.add(start);
+		index = 0;
 		System.out.println("Robot order: " + order.toString());
 	}
 
@@ -138,7 +139,7 @@ public class Robot implements Entity  {
 	 */
 	public void orderDecision(ArrayList<Point> destination) {
 		orderStatus = true;
-		System.out.println("Order accepted. ");
+		System.out.println("Order accepted. " + destination);
 		recieveOrder(destination);
 	}
 
@@ -185,9 +186,9 @@ public class Robot implements Entity  {
 		if(atLocation()) {
 			System.out.println("Robot nextInPath: " + order.size());
 			if(index < order.size()) {
-				nextDestination = order.get(index);
 				finishOrder(index);
 				//finalDestination(index);
+				nextDestination = order.get(index);
 				index++;
 			}
 		}

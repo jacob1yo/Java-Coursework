@@ -8,7 +8,6 @@ shelf ss0 2 2
 station ps0 0 2
 order 9 ss0
 order 15 ss0
-order 7 ss0
 order 10 ss0
 order 4 ss0
 order 13 ss0
@@ -68,3 +67,5 @@ order 11 ss0
 order 16 ss0
 order 1 ss0
 order 19 ss0
+
+

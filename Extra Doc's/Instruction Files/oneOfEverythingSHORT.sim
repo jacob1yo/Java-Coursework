@@ -1,0 +1,13 @@
+format 1
+width 3
+height 3
+capacity 20
+chargeSpeed 1
+podRobot c0 r0 2 0
+shelf ss0 2 2
+station ps0 0 2
+order 9 ss0
+order 15 ss0
+
+
+

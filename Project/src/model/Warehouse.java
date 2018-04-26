@@ -401,26 +401,29 @@ public class Warehouse {
 	public ArrayList<Point> getDestination(CostEstimationStrategy costEst){
 		return costEst.getDestinations();
 	}*/
-	
+
 	/**
 	 * Returns true if robot can move, false otherwise
 	 * @param i
 	 * @return
 	 */
 	public boolean costEst(int i) {
-			Robot robot = robotList.get(i);
-			boolean value = true;
-			if(!robot.getOrderStatus()) {
-				CostEstimationStrategy costEstimation = new CostEstimationStrategy(order, getPacking(), storagePoints);
-				//robot.getDestinations().clear();
-				//robot.recieveOrder(getDestinations());
-				value =  costEstimation.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel(), robotsChargePod, chargePoints);
+		Robot robot = robotList.get(i);
+		boolean value = true;
+		System.out.println("CostEst being EXECUTED... " + robot.getOrderStatus());
+		if(!robot.getOrderStatus()) {
+			CostEstimationStrategy costEstimation = new CostEstimationStrategy(order, getPacking(), storagePoints);
+			//robot.getDestinations().clear();
+			//robot.recieveOrder(getDestinations());
+			value =  costEstimation.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel(), robotsChargePod, chargePoints);
+			if(value == true) {
 				setAssigned();
 				robot.orderDecision(getDestinations());
 			}
-			return value;
+		}
+		return value;
 	}
-	
+
 	public void setAssigned() {
 		ArrayList<ArrayList<String>> sentence = order.getDecision();
 		order.addToAssigned(sentence.get(0));
@@ -435,7 +438,7 @@ public class Warehouse {
 		pathFinding.pathCalc(destination);
 		currentToNext = pathFinding.getNewNodes();
 		return currentToNext;
-		
+
 		/*currentToNext = null;
 		CostEstimationStrategy costEst = new CostEstimationStrategy(order, getPacking(), storagePoints);
 		Robot robot = costEstmation(costEst);
@@ -694,7 +697,7 @@ public class Warehouse {
 	public ArrayList<String> getPackingStations(){
 		return stations;
 	}
-	
+
 	public ArrayList<Point> getDestinations(){
 		ArrayList<Point> destinations = new ArrayList<Point>();
 		ArrayList<String> newOrder = new ArrayList<String>();
@@ -706,7 +709,7 @@ public class Warehouse {
 		System.out.println("Cost estimation dest: " + destinations.toString());
 		return destinations;
 	}
-	
+
 	public boolean getOrderStatus(int index) {
 		return robotList.get(index).getOrderStatus();
 	}
