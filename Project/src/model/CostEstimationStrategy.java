@@ -111,7 +111,7 @@ public class CostEstimationStrategy extends Robot {
 				return false;		
 			}
 		}
-		return true;
+		return false;
 	}
 
 	public void getDistanceEstimator(ArrayList<String> sentence) {

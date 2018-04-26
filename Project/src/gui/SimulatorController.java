@@ -249,10 +249,9 @@ public class SimulatorController {
 	public void oneTickPressed() {
 		//warehouse.readOrders();
 		for(int i = 0; i < circleList.size(); i++) {
-			if(warehouse.costEst(i)) {
-				//warehouse.setAssigned();
-				move(i);
-			}
+			warehouse.costEst(i);
+			//warehouse.setAssigned();
+			move(i);
 		}
 		ticks++;
 		tickLabel.setText("Tick: " + ticks);

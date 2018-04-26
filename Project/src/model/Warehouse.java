@@ -420,6 +420,9 @@ public class Warehouse {
 				setAssigned();
 				robot.orderDecision(getDestinations());
 			}
+			else {
+				robot.orderDecision(robot.getStart());
+			}
 		}
 		return value;
 	}

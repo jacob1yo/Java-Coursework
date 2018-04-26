@@ -122,6 +122,12 @@ public class Robot implements Entity  {
 	public void updateBattery(int batteryLevel) {
 		this.batteryLevel = batteryLevel;
 	}
+	
+	public ArrayList<Point> getStart() {
+		ArrayList<Point> finalDest = new ArrayList<Point>();
+		finalDest.add(start);
+		return finalDest;
+	}
 
 	/**
 	 * 
