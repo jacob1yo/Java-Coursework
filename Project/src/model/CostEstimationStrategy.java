@@ -33,6 +33,8 @@ public class CostEstimationStrategy extends Robot {
 
 	public final double INTERCEPT = 0.07577;
 
+	private ArrayList<String> sentence;
+
 	public CostEstimationStrategy(Order order, PackingStation packing, HashMap<String, Point> storagePoints) {
 		super();
 		this.order = order;
@@ -57,7 +59,8 @@ public class CostEstimationStrategy extends Robot {
 
 		Point destination = packingStation.passOnPoint();
 
-		ArrayList<String> sentence = packingStation.getNextOrder(order);
+		order.newSentence();
+		sentence = order.getNextSentence();
 
 		if(sentence != null) {
 
@@ -100,7 +103,7 @@ public class CostEstimationStrategy extends Robot {
 			packingPod = super.pythagoras(x1, y1, x2, y2);	//1X
 
 			noSteps = ((GRADIENT * (robotStorage + packingStorage + packingPod)) - INTERCEPT) + (2 * (GRADIENT * (storagePacking) - INTERCEPT));
-			
+
 			if(noSteps < (SAFETY_MARGIN*batteryLevel) + (batteryLevel)) {
 				return true;
 			}
@@ -111,25 +114,14 @@ public class CostEstimationStrategy extends Robot {
 		return false;
 	}
 
-	public void getDistanceEstimator(ArrayList<String> sentence) {
-		order.removeFromDecision(sentence);
-		order.addToAssigned(sentence);
+	public ArrayList<String> getSentence(){
+		return sentence;
 	}
 
-	public ArrayList<Point> getDestinations(){
-		ArrayList<Point> destinations = new ArrayList<Point>();
-		ArrayList<String> newOrder = packingStation.getNextOrder(order);
-		for(int i = 2; i < newOrder.size(); i++) {
-			destinations.add(storagePoints.get(newOrder.get(i)));
-		}
-		destinations.add(packingStation.passOnPoint());
-		return destinations;
-	}
-
-	public int numTicks() {
+	/*public int numTicks() {
 		String temp = packingStation.getNextOrder(order).get(1);
 		Integer ticks = Integer.parseInt(temp);
 		return ticks;
-	}
+	}*/
 
 }

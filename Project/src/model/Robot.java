@@ -134,7 +134,7 @@ public class Robot implements Entity  {
 		this.batteryLevel = batteryLevel;
 	}
 
-	public ArrayList<Point> getStart() {
+	public ArrayList<Point> setDestinationStart() {
 		ArrayList<Point> finalDest = new ArrayList<Point>();
 		finalDest.add(start);
 		return finalDest;
@@ -183,19 +183,9 @@ public class Robot implements Entity  {
 	 * Robots takes the items from the storage shelf.
 	 */
 	public void pickUpItems() {
-		if(atDestination()) {
+		if(atShelf()) {
 			carrying = true;
 		}
-	}
-
-	public boolean atDestination() {
-		for(int i = 0; i < order.size() - 1; i += 2) {
-			if(getRobotCoordinates().equals(order.get(i))) {
-				carrying = true;
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -359,6 +349,7 @@ public class Robot implements Entity  {
 	public boolean atShelf() {
 		for(int i = 0; i < order.size() - 1; i += 2) {
 			if(getRobotCoordinates().equals(order.get(i))) {
+				carrying = true;
 				return true;
 			}
 		}

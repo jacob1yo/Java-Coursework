@@ -121,25 +121,6 @@ public class PackingStation implements Entity{
 		completed = true;
 	}
 
-
-	/**
-	 * This method gets the next <code>String</code> order out of the ArrayList and requests another order once current order is completed. The method passes parameter to
-	 * the decision making method where the robot decides whether to accept the order. If accepted, the order is removed from the ArrayList.
-	 * 
-	 * @param o a Order object. Used to call the getOrder method and assigns to the ArrayList. Which is passed into the decision making process.
-	 * 
-	 * @return Returns the Order which is selected from this method. 
-	 */
-	public ArrayList<String> getNextOrder(Order o) {
-		if(o.getOrders().size() != 0) {
-			ArrayList<String> order = o.getOrders().get(0);
-			o.addToDecision(order);
-			o.removeFromOrders();
-			return order;
-		}
-		return null;
-	}
-
 	@Override
 	public void generateID(int id) {
 		int num = id;

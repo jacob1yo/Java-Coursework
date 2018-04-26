@@ -31,33 +31,13 @@ public class Order {
 	private ArrayList<ArrayList<String>> orders = new ArrayList<ArrayList<String>>();
 
 	/**
-	 * Nested ArrayList containing all the <code>String</code> Orders have been assigned to assignedOrders from the "SIM" file.
-	 * 
-	 * @see #addToAssigned #removeFromAssigned #getAssigned
-	 */
-	private ArrayList<ArrayList<String>> assignedOrders = new ArrayList<ArrayList<String>>();
-
-	/**
-	 * Nested ArrayList containing all the <code>String</code> Orders which are completed and 
-	 * assigned to completedOrders from the "SIM" file.
-	 * 
-	 * @see #addToCompleted
-	 */
-	private ArrayList<ArrayList<String>> completedOrders = new ArrayList<ArrayList<String>>();
-
-	/**
-	 * Nested ArrayList containing all the <code>String</code> of orders which are waited to be accepted by the Robots.
-	 * 
-	 * @see #addToDecision #removeFromDecision 
-	 */
-	private ArrayList<ArrayList<String>> decisionsList = new ArrayList<ArrayList<String>>();
-
-	/**
 	 * This File object which is the "SIM" file being loaded into the GUI.
 	 * 
 	 * @see #setFile #getFile #fillLists #printCommands 
 	 */
 	private File file;
+
+	public ArrayList<String> sentence;
 
 	/**
 	 * Order constructor.
@@ -107,6 +87,25 @@ public class Order {
 		return orders; 
 	}
 
+	public void newSentence() {
+		if(!orders.isEmpty()) {
+			sentence = orders.get(0);
+		}
+	}
+
+	public void completedSentence() {
+		if(!orders.isEmpty()) {
+			orders.remove(0);
+		}
+	}
+
+	public ArrayList<String> getNextSentence(){
+		if(!orders.isEmpty()) {
+			return sentence;
+		}
+		return null;
+	}
+
 	/**
 	 * Checks if an order has been completed, and moves it to "completedOrders" if
 	 * it is completed.
@@ -124,73 +123,7 @@ public class Order {
 		}
 	}
 
-	/**
-	 * Adds {@link #orders} to {@link #decisionsList} ArrayList, where orders are waiting to be assigned to a robot.
-	 * 
-	 * @param order a <code>String</code>. Added to the {@link #decisionsList} ArrayList.
-	 */
-	public void addToDecision(ArrayList<String> order) {
-		decisionsList.add(order);
-	}
-
-	/**
-	 * Removes {@link #orders} from the {@link #decisionsList} ArrayList, where orders are waiting to be assigned to a robot.
-	 * 
-	 * @param order a <code>String</code>. Removed from the {@link #decisionsList} ArrayList.
-	 */
-	public void removeFromDecision(ArrayList<String> order) {
-		if(!decisionsList.isEmpty()) {
-			decisionsList.remove(order);
-		}
-	}
-
-	/**
-	 * Adds {@link #orders} to the {@link #assignedOrders} ArrayList, which stores the orders assigned to each robot.
-	 * 
-	 * @param order a <code>String</code>. Added to the {@link #assignedOrders} ArrayList.
-	 */
-	public void addToAssigned(ArrayList<String> order) {
-		assignedOrders.add(order);
-	}
-
-	/**
-	 * Removes {@link #orders} from the {@link #assignedOrders} ArrayList, which stores the orders assigned to each robot.
-	 * 
-	 * @param index a <code>int</code> value. Removed from {@link #assignedOrders} ArrayList.
-	 */
-	public void removeFromAssigned(ArrayList<String> order) {
-		if(!assignedOrders.isEmpty()) {
-			assignedOrders.remove(order);
-		}
-	}
-
-	/**
-	 * Adds {@link #orders} to {@link #completedOrders} ArrayList, where orders completed are stored.
-	 * 
-	 * @param order a <code>String</code>. Added to the {@link #completedOrders} ArrayList.
-	 */
-	public void addToCompleted(ArrayList<String> order) {
-		completedOrders.add(order);
-	}
-
-	public ArrayList<ArrayList<String>> getDecision() {
-		System.out.println("Order getDecision: " + decisionsList.size());
-		return decisionsList;
-	}
-
 	//private static ArrayList<ArrayList<String>> assignedOrders = new ArrayList<ArrayList<String>>();
-	/**
-	 * Method iterates through both nested {@link #assignedOrders} ArrayLists. The second nested ArrayList
-	 * stores the order assigned as a <code>String</code>.
-	 * 
-	 * @return Returns assigned as a <code>String</code>. The Uids of the order.
-	 */
-	public ArrayList<String> getAssigned(/*int i*/) {
-		//return assignedOrders.get(i);
-		System.out.println("Order getAssigned: " + assignedOrders.size());
-		return assignedOrders.get(0);
-	}
-
 
 	/**
 	 *
@@ -207,11 +140,11 @@ public class Order {
 				String line = scanner.nextLine();
 				if (line.contains("order")) {
 					String[] temp = line.split(" ");
-					ArrayList<String> sentence = new ArrayList<String>();
+					ArrayList<String> word = new ArrayList<String>();
 					for (int i = 0; i < temp.length; i++) {
-						sentence.add(temp[i]);
+						word.add(temp[i]);
 					}
-					orders.add(sentence);
+					orders.add(word);
 				}
 			}
 			scanner.close();

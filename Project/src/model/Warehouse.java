@@ -61,13 +61,6 @@ public class Warehouse {
 	private HashMap<Point, Point> currentToNext;
 
 	/**
-	 * Storages is a static variable, which has the same data as Storage Lists. Therefore, the data can be returned through a static method.
-	 * 
-	 * @see #addStorage #genID
-	 */
-	private ArrayList<StorageShelf> storages;
-
-	/**
 	 * The string representation of Robot UID (key) to the Charging Pods UID (value) are mapped and stored in this HashMap.
 	 * 
 	 * @see #addToRobotsChargePod #getRobotChargePod
@@ -90,13 +83,14 @@ public class Warehouse {
 	private int waitTime;
 
 	private boolean waited;
+	
+	private ArrayList<String> newOrder = new ArrayList<String>();
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
 		robotPoints = new ArrayList<Point>();
 		currentToNext = new HashMap<Point, Point>();
-		storages = new ArrayList<StorageShelf>();
 		order = new Order();
 		next = 0;
 	}
@@ -417,31 +411,18 @@ public class Warehouse {
 		if(!robot.getOrderStatus()) {
 			CostEstimationStrategy costEstimation = new CostEstimationStrategy(order, getPacking(), storagePoints);
 			value =  costEstimation.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(), robot.getBatteryLevel(), robotsChargePod, chargePoints);
+			newOrder = costEstimation.getSentence();
 			if(value == true) {
-				setAssigned();
+				order.completedSentence();
 				robot.orderDecision(getDestinations());
 				robot.setWaitTime(waitTime);
 			}
 			else {
 				System.out.println("SET COMPLETED CALLED");
-				setCompleted();
-				System.out.println("CHECK: " + order.getAssigned().toString());
-				robot.orderDecision(robot.getStart());
+				robot.orderDecision(robot.setDestinationStart());
 			}
 		}
 		return value;
-	}
-
-	public void setCompleted() {
-		ArrayList<ArrayList<String>> sentence = order.getDecision();
-		order.addToCompleted(sentence.get(0));
-		order.removeFromAssigned(sentence.get(0));
-	}
-
-	public void setAssigned() {
-		ArrayList<ArrayList<String>> sentence = order.getDecision();
-		order.addToAssigned(sentence.get(0));
-		order.removeFromDecision(sentence.get(0));	//figure this shit out
 	}
 
 	public HashMap<Point, Point> move(int i) {
@@ -595,10 +576,6 @@ public class Warehouse {
 		return robotsChargePod;
 	}
 
-	public ArrayList<StorageShelf> getStorageShelfs(){
-		return storages;
-	}
-
 	public ArrayList<PackingStation> getPackingStationList(){
 		return packingList;
 	}
@@ -719,8 +696,6 @@ public class Warehouse {
 
 	public ArrayList<Point> getDestinations(){
 		ArrayList<Point> destinations = new ArrayList<Point>();
-		ArrayList<String> newOrder = new ArrayList<String>();
-		newOrder = order.getAssigned();
 		setWaitTime(newOrder.get(1));
 		for(int i = 2; i < newOrder.size(); i++) {
 			destinations.add(storagePoints.get(newOrder.get(i)));
