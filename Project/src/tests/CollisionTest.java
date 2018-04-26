@@ -19,22 +19,33 @@ class CollisionTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		
-	
-		
-
 	}
 
 	@Test
 	void testCollide() {
-		
 		Robot r1 = new Robot();
 		Robot r2 = new Robot();
 		
 		r1.setCoordinates(100, 100);
 		r2.setCoordinates(100, 100);
 		
+	
 		assertEquals(r1.getRobotCoordinates(), r2.getRobotCoordinates());
 		
 	}
+	
+	@Test
+	void testNotCollide() {
+		Robot r1 = new Robot();
+		Robot r2 = new Robot();
+		
+		r1.setCoordinates(150, 100);
+		r2.setCoordinates(200, 100);
+		
+	
+		assertNotEquals(r1.getRobotCoordinates(), r2.getRobotCoordinates());
+		
+	}
+	
 
 }
