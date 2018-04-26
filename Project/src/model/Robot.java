@@ -57,6 +57,8 @@ public class Robot implements Entity  {
 	private Point start;
 
 	private int waitTime;
+	
+	private int originalBatteryLevel;
 
 	/**
 	 * The Point coordinates where the Robot is placed on the grid.
@@ -102,6 +104,15 @@ public class Robot implements Entity  {
 		return batteryLevel;
 	}
 
+	public void charging(int chargeRate) {
+		if(getRobotCoordinates().equals(start)) {
+			if(batteryLevel < originalBatteryLevel) {
+				batteryLevel += chargeRate;
+			}
+			System.out.println("Battery level: " + batteryLevel);
+		}
+	}
+
 	/**
 	 * Decreases the battery of a robot after every tick depending on if it's
 	 * carrying an order or not.
@@ -127,6 +138,10 @@ public class Robot implements Entity  {
 		ArrayList<Point> finalDest = new ArrayList<Point>();
 		finalDest.add(start);
 		return finalDest;
+	}
+	
+	public void setBatteryCap(int batteryLevel) {
+		originalBatteryLevel = batteryLevel;
 	}
 
 	/**
@@ -352,5 +367,7 @@ public class Robot implements Entity  {
 		}
 		return false;
 	}
+
+
 
 }

@@ -103,6 +103,10 @@ public class ChargingPod implements Entity {
 		this.chargeRate = chargeRate;
 	}
 	
+	public int getChargeRate() {
+		return chargeRate;
+	}
+	
 	@Override
 	public void generateID(int id) {
 			int num = id++;

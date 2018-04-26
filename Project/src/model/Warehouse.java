@@ -115,6 +115,7 @@ public class Warehouse {
 		robot.setId(ruid);
 		robotList.add(robot);
 		for (int i = 0; i < robotList.size(); i++) {
+			robotList.get(i).setBatteryCap(batteryLevel);
 			robotList.get(i).updateBattery(batteryLevel);
 			System.out.println(robotList.get(i).getID()); // delete this manual test after
 		}
@@ -439,6 +440,7 @@ public class Warehouse {
 		temp.put(robot.getRobotCoordinates(), robot.getRobotCoordinates());
 		currentToNext = temp;
 		if(robot.atChargePod() && !robot.getOrderStatus()) {
+			robot.charging(chargeList.get(i).getChargeRate());
 			return currentToNext;
 		}
 		else{
