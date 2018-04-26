@@ -88,6 +88,8 @@ public class Warehouse {
 	private static int next;
 	
 	private int waitTime;
+	
+	private boolean waited;
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
@@ -422,6 +424,7 @@ public class Warehouse {
 			if(value == true) {
 				setAssigned();
 				robot.orderDecision(getDestinations());
+				robot.setWaitTime(waitTime);
 			}
 			else {
 				robot.orderDecision(robot.getStart());
@@ -441,7 +444,7 @@ public class Warehouse {
 		HashMap<Point, Point> temp = new HashMap<Point, Point>();
 		temp.put(robot.getRobotCoordinates(), robot.getRobotCoordinates());
 		currentToNext = temp;
-		if(robot.atPacking() && robot.waitAtPacking(waitTime)) {
+		if(robot.atPacking() && robot.waitAtPacking()) {
 			return currentToNext;
 		}
 		else {
@@ -449,7 +452,12 @@ public class Warehouse {
 				robot.charging(chargeList.get(i).getChargeRate());
 				return currentToNext;
 			}
+			else if(robot.atShelf() && waited == false) {
+				waited = true;
+				return currentToNext;
+			}
 			else{
+				waited = false;
 				PathFinding pathFinding = new PathFinding();
 				Point destination = robot.getDestination();
 				pathFinding.pathCalc(destination);

@@ -202,13 +202,16 @@ public class Robot implements Entity  {
 	 * Returns true if robot needs to start or continue waiting at a packing station
 	 * @return
 	 */
-	public boolean waitAtPacking(int wait) {
-		this.waitTime = wait;
+	public boolean waitAtPacking() {
 		if(waitTime > 0) {
 			waitTime--;
 			return true;
 		}
 		return false;
+	}
+	
+	public void setWaitTime(int time) {
+		waitTime = time;
 	}
 
 	public boolean atLocation() {
@@ -360,6 +363,15 @@ public class Robot implements Entity  {
 		for(int i = 1; i < order.size(); i += 2) {
 			if(getRobotCoordinates().equals(order.get(i))) {
 				carrying = false;
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean atShelf() {
+		for(int i = 0; i < order.size() - 1; i += 2) {
+			if(getRobotCoordinates().equals(order.get(i))) {
 				return true;
 			}
 		}
