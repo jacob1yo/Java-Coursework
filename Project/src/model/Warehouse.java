@@ -425,7 +425,7 @@ public class Warehouse {
 			else {
 				System.out.println("SET COMPLETED CALLED");
 				setCompleted();
-				robot.orderDecision(robot.getStart());
+				robot.orderDecision(robot.setDesinationStart());
 			}
 		}
 		return value;
