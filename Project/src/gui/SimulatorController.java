@@ -250,7 +250,6 @@ public class SimulatorController {
 		//warehouse.readOrders();
 		for(int i = 0; i < circleList.size(); i++) {
 			warehouse.costEst(i);
-			//warehouse.setAssigned();
 			move(i);
 		}
 		ticks++;

@@ -86,6 +86,10 @@ public class Warehouse {
 	private Order order;
 
 	private static int next;
+	
+	private int waitTime;
+	
+	private boolean waited;
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
@@ -115,6 +119,7 @@ public class Warehouse {
 		robot.setId(ruid);
 		robotList.add(robot);
 		for (int i = 0; i < robotList.size(); i++) {
+			robotList.get(i).setBatteryCap(batteryLevel);
 			robotList.get(i).updateBattery(batteryLevel);
 			System.out.println(robotList.get(i).getID()); // delete this manual test after
 		}
@@ -419,6 +424,7 @@ public class Warehouse {
 			if(value == true) {
 				setAssigned();
 				robot.orderDecision(getDestinations());
+				robot.setWaitTime(waitTime);
 			}
 			else {
 				robot.orderDecision(robot.getStart());
@@ -434,28 +440,33 @@ public class Warehouse {
 	}
 
 	public HashMap<Point, Point> move(int i) {
-		currentToNext = null;
 		Robot robot = robotList.get(i);
-		PathFinding pathFinding = new PathFinding();
-		Point destination = robot.getDestination();
-		pathFinding.pathCalc(destination);
-		currentToNext = pathFinding.getNewNodes();
-		return currentToNext;
-
-		/*currentToNext = null;
-		CostEstimationStrategy costEst = new CostEstimationStrategy(order, getPacking(), storagePoints);
-		Robot robot = costEstmation(costEst);
-		ArrayList<Point> destinations = getDestination(costEst);
-		if(robot != null) {
-			PathFinding pathFinding = new PathFinding();
-			robot.orderDecision(destinations);
-			robot.recieveOrder(destinations);
-			Point destination = robot.getDestination();
-			System.out.println("Warehouse dest: " + destination);
-			pathFinding.pathCalc(destination);
-			currentToNext = pathFinding.getNewNodes();
+		HashMap<Point, Point> temp = new HashMap<Point, Point>();
+		temp.put(robot.getRobotCoordinates(), robot.getRobotCoordinates());
+		currentToNext = temp;
+		if(robot.atPacking() && robot.waitAtPacking()) {
+			return currentToNext;
 		}
-		return currentToNext;*/
+		else {
+			if(robot.atChargePod() && !robot.getOrderStatus()) {
+				robot.charging(chargeList.get(i).getChargeRate());
+				return currentToNext;
+			}
+			else if(robot.atShelf() && waited == false) {
+				waited = true;
+				return currentToNext;
+			}
+			else{
+				waited = false;
+				PathFinding pathFinding = new PathFinding();
+				Point destination = robot.getDestination();
+				pathFinding.pathCalc(destination);
+				currentToNext = pathFinding.getNewNodes();
+				robot.decreaseBatteryLevel();
+				System.out.println("Battery level: " + robot.getBatteryLevel());
+				return currentToNext;
+			}
+		}
 	}
 
 	public void moveRobot(int i) {
@@ -700,11 +711,17 @@ public class Warehouse {
 	public ArrayList<String> getPackingStations(){
 		return stations;
 	}
+	
+	public void setWaitTime(String time) {
+		Integer wait = Integer.parseInt(time);
+		waitTime = wait.intValue();
+	}
 
 	public ArrayList<Point> getDestinations(){
 		ArrayList<Point> destinations = new ArrayList<Point>();
 		ArrayList<String> newOrder = new ArrayList<String>();
 		newOrder = order.getAssigned();
+		setWaitTime(newOrder.get(1));
 		for(int i = 2; i < newOrder.size(); i++) {
 			destinations.add(storagePoints.get(newOrder.get(i)));
 			destinations.add(getPacking().passOnPoint());
