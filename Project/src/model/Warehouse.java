@@ -446,23 +446,10 @@ public class Warehouse {
 			Point destination = robot.getDestination();
 			pathFinding.pathCalc(destination);
 			currentToNext = pathFinding.getNewNodes();
+			robot.decreaseBatteryLevel();
+			System.out.println("Battery level: " + robot.getBatteryLevel());
 			return currentToNext;
 		}
-
-		/*currentToNext = null;
-		CostEstimationStrategy costEst = new CostEstimationStrategy(order, getPacking(), storagePoints);
-		Robot robot = costEstmation(costEst);
-		ArrayList<Point> destinations = getDestination(costEst);
-		if(robot != null) {
-			PathFinding pathFinding = new PathFinding();
-			robot.orderDecision(destinations);
-			robot.recieveOrder(destinations);
-			Point destination = robot.getDestination();
-			System.out.println("Warehouse dest: " + destination);
-			pathFinding.pathCalc(destination);
-			currentToNext = pathFinding.getNewNodes();
-		}
-		return currentToNext;*/
 	}
 
 	public void moveRobot(int i) {
