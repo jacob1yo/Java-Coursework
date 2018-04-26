@@ -438,8 +438,8 @@ public class Warehouse {
 	}
 
 	/**
-	 * 
-	 * @return 
+	 * Returns the Packing Station the Robot has to go to.
+	 * @return packing <code>PackingStation</code>
 	 */
 	public PackingStation getPacking() {
 		PackingStation packing = null;
@@ -471,7 +471,7 @@ public class Warehouse {
 	/**
 	 * Returns true if robot can move, false otherwise
 	 * @param i
-	 * @return
+	 * @return value <code>boolean</code>
 	 */
 	public boolean costEst(int i) {
 		Robot robot = robotList.get(i);
@@ -570,20 +570,11 @@ public class Warehouse {
 		return coordinates;
 
 	}
-
-	/* 
-	 * Currently unused
+	
+	/**
+	 * Returns the UIDs of the Packing Stations in the Warehouse, to be displayed in the GUI.
+	 * @return
 	 */
-	public String getRobotID() {
-		String robotID = ""; 
-		for (int i = 0; i < robotList.size(); i++) {
-			robotID += robotList.get(i).getID() + " \n";
-		}
-		return robotID;
-	}
-
-
-
 	public String getPackingID() {
 		String packingID = ""; 
 		for (int i = 0; i < packingList.size(); i++) {
@@ -630,9 +621,9 @@ public class Warehouse {
 	}
 
 	/**
-	 * Reads battery level from a SIM file
+	 * Reads battery level from a SIM file.
 	 * 
-	 * @return
+	 * @return batteryCapacity.
 	 */
 	public int readBatteryLevel() {
 		Integer capacity = Integer.valueOf(configuration.get(7));
@@ -640,7 +631,9 @@ public class Warehouse {
 	}
 
 	/**
-	 * Reads charge rate from a SIM file
+	 * Reads charge rate from a SIM file.
+	 * 
+	 * @return chargeRate.
 	 */
 	public int readChargeRate() {
 		Integer chargeRate = Integer.valueOf(configuration.get(9));
