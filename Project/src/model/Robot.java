@@ -57,7 +57,7 @@ public class Robot implements Entity  {
 	private Point start;
 
 	private int waitTime;
-	
+
 	private int originalBatteryLevel;
 
 	/**
@@ -139,7 +139,7 @@ public class Robot implements Entity  {
 		finalDest.add(start);
 		return finalDest;
 	}
-	
+
 	public void setBatteryCap(int batteryLevel) {
 		originalBatteryLevel = batteryLevel;
 	}
@@ -198,14 +198,17 @@ public class Robot implements Entity  {
 		return false;
 	}
 
-	public int waitTicks(int numTicks) {
-		if(getRobotCoordinates() == order.get(order.size() - 1)) {
-			waitTime = numTicks;
+	/**
+	 * Returns true if robot needs to start or continue waiting at a packing station
+	 * @return
+	 */
+	public boolean waitAtPacking(int wait) {
+		this.waitTime = wait;
+		if(waitTime > 0) {
+			waitTime--;
+			return true;
 		}
-		else {
-			waitTime = 1;
-		}
-		return waitTime;
+		return false;
 	}
 
 	public boolean atLocation() {
@@ -353,12 +356,14 @@ public class Robot implements Entity  {
 		}
 	}
 
-	public void atPacking() {
+	public boolean atPacking() {
 		for(int i = 1; i < order.size(); i += 2) {
 			if(getRobotCoordinates().equals(order.get(i))) {
 				carrying = false;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public boolean atChargePod() {

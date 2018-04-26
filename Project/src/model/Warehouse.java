@@ -86,6 +86,8 @@ public class Warehouse {
 	private Order order;
 
 	private static int next;
+	
+	private int waitTime;
 
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
@@ -439,18 +441,23 @@ public class Warehouse {
 		HashMap<Point, Point> temp = new HashMap<Point, Point>();
 		temp.put(robot.getRobotCoordinates(), robot.getRobotCoordinates());
 		currentToNext = temp;
-		if(robot.atChargePod() && !robot.getOrderStatus()) {
-			robot.charging(chargeList.get(i).getChargeRate());
+		if(robot.atPacking() && robot.waitAtPacking(waitTime)) {
 			return currentToNext;
 		}
-		else{
-			PathFinding pathFinding = new PathFinding();
-			Point destination = robot.getDestination();
-			pathFinding.pathCalc(destination);
-			currentToNext = pathFinding.getNewNodes();
-			robot.decreaseBatteryLevel();
-			System.out.println("Battery level: " + robot.getBatteryLevel());
-			return currentToNext;
+		else {
+			if(robot.atChargePod() && !robot.getOrderStatus()) {
+				robot.charging(chargeList.get(i).getChargeRate());
+				return currentToNext;
+			}
+			else{
+				PathFinding pathFinding = new PathFinding();
+				Point destination = robot.getDestination();
+				pathFinding.pathCalc(destination);
+				currentToNext = pathFinding.getNewNodes();
+				robot.decreaseBatteryLevel();
+				System.out.println("Battery level: " + robot.getBatteryLevel());
+				return currentToNext;
+			}
 		}
 	}
 
@@ -696,11 +703,17 @@ public class Warehouse {
 	public ArrayList<String> getPackingStations(){
 		return stations;
 	}
+	
+	public void setWaitTime(String time) {
+		Integer wait = Integer.parseInt(time);
+		waitTime = wait.intValue();
+	}
 
 	public ArrayList<Point> getDestinations(){
 		ArrayList<Point> destinations = new ArrayList<Point>();
 		ArrayList<String> newOrder = new ArrayList<String>();
 		newOrder = order.getAssigned();
+		setWaitTime(newOrder.get(1));
 		for(int i = 2; i < newOrder.size(); i++) {
 			destinations.add(storagePoints.get(newOrder.get(i)));
 			destinations.add(getPacking().passOnPoint());
