@@ -828,7 +828,7 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Returns the ArrayList contains <code>String</code> of how the simulation should be set-up according to the "SIM" file. 
+	 * Returns the ArrayList contains <code>String</code>, of how the simulation should be set-up according to the "SIM" file. 
 	 * @return configuration <code>ArrayList</code>
 	 */
 	public ArrayList<String> getConfiguration(){
@@ -836,26 +836,42 @@ public class Warehouse {
 	}
 
 	/**
-	 * Returns the ArrayList contains <code>String</code> of the Robots and Charging Pods it should create according to the "SIM" file.
-	 * @return
+	 * Returns the ArrayList contains <code>String</code>, of the Robots and Charging Pods it should create according to the "SIM" file.
+	 * @return podRob <code>ArrayList</code>
 	 */
 	public ArrayList<String> getPodRob(){
 		return podRob;
 	}
 
+	/**
+	 * Returns the ArrayList contains <code>String</code>, of the Storage Shelves it should create according to the "SIM" file.
+	 * @return shelves <code>ArrayList</code>
+	 */
 	public ArrayList<String> getStorageShelves(){
 		return shelves;
 	}
 
+	/**
+	 * Returns the ArrayList contains <code>String</code>, of the Packing Stations it should create according to the "SIM" file.
+	 * @return stations <code>ArrayList</code>
+	 */
 	public ArrayList<String> getPackingStations(){
 		return stations;
 	}
 
+	/**
+	 * Sets the time a Robot must spend delivering items to the Packing Station according to the order from the "SIM" file.
+	 * @param time
+	 */
 	public void setWaitTime(String time) {
 		Integer wait = Integer.parseInt(time);
 		waitTime = wait.intValue();
 	}
-
+	
+	/**
+	 * Returns an ArrayList of <code>Point</code>, of each destination the Robot must go to, to complete an order.
+	 * @return
+	 */
 	public ArrayList<Point> getDestinations(){
 		ArrayList<Point> destinations = new ArrayList<Point>();
 		ArrayList<String> newOrder = new ArrayList<String>();
@@ -869,10 +885,19 @@ public class Warehouse {
 		return destinations;
 	}
 
+	/**
+	 * Returns the order status of the Robot, which signals if the Robot is carrying out an order or not.
+	 * @param index
+	 * @return <code>boolean</code> orderStatus.
+	 */
 	public boolean getOrderStatus(int index) {
 		return robotList.get(index).getOrderStatus();
 	}
 	
+	/**
+	 * Returns an ArrayList of the Robots present in the Warehouse. 
+	 * @return robotList <code>ArrayList</code>
+	 */
 	public ArrayList<Robot> getRobotList() {
 		return robotList;
 	}
