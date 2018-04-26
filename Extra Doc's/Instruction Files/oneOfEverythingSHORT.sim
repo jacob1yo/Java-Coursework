@@ -6,8 +6,10 @@ chargeSpeed 1
 podRobot c0 r0 2 0
 shelf ss0 2 2
 station ps0 0 2
+order 2 ss0
+order 5 ss0
+order 7 ss0
 order 9 ss0
-order 15 ss0
 
 
 

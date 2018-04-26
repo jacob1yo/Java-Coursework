@@ -425,6 +425,7 @@ public class Warehouse {
 			else {
 				System.out.println("SET COMPLETED CALLED");
 				setCompleted();
+				System.out.println("CHECK: " + order.getAssigned().toString());
 				robot.orderDecision(robot.getStart());
 			}
 		}
@@ -434,7 +435,7 @@ public class Warehouse {
 	public void setCompleted() {
 		ArrayList<ArrayList<String>> sentence = order.getDecision();
 		order.addToCompleted(sentence.get(0));
-		order.removeFromAssigned(0);
+		order.removeFromAssigned(sentence.get(0));
 	}
 
 	public void setAssigned() {
