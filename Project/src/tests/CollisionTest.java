@@ -18,25 +18,34 @@ class CollisionTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-			
 		
 	}
 
 	@Test
-	void checkList() {
-		ArrayList<Robot> robotList = new ArrayList<Robot>();
-		
+	void testCollide() {
 		Robot r1 = new Robot();
 		Robot r2 = new Robot();
 		
-		warehouse.getRobotList().add(r1);
-		warehouse.getRobotList().add(r2);
+		r1.setCoordinates(100, 100);
+		r2.setCoordinates(100, 100);
 		
-		robotList.equals(warehouse.getRobotList());
-		
-		assertEquals(robotList.size(), warehouse.getRobotList().size());
-		
+	
+		assertEquals(r1.getRobotCoordinates(), r2.getRobotCoordinates());
 		
 	}
+	
+	@Test
+	void testNotCollide() {
+		Robot r1 = new Robot();
+		Robot r2 = new Robot();
+		
+		r1.setCoordinates(150, 100);
+		r2.setCoordinates(200, 100);
+		
+	
+		assertNotEquals(r1.getRobotCoordinates(), r2.getRobotCoordinates());
+		
+	}
+	
 
 }
