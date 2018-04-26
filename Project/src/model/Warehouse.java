@@ -434,13 +434,20 @@ public class Warehouse {
 	}
 
 	public HashMap<Point, Point> move(int i) {
-		currentToNext = null;
 		Robot robot = robotList.get(i);
-		PathFinding pathFinding = new PathFinding();
-		Point destination = robot.getDestination();
-		pathFinding.pathCalc(destination);
-		currentToNext = pathFinding.getNewNodes();
-		return currentToNext;
+		HashMap<Point, Point> temp = new HashMap<Point, Point>();
+		temp.put(robot.getRobotCoordinates(), robot.getRobotCoordinates());
+		currentToNext = temp;
+		if(robot.atChargePod() && !robot.getOrderStatus()) {
+			return currentToNext;
+		}
+		else{
+			PathFinding pathFinding = new PathFinding();
+			Point destination = robot.getDestination();
+			pathFinding.pathCalc(destination);
+			currentToNext = pathFinding.getNewNodes();
+			return currentToNext;
+		}
 
 		/*currentToNext = null;
 		CostEstimationStrategy costEst = new CostEstimationStrategy(order, getPacking(), storagePoints);

@@ -107,7 +107,7 @@ public class Robot implements Entity  {
 	 * carrying an order or not.
 	 */
 	public void decreaseBatteryLevel() {
-		if (orderStatus == true) {
+		if (carrying == true) {
 			batteryLevel = batteryLevel - 2;
 		} else {
 			batteryLevel--;
@@ -122,7 +122,7 @@ public class Robot implements Entity  {
 	public void updateBattery(int batteryLevel) {
 		this.batteryLevel = batteryLevel;
 	}
-	
+
 	public ArrayList<Point> getStart() {
 		ArrayList<Point> finalDest = new ArrayList<Point>();
 		finalDest.add(start);
@@ -144,8 +144,12 @@ public class Robot implements Entity  {
 	 * @return <code>boolean</code> True if an order is accepted, otherwise false.
 	 */
 	public void orderDecision(ArrayList<Point> destination) {
-		orderStatus = true;
-		System.out.println("Order accepted. " + destination);
+		ArrayList<Point> chargePod = new ArrayList<Point>();
+		chargePod.add(start);
+		if(!destination.equals(chargePod)) {
+			orderStatus = true;
+			System.out.println("Order accepted. " + destination);
+		}
 		recieveOrder(destination);
 	}
 
@@ -164,9 +168,19 @@ public class Robot implements Entity  {
 	 * Robots takes the items from the storage shelf.
 	 */
 	public void pickUpItems() {
-		if(atLocation()) {
+		if(atDestination()) {
 			carrying = true;
 		}
+	}
+
+	public boolean atDestination() {
+		for(int i = 0; i < order.size() - 1; i += 2) {
+			if(getRobotCoordinates().equals(order.get(i))) {
+				carrying = true;
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public int waitTicks(int numTicks) {
@@ -192,7 +206,10 @@ public class Robot implements Entity  {
 		if(atLocation()) {
 			System.out.println("Robot nextInPath: " + order.size());
 			if(index < order.size()) {
+				pickUpItems();
+				atPacking();
 				finishOrder(index);
+				System.out.println("Robot nextInPath carrying: " + carrying);
 				//finalDestination(index);
 				nextDestination = order.get(index);
 				index++;
@@ -297,7 +314,7 @@ public class Robot implements Entity  {
 	public void setId(String newUid) {
 		uid = newUid;
 	}
-	
+
 	public boolean getOrderStatus() {
 		return orderStatus;
 	}
@@ -305,11 +322,11 @@ public class Robot implements Entity  {
 	public double pythagoras(double x, double y, double X, double Y) {
 		return Math.sqrt(Math.pow((X - x), 2) + Math.pow((Y - y),2));	
 	}
-	
+
 	public ArrayList<Point> getDestinations(){
 		return order;
 	}
-	
+
 	public void finishOrder(int index) {
 		System.out.println("finishOrder executed..." + index + " " + (order.size() - 2));
 		if(index == (order.size() - 1)) {
@@ -320,14 +337,20 @@ public class Robot implements Entity  {
 			}
 		}
 	}
-	
-	public void finalDestination(int index) {
-		if(index == (order.size()-1)) {
-			System.out.println("FinalDestination executing... ");
-			if(getRobotCoordinates().equals(order.get(order.size() - 1))) {
-				System.out.println("FinalDestination executing... again ");
-				order.clear();
+
+	public void atPacking() {
+		for(int i = 1; i < order.size(); i += 2) {
+			if(getRobotCoordinates().equals(order.get(i))) {
+				carrying = false;
 			}
 		}
 	}
+
+	public boolean atChargePod() {
+		if(getRobotCoordinates().equals(start)) {
+			return true;
+		}
+		return false;
+	}
+
 }
