@@ -158,9 +158,9 @@ public class Order {
 	 * 
 	 * @param index a <code>int</code> value. Removed from {@link #assignedOrders} ArrayList.
 	 */
-	public void removeFromAssigned(int index) {
+	public void removeFromAssigned(ArrayList<String> order) {
 		if(!assignedOrders.isEmpty()) {
-			assignedOrders.remove(index);
+			assignedOrders.remove(order);
 		}
 	}
 

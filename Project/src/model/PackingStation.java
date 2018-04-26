@@ -152,13 +152,6 @@ public class PackingStation implements Entity{
 	}
 
 	@Override
-	public boolean compare(Entity r) {
-		// TODO Auto-generated method stub
-		return true;
-
-	}
-
-	@Override
 	public void setId(String newUid) {
 		uid = newUid;
 	}

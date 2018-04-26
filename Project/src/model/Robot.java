@@ -387,6 +387,25 @@ public class Robot implements Entity {
 		return MainController.getFreeSpaces(numCols, numRows);
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public void generateID(int id) {
+		int num = id;
+		uid = "r" + num;
+	}
+
+	@Override
+	public String getID() {
+		return uid;
+	}
+
+	@Override
+	public void setId(String newUid) {
+		uid = newUid;
+	}
+
+>>>>>>> 068a20d6544dc2af9a9b1ad9318fd8dcf5ebcbea
 	public boolean getOrderStatus() {
 		return orderStatus;
 	}

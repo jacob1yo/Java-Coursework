@@ -61,34 +61,84 @@ public class Warehouse {
 	private HashMap<Point, Point> currentToNext;
 
 	/**
-	 * Storages is a static variable, which has the same data as Storage Lists. Therefore, the data can be returned through a static method.
-	 * 
-	 * @see #addStorage #genID
-	 */
-	private ArrayList<StorageShelf> storages;
-
-	/**
 	 * The string representation of Robot UID (key) to the Charging Pods UID (value) are mapped and stored in this HashMap.
 	 * 
 	 * @see #addToRobotsChargePod #getRobotChargePod
 	 */
 	private HashMap<String, String> robotsChargePod = new HashMap<String, String>();
 
+	/**
+	 * The coordinates of each Storage Shelfs (value) is stored in this HashMap, which is accessed by the Storage Shelfs UID (key).
+	 * 
+	 * @see
+	 */
 	private HashMap<String, Point> storagePoints = new HashMap<String, Point>();
+	
+	/**
+	 * The coordinates of each Packing Stations (value) is stored in this HashMap, which is accessed by the Packing Stations UID (key).
+	 * 
+	 * @see
+	 */
 	private HashMap<String, Point> packingPoints = new HashMap<String, Point>();
+	
+	/**
+	 * The coordinates of each Charging Pods (value) is stored in this HashMap, which is accessed by the Charging Pods UID (key).
+	 * 
+	 * @see
+	 */
 	private HashMap<String, Point> chargePoints = new HashMap<String, Point>();
 
+	/**
+	 * The set up of the Warehouse simulation, read from the sim file are stored in this ArrayList.
+	 * 
+	 * @see
+	 */
 	private ArrayList<String> configuration = new ArrayList<String>();
+	
+	/**
+	 * All the Robot and Charging Pods, that need to be created in the GUI from the "SIM" file are stored in this ArrayList. Stored in a <code>String</code> format.
+	 * 
+	 * @see
+	 */
+	
 	private ArrayList<String> podRob = new ArrayList<String>();
+	
+	/**
+	 * All the Storage Shelves, that need to be created in the GUI from the "SIM" file are stored in this ArrayList. Stored in a <code>String</code> format.
+	 * 
+	 * @see
+	 */
 	private ArrayList<String> shelves = new ArrayList<String>();
+	
+	/**
+	 * All the Packing Stations, that need to be created in the GUI from the "SIM" file are stored in this ArrayList. Stored in a <code>String</code> format.
+	 * 
+	 * @see
+	 */
 	private ArrayList<String> stations = new ArrayList<String>();
 
+	/**
+	 * Creates an instance of the Order class.
+	 * 
+	 * @see
+	 */
 	private Order order;
 
+	/**
+	 * 
+	 */
 	private static int next;
 
+	/**
+	 * Contains the number of ticks each Robot has to spend at their repective packing station, to complete and order.
+	 * 
+	 * @see
+	 */
 	private int waitTime;
 
+	/**
+	 * 
+	 */
 	private boolean waited;
 
 	public Warehouse() {
@@ -96,7 +146,6 @@ public class Warehouse {
 		chargeList = new ArrayList<ChargingPod>();
 		robotPoints = new ArrayList<Point>();
 		currentToNext = new HashMap<Point, Point>();
-		storages = new ArrayList<StorageShelf>();
 		order = new Order();
 		next = 0;
 	}
@@ -156,7 +205,9 @@ public class Warehouse {
 	}
 
 	/**
+	 * Generates the UID of each entity, based on the entities present in the Warehouse.
 	 * 
+	 * @see
 	 */
 	public void genId() {
 		ArrayList<Robot> robIds = new ArrayList<Robot>();
@@ -293,6 +344,12 @@ public class Warehouse {
 		return true;
 	}
 
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean checkRobot(int x, int y) {
 		for (int i = 0; i < robotList.size(); i++) {
 			if (robotList.get(i).getRobotX() == (double) x && robotList.get(i).getRobotY() == (double) y) {
@@ -378,6 +435,10 @@ public class Warehouse {
 		return spaces;
 	}
 
+	/**
+	 * 
+	 * @return 
+	 */
 	public PackingStation getPacking() {
 		PackingStation packing = null;
 		if(next < packingList.size()) {
@@ -425,7 +486,12 @@ public class Warehouse {
 			else {
 				System.out.println("SET COMPLETED CALLED");
 				setCompleted();
+<<<<<<< HEAD
 				robot.orderDecision(robot.setDesinationStart());
+=======
+				System.out.println("CHECK: " + order.getAssigned().toString());
+				robot.orderDecision(robot.getStart());
+>>>>>>> 068a20d6544dc2af9a9b1ad9318fd8dcf5ebcbea
 			}
 		}
 		return value;
@@ -434,7 +500,7 @@ public class Warehouse {
 	public void setCompleted() {
 		ArrayList<ArrayList<String>> sentence = order.getDecision();
 		order.addToCompleted(sentence.get(0));
-		order.removeFromAssigned(0);
+		order.removeFromAssigned(sentence.get(0));
 	}
 
 	public void setAssigned() {
@@ -443,6 +509,11 @@ public class Warehouse {
 		order.removeFromDecision(sentence.get(0));	//figure this shit out
 	}
 
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
 	public HashMap<Point, Point> move(int i) {
 		Robot robot = robotList.get(i);
 		HashMap<Point, Point> temp = new HashMap<Point, Point>();
@@ -473,6 +544,10 @@ public class Warehouse {
 		}
 	}
 
+	/**
+	 * Changes the position of the robot, according to where it should go.
+	 * @param i
+	 */
 	public void moveRobot(int i) {
 		ArrayList<Point> robots = robotPoints();
 		Point coordinates = robots.get(i);
@@ -482,6 +557,10 @@ public class Warehouse {
 		robotList.get(i).setCoordinates(x.intValue(), y.intValue());
 	}
 
+	/**
+	 * Returns a <code>String</String> that gets the current state of each robot entity, to display on the GUI.
+	 * @return
+	 */
 	public String getRobotInfo() {
 		String robotInfo = "";
 		String robotID = "";
@@ -492,12 +571,15 @@ public class Warehouse {
 		for (int i = 0; i < robotList.size(); i++) {
 			robotID = robotList.get(i). getID() + " ";
 			robotCharge = robotList.get(i).getBatteryLevel() + " ";
-			robotCoordinates += /*robotList.get(i).getRobotCoordinates().getX() + ", " + robotList.get(i).getRobotCoordinates().getY() + " ";*/
-					robotInfo += "Robot ID :" + robotID + "\n" + "Charge Rate :" + robotCharge + "\n" + "Coordinates :" + robotCoordinates + "\n" + "\n";	
+			robotInfo += "Robot ID :" + robotID + "\n" + "Charge Rate :" + robotCharge + "\n" + "Coordinates :" + "\n" + "\n" + robotCoordinates;	
 		}
 		return robotInfo;
 	}
 
+	/**
+	 * Updates the robots coordinates, so that the updated coordinates are displayed in the GUI. 
+	 * @return
+	 */
 	public String getUpdatedRobotCoordinates() {
 		String coordinates = "";
 		for (Point value : currentToNext.values()) {
@@ -531,7 +613,7 @@ public class Warehouse {
 	}
 
 	/**
-	 * Reads needed values from a SIM file
+	 * Reads the needed values from a SIM file to create the necessary Robots.
 	 */
 	public void readRobotData() {
 		for(int i = 0; i < podRob.size(); i+=5) {
@@ -543,6 +625,9 @@ public class Warehouse {
 		}
 	}
 
+	/**
+	 * Reads the needed values from a SIM file to create the necessary Storage Shelfs.
+	 */
 	public void readStorageData() {
 		for(int i = 0; i < shelves.size(); i+=4) {
 			Integer x = Integer.valueOf(shelves.get(i+2));
@@ -552,6 +637,9 @@ public class Warehouse {
 		}
 	}
 
+	/**
+	 * Reads the needed values from a SIM file to create the necessary Packing Stations.
+	 */
 	public void readPackingData() {
 		for(int i = 0; i < stations.size(); i+=4) {
 			Integer x = Integer.valueOf(stations.get(i+2));
@@ -580,7 +668,7 @@ public class Warehouse {
 	}
 
 	/**
-	 * 
+	 * Add to the <code>HashMap</code> that maps the Robot UID to the correct Charging Pod UID, based on the number of robots present in the Warehouse.
 	 */
 	public void addToRobotsChargePod() {
 		for(int i = 0; i < robotList.size(); i++) {
@@ -590,54 +678,92 @@ public class Warehouse {
 		}
 	}
 
+	/**
+	 * Returns the HashMap of a Robots corresponding Charging Pod.
+	 * @return robotsChargePod <code>HashMap</code>
+	 */
 	public HashMap<String, String> getRobotsChargePod() {
 		return robotsChargePod;
 	}
 
-	public ArrayList<StorageShelf> getStorageShelfs(){
-		return storages;
-	}
-
+	/**
+	 * Returns an ArrayList of the Packing Stations present in the Warehouse.
+	 * @return packingList <code>ArrayList</code>
+	 */
 	public ArrayList<PackingStation> getPackingStationList(){
 		return packingList;
 	}
 
-	public ArrayList<StorageShelf> getStorageList(){ //may need to change from static
+	/**
+	 * Returns an ArrayList of the Storage Shelves present in the Warehouse.
+	 * @return storageList <code>ArrayList</code>
+	 */
+	public ArrayList<StorageShelf> getStorageList(){ 
 		return storageList;
 	}
 
+	/**
+	 * Returns an ArrayList of the Charging Pods present in the Warehouse.
+	 * @return chargeList <code>ArrayList</code>
+	 */
 	public ArrayList<ChargingPod> getChargeList(){
 		return chargeList;
 	}
 
+	/**
+	 * Add to the HashMap that contains the coordinates of each Storage Shelf. The Storage Shelfs UID is the key and the value if the coordinate of the Storage Shelf.
+	 */
 	public void addToStoragePoints() {
 		for(StorageShelf s: storageList) {
 			storagePoints.put(s.getID(), s.getStorageCoordinates());
 		}
 	}
+	
+	/**
+	 * Returns a HashMap of the coordinates of the Storage Shelves.
+	 * @return storagePoints <code>HashMap</code>
+	 */
 	public HashMap<String, Point> storagePoints() {
 		return storagePoints;
 	}
 
+	/**
+	 * Add to the HashMap that contains the coordinates of each Packing Station. The Packing Stations UID is the key and the value if the coordinate of the Packing Station.
+	 */
 	public void addToPackingPoints() {
 		for(PackingStation p : getPackingStationList()) {
 			packingPoints.put(p.getID(), p.getPackingCoordinates());
 		}
 	}
+	
+	/**
+	 * Returns a HashMap of the coordinates of the Packing Stations.
+	 * @return packingPoints <code>HashMap</code>
+	 */
 	public HashMap<String, Point> packingPoints(){
 		return packingPoints;
 	}
 
+	/**
+	 * Add to the HashMap that contains the coordinates of each Charging Pod. The Charging Pods UID is the key and the value if the coordinate of the Charging Pod.
+	 */
 	public void addToChargePoints() {
 		for(ChargingPod c : getChargeList()) {
 			chargePoints.put(c.getID(), c.getChargingCoordinates());
 		}
 	}
 
+	/**
+	 * Returns a HashMap of the coordinates of the Charging podss
+	 * @return chargePoints <code>HashMap</code>
+	 */
 	public HashMap<String, Point> chargePoints(){
 		return chargePoints;
 	}
 
+	/**
+	 * Fills the respective ArrayLists of type <code>String</code>, from the data in the "SIM" file, using a Scanner. With each word in the line, taking a slot in the ArrayList.
+	 */
 	public void fillLists() {
 		try {
 			Scanner scanner = new Scanner(order.getFile());
@@ -678,12 +804,18 @@ public class Warehouse {
 		order.fillLists();
 	}
 
+	/**
+	 * Populates the respective HashMaps containing the coordinates of their respective entities.
+	 */
 	public void addPoints() {
 		addToStoragePoints();
 		addToPackingPoints();
 		addToChargePoints();
 	}
 
+	/**
+	 * Clears the content of the ArrayLists, of the data from the "SIM" file.
+	 */
 	public void clearLists() {
 		podRob.clear();
 		shelves.clear();
@@ -691,31 +823,59 @@ public class Warehouse {
 		configuration.clear();
 	}
 
+	/**
+	 * Returns an instance of the order class.
+	 * @return order <code>Order</code>
+	 */
 	public Order getOrder() {
 		return order;
 	}
-
+	
+	/**
+	 * Returns the ArrayList contains <code>String</code>, of how the simulation should be set-up according to the "SIM" file. 
+	 * @return configuration <code>ArrayList</code>
+	 */
 	public ArrayList<String> getConfiguration(){
 		return configuration;
 	}
 
+	/**
+	 * Returns the ArrayList contains <code>String</code>, of the Robots and Charging Pods it should create according to the "SIM" file.
+	 * @return podRob <code>ArrayList</code>
+	 */
 	public ArrayList<String> getPodRob(){
 		return podRob;
 	}
 
+	/**
+	 * Returns the ArrayList contains <code>String</code>, of the Storage Shelves it should create according to the "SIM" file.
+	 * @return shelves <code>ArrayList</code>
+	 */
 	public ArrayList<String> getStorageShelves(){
 		return shelves;
 	}
 
+	/**
+	 * Returns the ArrayList contains <code>String</code>, of the Packing Stations it should create according to the "SIM" file.
+	 * @return stations <code>ArrayList</code>
+	 */
 	public ArrayList<String> getPackingStations(){
 		return stations;
 	}
 
+	/**
+	 * Sets the time a Robot must spend delivering items to the Packing Station according to the order from the "SIM" file.
+	 * @param time
+	 */
 	public void setWaitTime(String time) {
 		Integer wait = Integer.parseInt(time);
 		waitTime = wait.intValue();
 	}
-
+	
+	/**
+	 * Returns an ArrayList of <code>Point</code>, of each destination the Robot must go to, to complete an order.
+	 * @return
+	 */
 	public ArrayList<Point> getDestinations(){
 		ArrayList<Point> destinations = new ArrayList<Point>();
 		ArrayList<String> newOrder = new ArrayList<String>();
@@ -729,10 +889,19 @@ public class Warehouse {
 		return destinations;
 	}
 
+	/**
+	 * Returns the order status of the Robot, which signals if the Robot is carrying out an order or not.
+	 * @param index
+	 * @return <code>boolean</code> orderStatus.
+	 */
 	public boolean getOrderStatus(int index) {
 		return robotList.get(index).getOrderStatus();
 	}
 	
+	/**
+	 * Returns an ArrayList of the Robots present in the Warehouse. 
+	 * @return robotList <code>ArrayList</code>
+	 */
 	public ArrayList<Robot> getRobotList() {
 		return robotList;
 	}
