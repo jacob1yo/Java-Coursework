@@ -195,7 +195,7 @@ public class Order {
 	 * @return Returns <code>String</code> containing all the orders that are in {@link #orders}.
 	 */
 	public String getOrderInfo() {
-		String info = "Unassigned Orders: ";
+		String info = "";
 		for(int i = 0; i < orders.size(); i++) {
 			info += orders.get(i).toString() + "\n";
 		}
