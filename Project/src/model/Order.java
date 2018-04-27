@@ -37,6 +37,11 @@ public class Order {
 	 */
 	private File file;
 
+	/**
+	 * ArrayList containing a single <code>String</code> order line read from <code>orders</code>.
+	 * 
+	 * @see #getNextSentence #newSentence
+	 */
 	public ArrayList<String> sentence;
 
 	/**
@@ -49,7 +54,7 @@ public class Order {
 	 * This method iterates through the {@link #commands} each index of the ArrayList and 
 	 * gets each sentence line by line. 
 	 * 
-	 * @return Returns <code>String</code> line which represents each sentence line by line
+	 * @return <code>String</code> Returns <code>String</code> line which represents each sentence line by line
 	 * which is then used and shown in the GUI.
 	 */
 	public String getCommands() {
@@ -72,7 +77,7 @@ public class Order {
 	/**
 	 * Gets the file which has been chosen and loaded by the user in the GUI.
 	 * 
-	 * @return Returns <code>file</code> which is set by the {@link #setFile} method.
+	 * @return <code>File</code> Returns <code>file</code> which is set by the {@link #setFile} method.
 	 */
 	public File getFile() {
 		return file;
@@ -81,36 +86,41 @@ public class Order {
 	/**
 	 * Gets the orders from the Nested ArrayList containing the <code>String</code> representation.
 	 * 
-	 * @return Returns all <code>orders</code>. All Orders from the "SIM" file by index.
+	 * @return <code>ArrayList<ArrayList<String>></code> Returns all <code>orders</code>. All Orders from the "SIM" file by index.
 	 */
 	public ArrayList<ArrayList<String>> getOrders() {
 		return orders; 
 	}
 
+	/**
+	 * Sets <code>sentence</code> to the first index of <code>orders</code>.
+	 */
 	public void newSentence() {
 		if(!orders.isEmpty()) {
 			sentence = orders.get(0);
 		}
 	}
 
+	/**
+	 * Deletes the first index of <code>orders</code>.
+	 */
 	public void completedSentence() {
 		if(!orders.isEmpty()) {
 			orders.remove(0);
 		}
 	}
 
+	/**
+	 * Gets the <code>sentence</code> from the ArrayList containing the <code>String</code> representation of an order.
+	 * 
+	 * @return <code>ArrayList<String></code> Returns <code>sentence</code> which is set by the {@link #newSentence()} method, 
+	 * or <code>null</code> if there are no more orders.
+	 */
 	public ArrayList<String> getNextSentence(){
 		if(!orders.isEmpty()) {
 			return sentence;
 		}
 		return null;
-	}
-
-	/**
-	 * Checks if an order has been completed, and moves it to "completedOrders" if
-	 * it is completed.
-	 */
-	public void isCompleted() {
 	}
 
 	/**
@@ -122,8 +132,6 @@ public class Order {
 			orders.remove(0);
 		}
 	}
-
-	//private static ArrayList<ArrayList<String>> assignedOrders = new ArrayList<ArrayList<String>>();
 
 	/**
 	 *
@@ -159,13 +167,12 @@ public class Order {
 	public void clearLists() {
 		orders.clear();
 		commands.clear();
-		// TODO Maybe clear rest of lists too?
 	}
 
 	/**
 	 * This methods scans the lines/sentences in the "SIM" file and adds them to the {@link #commands} ArrayList.
 	 * 
-	 * @return Returns a <code>ArrayList</code> of sentences in the "SIM" file.
+	 * @return <code>ArrayList<String></code> Returns a <code>ArrayList</code> of sentences in the "SIM" file.
 	 * 
 	 * @exception FileNotFoundException if the user chooses a File that does not exist.
 	 */
