@@ -34,33 +34,56 @@ import model.Warehouse;
 public class SimulatorController {
 
 	/**
-	 * Value of the previously set height of the grid
+	 * Value of the previously set height of the grid.
+	 * 
+	 * @see #addPane #initialize 
 	 */
 	private int finalGridHeight;
 
 	/**
-	 * Value of the previously set width of the grid
+	 * Value of the previously set width of the grid.
+	 * 
+	 * @see #addPane #initialize 
 	 */
 	private int finalGridWidth;
 
+	/**
+	 * Holds the step that the simulation is on.
+	 * 
+	 * @see #oneTickPressed #tenTickPressed
+	 */
 	private int ticks;
 
+	/**
+	 * Creates an instance of the warehouse class, containing all the entities need to run the simulation.
+	 * 
+	 * @see #addPackage #addRobots #addStorage #initialize #move #oneTickPressed #tenTickPressed #returnPressed
+	 */
 	private Warehouse warehouse;
 
+	/**
+	 * Creates an instance of the order class, containing all the orders that need to be carried out from the "SIM" file.
+	 */
 	private Order order;
 
 	/**
 	 * The grid from Simulator.fxml.
+	 * 
+	 * @see #addPackage #addPane #addRobots #addStorage #closePressed #initialize #moveRobot #returnPressed
 	 */
 	@FXML private GridPane grid;
 
 	/**
 	 * Displays a list of robot entities. 
+	 * 
+	 * @see #initialize
 	 */
 	@FXML private ListView<String> listRobots;
 
 	/**
 	 * Displays a list of packing station entities.
+	 * 
+	 * @see #initialize
 	 */
 	@FXML private ListView<String> listPacking;
 
@@ -71,17 +94,28 @@ public class SimulatorController {
 
 	/**
 	 * Displays a list of assigned orders.
+	 * 
+	 * @see #initialize
 	 */
 	@FXML private ListView<String> listAssigned;
 
 	/**
-	 * Displays a list of dispatched orders..
+	 * Displays a list of dispatched orders.
 	 */
 	@FXML private ListView<String> listDispatched;
 
+	/**
+	 * Displays the current tick the simulation is on in the GUI
+	 * 
+	 * @see #oneTickPressed #tenTickPressed
+	 */
 	@FXML private Label tickLabel;
 
-
+	/**
+	 * <code>ArrayList</code> containing the circle object (representing robots) present in the GUI.
+	 * 
+	 * @see #addRobots #moveRobot #oneTickPressed #tenTickPressed 
+	 */
 	private ArrayList<Circle> circleList;
 
 	public SimulatorController() {
@@ -91,6 +125,9 @@ public class SimulatorController {
 		circleList = new ArrayList<Circle>();
 	}
 
+	/**
+	 * Set-up the Simulation GUI, by setting up the Grid and Entities present in it.
+	 */
 	@FXML
 	public void initialize() {
 		grid.getChildren().clear();
@@ -133,7 +170,7 @@ public class SimulatorController {
 	}
 
 	/**
-	 * Adds a stack pane to every node in the grid
+	 * Adds a stack pane to every node in the grid.
 	 */
 	public void addPane() {
 		for(int i = 0; i < finalGridWidth; i++) {
@@ -144,7 +181,10 @@ public class SimulatorController {
 			}
 		}
 	}
-
+	
+	/**
+	 * Adds a <code>Circle</code> representing a Robot and a <code>Rectangle</code> representing a Charging Pod according to the "SIM" file.
+	 */
 	public void addRobots() {
 		for(int i = 0; i < warehouse.robotPoints().size(); i++) {
 			Circle circle = new Circle(20);
@@ -226,32 +266,27 @@ public class SimulatorController {
 	}
 
 	public void moveRobot(int i,Point current, Point next) {
-		//Removes the current circle representing the robot from the grid
-		Circle delCirc = circleList.get(i);	//may need to remove if this doesn't work
-		grid.getChildren().remove(delCirc);	//may need to remove if this doesn't work
-		circleList.remove(i);				//may need to remove if this doesn't work
+		Circle delCirc = circleList.get(i);	
+		grid.getChildren().remove(delCirc);	
+		circleList.remove(i);				
 
-		//Adds circle/robot to the next location
 		Circle circle = new Circle(20);
 		circle.setFill(Color.GREEN);
 		Double x = next.getX();
 		Double y = next.getY();
-		circleList.add(i, circle); //may need to remove if this doesn't work
+		circleList.add(i, circle); 
 		grid.add(circle, x.intValue(), y.intValue());
 		GridPane.setHalignment((Node) circle, HPos.CENTER);
 	}
 
 	@FXML
 	public void oneTickPressed() {
-		//warehouse.readOrders();
 		for(int i = 0; i < circleList.size(); i++) {
 			warehouse.costEst(i);
 			move(i);
 		}
 		ticks++;
 		tickLabel.setText("Tick: " + ticks);
-		//warehouse.getUpdatedRobotCoordinates();
-
 	}
 
 	@FXML 
@@ -260,9 +295,14 @@ public class SimulatorController {
 			oneTickPressed();
 		}
 	}
+	
+	@FXML
+	public void endSimulationPressed() {
+		
+	}
 
 	@FXML
-	public void endPressed() {
+	public void closePressed() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Exit Simulation");
 		alert.setContentText("Are you sure you want to end the simulation?");
