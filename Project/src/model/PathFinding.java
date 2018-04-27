@@ -13,12 +13,22 @@ import java.awt.Point;
  * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman,
  *         Vivek Bhukhan, Christos Dolopikos
  * 
+ * @version 1.0
  */
 public class PathFinding extends Robot implements Entity {
-	private HashMap<Point, Point> currentToNext;
 
 	/**
-	 * PathFinding constructor. Creates a <code>hashMap</code> to store <code>Point</code> coordinates
+	 * Robots current Point coordinate and next Point coordinate, are stored in this
+	 * <code>HashMap</code> of <code>Point, Point</code>.
+	 * 
+	 * @see #pathCalc #getNewNodes
+	 */
+	HashMap<Point, Point> currentToNext;
+
+	/**
+	 * PathFinding constructor. 
+	 * 
+	 * Creates a <code>hashMap</code> to store <code>Point</code> coordinates
 	 *
 	 */
 	public PathFinding() {
@@ -29,6 +39,7 @@ public class PathFinding extends Robot implements Entity {
 	 * Finds all possible available adjacent nodes and from them, finds the best one to choose
 	 * 
 	 * @param destination. The destination point for the robot.
+	 * @param robotLocations. An <code>ArrayList</code> of <code>Point</code> containing coordinates for the robots.
 	 */
 	public void pathCalc(Point destination, ArrayList<Point> robotLocations) {
 		ArrayList<Point> takenNodes = new ArrayList<Point>();
@@ -81,9 +92,9 @@ public class PathFinding extends Robot implements Entity {
 	}
 
 	/**
-	 * Returns the HashMap created in manhattanCalc
+	 * Returns the HashMap created in manhattanCalc.
 	 * 
-	 * @return <code>HashMap<Point, Point></code>
+	 * @return Returns {@link #currentToNext} a <code>HashMap<Point, Point></code>. Contains the coordinates for the robots.
 	 */
 	public HashMap<Point, Point> getNewNodes() {
 		return currentToNext;
