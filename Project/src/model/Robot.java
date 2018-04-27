@@ -105,6 +105,8 @@ public class Robot implements Entity {
 	 * @see #getRobotCoordinates #getRobotX #getRobotY #setCoordinates
 	 */
 	protected Point robotCoordinates;
+	
+	private boolean completed;
 
 	/**
 	 * Robot Constructor.
@@ -304,6 +306,7 @@ public class Robot implements Entity {
 	 *         go.
 	 */
 	public Point nextInPath() {
+		completed = false;
 		if (atLocation()) {
 			if (index < order.size()) {
 				pickUpItems();
@@ -445,6 +448,7 @@ public class Robot implements Entity {
 			if (getRobotCoordinates().equals(order.get(order.size() - 2))) {
 				System.out.println("orderStatus is set to false");
 				orderStatus = false;
+				completed = true;
 			}
 		}
 	}
@@ -500,6 +504,10 @@ public class Robot implements Entity {
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean completeOrder() {
+		return completed;
 	}
 
 	@Override
