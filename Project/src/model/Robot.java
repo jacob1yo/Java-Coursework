@@ -19,7 +19,7 @@ public class Robot implements Entity {
 	/**
 	 * The value of the battery level of Robot objects.
 	 * 
-	 * @see #charging #decreaseBatteryLevel #getBatteryLevel #updateBattery CostEstimationStrategy#distanceEstimator
+	 * @see #charging #decreaseBatteryLevel #getBatteryLevel #updateBattery #CostEstimationStrategy #distanceEstimator
 	 */
 	protected int batteryLevel;
 
