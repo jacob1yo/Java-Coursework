@@ -63,7 +63,7 @@ public class Warehouse {
 	private HashMap<Point, Point> currentToNext;
 
 	/**
-	 * The string representation of Robot UID <code>key</code> to the Charging Pods UID <code>value</code> are mapped and stored in this <code>HashMap</code>.
+	 * The <code>string</code> representation of Robot UID <code>key</code> to the Charging Pods UID <code>value</code> are mapped and stored in this <code>HashMap</code>.
 	 * 
 	 * @see #addToRobotsChargePod #getRobotChargePod #costEst
 	 */
@@ -593,8 +593,9 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Returns the UIDs of the Packing Stations in the Warehouse, to be displayed in the GUI.
-	 * @return
+	 * Gets the packing station UIDs out of an <code>ArrayList</code>. 
+	 * 
+	 * @return Returns a <code>String</code>. Representing the UID of the Packing Stations.
 	 */
 	public String getPackingID() {
 		String packingID = ""; 
@@ -644,7 +645,7 @@ public class Warehouse {
 	/**
 	 * Reads battery level from a SIM file.
 	 * 
-	 * @return batteryCapacity.
+	 * @return Returns a <code>int</code> value. Representing the battery capacity.
 	 */
 	public int readBatteryLevel() {
 		Integer capacity = Integer.valueOf(configuration.get(7));
@@ -654,7 +655,7 @@ public class Warehouse {
 	/**
 	 * Reads charge rate from a SIM file.
 	 * 
-	 * @return chargeRate.
+	 * @return Returns a <code>int</code> value. Representing the charge rate.
 	 */
 	public int readChargeRate() {
 		Integer chargeRate = Integer.valueOf(configuration.get(9));
@@ -662,7 +663,7 @@ public class Warehouse {
 	}
 
 	/**
-	 * Add to the <code>HashMap</code> that maps the Robot UID to the correct Charging Pod UID, based on the number of robots present in the Warehouse.
+	 * Uses the <code>HashMap</code> that maps the Robot UID to the correct Charging Pod UID, based on the number of robots present in the Warehouse.
 	 */
 	public void addToRobotsChargePod() {
 		for(int i = 0; i < robotList.size(); i++) {
@@ -673,39 +674,44 @@ public class Warehouse {
 	}
 
 	/**
-	 * Returns the HashMap of a Robots corresponding Charging Pod.
-	 * @return robotsChargePod <code>HashMap</code>
+	 * Gets the <code>HashMap</code> created from the {@link #addToRobotsChargePod()} method.
+	 * 
+	 * @return Returns {@link #robotsChargePod} a <code>HashMap</code>. Representing the Robots corresponding Charging Pod.
 	 */
 	public HashMap<String, String> getRobotsChargePod() {
 		return robotsChargePod;
 	}
 
 	/**
-	 * Returns an ArrayList of the Packing Stations present in the Warehouse.
-	 * @return packingList <code>ArrayList</code>
+	 * Gets the {@link #packingList} <code>ArrayList</code>.
+	 * 
+	 * @return Returns {@link #packingList} a <code>ArrayList</code>. Representing Packing Stations present in the Warehouse.
 	 */
 	public ArrayList<PackingStation> getPackingStationList(){
 		return packingList;
 	}
 
 	/**
-	 * Returns an ArrayList of the Storage Shelves present in the Warehouse.
-	 * @return storageList <code>ArrayList</code>
+	 * Gets the {@link #storageList} <code>ArrayList</code>.
+	 * 
+	 * @return Returns {@link #storageList} a <code>ArrayList</code>. Representing Storage Shelves present in the Warehouse.
 	 */
 	public ArrayList<StorageShelf> getStorageList(){ 
 		return storageList;
 	}
 
 	/**
-	 * Returns an ArrayList of the Charging Pods present in the Warehouse.
-	 * @return chargeList <code>ArrayList</code>
+	 * Gets the {@link #chargeList} <code>ArrayList</code>.
+	 * 
+	 * @return Returns {@link #chargeList} a <code>ArrayList</code>. Representing Charging Pods present in the Warehouse.
 	 */
 	public ArrayList<ChargingPod> getChargeList(){
 		return chargeList;
 	}
 
 	/**
-	 * Add to the HashMap that contains the coordinates of each Storage Shelf. The Storage Shelfs UID is the key and the value if the coordinate of the Storage Shelf.
+	 * Add the coordinates to {@link #storagePoints} <code>HashMap</code> that contains Storage Shelves. 
+	 * The Storage Shelfs UID is the <code>key</code> and the <code>value</code> of the coordinate of the Storage Shelf.
 	 */
 	public void addToStoragePoints() {
 		for(StorageShelf s: storageList) {
@@ -714,15 +720,17 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Returns a HashMap of the coordinates of the Storage Shelves.
-	 * @return storagePoints <code>HashMap</code>
+	 * Gets the {@link #storagePoints} <code>ArrayList</code>.
+	 * 
+	 * @return Returns {@link #storagePoints} a <code>ArrayList</code>. Representing Storage Shelves present in the Warehouse.
 	 */
 	public HashMap<String, Point> storagePoints() {
 		return storagePoints;
 	}
 
 	/**
-	 * Add to the HashMap that contains the coordinates of each Packing Station. The Packing Stations UID is the key and the value if the coordinate of the Packing Station.
+	 * Add the coordinates to {@link #packingPoints} <code>HashMap</code> that contains Packing Stations. 
+	 * The Storage Shelfs UID is the <code>key</code> and the <code>value</code> of the coordinate of the Packing station.
 	 */
 	public void addToPackingPoints() {
 		for(PackingStation p : getPackingStationList()) {
@@ -731,15 +739,18 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Returns a HashMap of the coordinates of the Packing Stations.
-	 * @return packingPoints <code>HashMap</code>
+	 * Gets the {@link #packingPoints} <code>HashMap</code>.
+	 * 
+	 * @return Returns {@link #packingPoints} a <code>HashMap</code>. Representing packing stations coordinates in the Warehouse.
 	 */
 	public HashMap<String, Point> packingPoints(){
 		return packingPoints;
 	}
 
 	/**
-	 * Add to the HashMap that contains the coordinates of each Charging Pod. The Charging Pods UID is the key and the value if the coordinate of the Charging Pod.
+	 * Add the coordinates to {@link #chargePoints} <code>HashMap</code> that contains Charing pods. 
+	 * The charging pod UID is the <code>key</code> and the <code>value</code> of the coordinates of the charging pod.
+
 	 */
 	public void addToChargePoints() {
 		for(ChargingPod c : getChargeList()) {
@@ -748,15 +759,17 @@ public class Warehouse {
 	}
 
 	/**
-	 * Returns a HashMap of the coordinates of the Charging podss
-	 * @return chargePoints <code>HashMap</code>
+	 * Gets the {@link #chargePoints} <code>HashMap</code>.
+	 * 
+	 * @return Returns {@link #chargePoints} a <code>HashMap</code>. Representing charging pod coordinates in the Warehouse.
 	 */
 	public HashMap<String, Point> chargePoints(){
 		return chargePoints;
 	}
 
 	/**
-	 * Fills the respective ArrayLists of type <code>String</code>, from the data in the "SIM" file, using a Scanner. With each word in the line, taking a slot in the ArrayList.
+	 * Fills the respective ArrayLists of type <code>String</code>, from the data in the "SIM" file, using a Scanner. 
+	 * With each word in the line, taking a slot in the <code>ArrayList</code>.
 	 */
 	public void fillLists() {
 		try {
@@ -799,7 +812,7 @@ public class Warehouse {
 	}
 
 	/**
-	 * Populates the respective HashMaps containing the coordinates of their respective entities.
+	 * Populates the respective <code>HashMaps</code> containing the coordinates of their respective entities.
 	 */
 	public void addPoints() {
 		addToStoragePoints();
@@ -808,7 +821,7 @@ public class Warehouse {
 	}
 
 	/**
-	 * Clears the content of the ArrayLists, of the data from the "SIM" file.
+	 * Clears the content of the <code>ArrayLists</code>, of the data from the "SIM" file.
 	 */
 	public void clearLists() {
 		podRob.clear();
@@ -818,48 +831,59 @@ public class Warehouse {
 	}
 
 	/**
-	 * Returns an instance of the order class.
-	 * @return order <code>Order</code>
+	 * Gets an order.
+	 * 
+	 * @return order a <code>Order</code>. Returns an instance of the order class.
 	 */
 	public Order getOrder() {
 		return order;
 	}
 	
 	/**
-	 * Returns the ArrayList contains <code>String</code>, of how the simulation should be set-up according to the "SIM" file. 
-	 * @return configuration <code>ArrayList</code>
+	 * Gets the configuration of the simulation.
+	 * 
+	 * @return Returns configuration a <code>ArrayList</code>. The ArrayList contains <code>String</code>, 
+	 * of how the simulation should be set-up according to the "SIM" file. 
 	 */
 	public ArrayList<String> getConfiguration(){
 		return configuration;
 	}
 
 	/**
-	 * Returns the ArrayList contains <code>String</code>, of the Robots and Charging Pods it should create according to the "SIM" file.
-	 * @return podRob <code>ArrayList</code>
+	 * Gets all the Robot and Charging Pods from the <code>ArrayList</code>.
+	 * 
+	 * @return Returns podRob a <code>ArrayList</code>. The ArrayList contains <code>String</code>, 
+	 * of the Robots and Charging Pods it should create according to the "SIM" file.
 	 */
 	public ArrayList<String> getPodRob(){
 		return podRob;
 	}
 
 	/**
-	 * Returns the ArrayList contains <code>String</code>, of the Storage Shelves it should create according to the "SIM" file.
-	 * @return shelves <code>ArrayList</code>
+	 * Gets all the storage shelves. 
+	 * 
+	 * @return Returns shelves a <code>ArrayList</code>. The ArrayList contains <code>String</code>, 
+	 * of the Storage Shelves it should create according to the "SIM" file.
 	 */
 	public ArrayList<String> getStorageShelves(){
 		return shelves;
 	}
 
 	/**
-	 * Returns the ArrayList contains <code>String</code>, of the Packing Stations it should create according to the "SIM" file.
-	 * @return stations <code>ArrayList</code>
+	 * Gets all the packing stations. 
+	 *  
+	 * @return Returns stations a <code>ArrayList</code>. The ArrayList contains <code>String</code>, 
+	 * of the Packing Stations it should create according to the "SIM" file.
 	 */
 	public ArrayList<String> getPackingStations(){
 		return stations;
 	}
 
 	/**
-	 * Sets the time a Robot must spend delivering items to the Packing Station according to the order from the "SIM" file.
-	 * @param time
+	 * Determines the {@link #waitTime} of the Robot.
+	 * 
+	 * @param Returns time a <code>String</code>. Sets the time a Robot must spend delivering items to the 
+	 * Packing Station according to the order from the "SIM" file. Assigns {@link #waitTime} an <code>int</code> value.
 	 */
 	public void setWaitTime(String time) {
 		Integer wait = Integer.parseInt(time);
@@ -882,17 +906,20 @@ public class Warehouse {
 	}
 
 	/**
-	 * Returns the order status of the Robot, which signals if the Robot is carrying out an order or not.
-	 * @param index
-	 * @return <code>boolean</code> orderStatus.
+	 * Gets the orderStatus of each Robot in the <code>ArrayList</code>.
+	 * 
+	 * @param index an <code>int</code>. Used to take information out of the <code>ArrayList</code>.
+	 * 
+	 * @return Returns a <code>boolean</code> value. True signals if the Robot is carrying out an order and false if it is not.
 	 */
 	public boolean getOrderStatus(int index) {
 		return robotList.get(index).getOrderStatus();
 	}
 	
 	/**
-	 * Returns an ArrayList of the Robots present in the Warehouse. 
-	 * @return robotList <code>ArrayList</code>
+	 * Gets all the robots in the simulation.
+	 *
+	 * @return Returns {@link #robotList} <code>ArrayList</code>. The ArrayList of the Robots present in the Warehouse. 
 	 */
 	public ArrayList<Robot> getRobotList() {
 		return robotList;
