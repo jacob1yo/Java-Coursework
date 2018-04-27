@@ -46,6 +46,8 @@ class CollisionTest {
 		assertNotEquals(r1.getRobotCoordinates(), r2.getRobotCoordinates());
 		
 	}
+		
+	}
 	
 
-}
+
