@@ -1,73 +1,80 @@
 package model;
-/**
- * 
- * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, Vivek Bhukhan, Christos Dolopikos 
- *
- */
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * 
+ * @author Miraj Shah, Devin Shingadia, Jacob Williams, Mohammed Hamza Zaman, 
+ * Vivek Bhukhan, Christos Dolopikos 
+ *
+ * @version 1.0
+ */
+
+
 public class CostEstimationStrategy extends Robot {
 
 	/**
-	 * Stores the distance estimated.
-	 * @see #distanceCalculator
-	 */
-	Point destination;
-
-	/**
 	 * Stores the no number of steps required for the estimated as double.
+	 * 
 	 * @see #distanceCalculator
 	 */
 	private double noSteps;
 
 	/**
 	 * Used in distanceEstimator, to pass in a Order.
+	 * 
 	 * @see #distanceEstiamator
 	 */
 	private Order order;
 
 	/**
 	 * Used in disanceEstimator, to pass in the Packing Station the Robot has to deliver the items to.
+	 * 
 	 * @see #distanceEstimator
 	 */
 	private PackingStation packingStation;
 
 	/**
-	 * <code>HashMap</code> of the coordinates each Storage Shelf.
+	 * A <code>HashMap</code> of the coordinates each Storage Shelf.
+	 * 
 	 * @see #distanceEstimator
 	 */
 	private HashMap<String, Point> storagePoints;
 
 	/**
 	 * Constant Field that calculates the gradient in y=mx+c.
+	 * 
 	 * @see #distanceEstimator
 	 */
 	public final double GRADIENT = 1.422;
 	
 	/**
 	 * Constant Field that calculates the intercept in y=mx+c.
+	 * 
 	 * @see #distanceEstimator
 	 */
 	public final double INTERCEPT = 0.07577;
 
 	/**
-	 * <code>ArrayList</code> that holds the single order that need to be assigned, from the "SIM" file.
+	 * An <code>ArrayList</code> that holds the single order that need to be assigned, from the "SIM" file.
+	 * 
 	 * @see #distanceEstimator #getSentence
 	 */
 	private ArrayList<String> sentence;
 
 	/**
-	 * CostEstimationStrategy Constructor
-	 * Gets the values from the superClass <code>Robot</code>
-	 * Assignees the the fields: Order, PackingStation
+	 * CostEstimationStrategy Constructor.
+	 * 
+	 * Gets the values from the superClass <code>Robot</code>.
+	 * Assigns the the fields: Order, PackingStation.
 	 * Populates the StoragePoints <code>HashMap</code>.
 	 * Initialises the value of noSteps.
-	 * @param order, holds the instance of the Order class that contains the orders from the "SIM" file.
-	 * @param packing, hold the instance of the Packing Station that the Robot need to deliver the items to.
-	 * @param storagePoints, <code>HashMap</code> containing the coordinates of the Storage Shelves
+	 * 
+	 * @param order an <code>Order</code> object. Holds the instance of the Order class that contains the orders from the "SIM" file.
+	 * @param packing an an <code>PackingStatioln</code> object. Holds the instance of the Packing Station that the Robot need to deliver the items to.
+	 * @param storagePoints a <code>HashMap</code> of <code>String, Point</code>. Contains the coordinates of the Storage Shelves.
 	 */
 	public CostEstimationStrategy(Order order, PackingStation packing, HashMap<String, Point> storagePoints) {
 		super();
@@ -79,13 +86,15 @@ public class CostEstimationStrategy extends Robot {
 
 	/**
 	 * Calculates whether or not a Robot can carry out an order.
-	 * @param x, holds the current x coordinate of the Robot
-	 * @param y, holds the current y coordinate of the Robot
-	 * @param id, holds the Robots UID
-	 * @param batteryLevel, holds the current battery level of the Robot
-	 * @param robotsCharge, <code>HashMap</code> contains the Robots UID, and their respective Charging Pod
-	 * @param charges, <code>HashMap</code> contains the coordinates of each Charging Pod
-	 * @return <code>boolean</code> Returns true if the Robot can carry out the order, else false
+	 * 
+	 * @param x a <code>double</code> value. Holds the current x coordinate of the Robot.
+	 * @param y a <code>double</code> value. Holds the current y coordinate of the Robot.
+	 * @param id a <code>String</code>. Holds the Robots UID.
+	 * @param batteryLvl an <code>int</code> value. Holds the current battery level of the Robot.
+	 * @param robotsCharge a <code>HashMap</code> of <code>String, String</code>. Contains the Robots UID, and their respective Charging Pod.
+	 * @param charges a <code>HashMap</code> of <code>String, Point</code>. Contains the coordinates of each Charging Pod.
+	 * 
+	 * @return Returns a <code>boolean</code> value. True if the Robot can carry out the order, else false.
 	 */
 	public boolean distanceEstimator(double x, double y, String id, int batteryLvl, HashMap<String, String> robotsCharge, HashMap<String, Point> charges) {
 		double robotX = x;
@@ -151,8 +160,9 @@ public class CostEstimationStrategy extends Robot {
 	}
 
 	/**
-	 * <code>ArrayList</code> contains the Order that needs to be checked.
-	 * @return Returns <code>ArrayList</code> of type <code>String</code>
+	 * A <code>ArrayList</code> contains the Order that needs to be checked.
+	 * 
+	 * @return Returns a <code>ArrayList</code> of <code>String</code>, used in {@link #sentence}.
 	 */
 	public ArrayList<String> getSentence(){
 		return sentence;
