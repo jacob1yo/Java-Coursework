@@ -18,22 +18,22 @@ import java.util.Scanner;
 public class Warehouse {
 
 	/**
-	 * Robot objects used in the simulation, are stored in this ArrayList.
+	 * Robot objects used in the simulation, are stored in this <code>ArrayList</code> of <code>Robot</code>.
 	 * 
 	 * @see #addRobot #genId #delete #removeAll #check #checkRobot #costEst #robotPoints #move #moveRobot 
-	 * @see #getRobotInfo #getRobotList #getOrderStatus #addToRobotsChargePod 
+	 * #getRobotInfo #getRobotList #getOrderStatus #addToRobotsChargePod 
 	 */
 	private ArrayList<Robot> robotList;
 
 	/**
-	 * Charging Pod objects used in the simulation, are stored in this ArrayList.
+	 * Charging Pod objects used in the simulation, are stored in this <code>ArrayList</code> of <code>ChargingPod</code>.
 	 * 
 	 * @see #addRobot #genID #delete #removeAll #check #chargingPodPoints #getChargeList #move 
 	 */
 	private ArrayList<ChargingPod> chargeList; 
 
 	/**
-	 * Storage Shelf objects used in the simulation, are stored in this ArrayList.
+	 * Storage Shelf objects used in the simulation, are stored in this <code>ArrayList</code> of <code>StorageShelf</code>.
 	 * 
 	 * @see #addStorage #genId #delete #removeAll #check #storageShelfPoints #getStorageList
 	 * @see #addToStoragePoints
@@ -41,7 +41,7 @@ public class Warehouse {
 	private ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
 
 	/**
-	 * Packing Station objects used in the simulation, are stored in this ArrayList.
+	 * Packing Station objects used in the simulation, are stored in this <code>ArrayList</code> of <code>PackingStation</code>.
 	 * 
 	 * @see #addPacking #genId #delete #removeAll #check #packingStationPoints #getPackingID #getPackingStationsList
 	 * @see #getPacking 
@@ -49,56 +49,56 @@ public class Warehouse {
 	private ArrayList<PackingStation> packingList = new ArrayList<PackingStation>();
 
 	/**
-	 * Robot point coordinates used in the simulation, are stored in this ArrayList.
+	 * Robot point coordinates used in the simulation, are stored in this <code>ArrayList</code> of <code>Point</code>.
 	 * 
 	 * @see #robotPoints #getRobotPoints
 	 */
 	private ArrayList<Point> robotPoints;
 
 	/**
-	 * Robots current Point coordinate and next Point coordinate, are stored in this HashMap.
+	 * Robots current Point coordinate and next Point coordinate, are stored in this <code>HashMap</code> of <code>Point, Point</code>.
 	 * 
 	 * @see #move #moveRobot #getUpdatedRobotCoordinates 
 	 */
 	private HashMap<Point, Point> currentToNext;
 
 	/**
-	 * The string representation of Robot UID (key) to the Charging Pods UID (value) are mapped and stored in this HashMap.
+	 * The string representation of Robot UID <code>key</code> to the Charging Pods UID <code>value</code> are mapped and stored in this <code>HashMap</code>.
 	 * 
 	 * @see #addToRobotsChargePod #getRobotChargePod #costEst
 	 */
 	private HashMap<String, String> robotsChargePod = new HashMap<String, String>();
 
 	/**
-	 * The coordinates of each Storage Shelfs (value) is stored in this HashMap, which is accessed by the Storage Shelfs UID (key).
+	 * The coordinates of each Storage Shelfs <code>value</code> is stored in this <code>HashMap</code>, which is accessed by the Storage Shelfs UID <code>key</code>.
 	 * 
 	 * @see #addToStoragePoints #costEst #getDestinations #storagePoints
 	 */
 	private HashMap<String, Point> storagePoints = new HashMap<String, Point>();
 	
 	/**
-	 * The coordinates of each Packing Stations (value) is stored in this HashMap, which is accessed by the Packing Stations UID (key).
+	 * The coordinates of each Packing Stations <code>value</code> is stored in this <code>HashMap</code>, which is accessed by the Packing Stations UID <code>key</code>.
 	 * 
 	 * @see #addToPackingPoints #packingPoints
 	 */
 	private HashMap<String, Point> packingPoints = new HashMap<String, Point>();
 	
 	/**
-	 * The coordinates of each Charging Pods (value) is stored in this HashMap, which is accessed by the Charging Pods UID (key).
+	 * The coordinates of each Charging Pods <code>value</code> is stored in this <code>HashMap</code>, which is accessed by the Charging Pods UID <code>key</code>.
 	 * 
 	 * @see #addToChargePoints #chargePoints #costEst
 	 */
 	private HashMap<String, Point> chargePoints = new HashMap<String, Point>();
 
 	/**
-	 * The set up of the Warehouse simulation, read from the "SIM" file are stored in this ArrayList.
+	 * The set up of the Warehouse simulation, reads from the "SIM" file are stored in this <code>ArrayList</code>. Stored in a <code>String</code> format.
 	 * 
 	 * @see #clearLists #fillLists #getConfiguration #readBatteryLevel #readChargeRate
 	 */
 	private ArrayList<String> configuration = new ArrayList<String>();
 	
 	/**
-	 * All the Robot and Charging Pods, that need to be created in the GUI from the "SIM" file are stored in this ArrayList. Stored in a <code>String</code> format.
+	 * All the Robot and Charging Pods, that need to be created in the GUI from the "SIM" file are stored in this <code>ArrayList</code>. Stored in a <code>String</code> format.
 	 * 
 	 * @see #clearLists #fillLists #getPodRob #readRobotData
 	 */
@@ -106,14 +106,14 @@ public class Warehouse {
 	private ArrayList<String> podRob = new ArrayList<String>();
 	
 	/**
-	 * All the Storage Shelves, that need to be created in the GUI from the "SIM" file are stored in this ArrayList. Stored in a <code>String</code> format.
+	 * All the Storage Shelves, that need to be created in the GUI from the "SIM" file are stored in this <code>ArrayList</code>. Stored in a <code>String</code> format.
 	 * 
 	 * @see #clearLists #fillLists #getStorageShelves #readStorageData
 	 */
 	private ArrayList<String> shelves = new ArrayList<String>();
 	
 	/**
-	 * All the Packing Stations, that need to be created in the GUI from the "SIM" file are stored in this ArrayList. Stored in a <code>String</code> format.
+	 * All the Packing Stations, that need to be created in the GUI from the "SIM" file are stored in this <code>ArrayList</code>. Stored in a <code>String</code> format.
 	 * 
 	 * @see #clearLists #fillLists #getPackingStations #readPackingData
 	 */
@@ -127,7 +127,7 @@ public class Warehouse {
 	private Order order;
 
 	/**
-	 * Used to get the coordinates of the Packing Station
+	 * Used to get the coordinates of the Packing Station.
 	 * 
 	 * @see #getPacking 
 	 */
@@ -148,12 +148,17 @@ public class Warehouse {
 	private boolean waited;
 	
 	/**
-	 * ArrayList containing the order from Cost Estimation Strategy.
+	 * Containing the order from the <code>ArrayList</code> from Cost Estimation Strategy. Stored in a <code>String</code> format. 
 	 * 
 	 * @see #costEst #getDestinations
 	 */
 	private ArrayList<String> newOrder = new ArrayList<String>();
 
+	/**
+	 * Warehouse Constructor.
+	 * 
+	 * Initialises and creates all the <code>ArrayList</code> and <code>HashMap</code>. Assigns the next order and sets {@link #next} value to 0.
+	 */
 	public Warehouse() {
 		robotList = new ArrayList<Robot>();
 		chargeList = new ArrayList<ChargingPod>();
@@ -165,14 +170,14 @@ public class Warehouse {
 
 	/**
 	 * Creates a new robot and corresponding charging pod, and adds both to their
-	 * own ArrayList.
+	 * own <code>ArrayList</code>.
 	 * 
-	 * @param ruid
-	 * @param cuid
-	 * @param x
-	 * @param y
-	 * @param batteryLevel
-	 * @param chargeRate
+	 * @param ruid a <code>String</code>. Representing the UID of the Robot.
+	 * @param cuid a <code>String</code>. Representing the UID of the Charging Pod.
+	 * @param x a <code>int</code> value. Representing the X coordinate of the Robot.
+	 * @param y a <code>int</code> value. Representing the Y coordinate of the Robot.
+	 * @param batteryLevel a <code>int</code> value. Representing the value of the battery level of the Robot.
+	 * @param chargeRate a <code>int</code> value. Representing the value of the charge rate for the Robot.
 	 */
 	public void addRobot(String ruid, String cuid, int x, int y, int batteryLevel, int chargeRate) {
 		Robot robot = new Robot();
@@ -194,10 +199,11 @@ public class Warehouse {
 	}
 
 	/**
-	 * Creates a new storage shelf and adds it to an ArrayList
+	 * Creates a new storage shelf and adds it to an <code>ArrayList</code>.
 	 * 
-	 * @param x
-	 * @param y
+	 * @param uid a <code>String</code> value. Representing the UID of the storage shelf.
+	 * @param x a <code>int</code> value. Representing the X coordinate of the Storage shelf.
+	 * @param y a <code>int</code> value. Representing the Y coordinate of the Storage shelf.
 	 */
 	public void addStorage(String uid, int x, int y) {
 		StorageShelf storage = new StorageShelf(x, y);
@@ -206,10 +212,11 @@ public class Warehouse {
 	}
 
 	/**
-	 * Creates a new packing station and adds it to an ArrayList
+	 * Creates a new packing station and adds it to an ArrayList.
 	 * 
-	 * @param x
-	 * @param y
+	 * @param uid a <code>String</code> value. Representing the UID of the Packing station.
+	 * @param x a <code>int</code> value. Representing the X coordinate of the Packing station.
+	 * @param y a <code>int</code> value. Representing the Y coordinate of the Packing station.
 	 */
 	public void addPacking(String uid, int x, int y) {
 		PackingStation packing = new PackingStation(x, y);
@@ -218,9 +225,9 @@ public class Warehouse {
 	}
 
 	/**
-	 * Generates the UID of each entity, based on the entities present in the Warehouse.
+	 * Iterates and generates the UID of each entity, based on the entities present in the Warehouse and stores each entity into their respective
+	 * <code>ArrayList</code>.
 	 * 
-	 * @see
 	 */
 	public void genId() {
 		ArrayList<Robot> robIds = new ArrayList<Robot>();
@@ -262,10 +269,10 @@ public class Warehouse {
 	}
 
 	/**
-	 * Deletes an item from entity lists depending on the coordinates given
+	 * Deletes an item from entity lists depending on the coordinates given.
 	 * 
-	 * @param x
-	 * @param y
+	 * @param x a <code>int</code> value. Representing the X coordinate of the entity.
+	 * @param y a <code>int</code> value. Representing the Y coordinate of the entity.
 	 */
 	public void delete(int x, int y) {
 		for (int i = 0; i < robotList.size(); i++) {
@@ -304,7 +311,7 @@ public class Warehouse {
 	}
 
 	/**
-	 * Clears all the lists of entities if they contain any items
+	 * Clears all the <code>ArrayList</code> of entities if they contain any items.
 	 */
 	public void removeAll() {
 		if (!robotList.isEmpty()) {
@@ -322,12 +329,12 @@ public class Warehouse {
 	}
 
 	/**
-	 * Checks whether another entity is already in the position given
+	 * Checks whether another entity is already in the position given.
 	 * 
-	 * @param x
-	 * @param y
-	 * @return <code>boolean</code> True if there is no entity in the given
-	 *         position, false otherwise
+	 * @param x a <code>int</code> value. Representing the X coordinate of the entity.
+	 * @param y a <code>int</code> value. Representing the Y coordinate of the entity.
+	 * 
+	 * @return Returns a <code>boolean</code> value. True if there is no entity in the given position, false otherwise.
 	 */
 	public boolean check(int x, int y) {
 		for (int i = 0; i < robotList.size(); i++) {
@@ -359,9 +366,11 @@ public class Warehouse {
 
 	/**
 	 * Checks to see if there is a Robot in an adjacent node.
-	 * @param x
-	 * @param y
-	 * @return <code>boolean</code> true if their is a Robot there.
+	 * 
+	 * @param x a <code>int</code> value. Representing the X coordinate of the Robot.
+	 * @param y a <code>int</code> value. Representing the Y coordinate of the Robot.
+	 * 
+	 * @return Returns <code>boolean</code> value. True if there is a Robot there. False otherwise.
 	 */
 	public boolean checkRobot(int x, int y) {
 		for (int i = 0; i < robotList.size(); i++) {
@@ -373,9 +382,9 @@ public class Warehouse {
 	}
 
 	/**
-	 * Get the an ArrayList of coordinates of every robot
+	 * Gets an <code>ArrayList</code> of coordinates of every robot.
 	 * 
-	 * @return <code>ArrayList<Point></code>
+	 * @return Returns a <code>ArrayList</code> of <code>Points</code>. The coordinate values of the Robot.
 	 */
 	public ArrayList<Point> robotPoints() {
 		ArrayList<Point> robots = new ArrayList<Point>();
@@ -391,9 +400,9 @@ public class Warehouse {
 	}
 
 	/**
-	 * Get the an ArrayList of coordinates of every charging pod
+	 * Gets an <code>ArrayList</code> of <code>Point</code> coordinates of every charging pod.
 	 * 
-	 * @return <code>ArrayList<Point></code>
+	 * @return Returns a <code>ArrayList</code> of <code>Points</code>. The coordinate values of the Charging Pod.
 	 */
 	public ArrayList<Point> chargingPodPoints() {
 		ArrayList<Point> chargingPods = new ArrayList<Point>();
@@ -404,9 +413,9 @@ public class Warehouse {
 	}
 
 	/**
-	 * Get the an ArrayList of coordinates of every packing station
+	 * Gets an <code>ArrayList</code> of <code>Point</code> coordinates of every Packing Station.
 	 * 
-	 * @return <code>ArrayList<Point></code>
+	 * @return Returns a <code>ArrayList</code> of <code>Points</code>. The coordinate values of the Packign Station.
 	 */
 	public ArrayList<Point> packingStationPoints() {
 		ArrayList<Point> packingStations = new ArrayList<Point>();
@@ -417,9 +426,9 @@ public class Warehouse {
 	}
 
 	/**
-	 * Get the an ArrayList of coordinates of every storage shelf
+	 * Gets an <code>ArrayList</code> of <code>Point</code> coordinates of every Storage Shelf.
 	 * 
-	 * @return <code>ArrayList</code> 
+	 * @return Returns a <code>ArrayList</code> of <code>Points</code>. The coordinate values of the Storage Shelf. 
 	 */
 	public ArrayList<Point> storageShelfPoints() {
 		ArrayList<Point> storageShelfs = new ArrayList<Point>();
@@ -430,10 +439,12 @@ public class Warehouse {
 	}
 
 	/**
-	 * Get the an ArrayList of coordinates of every space that is available for a
-	 * robot to move to
+	 * Gets an <code>ArrayList</code> of <code>Point</code> coordinates for the free points in the grid.
 	 * 
-	 * @return <code>ArrayList</code>
+	 * @param numCols a <code>int</code> value. Representing the number of columns in the grid.
+	 * @param numRows a <code>int</code> value. Representing the number of rows in the grid.
+	 * 
+	 * @return Returns a <code>ArrayList</code> of <code>Points</code>. The coordinate values of the free spaces. 
 	 */
 	public ArrayList<Point> freeSpacePoints(int numCols, int numRows) {
 		ArrayList<Point> spaces = new ArrayList<Point>();
@@ -450,7 +461,7 @@ public class Warehouse {
 
 	/**
 	 * Returns the Packing Station the Robot has to go to.
-	 * @return packing <code>PackingStation</code>
+	 * @return Returns a <code>PackingStation</code>. The location of the packing station.
 	 */
 	public PackingStation getPacking() {
 		PackingStation packing = null;
@@ -465,9 +476,11 @@ public class Warehouse {
 	}
 
 	/**
-	 * Returns true if robot can move, false otherwise
-	 * @param i
-	 * @return value <code>boolean</code>
+	 * Calls on the CostEstimationStrategy class {@link #distanceEstimator} method. To see if the robot can take an order or not.
+	 * 
+	 * @param i an <code>int</code> value. Used to get the robot of the <code>ArrayList</code>.
+	 * 
+	 * @return Returns a <code>boolean</code> value. True if robot can move, false otherwise.
 	 */
 	public boolean costEst(int i) {
 		Robot robot = robotList.get(i);
@@ -491,10 +504,13 @@ public class Warehouse {
 	}
 	
 	/**
-	 * Returns a HashMap of where the Robot should move to next, according to its position and the location of the destination
-	 * The current location is the key and the value is the destination.
-	 * @param i
-	 * @return
+	 * 
+	 * The current location is the <code>key</code> and the <code>value</code> is the destination used to tell the Robot where to move.
+	 * 
+	 * @param i an <code>int</code> value. Used to get the robot of the <code>ArrayList</code>.
+	 * 
+	 * @return Returns {@link Warehouse#currentToNext} a <code>HashMap</code> of where the Robot should move to next, 
+	 * according to its position and the location of the destination.
 	 */
 	public HashMap<Point, Point> move(int i) {
 		Robot robot = robotList.get(i);
@@ -528,7 +544,8 @@ public class Warehouse {
 
 	/**
 	 * Changes the position of the robot, according to where it should go.
-	 * @param i
+	 * 
+	 * @param i an <code>int</code> value. Used to get the robot of the <code>ArrayList</code>.
 	 */
 	public void moveRobot(int i) {
 		ArrayList<Point> robots = robotPoints();
@@ -540,8 +557,9 @@ public class Warehouse {
 	}
 
 	/**
-	 * Returns a <code>String</String> that gets the current state of each robot entity, to display on the GUI.
-	 * @return
+	 * Gets the information about the Robots coordinates, charge rate and battery level.
+	 * 
+	 * @return Returns a <code>String</code>. Gets the current state of each robot entity, to display on the GUI.
 	 */
 	public String getRobotInfo() {
 		String robotInfo = "";
@@ -560,7 +578,8 @@ public class Warehouse {
 
 	/**
 	 * Updates the robots coordinates, so that the updated coordinates are displayed in the GUI. 
-	 * @return
+	 * 
+	 * @return Returns a <code>String</code>. Representing the updated coordinates of the robot.
 	 */
 	public String getUpdatedRobotCoordinates() {
 		String coordinates = "";
