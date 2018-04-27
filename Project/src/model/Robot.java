@@ -377,17 +377,6 @@ public class Robot implements Entity {
 	}
 
 	/**
-	 * Gets the location of each robot from the {@link MainController class} and
-	 * stores it in an ArrayList.
-	 * 
-	 * @return Returns a <code>ArrayList<Point></code>. ArrayList of Point Objects.
-	 */
-	public ArrayList<Point> getRobotSpaces() {
-		return MainController.getRobotSpaces();
-
-	}
-
-	/**
 	 * Gets the free spaces on the of free spaces on the grid {@link MainController
 	 * class} and stores it in an ArrayList.
 	 * 
