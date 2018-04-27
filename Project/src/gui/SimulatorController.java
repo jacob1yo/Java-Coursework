@@ -319,7 +319,9 @@ public class SimulatorController {
 	
 	@FXML
 	public void endSimulationPressed() {
-		
+		while(!warehouse.getFinished()) {
+			oneTickPressed();
+		}
 	}
 	
 	/**

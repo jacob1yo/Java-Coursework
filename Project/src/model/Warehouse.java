@@ -188,6 +188,8 @@ public class Warehouse {
 	 * @see #costEst #getCompleted
 	 */
 	private int completed;
+	
+	private boolean finished;
 
 	/**
 	 * Warehouse Constructor.
@@ -203,6 +205,7 @@ public class Warehouse {
 		currentToNext = new HashMap<Point, Point>();
 		order = new Order();
 		next = 0;
+		finished = false;
 	}
 
 	/**
@@ -582,11 +585,19 @@ public class Warehouse {
 				robot.orderDecision(getDestinations());
 				robot.setWaitTime(waitTime);
 			} else {
-				System.out.println("SET COMPLETED CALLED");
-				robot.orderDecision(robot.setDestinationStart());
+				if(order.getNextSentence() == null) {
+					finished = true;
+				}
+				else {
+					robot.orderDecision(robot.setDestinationStart());
+				}
 			}
 		}
 		return value;
+	}
+	
+	public boolean getFinished() {
+		return finished;
 	}
 
 	/**
