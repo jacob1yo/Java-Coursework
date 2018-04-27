@@ -202,6 +202,9 @@ public class SimulatorController {
 		}
 	}
 
+	/**
+	 * Adds a <code>Polygon</code> representing a Storage Shelf according to the "SIM" file.
+	 */
 	public void addStorage() {
 		for(int i = 0; i < warehouse.storageShelfPoints().size(); i++) {
 			Polygon triangle = new Polygon();
@@ -216,6 +219,9 @@ public class SimulatorController {
 		}
 	}
 
+	/**
+	 * Adds a <code>Polygon</code> representing a Packing Station according to the "SIM" file.
+	 */
 	public void addPackage() {
 		for(int i = 0; i < warehouse.packingStationPoints().size(); i++) {
 			Polygon triangle = new Polygon();
@@ -231,6 +237,9 @@ public class SimulatorController {
 
 	}
 
+	/**
+	 * When clicked, it returns to the 'set-up' GUI, allowing the user to input other parameters or change the grid.
+	 */
 	@FXML
 	public void returnPressed() {
 		final FXMLLoader loader = new FXMLLoader();
@@ -252,6 +261,10 @@ public class SimulatorController {
 		}
 	}
 
+	/**
+	 * 
+	 * @param i
+	 */
 	public void move(int i) {
 		HashMap<Point, Point> hashmap = warehouse.move(i);
 		ArrayList<Point> robots = warehouse.robotPoints();
@@ -265,6 +278,12 @@ public class SimulatorController {
 		}
 	}
 
+	/**
+	 * 
+	 * @param i
+	 * @param current, which is the current location of the Robot
+	 * @param next, which is the next location of the Robot
+	 */
 	public void moveRobot(int i,Point current, Point next) {
 		Circle delCirc = circleList.get(i);	
 		grid.getChildren().remove(delCirc);	
@@ -278,7 +297,10 @@ public class SimulatorController {
 		grid.add(circle, x.intValue(), y.intValue());
 		GridPane.setHalignment((Node) circle, HPos.CENTER);
 	}
-
+	
+	/**
+	 * Executes cost estimation and the move method, for each Robot, and increase the step the simulation is on.
+	 */
 	@FXML
 	public void oneTickPressed() {
 		for(int i = 0; i < circleList.size(); i++) {
@@ -289,6 +311,9 @@ public class SimulatorController {
 		tickLabel.setText("Tick: " + ticks);
 	}
 
+	/**
+	 * Calls on the oneTickPressed method 10 times and increase the step the GUI is on, by 10.
+	 */
 	@FXML 
 	public void tenTickPressed() {
 		for(int i = 0; i < 10; i++) {
@@ -300,7 +325,10 @@ public class SimulatorController {
 	public void endSimulationPressed() {
 		
 	}
-
+	
+	/**
+	 * Sends the user an alert, letting them know that they are about to leave the simulation; once they click 'OK'.
+	 */
 	@FXML
 	public void closePressed() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
