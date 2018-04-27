@@ -29,13 +29,6 @@ public class ChargingPod implements Entity {
 	private String uid;
 	
 	/**
-	 * Boolean value used to check if robots unique charging pod is occupied.
-	 * 
-	 * @see #ChargingPod #charge
-	 */
-	private boolean occupied;
-	
-	/**
 	 * The Point coordinates where the Charging Pod is placed on the grid.
 	 * 
 	 * @see #chargingPod #getChargingCoordinates #getChargingX #getChargingY
@@ -48,8 +41,7 @@ public class ChargingPod implements Entity {
 	  * @param int x and int y {@link chargingCoordinates} used to initialise a new Point coordinate for a Charging Pod.
 	  */
 	public ChargingPod(int x, int y) {
-		chargingCoordinates = new Point(x, y);
-		occupied = false;	
+		chargingCoordinates = new Point(x, y);	
 	}
 	
 	/**
@@ -77,21 +69,6 @@ public class ChargingPod implements Entity {
 	 */
 	public double getChargingY(){
 		return chargingCoordinates.getY();
-	}
-	
-	/**
-	 * Charges the battery of a robot depending on charge rate.
-	 * 
-	 * @return <code>int</code>. The value after the charge is completed.
-	 */
-	private int charge() {
-		// think about int or void?
-		
-		if (occupied == true) {
-			// charge rate of 5 is added to robots battery level
-		}
-		return 0; // returns the charge level
-
 	}
 	
 	/**

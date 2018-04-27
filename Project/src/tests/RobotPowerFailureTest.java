@@ -22,8 +22,8 @@ class RobotPowerFailureTest {
 	private PackingStation ps = new PackingStation(0, 2);
 	private ChargingPod cp = new ChargingPod(2, 0);
 	private CostEstimationStrategy ce;
-	private HashMap robotsChargePod = new HashMap<String, String>();
-	private HashMap chargePoints = new HashMap<String, Point>();
+	private HashMap<String, String> robotsChargePod = new HashMap<String, String>();
+	private HashMap<String, Point> chargePoints = new HashMap<String, Point>();
 	private ArrayList<ChargingPod> chargeList = new ArrayList<ChargingPod>();
 	private ArrayList<StorageShelf> storageList = new ArrayList<StorageShelf>();
 	private HashMap<String, Point> storagePoints = new HashMap<String, Point>();

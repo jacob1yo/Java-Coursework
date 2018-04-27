@@ -30,9 +30,9 @@ public interface Entity {
 
 	/**
 	 * Ensures each ChargingPod created when read from .SIM file is assigned a new
-	 * uid.
+	 * UID.
 	 * 
-	 * @param newUid a String representation for the uid of each Entity object.       
+	 * @param newUid a String representation for the UID of each Entity object.       
 	 */
 	public abstract void setId(String newUid);
 

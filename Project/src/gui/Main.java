@@ -1,7 +1,5 @@
 package gui;
 
-//hi !!
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,6 +14,9 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	/**
+	 * Set-up the initial GUI, setting the size of the scene and which controller it should be assigned to it.
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		try {

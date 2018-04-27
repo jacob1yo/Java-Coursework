@@ -13,7 +13,7 @@ class CollisionTest {
 	private Warehouse warehouse;
 	/**
 	 * If robot collisions are reported.
-	 * If two or more robots enter the same node, the siulation should end and report crash to user
+	 * If two or more robots enter the same node, the simulation should end and report crash to user
 	 */
 
 	@BeforeEach

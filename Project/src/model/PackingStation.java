@@ -1,7 +1,6 @@
 package model;
 
 import java.awt.Point;
-import java.util.ArrayList;
 
 /**
  * This class contains the implementation of the Packing Station methods.

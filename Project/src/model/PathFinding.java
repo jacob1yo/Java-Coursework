@@ -30,10 +30,10 @@ public class PathFinding extends Robot implements Entity {
 	 * 
 	 * @param destination. The destination point for the robot.
 	 */
-	public void pathCalc(Point destination) {
+	public void pathCalc(Point destination, ArrayList<Point> robotLocations) {
 		ArrayList<Point> takenNodes = new ArrayList<Point>();
 		ArrayList<Point> freeSpaces = super.getFreeSpacePoints(MainController.getNumCols(), MainController.getNumRows());
-		ArrayList<Point> robotLocations = super.getRobotSpaces();
+		//ArrayList<Point> robotLocations = super.getRobotSpaces();
 		
 		takenNodes.add(new Point(-1, -1));
 
