@@ -558,7 +558,7 @@ public class Warehouse {
 	}
 
 	/**
-	 * Calls on the CostEstimationStrategy class {@link #distanceEstimator} method.
+	 * Calls on the CostEstimationStrategy class {@link CostEstimationStrategy #distanceEstimator} method.
 	 * To see if the robot can take an order or not.
 	 * 
 	 * @param i an <code>int</code> value. Used to get the robot of the
@@ -1003,7 +1003,7 @@ public class Warehouse {
 	/**
 	 * Determines the {@link #waitTime} of the Robot.
 	 * 
-	 * @param Returns time a <code>String</code>. Sets the time a Robot must spend
+	 * @param time a <code>String</code>. Sets the time a Robot must spend
 	 *            delivering items to the Packing Station according to the order
 	 *            from the "SIM" file. Assigns {@link #waitTime} an <code>int</code>
 	 *            value.
@@ -1014,10 +1014,11 @@ public class Warehouse {
 	}
 
 	/**
-	 * Returns an ArrayList of <code>Point</code>, of each destination the Robot
+	 * Returns an <code>ArrayList</code> of <code>Point</code>, of each destination the Robot
 	 * must go to, to complete an order.
 	 * 
-	 * @return
+	 * @return Returns <code>ArrayList</code> containing <code>Point</code> of each destination the robot
+	 * needs to travel to
 	 */
 	public ArrayList<Point> getDestinations() {
 		ArrayList<Point> destinations = new ArrayList<Point>();

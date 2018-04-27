@@ -38,8 +38,8 @@ public class ChargingPod implements Entity {
 	  /**
 	  * Charging Pod Constructor.
 	  * 
-	  * @param int x {@link chargingCoordinates} used to initialise a new Point coordinate for a Charging Pod.
-	  * @param int y {@link chargingCoordinates} used to initialise a new Point coordinate for a Charging Pod.
+	  * @param x <code>int</code> {@link chargingCoordinates} used to initialise a new Point coordinate for a Charging Pod.
+	  * @param y <code>int</code> {@link chargingCoordinates} used to initialise a new Point coordinate for a Charging Pod.
 	  */
 	public ChargingPod(int x, int y) {
 		chargingCoordinates = new Point(x, y);	

@@ -255,7 +255,7 @@ public class SimulatorController {
 
 	/**
 	 * Iterates through a <code>HashMap</code> on current locations and next locations, updating the GUI and the model.
-	 * @param <code>int</code> i, index to move the right Robot
+	 * @param i <code>int</code>, index to move the right Robot
 	 */
 	public void move(int i) {
 		HashMap<Point, Point> hashmap = warehouse.move(i);

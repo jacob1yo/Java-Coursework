@@ -388,12 +388,12 @@ public class MainController {
 	/**
 	 * Sets up the columns and rows present in the grid, by setting
 	 * {@link RowConstraints #setPercentHeight()} and
-	 * {@link RowConstraints#setPercentWidth()} based on the values of
+	 * {@link RowConstraints #setPercentWidth()} based on the values of
 	 * {@link #numRows} and {@link #numCols}.
 	 * 
 	 * <p>
 	 * Assigns the value of {@link #numCols} and {@link #numRows} to the value of
-	 * the {@link Warehouse #getConfiguration()} <code> int</code> value.
+	 * the {@link Warehouse #getConfiguration()} <code>int</code> value.
 	 * </p>
 	 * 
 	 */
@@ -504,13 +504,6 @@ public class MainController {
 	/**
 	 * Functionality to open up the simulator view whenever the start button is
 	 * pressed.
-	 * 
-	 * 
-	 * @exception <code> IOException</code> An exception that could be thrown when
-	 *                there is incorrect input. Carries out the
-	 *                {@link IOException #printStackTrace()} method if exception
-	 *                thrown.
-	 * 
 	 */
 	@FXML
 	public void startPressed() {
