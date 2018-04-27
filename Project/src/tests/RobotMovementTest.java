@@ -49,7 +49,7 @@ class RobotMovementTest {
 	}
 
 	@Test
-	void testPoints() {
+	void testMove() {
 		Point node = new Point(2,2);
 		Robot r = robotList.get(0);
 		HashMap<Point, Point> temp = new HashMap<Point, Point>();

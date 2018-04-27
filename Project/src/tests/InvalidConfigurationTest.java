@@ -1,6 +1,9 @@
 package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Scanner;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import model.Order;
@@ -14,10 +17,13 @@ import model.Order;
 class InvalidConfigurationTest {
 
 	private Order o;
+	private Scanner scanner;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		o = new Order();
+		Scanner scanner = new Scanner("D:\Users\Mohammed Zaman\Downloads\sampleConfigs\configs\oneOfEverything.sim");
+		
 		
 	}
 

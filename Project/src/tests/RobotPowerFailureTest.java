@@ -67,14 +67,9 @@ class RobotPowerFailureTest {
 
 	@Test
 	void testCostEst() {
-		orderList.add("order");
-		orderList.add("9");
-		orderList.add("ss0");
-		order.addToDecision(orderList);
 		ce = new CostEstimationStrategy(order, ps, chargePoints);
 		boolean value = ce.distanceEstimator(r.getRobotX(), r.getRobotY(), r.getID(), r.getBatteryLevel(), robotsChargePod, chargePoints);
-		
-		assertEquals(true, value);
+		assertNotEquals(true, value);
 
 	}
 
