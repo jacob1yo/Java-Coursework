@@ -17,8 +17,6 @@ class DeliveryDispatchTest {
 	 * To see if packing stations dispatch deliveries when ready
 	 * @throws Exception
 	 */
-	private PackingStation ps = new PackingStation(300, 400);
-	private Order o = new Order();
 	private Robot r = new Robot();
 	private ArrayList<Point> destinations = new ArrayList<Point>();
 	

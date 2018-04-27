@@ -55,14 +55,16 @@ public class SimulatorController {
 	private int ticks;
 
 	/**
-	 * Creates an instance of the warehouse class, containing all the entities need to run the simulation.
+	 * Creates an instance of the {@link Warehouse} class, containing all the entities need to run the simulation.
 	 * 
 	 * @see #addPackage #addRobots #addStorage #initialize #move #oneTickPressed #tenTickPressed #returnPressed
 	 */
 	private Warehouse warehouse;
-
+	
 	/**
-	 * Creates an instance of the order class, containing all the orders that need to be carried out from the "SIM" file.
+	 * Creates an instance of the {@link Order} class.
+	 * 
+	 * @see #printInfo
 	 */
 	private Order order;
 
@@ -125,6 +127,7 @@ public class SimulatorController {
 		finalGridWidth = MainController.getNumCols();
 		warehouse = MainController.getWarehouse();
 		circleList = new ArrayList<Circle>();
+		order = warehouse.getOrder();
 	}
 
 	/**
@@ -152,13 +155,7 @@ public class SimulatorController {
 		addRobots();
 		addStorage();
 		addPackage();
-
-		//Need to get the robot ID, charge rate, destination and coordinates of the current robot
-		listRobots.getItems().addAll(warehouse.getRobotInfo());
-		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-		listPacking.getItems().addAll(warehouse.getPackingID());
-		listPacking.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		printInfo();
 	}
 
 	/**
@@ -305,6 +302,7 @@ public class SimulatorController {
 		completed.setText(warehouse.getCompleted());
 		ticks++;
 		tickLabel.setText("Tick: " + ticks);
+		printInfo();
 	}
 
 	/**
@@ -352,5 +350,22 @@ public class SimulatorController {
 			grid.getScene().getWindow().hide();
 		}
 	}
+	
+	/**
+	 * Updates the information displayed in the sidebars of the GUI.
+	 */
+	public void printInfo() {
+		listRobots.getItems().clear();
+		listRobots.getItems().addAll(warehouse.getRobotInfo());
+		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
+		listPacking.getItems().clear();
+		listPacking.getItems().addAll(warehouse.getPackingID());
+		listPacking.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
+		listOrders.getItems().clear();
+		listOrders.getItems().addAll(order.getOrderInfo());
+		listOrders.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+	}
+	
 }
