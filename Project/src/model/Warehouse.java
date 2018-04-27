@@ -154,6 +154,11 @@ public class Warehouse {
 	 */
 	private ArrayList<String> newOrder = new ArrayList<String>();
 	
+	/**
+	 * Contains the number of completed orders.
+	 * 
+	 * @see #costEst #getCompleted
+	 */
 	private int completed;
 
 	/**
@@ -477,6 +482,11 @@ public class Warehouse {
 		return packing;
 	}
 	
+	/**
+	 * Gets the <code>String</code> representation of {@link #completed}.
+	 * 
+	 * @return Returns <code>String</code> representation of {@link #completed}.
+	 */
 	public String getCompleted() {
 		String complete = Integer.toString(completed);
 		return complete;
