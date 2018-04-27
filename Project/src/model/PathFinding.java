@@ -33,7 +33,6 @@ public class PathFinding extends Robot implements Entity {
 	public void pathCalc(Point destination, ArrayList<Point> robotLocations) {
 		ArrayList<Point> takenNodes = new ArrayList<Point>();
 		ArrayList<Point> freeSpaces = super.getFreeSpacePoints(MainController.getNumCols(), MainController.getNumRows());
-		//ArrayList<Point> robotLocations = super.getRobotSpaces();
 		
 		takenNodes.add(new Point(-1, -1));
 
@@ -88,6 +87,4 @@ public class PathFinding extends Robot implements Entity {
 	public HashMap<Point, Point> getNewNodes() {
 		return currentToNext;
 	}
-
-	// add all the path into an Arraylist and sum the all the indexes (indexes=steps=ticks), in order to compare them to the estimated + mos
 }

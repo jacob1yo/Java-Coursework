@@ -1030,7 +1030,6 @@ public class Warehouse {
 			destinations.add(storagePoints.get(newOrder.get(i)));
 			destinations.add(getPacking().passOnPoint());
 		}
-		System.out.println("COST estimation dest: " + newOrder.toString());
 		return destinations;
 	}
 
