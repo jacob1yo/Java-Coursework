@@ -30,7 +30,7 @@ public class Warehouse {
 	 * 
 	 * @see #addRobot #genID #delete #removeAll #check #chargingPodPoints #getChargeList #move 
 	 */
-	private ArrayList<ChargingPod> chargeList; //if gui messes up, change back from static
+	private ArrayList<ChargingPod> chargeList; 
 
 	/**
 	 * Storage Shelf objects used in the simulation, are stored in this ArrayList.
