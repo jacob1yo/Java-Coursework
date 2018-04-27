@@ -38,7 +38,8 @@ public class ChargingPod implements Entity {
 	  /**
 	  * Charging Pod Constructor.
 	  * 
-	  * @param int x and int y {@link chargingCoordinates} used to initialise a new Point coordinate for a Charging Pod.
+	  * @param int x {@link chargingCoordinates} used to initialise a new Point coordinate for a Charging Pod.
+	  * @param int y {@link chargingCoordinates} used to initialise a new Point coordinate for a Charging Pod.
 	  */
 	public ChargingPod(int x, int y) {
 		chargingCoordinates = new Point(x, y);	
@@ -47,7 +48,7 @@ public class ChargingPod implements Entity {
 	/**
 	 * Gets the X and Y coordinates of the charging Pod.
 	 * 
-	 * @return <code>Point</code> The coordinate value.
+	 * @return Returns a <code>Point</code>. The coordinate value.
 	 */
 	public Point getChargingCoordinates() {
 		return chargingCoordinates;
@@ -56,7 +57,7 @@ public class ChargingPod implements Entity {
 	/**
 	 * Accesses the X coordinate of the charging Pod.
 	 * 
-	 * @return <code>Point</code>. The X coordinate value.
+	 * @return Returns a <code>Point</code>. The X coordinate value.
 	 */
 	public double getChargingX(){
 		return chargingCoordinates.getX();
@@ -65,7 +66,7 @@ public class ChargingPod implements Entity {
 	/**
 	 * Accesses the Y coordinate of the charging Pod.
 	 * 
-	 * @return <code>Point</code>. The Y coordinate value.
+	 * @return Returns a <code>Point</code>. The Y coordinate value.
 	 */
 	public double getChargingY(){
 		return chargingCoordinates.getY();
@@ -74,12 +75,17 @@ public class ChargingPod implements Entity {
 	/**
 	 * Updates the chargeRate of the Charging Pod
 	 * 
-	 * @param chargeRate {@link chargeRate}. Int value assigned to link the chargeRate parameter to the chargeRate field.
+	 * @param chargeRate {@link chargeRate}. The <code>int</code> value assigned to link the chargeRate parameter to the chargeRate field.
 	 */
 	public void updateChargeRate(int chargeRate) {
 		this.chargeRate = chargeRate;
 	}
 	
+	/**
+	 * Gets the charge rate set by the {@link #updateChargeRate(int)} method.
+	 * 	
+	 * @return Returns {@link #updateChargeRate(int)} an <code>int</code> value. Representing the charge rate.
+	 */
 	public int getChargeRate() {
 		return chargeRate;
 	}

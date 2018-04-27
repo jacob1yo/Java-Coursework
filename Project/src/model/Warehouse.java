@@ -188,6 +188,8 @@ public class Warehouse {
 	 * @see #costEst #getCompleted
 	 */
 	private int completed;
+	
+	private boolean finished;
 
 	/**
 	 * Warehouse Constructor.
@@ -203,6 +205,7 @@ public class Warehouse {
 		currentToNext = new HashMap<Point, Point>();
 		order = new Order();
 		next = 0;
+		finished = false;
 	}
 
 	/**
@@ -568,10 +571,8 @@ public class Warehouse {
 		Robot robot = robotList.get(i);
 		if (robot.completeOrder()) {
 			completed++;
-			System.out.println("Warehouse completedOrders: " + completed);
 		}
 		boolean value = true;
-		System.out.println("CostEst being EXECUTED... " + robot.getOrderStatus());
 		if (!robot.getOrderStatus()) {
 			CostEstimationStrategy costEstimation = new CostEstimationStrategy(order, getPacking(), storagePoints);
 			value = costEstimation.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(),
@@ -582,11 +583,19 @@ public class Warehouse {
 				robot.orderDecision(getDestinations());
 				robot.setWaitTime(waitTime);
 			} else {
-				System.out.println("SET COMPLETED CALLED");
-				robot.orderDecision(robot.setDestinationStart());
+				if(order.getNextSentence() == null) {
+					finished = true;
+				}
+				else {
+					robot.orderDecision(robot.setDestinationStart());
+				}
 			}
 		}
 		return value;
+	}
+	
+	public boolean getFinished() {
+		return finished;
 	}
 
 	/**
@@ -624,7 +633,6 @@ public class Warehouse {
 			pathFinding.pathCalc(destination, robotPoints());
 			currentToNext = pathFinding.getNewNodes();
 			robot.decreaseBatteryLevel();
-			System.out.println("Battery level: " + robot.getBatteryLevel());
 			return currentToNext;
 		}
 	}
@@ -1019,7 +1027,6 @@ public class Warehouse {
 			destinations.add(storagePoints.get(newOrder.get(i)));
 			destinations.add(getPacking().passOnPoint());
 		}
-		System.out.println("COST estimation dest: " + newOrder.toString());
 		return destinations;
 	}
 

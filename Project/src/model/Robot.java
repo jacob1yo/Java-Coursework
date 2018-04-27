@@ -162,7 +162,6 @@ public class Robot implements Entity {
 			if (batteryLevel < originalBatteryLevel) {
 				batteryLevel += chargeRate;
 			}
-			System.out.println("Battery level: " + batteryLevel);
 		}
 	}
 
@@ -226,7 +225,6 @@ public class Robot implements Entity {
 		order = destination;
 		order.add(start);
 		index = 0;
-		System.out.println("Robot order: " + order.toString());
 	}
 
 	/**
@@ -242,7 +240,6 @@ public class Robot implements Entity {
 		chargePod.add(start);
 		if (!destination.equals(chargePod)) {
 			orderStatus = true;
-			System.out.println("Order accepted. " + destination);
 		}
 		receiveOrder(destination);
 	}
@@ -449,7 +446,6 @@ public class Robot implements Entity {
 	public void finishOrder(int index) {
 		if (index == (order.size() - 1)) {
 			if (getRobotCoordinates().equals(order.get(order.size() - 2))) {
-				System.out.println("orderStatus is set to false");
 				orderStatus = false;
 				completed = true;
 			}

@@ -25,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Order;
 import model.Warehouse;
@@ -319,8 +320,25 @@ public class SimulatorController {
 	
 	@FXML
 	public void endSimulationPressed() {
-		
+		while(!warehouse.getFinished()) {
+			oneTickPressed();
+		}
+		final FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("EndScene.fxml")); 
+		final EndController controller = new EndController();
+		loader.setController(controller);
+		try {
+			final Parent parent = (Parent) loader.load();
+
+			final Stage removeStage = new Stage();
+			removeStage.initModality(Modality.APPLICATION_MODAL);
+			removeStage.setScene(new Scene(parent, 500, 150));
+			removeStage.showAndWait();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
+	
 	
 	/**
 	 * Sends the user an alert, letting them know that they are about to leave the simulation; once they click 'OK'.

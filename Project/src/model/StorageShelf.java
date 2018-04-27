@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Point;
+
 /**
  * This class contains the implementation of the Storage Shelf methods.
  * 
@@ -8,7 +10,6 @@ package model;
  *         
  * @version 1.0
  */
-import java.awt.Point;
 
 public class StorageShelf implements Entity {
 
@@ -29,7 +30,8 @@ public class StorageShelf implements Entity {
 	/**
 	 * Storage Shelf Constructor.
 	 * 
-	 * @param int x and int y {@link storageCoordinates} used to initialise a new Point coordinate for a Storage Shelf.
+	 * @param int x an <code>int</code> value, {@link storageCoordinates} used to initialise a new Point coordinate for a Storage Shelf.
+	 * @param int y an <code>int</code> value, {@link storageCoordinates} used to initialise a new Point coordinate for a Storage Shelf.
 	 */
 	public StorageShelf(int x, int y) {
 		storageCoordinates = new Point(x, y);
@@ -38,7 +40,7 @@ public class StorageShelf implements Entity {
 	/**
 	 * Gets the X and Y coordinates of the Storage Shelf.
 	 * 
-	 * @return <code>Point</code> The coordinate value.
+	 * @return Returns a <code>Point</code> The coordinate value.
 	 */
 	public Point getStorageCoordinates() {
 		return storageCoordinates;
@@ -47,7 +49,7 @@ public class StorageShelf implements Entity {
 	/**
 	 * Accesses the X coordinate of the Storage Shelf.
 	 * 
-	 * @return <code>Point</code>. The X coordinate value.
+	 * @return Returns a <code>Point</code>. The X coordinate value.
 	 */
 	public double getStorageX() {
 		return storageCoordinates.getX();
@@ -56,7 +58,7 @@ public class StorageShelf implements Entity {
 	/**
 	 * Accesses the Y coordinate of the Storage Shelf.
 	 * 
-	 * @return <code>Point</code>. The Y coordinate value.
+	 * @return Returns a <code>Point</code>. The Y coordinate value.
 	 */
 	public double getStorageY() {
 		return storageCoordinates.getY();

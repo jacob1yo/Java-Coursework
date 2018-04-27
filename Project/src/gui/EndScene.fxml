@@ -10,7 +10,7 @@
    <children>
       <VBox alignment="CENTER" prefHeight="100.0" prefWidth="346.0">
          <children>
-            <Label text="The simulation has ended!">
+            <Label fx:id="message" text="The simulation has ended!">
                <font>
                   <Font size="17.0" />
                </font>
@@ -24,15 +24,10 @@
       </VBox>
       <HBox alignment="BOTTOM_CENTER" prefHeight="26.0" prefWidth="346.0" spacing="5.0">
          <children>
-            <Button fx:id="ok" alignment="BOTTOM_CENTER" defaultButton="true" depthTest="DISABLE" mnemonicParsing="false" text="OK" textAlignment="CENTER">
+            <Button alignment="BOTTOM_CENTER" defaultButton="true" depthTest="DISABLE" mnemonicParsing="false" onAction="#okPressed" text="OK" textAlignment="CENTER">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-            </Button>
-            <Button fx:id="cancel" mnemonicParsing="false" text="Cancel">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
             </Button>
          </children>
          <padding>
