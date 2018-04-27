@@ -661,16 +661,15 @@ public class Warehouse {
 	 */
 	public String getRobotInfo() {
 		String robotInfo = "";
-		String robotID = "";
-		String robotCharge = "";
-		String robotCoordinates = "";
-		getUpdatedRobotCoordinates();
 
 		for (int i = 0; i < robotList.size(); i++) {
-			robotID = robotList.get(i).getID() + " ";
-			robotCharge = robotList.get(i).getBatteryLevel() + " ";
-			robotInfo += "Robot ID :" + robotID + "\n" + "Charge Rate :" + robotCharge + "\n" + "Coordinates :" + "\n"
-					+ "\n" + robotCoordinates;
+			String robotID = robotList.get(i).getID() + " ";
+			String robotCharge = robotList.get(i).getBatteryLevel() + " ";
+			Double x = robotList.get(i).getRobotX();
+			Double y = robotList.get(i).getRobotY();
+			String robotCoordinates = "X: " + x.intValue() + " Y: " + y.intValue();
+			robotInfo += "Robot ID: " + robotID + "\n" + "Battery Level: " + robotCharge + "\n" 
+			+ "Coordinates: " + robotCoordinates;
 		}
 		return robotInfo;
 	}

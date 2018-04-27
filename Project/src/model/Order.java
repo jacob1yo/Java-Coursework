@@ -188,5 +188,18 @@ public class Order {
 		}
 		return commands;
 	}
+	
+	/**
+	 * Gets a list of orders from {@link #orders}.
+	 * 
+	 * @return Returns <code>String</code> containing all the orders that are in {@link #orders}.
+	 */
+	public String getOrderInfo() {
+		String info = "Unassigned Orders: ";
+		for(int i = 0; i < orders.size(); i++) {
+			info += orders.get(i).toString() + "\n";
+		}
+		return info;
+	}
 
 }
