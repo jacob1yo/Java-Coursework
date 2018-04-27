@@ -571,10 +571,8 @@ public class Warehouse {
 		Robot robot = robotList.get(i);
 		if (robot.completeOrder()) {
 			completed++;
-			System.out.println("Warehouse completedOrders: " + completed);
 		}
 		boolean value = true;
-		System.out.println("CostEst being EXECUTED... " + robot.getOrderStatus());
 		if (!robot.getOrderStatus()) {
 			CostEstimationStrategy costEstimation = new CostEstimationStrategy(order, getPacking(), storagePoints);
 			value = costEstimation.distanceEstimator(robot.getRobotX(), robot.getRobotY(), robot.getID(),
@@ -635,7 +633,6 @@ public class Warehouse {
 			pathFinding.pathCalc(destination, robotPoints());
 			currentToNext = pathFinding.getNewNodes();
 			robot.decreaseBatteryLevel();
-			System.out.println("Battery level: " + robot.getBatteryLevel());
 			return currentToNext;
 		}
 	}
