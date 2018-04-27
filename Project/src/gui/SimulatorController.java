@@ -26,7 +26,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import model.CostEstimationStrategy;
 import model.Order;
 import model.Warehouse;
 
@@ -88,21 +87,16 @@ public class SimulatorController {
 	@FXML private ListView<String> listPacking;
 
 	/**
-	 * Displays a list of unassigned orders.
+	 * Displays a list of orders.
 	 */
-	@FXML private ListView<String> listUnassigned;
-
+	@FXML private ListView<String> listOrders;
+	
 	/**
-	 * Displays a list of assigned orders.
+	 * Displays the number of orders completed in the GUI.
 	 * 
-	 * @see #initialize
+	 * @see #oneTickPressed #tenTickPressed
 	 */
-	@FXML private ListView<String> listAssigned;
-
-	/**
-	 * Displays a list of dispatched orders.
-	 */
-	@FXML private ListView<String> listDispatched;
+	@FXML private Label completed;
 
 	/**
 	 * Displays the current tick the simulation is on in the GUI
@@ -159,21 +153,11 @@ public class SimulatorController {
 		addPackage();
 
 		//Need to get the robot ID, charge rate, destination and coordinates of the current robot
-
-
 		listRobots.getItems().addAll(warehouse.getRobotInfo());
 		listRobots.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 		listPacking.getItems().addAll(warehouse.getPackingID());
 		listPacking.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-		listUnassigned.getItems().addAll("test");
-		listUnassigned.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-		//listAssigned.getItems().addAll(warehouse.getOrder().getAssigned());
-		//listAssigned.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
-
 	}
 
 	/**
@@ -191,6 +175,7 @@ public class SimulatorController {
 	
 	/**
 	 * Adds a <code>Circle</code> representing a Robot and a <code>Rectangle</code> representing a Charging Pod according to the "SIM" file.
+	 * {@link #initialize}
 	 */
 	public void addRobots() {
 		for(int i = 0; i < warehouse.robotPoints().size(); i++) {
@@ -211,6 +196,7 @@ public class SimulatorController {
 
 	/**
 	 * Adds a <code>Polygon</code> representing a Storage Shelf according to the "SIM" file.
+	 * {@link #initialize}
 	 */
 	public void addStorage() {
 		for(int i = 0; i < warehouse.storageShelfPoints().size(); i++) {
@@ -228,6 +214,7 @@ public class SimulatorController {
 
 	/**
 	 * Adds a <code>Polygon</code> representing a Packing Station according to the "SIM" file.
+	 * {@link #initialize}
 	 */
 	public void addPackage() {
 		for(int i = 0; i < warehouse.packingStationPoints().size(); i++) {
@@ -269,8 +256,8 @@ public class SimulatorController {
 	}
 
 	/**
-	 * 
-	 * @param i
+	 * Iterates through a <code>HashMap</code> on current locations and next locations, updating the GUI and the model.
+	 * @param <code>int</code> i, index to move the right Robot
 	 */
 	public void move(int i) {
 		HashMap<Point, Point> hashmap = warehouse.move(i);
@@ -287,7 +274,7 @@ public class SimulatorController {
 
 	/**
 	 * Moves the Robot displayed on the GUI to the next location.
-	 * @param i
+	 * @param i, index to move the right circle in the GUI.
 	 * @param current, which is the current location of the Robot
 	 * @param next, which is the next location of the Robot
 	 */
@@ -306,7 +293,7 @@ public class SimulatorController {
 	}
 	
 	/**
-	 * Executes cost estimation and the move method, for each Robot, and increase the step the simulation is on.
+	 * Executes cost estimation and the move method, for each Robot and increase the step the simulation is on.
 	 */
 	@FXML
 	public void oneTickPressed() {
@@ -314,12 +301,14 @@ public class SimulatorController {
 			warehouse.costEst(i);
 			move(i);
 		}
+		completed.setText(warehouse.getCompleted());
 		ticks++;
 		tickLabel.setText("Tick: " + ticks);
 	}
 
 	/**
 	 * Calls on the oneTickPressed method 10 times and increase the step the GUI is on, by 10.
+	 * {@link #oneTickPressed}
 	 */
 	@FXML 
 	public void tenTickPressed() {

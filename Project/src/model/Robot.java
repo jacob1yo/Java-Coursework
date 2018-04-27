@@ -19,7 +19,7 @@ public class Robot implements Entity {
 	/**
 	 * The value of the battery level of Robot objects.
 	 * 
-	 * @see #charging #decreaseBatteryLevel #getBatteryLevel #updateBattery CostEstimationStrategy#distanceEstimator
+	 * @see #charging #decreaseBatteryLevel #getBatteryLevel #updateBattery #CostEstimationStrategy #distanceEstimator
 	 */
 	protected int batteryLevel;
 
@@ -105,6 +105,11 @@ public class Robot implements Entity {
 	 * @see #getRobotCoordinates #getRobotX #getRobotY #setCoordinates
 	 */
 	protected Point robotCoordinates;
+	
+	/**
+	 * Contains <code>boolean</code> to determine if a robot has completed an {@link #order}.
+	 */
+	private boolean completed;
 
 	/**
 	 * Robot Constructor.
@@ -304,6 +309,7 @@ public class Robot implements Entity {
 	 *         go.
 	 */
 	public Point nextInPath() {
+		completed = false;
 		if (atLocation()) {
 			if (index < order.size()) {
 				pickUpItems();
@@ -377,17 +383,6 @@ public class Robot implements Entity {
 	}
 
 	/**
-	 * Gets the location of each robot from the {@link MainController class} and
-	 * stores it in an ArrayList.
-	 * 
-	 * @return Returns a <code>ArrayList<Point></code>. ArrayList of Point Objects.
-	 */
-	public ArrayList<Point> getRobotSpaces() {
-		return MainController.getRobotSpaces();
-
-	}
-
-	/**
 	 * Gets the free spaces on the of free spaces on the grid {@link MainController
 	 * class} and stores it in an ArrayList.
 	 * 
@@ -456,6 +451,7 @@ public class Robot implements Entity {
 			if (getRobotCoordinates().equals(order.get(order.size() - 2))) {
 				System.out.println("orderStatus is set to false");
 				orderStatus = false;
+				completed = true;
 			}
 		}
 	}
@@ -511,6 +507,15 @@ public class Robot implements Entity {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Gets the value of {@link #completed}.
+	 * 
+	 * @return Returns <code>boolean</code> value of {@link #completed}.
+	 */
+	public boolean completeOrder() {
+		return completed;
 	}
 
 	@Override

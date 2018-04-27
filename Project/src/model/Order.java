@@ -42,7 +42,7 @@ public class Order {
 	 * 
 	 * @see #getNextSentence #newSentence
 	 */
-	public ArrayList<String> sentence;
+	private ArrayList<String> sentence;
 
 	/**
 	 * Order constructor.
@@ -113,7 +113,7 @@ public class Order {
 	/**
 	 * Gets the {@link #sentence} from the ArrayList containing the <code>String</code> representation of an order.
 	 * 
-	 * @return <code>ArrayList<String></code> Returns {@link #sentence} which is set by the {@link #newSentence()} method, 
+	 * @return Returns <code>ArrayList<String></code> {@link #sentence} which is set by the {@link #newSentence()} method, 
 	 * or <code>null</code> if there are no more orders.
 	 */
 	public ArrayList<String> getNextSentence(){
