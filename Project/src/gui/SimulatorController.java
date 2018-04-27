@@ -118,6 +118,13 @@ public class SimulatorController {
 	 */
 	private ArrayList<Circle> circleList;
 
+	/**
+	 * Simulator Controller constructor.
+	 * 
+	 * Sets the finalGridHeight and the finalGridWidth to values read from the "SIM" file.
+	 * Initialises the Warehouse to have the same enities and parameters as the one from the "SIM" file.
+	 * Initialises the the Circle List <code>ArrayList</code>
+	 */
 	public SimulatorController() {
 		finalGridHeight = MainController.getNumRows();
 		finalGridWidth = MainController.getNumCols();
@@ -279,7 +286,7 @@ public class SimulatorController {
 	}
 
 	/**
-	 * 
+	 * Moves the Robot displayed on the GUI to the next location.
 	 * @param i
 	 * @param current, which is the current location of the Robot
 	 * @param next, which is the next location of the Robot
