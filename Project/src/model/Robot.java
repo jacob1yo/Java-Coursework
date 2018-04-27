@@ -19,8 +19,7 @@ public class Robot implements Entity {
 	/**
 	 * The value of the battery level of Robot objects.
 	 * 
-	 * @see #orderDecision #getBatteryLevel #charging #decreaseBatteryLevel
-	 *      #updateBattery #needsCharging
+	 * @see #charging #decreaseBatteryLevel #getBatteryLevel #updateBattery CostEstimationStrategy#distanceEstimator
 	 */
 	protected int batteryLevel;
 
@@ -35,13 +34,14 @@ public class Robot implements Entity {
 	 * The <code>boolean</code> value representing whether the robot is currently
 	 * processing an order or not
 	 * 
-	 * @see #initializeOrder #orderDecision #finishOrder
+	 * @see #finishOrder #getOrderStatus #orderDecision
 	 */
 	private boolean orderStatus;
 
 	/**
 	 * The <code>String</code> unique identifier of each robot.
 	 * 
+	 * @see #generateID #getID #setId
 	 */
 	private String uid;
 
@@ -49,8 +49,7 @@ public class Robot implements Entity {
 	 * ArrayList storing <code>Point</code> coordinates of the Shelves, Packing
 	 * Stations and Charging Pods.
 	 * 
-	 * @see #recieveOrder #atDestination #nextInPath #dropOrder #getDestination
-	 *      #finishOrder #atPacking #atShelf
+	 * @see #atPacking #atShelf #dropOrder #finishOrder #getDestinations #nextInPath #receiveOrder
 	 */
 	private ArrayList<Point> order;
 
@@ -58,14 +57,14 @@ public class Robot implements Entity {
 	 * <code>Point</code> coordinates of the next destination which the robot needs
 	 * to go to.
 	 * 
-	 * @see #setStart #atLocation #nextInPath
+	 * @see #atLocation #nextInPath #setStart
 	 */
 	private Point nextDestination;
 
 	/**
 	 * The <code>int</code> value of an index of a <code>ArrayList</code>.
 	 * 
-	 * @see #receiveOrder #nextInPath
+	 * @see #nextInPath #receiveOrder
 	 */
 	private int index;
 
@@ -73,7 +72,7 @@ public class Robot implements Entity {
 	 * True or false <code>boolean</code> value when the robot is carrying a storage
 	 * shelf.
 	 * 
-	 * @see #decreaseBatteryLevel #pickUpItems #atDestination #dropOrder #atPacking
+	 * @see #atPacking #atShelf #decreaseBatteryLevel #dropOrder #pickUpItems
 	 */
 	private boolean carrying;
 
@@ -81,7 +80,7 @@ public class Robot implements Entity {
 	 * The starting <code>Point</code> coordinate where the robot and its
 	 * corresponding charging pod is placed on the grid.
 	 * 
-	 * @see #setStart #charging #getStart #receiveOrder #orderDecision
+	 * @see #atChargePod #charging #orderDecision #receiveOrder #setDestinationStart #setStart
 	 */
 	private Point start;
 
@@ -89,7 +88,7 @@ public class Robot implements Entity {
 	 * The <code>int</code> value of how long the Robot should wait for at the
 	 * Packing Station.
 	 * 
-	 * @see #waitAtPacking #setWaitTime
+	 * @see #setWaitTime #waitAtPacking
 	 */
 	private int waitTime;
 
@@ -103,7 +102,7 @@ public class Robot implements Entity {
 	/**
 	 * The <code>Point</code> coordinates where the Robot is placed on the grid.
 	 * 
-	 * @see #setCoordinates #getRobotCoordinates #getRobotY #getRobotX
+	 * @see #getRobotCoordinates #getRobotX #getRobotY #setCoordinates
 	 */
 	protected Point robotCoordinates;
 
