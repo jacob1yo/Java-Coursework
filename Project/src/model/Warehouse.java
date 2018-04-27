@@ -153,6 +153,8 @@ public class Warehouse {
 	 * @see #costEst #getDestinations
 	 */
 	private ArrayList<String> newOrder = new ArrayList<String>();
+	
+	private int completed;
 
 	/**
 	 * Warehouse Constructor.
@@ -474,6 +476,11 @@ public class Warehouse {
 		}
 		return packing;
 	}
+	
+	public String getCompleted() {
+		String complete = Integer.toString(completed);
+		return complete;
+	}
 
 	/**
 	 * Calls on the CostEstimationStrategy class {@link #distanceEstimator} method. To see if the robot can take an order or not.
@@ -484,6 +491,10 @@ public class Warehouse {
 	 */
 	public boolean costEst(int i) {
 		Robot robot = robotList.get(i);
+		if(robot.completeOrder()) {
+			completed++;
+			System.out.println("Warehouse completedOrders: " + completed);
+		}
 		boolean value = true;
 		System.out.println("CostEst being EXECUTED... " + robot.getOrderStatus());
 		if(!robot.getOrderStatus()) {
@@ -525,7 +536,7 @@ public class Warehouse {
 				robot.charging(chargeList.get(i).getChargeRate());
 				return currentToNext;
 			}
-			else if(robot.atShelf() && waited == false) {
+			else if(robot.atShelf() && waited == false && robot.getOrderStatus()) {
 				waited = true;
 				return currentToNext;
 			}
@@ -533,7 +544,7 @@ public class Warehouse {
 				waited = false;
 				PathFinding pathFinding = new PathFinding();
 				Point destination = robot.getDestination();
-				pathFinding.pathCalc(destination);
+				pathFinding.pathCalc(destination, robotPoints());
 				currentToNext = pathFinding.getNewNodes();
 				robot.decreaseBatteryLevel();
 				System.out.println("Battery level: " + robot.getBatteryLevel());
