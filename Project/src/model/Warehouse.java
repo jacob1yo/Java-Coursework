@@ -533,7 +533,7 @@ public class Warehouse {
 				waited = false;
 				PathFinding pathFinding = new PathFinding();
 				Point destination = robot.getDestination();
-				pathFinding.pathCalc(destination);
+				pathFinding.pathCalc(destination, robotPoints());
 				currentToNext = pathFinding.getNewNodes();
 				robot.decreaseBatteryLevel();
 				System.out.println("Battery level: " + robot.getBatteryLevel());
