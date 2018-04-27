@@ -419,7 +419,7 @@ public class Warehouse {
 	/**
 	 * Get the an ArrayList of coordinates of every storage shelf
 	 * 
-	 * @return <code>ArrayList<Point></code>
+	 * @return <code>ArrayList</code> 
 	 */
 	public ArrayList<Point> storageShelfPoints() {
 		ArrayList<Point> storageShelfs = new ArrayList<Point>();
@@ -433,7 +433,7 @@ public class Warehouse {
 	 * Get the an ArrayList of coordinates of every space that is available for a
 	 * robot to move to
 	 * 
-	 * @return <code>ArrayList<Point></code>
+	 * @return <code>ArrayList</code>
 	 */
 	public ArrayList<Point> freeSpacePoints(int numCols, int numRows) {
 		ArrayList<Point> spaces = new ArrayList<Point>();
