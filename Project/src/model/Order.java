@@ -113,7 +113,7 @@ public class Order {
 	/**
 	 * Gets the {@link #sentence} from the ArrayList containing the <code>String</code> representation of an order.
 	 * 
-	 * @return Returns <code>ArrayList<String></code> {@link #sentence} which is set by the {@link #newSentence()} method, 
+	 * @return Returns <code>ArrayList</code> {@link #sentence} which is set by the {@link #newSentence()} method, 
 	 * or <code>null</code> if there are no more orders.
 	 */
 	public ArrayList<String> getNextSentence(){
@@ -124,7 +124,7 @@ public class Order {
 	}
 
 	/**
-	 * Removes the first index of {@link #order} from {@link #orders}.
+	 * Removes the first index from {@link #orders}.
 	 */
 	public void removeFromOrders() {
 		if(!orders.isEmpty()) {
@@ -137,7 +137,6 @@ public class Order {
 	 * This method scans the "SIM" file then populates and fills the {@link #orders} ArrayList 
 	 * with an ArrayList of sentences scanned and populates index by index
 	 * 
-	 * @exception FileNotFoundException if the user chooses a File that does not exist.
 	 */
 	public void fillLists() {
 		try {
@@ -172,8 +171,6 @@ public class Order {
 	 * This methods scans the lines/sentences in the "SIM" file and adds them to the {@link #commands} ArrayList.
 	 * 
 	 * @return Returns an <code>ArrayList</code> of sentences in the "SIM" file.
-	 * 
-	 * @exception FileNotFoundException if the user chooses a File that does not exist.
 	 */
 	public ArrayList<String> printCommands() {
 		try {

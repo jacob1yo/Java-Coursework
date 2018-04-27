@@ -44,7 +44,8 @@ public class PackingStation implements Entity{
 	 * Packing Station Constructor. Creates a new <code>Point</code> and assigns it to p and sets a <code>boolean</code>
 	 * value set to false automatically for the Order to be completed.
 	 * 
-	 * @param int x and int y {@link packingCoordinates} used to initialise a new <code>Point</code> coordinate for each Packing Station.
+	 * @param x {@link packingCoordinates} used to initialise a new x <code>Point</code> coordinate for each Packing Station.
+	 * @param y {@link packingCoordinates} used to initialise a new y <code>Point</code> coordinate for each Packing Station.
 	 */	
 	public PackingStation(int x, int y) {
 		packingCoordinates = new Point(x, y);

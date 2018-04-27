@@ -30,8 +30,8 @@ public class StorageShelf implements Entity {
 	/**
 	 * Storage Shelf Constructor.
 	 * 
-	 * @param int x an <code>int</code> value, {@link storageCoordinates} used to initialise a new Point coordinate for a Storage Shelf.
-	 * @param int y an <code>int</code> value, {@link storageCoordinates} used to initialise a new Point coordinate for a Storage Shelf.
+	 * @param x an <code>int</code> value, {@link storageCoordinates} used to initialise a new Point coordinate for a Storage Shelf.
+	 * @param y an <code>int</code> value, {@link storageCoordinates} used to initialise a new Point coordinate for a Storage Shelf.
 	 */
 	public StorageShelf(int x, int y) {
 		storageCoordinates = new Point(x, y);

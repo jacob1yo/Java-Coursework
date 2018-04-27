@@ -217,9 +217,6 @@ public class Robot implements Entity {
 	 * Robot has to visit in order to complete the order.
 	 * 
 	 * @param destination the <code>ArrayList</code> of <code>Point</code> coordinates.
-	 * 
-	 * @return Returns a <code>ArrayList</code> of <code>Point</code> coordinates.
-	 *         Used by the robot to go back its {@link #start} position.
 	 */
 	public void receiveOrder(ArrayList<Point> destination) {
 		order = destination;
@@ -231,9 +228,6 @@ public class Robot implements Entity {
 	 * Decides whether a robot can take an order or not.
 	 * 
 	 * @param destination a <code>ArrayList</code> of <code>Point</code> coordinates.
-	 * 
-	 * @return Returns a <code>boolean</code> value. If an order is accepted
-	 *         {@link #orderStatus} set to True, otherwise false.
 	 */
 	public void orderDecision(ArrayList<Point> destination) {
 		ArrayList<Point> chargePod = new ArrayList<Point>();
@@ -429,7 +423,7 @@ public class Robot implements Entity {
 	 * Gets the <code>Point</code> coordinates of the Shelves, Packing Stations and
 	 * Charging Pods.
 	 * 
-	 * @returns order a <code>ArrayList</code>. Contains the coordinates of the
+	 * @return order a <code>ArrayList</code>. Contains the coordinates of the
 	 *          Shelves, Packing Stations and Charging Pods.
 	 */
 	public ArrayList<Point> getDestinations() {

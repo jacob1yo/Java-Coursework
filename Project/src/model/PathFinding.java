@@ -93,7 +93,7 @@ public class PathFinding extends Robot implements Entity {
 	/**
 	 * Returns the HashMap created in manhattanCalc.
 	 * 
-	 * @return Returns {@link #currentToNext} a <code>HashMap<Point, Point></code>. Contains the coordinates for the robots.
+	 * @return Returns {@link #currentToNext} a <code>HashMap</code>. Contains the coordinates for the robots.
 	 */
 	public HashMap<Point, Point> getNewNodes() {
 		return currentToNext;
