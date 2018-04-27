@@ -72,27 +72,25 @@ public class CostEstimationStrategy extends Robot {
 			double X = storagePoints.get(sentence.get(2)).getX();
 			double Y = storagePoints.get(sentence.get(2)).getY();
 
-			robotStorage = super.pythagoras(robotX, X, robotY, Y);	//1X
-			for (int j = 2; j< sentence.size(); j++) {  // gets the ss1 ss2 etc
+			robotStorage = super.pythagoras(robotX, X, robotY, Y);	
+			for (int j = 2; j< sentence.size(); j++) {  
 				if((j + 1) < sentence.size()) {
 					double x1 = storagePoints.get(sentence.get(j)).getX();
 					double x2 = destination.getX();
 					double y1 = storagePoints.get(sentence.get(j)).getY();
 					double y2 = destination.getY();
-					storagePacking += super.pythagoras(x1, y1, x2, y2);	//2X
+					storagePacking += super.pythagoras(x1, y1, x2, y2);	
 
-					//	double X1 = destination.getX();
 					double X1 = storagePoints.get(sentence.get(j++)).getX();
-					//	double Y1 = destination.getY();
 					double Y1 = storagePoints.get(sentence.get(j++)).getY();
-					packingStorage += super.pythagoras(X1, Y1, x2, y2);	//1X
+					packingStorage += super.pythagoras(X1, Y1, x2, y2);	
 				}
 				else {
 					double x1 = storagePoints.get(sentence.get(sentence.size() - 1)).getX();
 					double x2 = destination.getX();
 					double y1 = storagePoints.get(sentence.get(sentence.size() - 1)).getY();
 					double y2 = destination.getY();
-					storagePacking += super.pythagoras(x1, y1, x2, y2);	//2X
+					storagePacking += super.pythagoras(x1, y1, x2, y2);	
 				}
 			}
 
@@ -100,7 +98,7 @@ public class CostEstimationStrategy extends Robot {
 			double x2 = destination.getX();
 			double y1 = chargePoints.get(robotsChargePod.get(uid)).getY();
 			double y2 = destination.getY();
-			packingPod = super.pythagoras(x1, y1, x2, y2);	//1X
+			packingPod = super.pythagoras(x1, y1, x2, y2);	
 
 			noSteps = ((GRADIENT * (robotStorage + packingStorage + packingPod)) - INTERCEPT) + (2 * (GRADIENT * (storagePacking) - INTERCEPT));
 
@@ -117,11 +115,4 @@ public class CostEstimationStrategy extends Robot {
 	public ArrayList<String> getSentence(){
 		return sentence;
 	}
-
-	/*public int numTicks() {
-		String temp = packingStation.getNextOrder(order).get(1);
-		Integer ticks = Integer.parseInt(temp);
-		return ticks;
-	}*/
-
 }
