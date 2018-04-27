@@ -181,7 +181,7 @@ public class Warehouse {
 	 * @see #costEst #getDestinations
 	 */
 	private ArrayList<String> newOrder = new ArrayList<String>();
-	
+
 	/**
 	 * Contains the number of completed orders.
 	 * 
@@ -543,7 +543,7 @@ public class Warehouse {
 		}
 		return packing;
 	}
-	
+
 	/**
 	 * Gets the <code>String</code> representation of {@link #completed}.
 	 * 
@@ -608,23 +608,24 @@ public class Warehouse {
 		currentToNext = temp;
 		if (robot.atPacking() && robot.waitAtPacking()) {
 			return currentToNext;
-		} else {
-			if (robot.atChargePod() && !robot.getOrderStatus()) {
-				robot.charging(chargeList.get(i).getChargeRate());
-				return currentToNext;
-			} else if (robot.atShelf() && waited == false && robot.getOrderStatus()) {
-				waited = true;
-				return currentToNext;
-			} else {
-				waited = false;
-				PathFinding pathFinding = new PathFinding();
-				Point destination = robot.getDestination();
-				pathFinding.pathCalc(destination, robotPoints());
-				currentToNext = pathFinding.getNewNodes();
-				robot.decreaseBatteryLevel();
-				System.out.println("Battery level: " + robot.getBatteryLevel());
-				return currentToNext;
-			}
+		} 
+		else if (robot.atChargePod() && !robot.getOrderStatus()) {
+			robot.charging(chargeList.get(i).getChargeRate());
+			return currentToNext;
+		}
+		else if (robot.atShelf() && waited == false && robot.getOrderStatus()) {
+			waited = true;
+			return currentToNext;
+		}
+		else {
+			waited = false;
+			PathFinding pathFinding = new PathFinding();
+			Point destination = robot.getDestination();
+			pathFinding.pathCalc(destination, robotPoints());
+			currentToNext = pathFinding.getNewNodes();
+			robot.decreaseBatteryLevel();
+			System.out.println("Battery level: " + robot.getBatteryLevel());
+			return currentToNext;
 		}
 	}
 
