@@ -118,8 +118,7 @@ public class Robot implements Entity {
 		orderStatus = false;
 		nextDestination = new Point();
 		order = new ArrayList<Point>();
-		// nextNode = new Point();
-		int index = 0;
+		index = 0;
 		carrying = false;
 		start = new Point();
 		waitTime = 0;
@@ -141,8 +140,7 @@ public class Robot implements Entity {
 	/**
 	 * The current battery level of the robot.
 	 * 
-	 * @return <code>int</code> How much battery life of a robot is left
-	 *         {@link #batteryLevel}.
+	 * @return <code>int</code> Returns the {@link #batteryLevel} of a robot.
 	 */
 	public int getBatteryLevel() {
 		return batteryLevel;
