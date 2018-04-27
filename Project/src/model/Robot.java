@@ -106,6 +106,9 @@ public class Robot implements Entity {
 	 */
 	protected Point robotCoordinates;
 	
+	/**
+	 * Contains <code>boolean</code> to determine if a robot has completed an {@link #order}.
+	 */
 	private boolean completed;
 
 	/**
@@ -506,6 +509,11 @@ public class Robot implements Entity {
 		return false;
 	}
 	
+	/**
+	 * Gets the value of {@link #completed}.
+	 * 
+	 * @return Returns <code>boolean</code> value of {@link #completed}.
+	 */
 	public boolean completeOrder() {
 		return completed;
 	}

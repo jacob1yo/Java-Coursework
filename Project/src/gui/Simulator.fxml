@@ -22,7 +22,7 @@
       </HBox>
    </bottom>
    <right>
-      <VBox prefHeight="200.0" prefWidth="150.0" spacing="5.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
             <Accordion>
               <panes>
@@ -42,28 +42,26 @@
                            </children></AnchorPane>
                   </content>
                 </TitledPane>
-                <TitledPane animated="false" text="Unassigned Orders">
+                <TitledPane animated="false" text="Orders">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ListView fx:id="listUnassigned" prefHeight="200.0" prefWidth="200.0" />
+                              <ListView fx:id="listOrders" prefHeight="200.0" prefWidth="200.0" />
                            </children></AnchorPane>
                   </content>
                 </TitledPane>
-                  <TitledPane animated="false" text="Assigned Orders">
+                  <TitledPane animated="false" text="Completed Orders">
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ListView fx:id="listAssigned" prefHeight="200.0" prefWidth="200.0" />
-                           </children></AnchorPane>
-                    </content>
-                  </TitledPane>
-                  <TitledPane animated="false" text="Dispatched Orders">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <ListView fx:id="listDispatched" prefHeight="200.0" prefWidth="200.0" />
-                           </children></AnchorPane>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label text="Completed Orders: " />
+                                    <Label fx:id="completed" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
                     </content>
                   </TitledPane>
               </panes>
